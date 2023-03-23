@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Employee.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.domain.model</a> &gt; <span class="el_source">Employee.java</span></div><h1>Employee.java</h1><pre class="source lang-java linenums">package app.domain.model;
+
+import app.controller.App;
+import app.domain.shared.EmailSMS;
+import app.list.EmployeeRolesList;
+import app.utils.Utils;
+import auth.AuthFacade;
+import auth.domain.model.Email;
+import org.apache.commons.lang3.StringUtils;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+/**
+ * @author Luís Ribeiro &lt;1201184@isep.ipp.pt&gt;
+ */
+public class Employee {
+
+    /**
+     * Name of the Employee (Can not be empty, according to acceptance criteria).
+     */
+    private final String name;
+
+    /**
+     * Organization role of the Employee (Can not be empty, according to acceptance criteria).
+     */
+    private final String organizationRole;
+
+    /**
+     * Address of the Employee (Can not be empty, according to acceptance criteria).
+     */
+    private final String address;
+
+    /**
+     * Employee ID of the Employee (Generated automatically by the System, according to acceptance criteria).
+     */
+    private String employeeID;
+
+    /**
+     * Phone Number of the Employee (Is composed by eleven numbers, according to client criteria).
+     */
+    private final String phoneNumber;
+
+    /**
+     * SOC code of the Employee (Can not be empty and it is always composed by four characters, according
+     * to acceptance criteria).
+     */
+    private final String socCode;
+
+    /**
+     * E-mail of the Employee (Can not be empty, according to acceptance criteria).
+     */
+    private final Email email;
+
+    /**
+     * Password of the Employee (Generated automatically, should have three capital letters and two digits,
+     * according to acceptance criteria).
+     */
+    private String password;
+
+    /**
+     * Authentication Facade of the Application.
+     */
+<span class="fc" id="L64">    private final AuthFacade authFacade = App.getInstance().getCompany().getAuthFacade();</span>
+
+    /**
+     * Number of Employees working for the Company.
+     */
+<span class="fc" id="L69">    private static int numberOfEmployees = 0;</span>
+
+    /**
+     * Generates an instance of the class Employee.
+     *
+     * @param name Name of the Employee.
+     * @param phoneNumber Phone Number of the Employee.
+     * @param email E-mail of the Employee.
+     * @param socCode SOC code of the Employee.
+     * @param organizationRole Organization role of the Employee.
+     * @param address Address of the Employee.
+     */
+    public Employee(String name, String phoneNumber, Email email, String socCode, String organizationRole,
+<span class="fc" id="L82">                    String address){</span>
+<span class="fc" id="L83">        checkName(name);</span>
+<span class="fc" id="L84">        checkPhoneNumber(phoneNumber);</span>
+<span class="fc" id="L85">        checkSOCCode(socCode);</span>
+<span class="fc" id="L86">        checkOrganizationRole(organizationRole);</span>
+<span class="fc" id="L87">        checkAddress(address);</span>
+
+<span class="fc" id="L89">        numberOfEmployees ++;</span>
+
+<span class="fc" id="L91">        this.name = name;</span>
+<span class="fc" id="L92">        this.phoneNumber = phoneNumber;</span>
+<span class="fc" id="L93">        this.email = email;</span>
+<span class="fc" id="L94">        this.socCode = socCode;</span>
+<span class="fc" id="L95">        this.organizationRole = organizationRole;</span>
+<span class="fc" id="L96">        this.address = address;</span>
+<span class="fc" id="L97">    }</span>
+
+
+    /**
+     * Allows the System to confirm if the given Name is correct according to the acceptance criteria.
+     * Verifies if the Name is blank/empty.
+     * Verifies if the Name has more than thirty five characters.
+     *
+     * @param name Name of the Employee.
+     */
+    public void checkName(String name){
+<span class="fc bfc" id="L108" title="All 2 branches covered.">        if(StringUtils.isBlank(name)) {</span>
+<span class="fc" id="L109">            throw new IllegalArgumentException(&quot;Name can not be blank.&quot;);</span>
+        }
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        if(name.length() &gt; 35){</span>
+<span class="fc" id="L112">            throw new IllegalArgumentException(&quot;Name can not have more than 35 characters.&quot;);</span>
+        }
+<span class="fc" id="L114">    }</span>
+
+    /**
+     * Allows the System to confirm if the given Phone Number is correct according to the acceptance criteria.
+     * Verifies if the Phone Number is blank/empty.
+     * Verifies if the Phone Number does not have eleven digits.
+     *
+     * @param phoneNumber Phone Number of the Employee.
+     */
+    public void checkPhoneNumber(String phoneNumber){
+<span class="fc bfc" id="L124" title="All 2 branches covered.">        if(StringUtils.isBlank(phoneNumber)){</span>
+<span class="fc" id="L125">            throw new IllegalArgumentException(&quot;Phone Number can not be blank.&quot;);</span>
+        }
+<span class="fc bfc" id="L127" title="All 2 branches covered.">        if(phoneNumber.length() != 11){</span>
+<span class="fc" id="L128">            throw new IllegalArgumentException(&quot;Phone Number must have 11 characters.&quot;);</span>
+        }
+<span class="fc" id="L130">    }</span>
+
+    /**
+     * Allows the System to confirm if the given SOC Code is correct according to the acceptance criteria.
+     * Verifies if the SOC Code is blank/empty.
+     * Verifies if the SOC Code does not have four digits.
+     *
+     * @param socCode SOC Code of the Employee.
+     */
+    public void checkSOCCode(String socCode){
+<span class="fc bfc" id="L140" title="All 2 branches covered.">        if(StringUtils.isBlank(socCode)){</span>
+<span class="fc" id="L141">            throw new IllegalArgumentException(&quot;SOC Code can not be blank.&quot;);</span>
+        }
+<span class="fc bfc" id="L143" title="All 2 branches covered.">        if(socCode.length() != 4){</span>
+<span class="fc" id="L144">            throw new IllegalArgumentException(&quot;SOC Code needs to have 4 numbers.&quot;);</span>
+        }
+<span class="fc" id="L146">    }</span>
+
+    /**
+     * Allows the System to confirm if the given Organization Role is correct according to the acceptance
+     * criteria.
+     * Verifies if the Organization Role is blank/empty.
+     * Verifies if the Organization Role exists within the System.
+     * Verifies if the Organization Role has more that thirty five characters.
+     *
+     * @param organizationRole Organization Role of the Employee.
+     */
+    public void checkOrganizationRole(String organizationRole){
+<span class="fc bfc" id="L158" title="All 2 branches covered.">        if(StringUtils.isBlank(organizationRole)){</span>
+<span class="fc" id="L159">            throw new IllegalArgumentException(&quot;The Employee needs to have one Organization Role.&quot;);</span>
+        }
+
+<span class="fc bfc" id="L162" title="All 2 branches covered.">        if(organizationRole.length() &gt; 30){</span>
+<span class="fc" id="L163">            throw new IllegalArgumentException(&quot;The Organization Role can not have more than 30 characters.&quot;);</span>
+        }
+
+<span class="fc" id="L166">        EmployeeRolesList employeeRolesList = new EmployeeRolesList();</span>
+
+
+<span class="fc bfc" id="L169" title="All 2 branches covered.">        if(! employeeRolesList.getList().contains(organizationRole)){</span>
+<span class="fc" id="L170">            throw new IllegalArgumentException(&quot;The inserted Organization Role does not exist.&quot;);</span>
+        }
+<span class="fc" id="L172">    }</span>
+
+    /**
+     * Allows the System to confirm if the given Address is correct according to the acceptance criteria.
+     * Verifies if the Address is blank/empty.
+     *
+     * @param address Address of the Employee.
+     */
+    public void checkAddress(String address){
+<span class="fc bfc" id="L181" title="All 2 branches covered.">        if(StringUtils.isBlank(address)){</span>
+<span class="fc" id="L182">            throw new IllegalArgumentException(&quot;Address can not be blank.&quot;);</span>
+        }
+<span class="fc" id="L184">    }</span>
+
+    /**
+     * Allows the System to register an automatically generated password to the Employee.
+     * Uses a method that creates a random password, that contains three capital letters, two digits and
+     * five lower case letters.
+     */
+    public void setPassword(){
+<span class="fc" id="L192">        this.password = Utils.randomPassword();</span>
+<span class="fc" id="L193">    }</span>
+
+    /**
+     * Allows the System to register an automatically generated Employee ID to the Employee.
+     * Has according to the acceptance criteria, the System starts by getting the Employee's name initials
+     * and generating a five digit number according to the number of employees registered on the Employee
+     * Store.
+     */
+    public void setEmployeeID(){
+<span class="fc" id="L202">        StringBuilder nameInitials = Utils.getStringInitials(this.name);</span>
+<span class="fc" id="L203">        String employeeNumberID = getEmployeeNumber();</span>
+<span class="fc" id="L204">        this.employeeID = String.format(&quot;%s%s&quot;, nameInitials, employeeNumberID);</span>
+<span class="fc" id="L205">    }</span>
+
+    /**
+     * Obtains the number of the Employee in the format that it should appear in the Employee ID, according
+     * to the acceptance criteria (always 5 numbers).
+     * Returns the number of the Employee in the needed format.
+     *
+     * @return Number of the Employee.
+     */
+    private String getEmployeeNumber(){
+<span class="fc" id="L215">        int quantityOfZeros = 5 - Utils.quantityOfDigits(numberOfEmployees);</span>
+<span class="fc" id="L216">        StringBuilder employeeNumberID = new StringBuilder();</span>
+<span class="fc bfc" id="L217" title="All 2 branches covered.">        for (int i = 1; i &lt;= quantityOfZeros ; i++) {</span>
+<span class="fc" id="L218">            employeeNumberID.append(&quot;0&quot;);</span>
+        }
+<span class="fc" id="L220">        employeeNumberID = new StringBuilder(String.format(&quot;%s%d&quot;, employeeNumberID.toString(), numberOfEmployees));</span>
+<span class="fc" id="L221">        return employeeNumberID.toString();</span>
+    }
+
+    /**
+     * Allows the System to register the Employee to the Authentication Facade of the Application and
+     * sends an automatic E-mail to the Employee (containing the information that he needs to use the
+     * application).
+     * The E-mail will be sent to a File.
+     *
+     * @throws FileNotFoundException Exception to be thrown in case the File is not found.
+     */
+    public void registerUserAndSendEmail() throws IOException {
+<span class="fc" id="L233">        this.authFacade.addUserWithRole(this.name, this.email.toString(), this.password, this.organizationRole);</span>
+<span class="fc" id="L234">        EmailSMS.sendRegistrationEmail(this.email, this.name, this.password);</span>
+<span class="fc" id="L235">    }</span>
+
+    /**
+     * Allows the System to reduce the number of registered Employees, if the last Employee did not pass
+     * the validation.
+     */
+    public static void reduceNumberOfEmployees(){
+<span class="nc" id="L242">        numberOfEmployees --;</span>
+<span class="nc" id="L243">    }</span>
+
+    /**
+     * Allows the System to get the Name of the Employee.
+     *
+     * @return Name of the Employee.
+     */
+    public String getName(){
+<span class="fc" id="L251">        return this.name;</span>
+    }
+
+    /**
+     * Allows the System to get the Organization Role of the Employee.
+     *
+     * @return Organization Role of the Employee.
+     */
+    public String getOrganizationRole(){
+<span class="fc" id="L260">        return this.organizationRole;</span>
+    }
+
+    /**
+     * Allows the System to get the Address of the Employee.
+     *
+     * @return Address of the Employee.
+     */
+    public String getAddress() {
+<span class="fc" id="L269">        return this.address;</span>
+    }
+
+    /**
+     * Allows the System to get the Employee ID of the Employee.
+     *
+     * @return Employee ID of the Employee.
+     */
+    public String getEmployeeID(){
+<span class="fc" id="L278">        return this.employeeID;</span>
+    }
+
+    /**
+     * Allows the System to get the Phone Number of the Employee.
+     *
+     * @return Phone Number of the Employee.
+     */
+<span class="fc" id="L286">    public String getPhoneNumber(){return this.phoneNumber;}</span>
+
+    /**
+     * Allows the System to get the E-mail of the Employee.
+     *
+     * @return E-mail of the Employee.
+     */
+<span class="fc" id="L293">    public String getEmail(){return this.email.toString();}</span>
+
+    /**
+     * Allows the System to get the SOC Code of the Employee.
+     *
+     * @return SOC Code of the Employee.
+     */
+<span class="fc" id="L300">    public String getSocCode(){return this.socCode;}</span>
+
+    /**
+     * Allows to do the comparison between two Employees.
+     *
+     * @param otherEmployee Other Employee to be compared to the Employee.
+     * @return Boolean value according to the comparison (true = Employees are equal | false = Employees
+     * are not equal).
+     */
+    public boolean equals(Employee otherEmployee){
+<span class="pc bpc" id="L310" title="1 of 4 branches missed.">        return (this.phoneNumber.equals(otherEmployee.phoneNumber) || this.socCode.equals(otherEmployee.socCode) ||</span>
+<span class="fc bfc" id="L311" title="All 2 branches covered.">                this.email.equals(otherEmployee.email));</span>
+    }
+
+    /**
+     * Allows the System to get a String that contains most of the information relative to the Employee.
+     * Information contained in the String: Name, Address, Phone Number, E-mail, Organization Role, Employee ID,
+     * SOC Code.
+     *
+     * @return String that contains information of the Employee.
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L323">        return String.format(&quot;%n1. NAME AND ADDRESS %n - Name: %s %n - Address: %s %n%n&quot; +</span>
+                &quot;2. CONTACTS %n - Phone Number: %s %n - E-mail: %s %n%n3. COMPANY INFORMATION %n - Role: %s %n &quot; +
+                &quot;- Employee ID: %s %n - SOC Code: %s %n&quot;, name, address, phoneNumber, email, organizationRole,
+                employeeID, socCode);
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

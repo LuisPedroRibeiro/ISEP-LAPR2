@@ -1,0 +1,227 @@
+@startuml
+
+class "RegisterTestUI"{}
+
+class "RegisterTestController"{
++verifyClientByTin(taxIdentificationNumber)
++createTest (nhsCode)
++saveClinicalAnalysisLaboratory(laboratoryId)
++saveTestType(code)
++getTestTypeListToDto()
++getParameterCategoryListToDto()
++getParameterListToDto()
++addParameter(code)
++saveTest()
++addTestToClient(taxIdentificationNumber)
+}
+
+class "TestStore"{
++createTest(nhsCode)
++validateTest(test)
++saveTest(test)
++nextCode()
++addTestToClient(Client,test)
+-addTest(test)
+}
+
+class "Utils"{
++currentDate()
+}
+
+class "Test"{
+- nhsCode
+- code
+- createdAt
+- resultDate
+- sampleDate
+- reportDate
++create(nhsCode)
++getNhsCode()
++getCode()
++getCreatedAt()
++setCode(Code)
++setCreatedAt(createdAt)
++addTestParameter(parameter)
++saveTestType(testType)
++saveClinicalAnalysisLaboratory(clinicalAnalysisLaboratory)
+}
+
+class "TestParameter"{
+  +getParameter()
+}
+
+class "Client"{
+ - phoneNumber
+  -  taxIdentificationNumber
+  -  email
+  -  birthDate
+  -  gender
+  -  nhsId
+  -  citizenCardNumber
+  -  password
+  +addTest(test)
+
+}
+class "ClientStore"{
++verifyClientByTin(taxIdentificationNumber)
++getClientByTin(taxIdentificationNumber)
+}
+
+class "TestTypeStore"{
++getTestTypeByCode(code)
+}
+
+class "TestType"{
+-code
+-designation
+-collectionMethod
++getParameterCategoryList()
+}
+class "TestTypeMapper"{
++toDto(listTestType)
+}
+
+class "TestTypeDto"{
+-code
+-collectionMethod
+-designation
++TestTypeDto(code, collectionMethod, designation)
+}
+
+class "ParameterStore"{
++getParameterByCode(code)
+}
+class "ParameterMapper"{
++toDto(parameter)
++toDto(listParameters)
+}
+class "Parameter"{
+-code
+-shortName
+-description
+}
+
+class "ParameterDto"{
+-code
+-shortName
+-description
++ParameterDto(code,shortName,description)
+}
+
+
+class "ClinicalAnalysisLaboratory"{
+-laboratoryID
+-address
+-name
+-phoneNumber
+-taxIdentificationNumber
++getTestTypeList()
+}
+
+
+
+
+class "ParameterCategory"{
+-code
+-name
++getParameterList()
+}
+
+class "ParameterCategoryMapper"{
++ toDto(parameterCategory)
++ toDto(listParameterCategory)}
+}
+
+class "ParameterCategoryDto"{
+-code
+-name
++ParameterCategoryDto(code,name)
+}
+
+class "ParameterCategoryList"{
++getCl()
+}
+
+class "ParameterCategoryStore"{
++getParameterCategoryByCode(code)
+}
+
+
+
+class "ClinicalTestTypeList"{
++getClinicalTestTypeList()
+
+}
+
+
+
+class "Company"{
+ - designation
+  + getClientStore()
+  + getTestTypeStore()
+  + getParameterCategoryStore()
+  + getParameterStore()
+  + getTestStore()
+}
+
+
+"RegisterTestUI"..> "RegisterTestController"
+"RegisterTestUI" ....> "TestTypeDto"
+"RegisterTestUI" ....> "ParameterCategoryDto"
+"RegisterTestUI" ....> "ParameterDto"
+"RegisterTestController" ..> "Company"
+"RegisterTestController" ..> "ClientStore"
+"RegisterTestController" ..> "ClinicalAnalysisLaboratory"
+"RegisterTestController" ..> "ParameterCategoryMapper"
+"RegisterTestController" ..> "ParameterCategoryStore"
+"RegisterTestController" ..> "ParameterCategoryDto"
+"RegisterTestController" ..> "TestTypeStore"
+"RegisterTestController" ..> "TestTypeMapper"
+"RegisterTestController" ..> "TestTypeDto"
+"RegisterTestController" ..> "ParameterStore"
+"RegisterTestController" ..> "ParameterMapper"
+"RegisterTestController" ..> "ParameterDto"
+"ClinicalAnalysisLaboratory" ..> "ClinicalTestTypeList"
+"ClinicalTestTypeList" "1" --> "*" "TestType": composed by
+"Company" "1" ------> "1" "TestTypeStore": uses
+"Company" "1" ------> "1" "TestStore" : uses
+"Company" "1" ------> "1" "ParameterStore": uses
+"Company" "1" ------> "1" "ParameterCategoryStore": uses
+"Company" "1" ------> "1" "ClientStore": uses
+"ParameterCategoryStore" "1" ---> "*" "ParameterCategory": has
+"ParameterCategoryStore" ..> "ParameterCategoryMapper"
+"ParameterCategoryMapper" ..> "ParameterCategoryDto"
+"ParameterCategoryMapper" ..> ParameterCategory
+"ClientStore" "1" --> "*" "Client": has
+"Client" "1" --> "*" "Test" : is associated to
+"RegisterTestController" ...> "TestStore"
+"TestStore" "1" --> "*" "Test": has
+"TestStore" ..>"Utils"
+"RegisterTestController" ..> "Test"
+"Test" "1" --> "1"  "TestType" : is of
+"Test" "1" --> "1..*" "TestParameter" : requests analysis of
+"TestParameter" "*" --> "1" Parameter: refers to
+Parameter "*" -->"1" ParameterCategory: presented under
+"ParameterStore" "1" --> "*" Parameter: has
+"ParameterStore" ..> "ParameterMapper"
+"ParameterMapper" ..> "ParameterDto"
+"ParameterMapper" ..> "Parameter"
+TestType "1" --> "*" ParameterCategory: requests
+"TestTypeStore" "1" --> "*" TestType: has
+"TestTypeStore" ..> "TestTypeMapper"
+"TestTypeMapper" ..> "TestTypeDto"
+"TestTypeMapper" ..> TestType
+TestType  ..> "ParameterCategoryList"
+"ParameterCategoryList" "1" --> "*" ParameterCategory:composed by
+
+
+
+
+
+
+
+
+
+
+
+@enduml

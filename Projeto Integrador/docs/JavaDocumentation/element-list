@@ -1,0 +1,16 @@
+app.adapter
+app.controller
+app.domain.model
+app.domain.shared
+app.list
+app.mappers
+app.mappers.dto
+app.store
+app.ui
+app.ui.console
+app.utils
+auth
+auth.domain.model
+auth.domain.store
+auth.mappers
+auth.mappers.dto

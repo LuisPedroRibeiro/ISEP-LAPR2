@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ValidationUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.ui.console</a> &gt; <span class="el_source">ValidationUI.java</span></div><h1>ValidationUI.java</h1><pre class="source lang-java linenums">package app.ui.console;
+
+
+import app.controller.ValidationController;
+import app.mappers.dto.TestDto;
+import app.utils.Utils;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ValidationUI implements Runnable {
+
+    /**
+     * String that contains a declaration of an error.
+     */
+<span class="nc" id="L17">    private static final String ERROR = String.format(&quot;%nERROR: OPERATION TERMINATED%n&quot;);</span>
+
+    /**
+     * Constructor of the class ValidationUI executed when creating an object
+     */
+<span class="nc" id="L22">    public ValidationUI() {</span>
+        //This method is empty because only the run method is used.
+<span class="nc" id="L24">    }</span>
+
+    /**
+     * Run method from the interface Runnable,executes the interaction between the controller  and the User and vice-versa
+     */
+    @Override
+    public void run() {
+<span class="nc" id="L31">        boolean confirmation = false;</span>
+<span class="nc" id="L32">        List&lt;String&gt; options = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L33">        options.add(&quot;Validate all available tests currently in the system&quot;);</span>
+<span class="nc" id="L34">        options.add(&quot;Choose a subset of tests to validate&quot;);</span>
+<span class="nc" id="L35">        ValidationController validationController = new ValidationController();</span>
+<span class="nc" id="L36">        List&lt;TestDto&gt; testList = new ArrayList&lt;&gt;(validationController.getListOfUnvalidatedTestsDto());</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        if (testList.isEmpty()) {</span>
+<span class="nc" id="L38">            Utils.printLineToConsole(&quot;There are not available tests to be validated in the system&quot;);</span>
+        } else {
+            try {
+<span class="nc" id="L41">                int option = Utils.showAndSelectIndex(options, &quot;Please select a option:&quot;);</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">                if (option == 0) {</span>
+<span class="nc" id="L43">                    Utils.showList(testList, &quot;List of tests that are currently available to be validated &quot;);</span>
+<span class="nc" id="L44">                    confirmation = Utils.confirm(&quot;Would you like to validate all the shown tests?&quot;);</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">                    if (confirmation) {</span>
+<span class="nc" id="L46">                        validationController.createListWithAllTestsAvailableToBeValidated();</span>
+                    }
+<span class="nc bnc" id="L48" title="All 2 branches missed.">                } else if (option == 1) {</span>
+<span class="nc" id="L49">                    option = -2;</span>
+<span class="nc bnc" id="L50" title="All 4 branches missed.">                    while (option != -1 &amp;&amp; !testList.isEmpty()) {</span>
+<span class="nc" id="L51">                        option = Utils.showAndSelectIndex(testList, &quot;List of tests that are currently available to be validated&quot;);</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">                        if (option != -1) {</span>
+<span class="nc" id="L53">                            Utils.printLineToConsole(testList.get(option).toString());</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">                            if (Utils.confirm(&quot;Are you sure you want to add this test to the list of tests being validated?&quot;)</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">                                    &amp;&amp; validationController.saveTestInListByNhsCode(testList.get(option).getNhsCode())) {</span>
+<span class="nc" id="L56">                                testList.remove(option);</span>
+                            }
+                        }
+                    }
+<span class="nc" id="L60">                    confirmation = Utils.confirm(&quot;Are you sure you want to validate all the chosen tests?&quot;);</span>
+                }
+
+<span class="nc bnc" id="L63" title="All 2 branches missed.">                if (confirmation) {</span>
+<span class="nc" id="L64">                    validationController.validateTestsInsideTestsToBeValidatedList();</span>
+<span class="nc" id="L65">                    Utils.printLineToConsole(&quot;Tests validation done with success&quot;);</span>
+                }
+<span class="nc" id="L67">            } catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L68">                Utils.printLineToConsole(ERROR);</span>
+<span class="nc" id="L69">                String message = String.format(&quot; Error Description: %s&quot;, e.getMessage());</span>
+<span class="nc" id="L70">                Utils.printLineToConsole(message);</span>
+<span class="nc" id="L71">            }catch (IOException e){</span>
+<span class="nc" id="L72">                Utils.printLineToConsole(ERROR);</span>
+<span class="nc" id="L73">                Utils.printLineToConsole(&quot;The email was not sent successfully.%nPlease check.&quot;);</span>
+<span class="nc" id="L74">            } catch (Exception e) {</span>
+<span class="nc" id="L75">                Utils.printLineToConsole(ERROR);</span>
+<span class="nc" id="L76">            }</span>
+        }
+<span class="nc" id="L78">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

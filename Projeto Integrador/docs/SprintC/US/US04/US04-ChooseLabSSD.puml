@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+autonumber
+
+actor Receptionist as Recep
+
+participant ":System" as Sys
+activate Recep
+activate Sys
+Sys --> Recep: Shows the Clinical Analysis Laboratories and asks to select one
+deactivate Sys
+Recep -> Sys: Selects the Clinical Analysis Laboratory
+activate Sys
+deactivate Sys
+
+@enduml

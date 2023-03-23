@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RecordSamplesController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.controller</a> &gt; <span class="el_source">RecordSamplesController.java</span></div><h1>RecordSamplesController.java</h1><pre class="source lang-java linenums">package app.controller;
+
+import app.domain.model.Company;
+import app.domain.model.Sample;
+import app.domain.model.Test;
+import app.mappers.TestMapper;
+import app.mappers.dto.TestDto;
+import app.store.TestStore;
+import net.sourceforge.barbecue.BarcodeException;
+import net.sourceforge.barbecue.output.OutputException;
+
+import java.io.IOException;
+import java.util.List;
+
+/**
+ * This class allows the communication between RecordSamplesUI and all the domain model.
+ *
+ * @author Miguel Ramos &lt;1201247@isep.ipp.pt&gt;
+ */
+public class RecordSamplesController {
+
+    private final Company company;
+
+    private final TestMapper mapper;
+
+    private final TestStore testStore;
+
+    private Test test;
+
+    private Sample sample;
+
+    /**
+     * Allows the initialization of an RecordSamplesController with the company returned from
+     * &quot;App.getInstance().getCompany().&quot;
+     */
+    public RecordSamplesController() throws OutputException, BarcodeException, IOException {
+<span class="nc" id="L37">        this(App.getInstance().getCompany());</span>
+<span class="nc" id="L38">    }</span>
+
+    /**
+     * Constructor that allows the initialization of Company with Sample List and Clinical Analysis
+     * Laboratory with a null value.
+     *
+     * @param company Company Class
+     */
+<span class="nc" id="L46">    public RecordSamplesController(Company company) {</span>
+<span class="nc" id="L47">        this.company = company;</span>
+<span class="nc" id="L48">        this.testStore = new TestStore();</span>
+<span class="nc" id="L49">        this.mapper = new TestMapper();</span>
+<span class="nc" id="L50">    }</span>
+
+    /**
+     * The method that allows the return of Test Store, using the Company class.
+     *
+     * @return The Test Store.
+     */
+    public TestStore getTestStore(){
+<span class="nc" id="L58">        return this.company.getTestStore();</span>
+    }
+
+    /**
+     * The method that allows the return of Test to be Sampled List by the Test Store, using the Company class.
+     *
+     * @return A list of Tests to be Sampled List.
+     */
+    public List&lt;Test&gt; getTestToBeSampledList(){
+<span class="nc" id="L67">        return this.company.getTestStore().getTestsWithoutSamplesList();</span>
+    }
+
+    /**
+     * The method that allows the return of Test Mapper List, that is a copy of Test List.
+     *
+     * @return A list of Tests to be sampled.
+     */
+    public List&lt;TestDto&gt; listDto(){
+<span class="nc" id="L76">        return this.mapper.toDTOForSample(getTestToBeSampledList());</span>
+    }
+
+    /**
+     * The method that allows the return of a Test without Sample, selected by Index.
+     *
+     * @param index An integer selected by the Medical Lab Technician.
+     * @return A Test selected by Index.
+     */
+    public void getTestToBeSampledByIndex(int index){
+<span class="nc" id="L86">        this.test=this.company.getTestStore().getTestToBeSampledByIndex(index);</span>
+<span class="nc" id="L87">    }</span>
+
+    /**
+     * The method that allows the set of Sample Date to test.
+     */
+    public void setCurrentDate(){
+<span class="nc" id="L93">        this.test.setSampleDate();</span>
+<span class="nc" id="L94">    }</span>
+
+    /**
+     * The method that allows the creation of a Sample.
+     *
+     * @throws OutputException Exception because of the output given by barcode.
+     * @throws BarcodeException Exception that needs to be throw because of barbecue library
+     * @throws IOException Exception because of the input to create a barcode.
+     * @throws ClassNotFoundException Exception to be thrown if the Class is not found.
+     * @throws InstantiationException Exception to be throw if the Constructor is not available.
+     * @throws IllegalAccessException Exception to be throw if the Method does not have access to the wanted Class.
+     */
+    public void createSample() throws OutputException, BarcodeException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+<span class="nc" id="L107">        this.sample = new Sample();</span>
+<span class="nc" id="L108">        this.sample.getBarcode();</span>
+<span class="nc" id="L109">        this.test.addSampleToTest(sample);</span>
+<span class="nc" id="L110">    }</span>
+
+    /**
+     * The method that allows the save of a Test with samples in the Test Store.
+     *
+     * @return a boolean, true if the save as done, false if don't.
+     */
+    public boolean saveTestWithSamples(){
+<span class="nc" id="L118">        return this.testStore.saveTestWithSamples(test);</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

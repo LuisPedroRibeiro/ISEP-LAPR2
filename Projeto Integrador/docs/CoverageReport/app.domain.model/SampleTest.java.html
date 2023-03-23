@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SampleTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.domain.model</a> &gt; <span class="el_source">SampleTest.java</span></div><h1>SampleTest.java</h1><pre class="source lang-java linenums">package app.domain.model;
+
+import app.controller.App;
+import net.sourceforge.barbecue.BarcodeException;
+import net.sourceforge.barbecue.output.OutputException;
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import java.io.IOException;
+
+
+/**
+ * @author Miguel Ramos &lt;1201247@isep.ipp.pt&gt;
+ */
+<span class="nc" id="L16">public class SampleTest {</span>
+
+    @Ignore
+    @Test
+    public void testGetBarcode() throws OutputException, BarcodeException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+<span class="nc" id="L21">        App.getInstance();</span>
+<span class="nc" id="L22">        Sample sample = new Sample();</span>
+<span class="nc" id="L23">        String expected = &quot;30000000005&quot;;</span>
+<span class="nc" id="L24">        String result = sample.getBarcode();</span>
+<span class="nc" id="L25">        String result2 = sample.getBarcode();</span>
+<span class="nc" id="L26">        Assert.assertEquals(expected,result);</span>
+<span class="nc" id="L27">        Assert.assertNotEquals(expected,result2);</span>
+<span class="nc" id="L28">    }</span>
+
+    @Ignore
+    @Test
+    public void testToString() throws OutputException, BarcodeException, IOException {
+<span class="nc" id="L33">        Sample sample = new Sample();</span>
+<span class="nc" id="L34">        String result = sample.toString();</span>
+<span class="nc" id="L35">        String expected = &quot;Barcode: 30000000004&quot;;</span>
+<span class="nc" id="L36">        String expected2 = &quot;Barcode: 30000000000&quot;;</span>
+<span class="nc" id="L37">        Assert.assertEquals(result,expected);</span>
+<span class="nc" id="L38">        Assert.assertNotEquals(result,expected2);</span>
+<span class="nc" id="L39">    }</span>
+
+    @Ignore
+    @Test
+    public void getBarcodeNumber() throws OutputException, BarcodeException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+<span class="nc" id="L44">        App.getInstance();</span>
+<span class="nc" id="L45">        Sample sample = new Sample();</span>
+<span class="nc" id="L46">        sample.getBarcode();</span>
+<span class="nc" id="L47">        String result = sample.getBarcodeNumber();</span>
+<span class="nc" id="L48">        String expected = &quot;30000000007&quot;;</span>
+<span class="nc" id="L49">        String expected2 = &quot;30000000000&quot;;</span>
+<span class="nc" id="L50">        Assert.assertEquals(result,expected);</span>
+<span class="nc" id="L51">        Assert.assertNotEquals(result,expected2);</span>
+<span class="nc" id="L52">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

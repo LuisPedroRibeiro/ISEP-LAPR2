@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WriteReportUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.ui.console</a> &gt; <span class="el_source">WriteReportUI.java</span></div><h1>WriteReportUI.java</h1><pre class="source lang-java linenums">package app.ui.console;
+
+import app.controller.WriteReportController;
+import app.utils.Utils;
+
+/**
+ * Allows the System to run the function (User Story) of the Specialist Doctor, that allows him to write a report
+ * for one or more Tests that are waiting for it.
+ *
+ * @author Luís Ribeiro &lt;1201184@isep.ipp.pt&gt;
+ */
+public class WriteReportUI implements Runnable {
+
+    /**
+     * String that contains a question relative to a confirmation of the chosen Test.
+     */
+    private static final String CONFIRMATION = &quot;Do you confirm the selected Test?&quot;;
+
+    /**
+     * String that contains a question relative to a confirmation of the data.
+     */
+    private static final String DATA_CONFIRMATION = &quot;Do you confirm the shown data?&quot;;
+
+    /**
+     * String that contains a declaration of an error.
+     */
+<span class="nc" id="L27">    private static final String ERROR = String.format(&quot;%nERROR: OPERATION TERMINATED%n &quot; +</span>
+            &quot;Motive: The Test Report is invalid.&quot;);
+
+    /**
+     * String that contains a declaration of the end of the function.
+     */
+    private static final String FINISHED = &quot;OPERATION FINISHED&quot;;
+
+    /**
+     * String that contains a declaration relative to the non-existence of a Test to do a Report on.
+     */
+    private static final String NO_TEST = &quot;\nWARNING: There are no tests waiting for a Report.&quot;;
+
+<span class="nc" id="L40">    public WriteReportUI(){</span>
+        //Constructs a WriteReportUI with no attributes.
+<span class="nc" id="L42">    }</span>
+
+    /**
+     * Allows the System to run the function (User Story) that allows a Specialist Doctor to write a Report
+     * about a Test.
+     */
+    @Override
+    public void run() {
+<span class="nc" id="L50">        boolean loopBoolean = true;</span>
+
+<span class="nc" id="L52">        WriteReportController controller = new WriteReportController();</span>
+<span class="nc" id="L53">        controller.generateTestsWithResultList();</span>
+
+<span class="nc bnc" id="L55" title="All 2 branches missed.">        if(controller.getTestsWithResultList().isEmpty()) {</span>
+<span class="nc" id="L56">            Utils.printLineToConsole(NO_TEST);</span>
+        }
+        else{
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            while (loopBoolean){</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">                if(controller.getTestsWithResultList().isEmpty()){</span>
+<span class="nc" id="L61">                    Utils.printLineToConsole(NO_TEST);</span>
+<span class="nc" id="L62">                    loopBoolean = false;</span>
+                }
+                else {
+                    try{
+<span class="nc" id="L66">                        int index = Utils.showAndSelectIndexForTestsWithoutReport(controller.getTestsWithResultList(),</span>
+                                &quot;\nTESTS WITHOUT REPORT&quot;);
+<span class="nc bnc" id="L68" title="All 2 branches missed.">                        if(index == -1) {</span>
+<span class="nc" id="L69">                            Utils.printLineToConsole(FINISHED);</span>
+<span class="nc" id="L70">                            loopBoolean = false;</span>
+                        }
+<span class="nc bnc" id="L72" title="All 2 branches missed.">                        else if(Utils.confirm(CONFIRMATION)){</span>
+<span class="nc" id="L73">                            createTestReport(controller, index);</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">                            if(controller.getTestsWithResultList().isEmpty()){</span>
+<span class="nc" id="L75">                                Utils.printLineToConsole(NO_TEST);</span>
+<span class="nc" id="L76">                                loopBoolean = false;</span>
+                            }
+                            else{
+<span class="nc" id="L79">                                loopBoolean = Utils.confirm(&quot;Do you want to write another report?&quot;);</span>
+                            }
+
+                        }
+<span class="nc" id="L83">                    } catch (IllegalArgumentException exception){</span>
+<span class="nc" id="L84">                        Utils.printLineToConsole(ERROR);</span>
+<span class="nc" id="L85">                        String exceptionMessage = String.format(&quot; Error Description: %s%n&quot;, exception.getMessage());</span>
+<span class="nc" id="L86">                        Utils.printLineToConsole(exceptionMessage);</span>
+<span class="nc" id="L87">                    }</span>
+                }
+
+            }
+        }
+<span class="nc" id="L92">        Utils.printLineToConsole(FINISHED);</span>
+<span class="nc" id="L93">    }</span>
+
+    /**
+     * Allows the System, to permit the Specialist Doctor, its function of writing a Report, and to save or
+     * associate that Report to the Test.
+     *
+     * @param controller Controller through which the function is being ran.
+     * @param index The index of the selected Test.
+     */
+    public void createTestReport(WriteReportController controller, int index){
+<span class="nc" id="L103">        controller.getTestByIndex(index);</span>
+
+<span class="nc" id="L105">        Utils.printLineToConsole(&quot;RESULTS OF THE TEST&quot;);</span>
+<span class="nc" id="L106">        Utils.printLineToConsole(controller.showResults());</span>
+
+<span class="nc" id="L108">        String testReport = Utils.readLineFromConsole(&quot;Write the Test Report (Limit: 400 words):&quot;);</span>
+
+<span class="nc" id="L110">        controller.generateTestReport(testReport);</span>
+
+<span class="nc" id="L112">        Utils.printLineToConsole(controller.showTestReport());</span>
+
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        if(Utils.confirm(DATA_CONFIRMATION)){</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            if(controller.saveTestReport()){</span>
+<span class="nc" id="L116">                Utils.printLineToConsole(&quot;OPERATION SUCCESSFUL&quot;);</span>
+            }
+<span class="nc" id="L118">            else{Utils.printLineToConsole(&quot;ERROR: OPERATION UNSUCCESSFUL&quot;);}</span>
+        }
+        else{
+<span class="nc" id="L121">            Utils.printLineToConsole(FINISHED);</span>
+        }
+<span class="nc" id="L123">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

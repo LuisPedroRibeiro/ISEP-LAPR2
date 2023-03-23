@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TestTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.domain.model</a> &gt; <span class="el_source">TestTest.java</span></div><h1>TestTest.java</h1><pre class="source lang-java linenums">package app.domain.model;
+
+import app.domain.shared.Constants;
+import app.list.AdapterEnum;
+import app.store.TestStore;
+import app.utils.Utils;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.List;
+
+import static org.junit.Assert.*;
+
+ /**
+  * @author Luís Ribeiro &lt;1201184@isep.ipp.pt&gt;
+  * @author Pedro Graça &lt;1201188@isep.ipp.pt&gt;
+  * @author Miguel Ramos &lt;1201247@isep.ipp.pt&gt;
+  * @author André Soares &lt;1201314@isep.ipp.pt&gt;
+  */
+<span class="fc" id="L20">public class TestTest {</span>
+
+    @Test
+    public void checkNhsCodeRulesSuccess(){
+<span class="fc" id="L24">        app.domain.model.Test test = new app.domain.model.Test(&quot;1234567890aa&quot;);</span>
+<span class="fc" id="L25">        Assert.assertTrue(true);</span>
+<span class="fc" id="L26">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkNhsCodeRulesBlank() {
+<span class="nc" id="L30">        app.domain.model.Test test = new app.domain.model.Test(&quot;&quot;);</span>
+<span class="nc" id="L31">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkNhsCodeRulesLess() {
+<span class="nc" id="L35">        app.domain.model.Test test = new app.domain.model.Test(&quot;1234567890a&quot;);</span>
+<span class="nc" id="L36">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkNhsCodeRulesGreat(){
+<span class="nc" id="L40">        app.domain.model.Test test = new app.domain.model.Test(&quot;1234567890aaa&quot;);</span>
+<span class="nc" id="L41">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkNhsCodeRulesNotAlphanumeric(){
+<span class="nc" id="L45">        app.domain.model.Test test = new app.domain.model.Test(&quot;1234567890a-&quot;);</span>
+<span class="nc" id="L46">    }</span>
+
+    @Test
+    public void checkRulesCodeAlphaNumeric() {
+<span class="fc" id="L50">    }</span>
+
+    @Test
+    public void setCode() {
+<span class="fc" id="L54">        app.domain.model.Test test = new app.domain.model.Test(&quot;1234567890aa&quot;);</span>
+<span class="fc" id="L55">        TestStore tStore= new TestStore();</span>
+<span class="fc" id="L56">        String code=tStore.nextCode(1);</span>
+<span class="fc" id="L57">        String expected = &quot;000000000001&quot;;</span>
+
+<span class="fc" id="L59">        test.setCode(code);</span>
+<span class="fc" id="L60">        String result= test.getCode();</span>
+
+<span class="fc" id="L62">        assertEquals(expected,result);</span>
+<span class="fc" id="L63">    }</span>
+
+    @Test
+    public void setCreatedAt() {
+<span class="fc" id="L67">    }</span>
+
+    @Test
+    public void setSampleDate() {
+<span class="fc" id="L71">    }</span>
+
+    @Test
+    public void getNhsCode() {
+<span class="fc" id="L75">        app.domain.model.Test test = new app.domain.model.Test(&quot;1234567890aa&quot;);</span>
+<span class="fc" id="L76">        String expected = &quot;1234567890aa&quot;;</span>
+
+<span class="fc" id="L78">        String result = test.getNhsCode();</span>
+
+<span class="fc" id="L80">        assertEquals(expected,result);</span>
+<span class="fc" id="L81">    }</span>
+
+    @Test
+    public void getTestParameterByCode() {
+<span class="fc" id="L85">    }</span>
+
+    @Test
+    public void getTestParameterList() {
+<span class="fc" id="L89">    }</span>
+
+    @Test
+    public void hasResults() {
+<span class="fc" id="L93">        app.domain.model.Test test = new app.domain.model.Test(&quot;123456789012&quot;);</span>
+<span class="fc" id="L94">        test.addTestResultDate();</span>
+
+<span class="fc" id="L96">        boolean result = test.hasResults();</span>
+
+<span class="fc" id="L98">        Assert.assertTrue(result);</span>
+<span class="fc" id="L99">    }</span>
+
+    @Test
+    public void hasReport() {
+
+<span class="fc" id="L104">        app.domain.model.Test t=new app.domain.model.Test(&quot;123456789012&quot;);</span>
+<span class="fc" id="L105">        t.addReportDate();</span>
+
+<span class="fc" id="L107">        boolean result=t.hasReport();</span>
+
+<span class="fc" id="L109">        Assert.assertTrue(result);</span>
+<span class="fc" id="L110">    }</span>
+
+    @Test
+    public void hasValidation() {
+<span class="fc" id="L114">        app.domain.model.Test t=new app.domain.model.Test(&quot;123456789012&quot;);</span>
+<span class="fc" id="L115">        t.validateTest();</span>
+
+<span class="fc" id="L117">        boolean result=t.hasValidation();</span>
+
+<span class="fc" id="L119">        Assert.assertTrue(result);</span>
+<span class="fc" id="L120">    }</span>
+
+    @Test
+    public void hasSamples() {
+<span class="fc" id="L124">        app.domain.model.Test t=new app.domain.model.Test(&quot;123456789012&quot;);</span>
+<span class="fc" id="L125">        t.setSampleDate();</span>
+
+<span class="fc" id="L127">        boolean result=t.hasSamples();</span>
+
+<span class="fc" id="L129">        Assert.assertTrue(result);</span>
+<span class="fc" id="L130">    }</span>
+
+    @Test
+    public void getParametersAssociatedWithTest() {
+<span class="fc" id="L134">    }</span>
+
+    @Test
+    public void addTestReport() {
+<span class="fc" id="L138">        String text = &quot;This is a simulation of a Test Report.&quot;;</span>
+<span class="fc" id="L139">        String code = &quot;000000000001&quot;;</span>
+<span class="fc" id="L140">        String name = &quot;Specialist Doctor&quot;;</span>
+<span class="fc" id="L141">        String email = &quot;specialistDoctor@test.com&quot;;</span>
+
+<span class="fc" id="L143">        app.domain.model.Test test = new app.domain.model.Test(&quot;123456789012&quot;);</span>
+<span class="fc" id="L144">        test.addTestReport(new TestReport(text, code, name, email));</span>
+
+
+<span class="fc" id="L147">        String expected = String.format(&quot;%s%n %s%n Written by: %s | E-mail: %s&quot;, test.getTestReport().getHeader(), text,</span>
+                name, email);
+<span class="fc" id="L149">        Assert.assertEquals(expected, test.getTestReport().toString());</span>
+<span class="fc" id="L150">    }</span>
+
+    @Test
+    public void addReportDate() {
+<span class="fc" id="L154">        app.domain.model.Test test = new app.domain.model.Test(&quot;1234567890aa&quot;);</span>
+<span class="fc" id="L155">        test.addReportDate();</span>
+<span class="fc" id="L156">        Assert.assertNotNull(test.getReportDate());</span>
+<span class="fc" id="L157">    }</span>
+
+    @Test
+    public void getResultDate() {
+<span class="fc" id="L161">        app.domain.model.Test test = new app.domain.model.Test(&quot;1234567890aa&quot;);</span>
+<span class="fc" id="L162">        test.addTestResultDate();</span>
+<span class="fc" id="L163">        String result=test.getResultDate();</span>
+<span class="fc" id="L164">        String expected= Utils.currentDate();</span>
+<span class="fc" id="L165">        Assert.assertEquals(result,expected);</span>
+
+<span class="fc" id="L167">    }</span>
+
+    @Test
+    public void getReportDate() {
+<span class="fc" id="L171">        app.domain.model.Test test = new app.domain.model.Test(&quot;1234567890aa&quot;);</span>
+<span class="fc" id="L172">        test.addReportDate();</span>
+<span class="fc" id="L173">        String result=test.getReportDate();</span>
+<span class="fc" id="L174">        String expected= Utils.currentDate();</span>
+<span class="fc" id="L175">        Assert.assertEquals(result,expected);</span>
+<span class="fc" id="L176">    }</span>
+
+    @Test
+    public void getCreatedAt() {
+<span class="fc" id="L180">        app.domain.model.Test test = new app.domain.model.Test(&quot;1234567890aa&quot;);</span>
+<span class="fc" id="L181">        test.setCreatedAt(Utils.currentDate());</span>
+<span class="fc" id="L182">        String result=test.getCreatedAt();</span>
+<span class="fc" id="L183">        String expected= Utils.currentDate();</span>
+<span class="fc" id="L184">        Assert.assertEquals(result,expected);</span>
+<span class="fc" id="L185">    }</span>
+
+    @Test
+    public void getSampleDate() {
+<span class="fc" id="L189">        app.domain.model.Test test = new app.domain.model.Test(&quot;1234567890aa&quot;);</span>
+<span class="fc" id="L190">        test.setSampleDate();</span>
+<span class="fc" id="L191">        String result=test.getSampleDate();</span>
+<span class="fc" id="L192">        String expected= Utils.currentDate();</span>
+<span class="fc" id="L193">        Assert.assertEquals(result,expected);</span>
+<span class="fc" id="L194">    }</span>
+
+    @Test
+    public void getTestType() {
+<span class="fc" id="L198">        app.domain.model.Test test = new app.domain.model.Test(&quot;1234567890aa&quot;);</span>
+<span class="fc" id="L199">        TestType testtype=new TestType(&quot;12345&quot;,&quot;method&quot;,&quot;description&quot;);</span>
+<span class="fc" id="L200">        test.saveTestType(testtype);</span>
+<span class="fc" id="L201">        TestType result=test.getTestType();</span>
+
+<span class="fc" id="L203">        Assert.assertEquals(result,testtype);</span>
+<span class="fc" id="L204">    }</span>
+
+    @Test
+    public void saveClinicalAnalysisLaboratory() {
+<span class="fc" id="L208">        app.domain.model.Test test = new app.domain.model.Test(&quot;1234567890aa&quot;);</span>
+<span class="fc" id="L209">        ClinicalAnalysisLaboratory c= new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Caxinas&quot;,&quot;LabCax&quot;,</span>
+                &quot;12345678912&quot;,&quot;1234567891&quot;);
+<span class="fc" id="L211">        test.saveClinicalAnalysisLaboratory(c);</span>
+<span class="fc" id="L212">        ClinicalAnalysisLaboratory result=test.getClinicalAnalysisLaboratory();</span>
+
+<span class="fc" id="L214">        Assert.assertEquals(result,c);</span>
+
+
+<span class="fc" id="L217">    }</span>
+
+    @Test
+    public void saveTestType() {
+<span class="fc" id="L221">    }</span>
+
+    @Test
+    public void addTestParameter() {
+<span class="fc" id="L225">    }</span>
+
+    @Test
+    public void addSampleToTest() {
+<span class="fc" id="L229">        Sample sample=new Sample();</span>
+<span class="fc" id="L230">        app.domain.model.Test test = new app.domain.model.Test(&quot;1234567890aa&quot;);</span>
+<span class="fc" id="L231">        test.addSampleToTest(sample);</span>
+<span class="fc" id="L232">        List&lt;Sample&gt; sampleList=test.getSampleList();</span>
+<span class="fc" id="L233">        boolean b=false;</span>
+<span class="pc bpc" id="L234" title="1 of 2 branches missed.">        for (Sample s:sampleList) {</span>
+<span class="pc bpc" id="L235" title="1 of 2 branches missed.">            if (s.equals(sample)) {</span>
+<span class="fc" id="L236">                b = true;</span>
+<span class="fc" id="L237">                break;</span>
+            }
+<span class="nc" id="L239">        }</span>
+<span class="fc" id="L240">        Assert.assertTrue(b);</span>
+<span class="fc" id="L241">    }</span>
+
+    @Test
+    public void getCode() {
+<span class="fc" id="L245">        app.domain.model.Test test = new app.domain.model.Test(&quot;123456789012&quot;);</span>
+<span class="fc" id="L246">        String expected = &quot;Unknown&quot;;</span>
+
+<span class="fc" id="L248">        Assert.assertEquals(expected, test.getCode());</span>
+<span class="fc" id="L249">    }</span>
+
+    @Test
+    public void isBarcodeInSampleList() {
+<span class="fc" id="L253">    }</span>
+
+    @Test
+    public void addTestResult() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+<span class="fc" id="L257">        app.domain.model.Test test = new app.domain.model.Test(&quot;123456789012&quot;);</span>
+
+<span class="fc" id="L259">        TestType tt=new TestType(&quot;12349&quot;,&quot;method&quot;,&quot;description&quot;);</span>
+<span class="fc" id="L260">        tt.setAdapterAddress(AdapterEnum.EXTERNAL_MODULE_BLOOD2.getAdapterAddress());</span>
+<span class="fc" id="L261">        test.saveTestType(tt);</span>
+<span class="fc" id="L262">        Parameter p3 = new Parameter(&quot;ESR00&quot;,&quot;ESR&quot;,&quot;paramESR&quot;);</span>
+<span class="fc" id="L263">        test.addTestParameter(p3);</span>
+<span class="fc" id="L264">        test.addTestResult(&quot;ESR00&quot;,2);</span>
+<span class="fc" id="L265">        TestParameter tp=test.getTestParameterByCode(0);</span>
+<span class="fc" id="L266">        Assert.assertNotNull(tp.getTestResult());</span>
+
+<span class="fc" id="L268">    }</span>
+
+    @Test
+    public void addTestResultDate() {
+<span class="fc" id="L272">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

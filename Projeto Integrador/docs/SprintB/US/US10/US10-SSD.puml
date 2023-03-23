@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor Administrator as admin
+participant ":System" as sys
+autonumber
+
+activate admin
+
+
+admin -> sys: Asks to start a new parameter
+activate sys
+admin <-- sys: Requests data (code, shortName, description)
+deactivate sys
+admin -> sys: Types requested data
+activate sys
+admin <-- sys: Shows requested data and asks for confirmation
+deactivate sys
+admin -> sys: Confirms the data
+activate sys
+admin <-- sys: Shows parameter category list and ask to select one
+deactivate sys
+admin -> sys : Selects a parameter category
+activate sys
+admin <-- sys: Shows selected parameter category and asks for confirmation
+deactivate sys
+admin -> sys: Confirms the selected parameter category
+activate sys
+admin <-- sys: Records data and informs of the operation success.
+
+deactivate sys
+deactivate admin
+@enduml

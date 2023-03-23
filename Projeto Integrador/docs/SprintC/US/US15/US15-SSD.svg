@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="748px" preserveAspectRatio="none" style="width:608px;height:748px;" version="1.1" viewBox="0 0 608 748" width="608px" zoomAndPan="magnify"><defs><filter height="300%" id="foiyqrzihh7dl" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FFFFFF" filter="url(#foiyqrzihh7dl)" height="545.1875" style="stroke:#A80036;stroke-width:1.0;" width="10" x="100" y="99.6094"/><rect fill="#FFFFFF" filter="url(#foiyqrzihh7dl)" height="30.3516" style="stroke:#A80036;stroke-width:1.0;" width="10" x="535" y="121.9609"/><rect fill="#FFFFFF" filter="url(#foiyqrzihh7dl)" height="462.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="545" y="182.6641"/><rect fill="#FFFFFF" filter="url(#foiyqrzihh7dl)" height="266.0234" style="stroke:#A80036;stroke-width:1.0;" width="10" x="545" y="182.6641"/><rect fill="#FFFFFF" filter="url(#foiyqrzihh7dl)" height="88.4063" style="stroke:#A80036;stroke-width:1.0;" width="10" x="545" y="182.6641"/><rect fill="#FFFFFF" filter="url(#foiyqrzihh7dl)" height="116.9141" style="stroke:#A80036;stroke-width:1.0;" width="10" x="545" y="331.7734"/><rect fill="#FFFFFF" filter="url(#foiyqrzihh7dl)" height="30.3516" style="stroke:#A80036;stroke-width:1.0;" width="10" x="540" y="479.0391"/><rect fill="#FFFFFF" filter="url(#foiyqrzihh7dl)" height="37.3516" style="stroke:#A80036;stroke-width:1.0;" width="10" x="540" y="539.7422"/><rect fill="#FFFFFF" filter="url(#foiyqrzihh7dl)" height="37.3516" style="stroke:#A80036;stroke-width:1.0;" width="10" x="540" y="607.4453"/><rect fill="#FFFFFF" filter="url(#foiyqrzihh7dl)" height="417.7813" style="stroke:#000000;stroke-width:2.0;" width="584" x="10" y="197.6641"/><rect fill="#FFFFFF" height="275.6719" style="stroke:none;stroke-width:1.0;" width="584" x="10" y="339.7734"/><rect fill="#FFFFFF" filter="url(#foiyqrzihh7dl)" height="185.1328" style="stroke:#000000;stroke-width:2.0;" width="564" x="20" y="362.6094"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="105" x2="105" y1="89.6094" y2="662.7969"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="540" x2="540" y1="89.6094" y2="662.7969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="144" x="30" y="86.5332">LaboratoryCoordinator</text><ellipse cx="105" cy="15" fill="#FEFECE" filter="url(#foiyqrzihh7dl)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M105,23 L105,50 M92,31 L118,31 M105,50 L92,65 M105,50 L118,65 " fill="none" filter="url(#foiyqrzihh7dl)" style="stroke:#A80036;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="144" x="30" y="676.3301">LaboratoryCoordinator</text><ellipse cx="105" cy="689.4063" fill="#FEFECE" filter="url(#foiyqrzihh7dl)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M105,697.4063 L105,724.4063 M92,705.4063 L118,705.4063 M105,724.4063 L92,739.4063 M105,724.4063 L118,739.4063 " fill="none" filter="url(#foiyqrzihh7dl)" style="stroke:#A80036;stroke-width:2.0;"/><rect fill="#FEFECE" filter="url(#foiyqrzihh7dl)" height="31.6094" style="stroke:#A80036;stroke-width:1.5;" width="64" x="506" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="50" x="513" y="74.5332">:System</text><rect fill="#FEFECE" filter="url(#foiyqrzihh7dl)" height="31.6094" style="stroke:#A80036;stroke-width:1.5;" width="64" x="506" y="661.7969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="50" x="513" y="683.3301">:System</text><rect fill="#FFFFFF" filter="url(#foiyqrzihh7dl)" height="545.1875" style="stroke:#A80036;stroke-width:1.0;" width="10" x="100" y="99.6094"/><rect fill="#FFFFFF" filter="url(#foiyqrzihh7dl)" height="30.3516" style="stroke:#A80036;stroke-width:1.0;" width="10" x="535" y="121.9609"/><rect fill="#FFFFFF" filter="url(#foiyqrzihh7dl)" height="462.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="545" y="182.6641"/><rect fill="#FFFFFF" filter="url(#foiyqrzihh7dl)" height="266.0234" style="stroke:#A80036;stroke-width:1.0;" width="10" x="545" y="182.6641"/><rect fill="#FFFFFF" filter="url(#foiyqrzihh7dl)" height="88.4063" style="stroke:#A80036;stroke-width:1.0;" width="10" x="545" y="182.6641"/><rect fill="#FFFFFF" filter="url(#foiyqrzihh7dl)" height="116.9141" style="stroke:#A80036;stroke-width:1.0;" width="10" x="545" y="331.7734"/><rect fill="#FFFFFF" filter="url(#foiyqrzihh7dl)" height="30.3516" style="stroke:#A80036;stroke-width:1.0;" width="10" x="540" y="479.0391"/><rect fill="#FFFFFF" filter="url(#foiyqrzihh7dl)" height="37.3516" style="stroke:#A80036;stroke-width:1.0;" width="10" x="540" y="539.7422"/><rect fill="#FFFFFF" filter="url(#foiyqrzihh7dl)" height="37.3516" style="stroke:#A80036;stroke-width:1.0;" width="10" x="540" y="607.4453"/><polygon fill="#A80036" points="523,117.9609,533,121.9609,523,125.9609,527,121.9609" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="110" x2="529" y1="121.9609" y2="121.9609"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="117" y="117.1045">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="243" x="128" y="117.1045">Asks to validate existent unvalidated tests</text><polygon fill="#A80036" points="121,148.3125,111,152.3125,121,156.3125,117,152.3125" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="115" x2="539" y1="152.3125" y2="152.3125"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="127" y="147.4561">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="378" x="138" y="147.4561">Asks to choose between validate all the tests or a subset of them</text><polygon fill="#A80036" points="533,178.6641,543,182.6641,533,186.6641,537,182.6641" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="110" x2="539" y1="182.6641" y2="182.6641"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="117" y="177.8076">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="94" x="128" y="177.8076">Selects a option</text><path d="M10,197.6641 L71,197.6641 L71,205.6641 L61,215.6641 L10,215.6641 L10,197.6641 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.0;"/><rect fill="none" height="417.7813" style="stroke:#000000;stroke-width:2.0;" width="584" x="10" y="197.6641"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="16" x="25" y="212.1592">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="330" x="86" y="211.083">[the laboratory coordinator chooses to validate all the tests]</text><polygon fill="#A80036" points="121,267.0703,111,271.0703,121,275.0703,117,271.0703" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="115" x2="539" y1="271.0703" y2="271.0703"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="127" y="249.8623">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="353" x="138" y="233.5107">Shows the list of unvalidated tests  and their respective dates</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="255" x="138" y="249.8623">(test registration date,sample insertion date,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="250" x="142" y="266.2139">chemical analysis date and diagnosis date)</text><polygon fill="#A80036" points="121,297.4219,111,301.4219,121,305.4219,117,301.4219" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="115" x2="539" y1="301.4219" y2="301.4219"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="127" y="296.5654">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="283" x="138" y="296.5654">Asks for confirmation for the validation of all tests</text><polygon fill="#A80036" points="533,327.7734,543,331.7734,533,335.7734,537,331.7734" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="110" x2="539" y1="331.7734" y2="331.7734"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="117" y="326.917">6</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="167" x="128" y="326.917">Validates all the tests shown</text><line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="10" x2="594" y1="340.7734" y2="340.7734"/><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="299" x="15" y="352.1924">[the laboratory coordinator wants to validate a subset]</text><path d="M20,362.6094 L93,362.6094 L93,370.6094 L83,380.6094 L20,380.6094 L20,362.6094 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.0;"/><rect fill="none" height="185.1328" style="stroke:#000000;stroke-width:2.0;" width="564" x="20" y="362.6094"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="28" x="35" y="377.1045">loop</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="303" x="108" y="376.0283">[While the laboratory coordinator wants to chose a test</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="322" x="111" y="389.8643">from the unvalidated test list and there are tests available]</text><polygon fill="#A80036" points="121,444.6875,111,448.6875,121,452.6875,117,448.6875" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="115" x2="534" y1="448.6875" y2="448.6875"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="127" y="427.4795">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="353" x="138" y="411.1279">Shows the list of unvalidated tests  and their respective dates</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="255" x="138" y="427.4795">(test registration date,sample insertion date,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="386" x="142" y="443.8311">chemical analysis date and diagnosis date) and asks to chose one</text><polygon fill="#A80036" points="528,475.0391,538,479.0391,528,483.0391,532,479.0391" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="110" x2="534" y1="479.0391" y2="479.0391"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="117" y="474.1826">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="102" x="128" y="474.1826">Chooses one test</text><polygon fill="#A80036" points="121,505.3906,111,509.3906,121,513.3906,117,509.3906" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="115" x2="534" y1="509.3906" y2="509.3906"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="127" y="504.5342">6</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="260" x="138" y="504.5342">Shows chosen test and asks for confirmation</text><polygon fill="#A80036" points="528,535.7422,538,539.7422,528,543.7422,532,539.7422" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="110" x2="534" y1="539.7422" y2="539.7422"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="117" y="534.8857">7</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="145" x="128" y="534.8857">Confirms the chosen test</text><polygon fill="#A80036" points="121,573.0938,111,577.0938,121,581.0938,117,577.0938" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="115" x2="534" y1="577.0938" y2="577.0938"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="127" y="572.2373">8</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="224" x="138" y="572.2373">Asks for validation for the chosen tests</text><polygon fill="#A80036" points="528,603.4453,538,607.4453,528,611.4453,532,607.4453" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="110" x2="534" y1="607.4453" y2="607.4453"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="117" y="602.5889">9</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="177" x="128" y="602.5889">Validates the the chosen tests</text><polygon fill="#A80036" points="116,640.7969,106,644.7969,116,648.7969,112,644.7969" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="110" x2="539" y1="644.7969" y2="644.7969"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="25" x="122" y="639.9404">7/10</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="199" x="151" y="639.9404">Informs of the operation´s success</text><!--MD5=[3b528ba4b68ff17e1b961ca34d8284c3]
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+actor LaboratoryCoordinator as cord
+participant ":System" as sys
+
+activate cord
+cord -> sys:Asks to validate existent unvalidated tests
+activate sys
+sys - -> cord:Asks to choose between validate all the tests or a subset of them
+deactivate sys
+
+cord -> sys:Selects a option
+activate sys
+activate sys
+activate sys
+alt the laboratory coordinator chooses to validate all the tests
+
+sys - -> cord:Shows the list of unvalidated tests  and their respective dates\n(test registration date,sample insertion date,\n chemical analysis date and diagnosis date)
+deactivate sys
+sys - -> cord:Asks for confirmation for the validation of all tests
+cord -> sys:Validates all the tests shown
+activate sys
+
+else  the laboratory coordinator wants to validate a subset
+autonumber 4
+loop While the laboratory coordinator wants to chose a test\n from the unvalidated test list and there are tests available
+
+sys - -> cord:Shows the list of unvalidated tests  and their respective dates\n(test registration date,sample insertion date,\n chemical analysis date and diagnosis date) and asks to chose one
+deactivate sys
+deactivate sys
+
+cord -> sys: Chooses one test
+activate sys
+
+sys - -> cord:Shows chosen test and asks for confirmation
+deactivate sys
+cord -> sys: Confirms the chosen test
+activate sys
+end
+sys - -> cord:Asks for validation for the chosen tests
+deactivate sys
+
+
+cord -> sys:Validates the the chosen tests
+activate sys
+end
+autonumber 7/10
+sys - -> cord: Informs of the operation´s success
+deactivate cord
+deactivate sys
+deactivate sys
+deactivate sys
+@enduml
+
+@startuml
+
+autonumber
+actor LaboratoryCoordinator as cord
+participant ":System" as sys
+
+activate cord
+cord -> sys:Asks to validate existent unvalidated tests
+activate sys
+sys - -> cord:Asks to choose between validate all the tests or a subset of them
+deactivate sys
+
+cord -> sys:Selects a option
+activate sys
+activate sys
+activate sys
+alt the laboratory coordinator chooses to validate all the tests
+
+sys - -> cord:Shows the list of unvalidated tests  and their respective dates\n(test registration date,sample insertion date,\n chemical analysis date and diagnosis date)
+deactivate sys
+sys - -> cord:Asks for confirmation for the validation of all tests
+cord -> sys:Validates all the tests shown
+activate sys
+
+else  the laboratory coordinator wants to validate a subset
+autonumber 4
+loop While the laboratory coordinator wants to chose a test\n from the unvalidated test list and there are tests available
+
+sys - -> cord:Shows the list of unvalidated tests  and their respective dates\n(test registration date,sample insertion date,\n chemical analysis date and diagnosis date) and asks to chose one
+deactivate sys
+deactivate sys
+
+cord -> sys: Chooses one test
+activate sys
+
+sys - -> cord:Shows chosen test and asks for confirmation
+deactivate sys
+cord -> sys: Confirms the chosen test
+activate sys
+end
+sys - -> cord:Asks for validation for the chosen tests
+deactivate sys
+
+
+cord -> sys:Validates the the chosen tests
+activate sys
+end
+autonumber 7/10
+sys - -> cord: Informs of the operation´s success
+deactivate cord
+deactivate sys
+deactivate sys
+deactivate sys
+@enduml
+
+PlantUML version 1.2021.5(Sun Apr 25 12:20:28 BST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: Dynamic Code Evolution 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>

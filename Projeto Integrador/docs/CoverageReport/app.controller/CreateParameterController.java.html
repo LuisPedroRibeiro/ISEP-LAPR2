@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CreateParameterController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.controller</a> &gt; <span class="el_source">CreateParameterController.java</span></div><h1>CreateParameterController.java</h1><pre class="source lang-java linenums">package app.controller;
+
+import app.domain.model.Company;
+import app.domain.model.Parameter;
+import app.domain.model.ParameterCategory;
+import app.mappers.ParameterCategoryMapper;
+import app.mappers.dto.ParameterCategoryDto;
+import app.store.ParameterStore;
+
+import java.util.List;
+
+/**
+ * This class controls the creation of a new Parameter
+ *
+ * @author Pedro Graça &lt;1201188@isep.ipp.pt&gt;
+ */
+public class CreateParameterController {
+
+    /**
+     * Company that will have the controller
+     */
+    private final Company company;
+
+    /**
+     * Parameter that will be controlled
+     */
+    private Parameter parameter;
+
+    /**
+     * Store the Clients
+     */
+    private ParameterStore store;
+
+    /**
+     * Constructs an instance of CreateParameterController with no parameters
+     */
+    public CreateParameterController() {
+<span class="nc" id="L38">        this(App.getInstance().getCompany());</span>
+<span class="nc" id="L39">    }</span>
+
+    /**
+     * Constructs an instance of CreateParameterController receiving the Company
+     *
+     * @param company the Company that will be on the controller
+     */
+<span class="nc" id="L46">    public CreateParameterController(Company company) {</span>
+<span class="nc" id="L47">        this.company = company;</span>
+<span class="nc" id="L48">        this.parameter = null;</span>
+<span class="nc" id="L49">    }</span>
+
+    /**
+     * Method that returns the boolean value of the creation of a Parameter
+     *
+     * @param code  A string that contains a code that identifies the Parameter
+     * @param shortName A string that contains a name that identifies the Parameter
+     * @param description A string that contains brief description that identifies the Parameter
+     * @return the boolean value of the operation
+     */
+    public boolean createParameter(String code, String shortName, String description){
+<span class="nc" id="L60">        identifyStore();</span>
+<span class="nc" id="L61">        this.parameter=this.store.createParameter(code,shortName,description);</span>
+<span class="nc" id="L62">        return this.store.validateParameter(parameter);</span>
+    }
+
+    /**
+     * Method that add a ParameterCategory object to a Parameter object and returns the boolean value of the saving of a Parameter
+     *
+     * @return the boolean value of the operation
+     */
+    public boolean saveParameter(String code){
+<span class="nc" id="L71">        ParameterCategory pc=company.getParameterCategoryStore().getParameterCategoryByCode(code);</span>
+<span class="nc" id="L72">        parameter.addParameterCategoryToParameter(pc);</span>
+<span class="nc" id="L73">        pc.addParameter(parameter);</span>
+<span class="nc" id="L74">        return this.store.saveParameter(parameter);</span>
+    }
+
+    /**
+     * Method to identify the store
+     */
+    public void identifyStore(){
+<span class="nc" id="L81">        store=this.company.getParameterStore();</span>
+<span class="nc" id="L82">    }</span>
+
+    /**
+     * Allows the return of a list of ParameterCategory objects that is contained in the object of the ParameterCategoryStore
+     *
+     * @return A list of parameter categories
+     */
+    private List&lt;ParameterCategory&gt; getListParameterCategoryStore() {
+<span class="nc" id="L90">        return company.getParameterCategoryStore().getCategoryStore();</span>
+    }
+
+    /**
+     * Allows the creation of a DTO ParameterCategory list from the list parameterCategoryStore
+     *
+     * @return DTO list composed by ParameterCategoryDTO type objects
+     */
+    public List&lt;ParameterCategoryDto&gt; getParameterCategoryStoreDto(){
+<span class="nc" id="L99">        ParameterCategoryMapper m = new ParameterCategoryMapper();</span>
+<span class="nc" id="L100">        return m.toDTO(getListParameterCategoryStore());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

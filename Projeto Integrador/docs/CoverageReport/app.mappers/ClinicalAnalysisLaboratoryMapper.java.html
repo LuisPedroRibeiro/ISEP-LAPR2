@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClinicalAnalysisLaboratoryMapper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.mappers</a> &gt; <span class="el_source">ClinicalAnalysisLaboratoryMapper.java</span></div><h1>ClinicalAnalysisLaboratoryMapper.java</h1><pre class="source lang-java linenums">package app.mappers;
+
+import app.domain.model.ClinicalAnalysisLaboratory;
+import app.mappers.dto.ClinicalAnalysisLaboratoryDto;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * This class allows to create a Clinical Analysis Laboratory Mapper.
+ *
+ * @author Pedro Graça &lt;1201188@isep.ipp.pt&gt;
+ */
+<span class="fc" id="L13">public class ClinicalAnalysisLaboratoryMapper {</span>
+
+    /**
+     * Allows the transformation of ParameterCategory into a ParameterCategoryDTO
+     *
+     * @param clinicalAnalysisLaboratory An object of Clinical Analysis Laboratory that will be converted to a DTO
+     * @return A DTO object  converted from the one received as parameter
+     */
+    public ClinicalAnalysisLaboratoryDto toDTO(ClinicalAnalysisLaboratory clinicalAnalysisLaboratory)
+    {
+<span class="fc" id="L23">        return new ClinicalAnalysisLaboratoryDto(clinicalAnalysisLaboratory.getLaboratoryId(),</span>
+<span class="fc" id="L24">                clinicalAnalysisLaboratory.getAddress(),clinicalAnalysisLaboratory.getName(),</span>
+<span class="fc" id="L25">                clinicalAnalysisLaboratory.getPhoneNumber(),clinicalAnalysisLaboratory.getTaxIdentificationNumber());</span>
+    }
+
+    /**
+     * Allows the transformation of list Clinical Analysis Laboratory objects into a list of Clinical Analysis Laboratory DTO objects
+     *
+     * @param clinicalAnalysisLaboratoryList A list of Clinical Analysis Laboratory objects
+     * @return A list of ClinicalAnalysisLaboratoryDro objects
+     */
+
+    public List&lt;ClinicalAnalysisLaboratoryDto&gt; toDTO(List&lt;ClinicalAnalysisLaboratory&gt; clinicalAnalysisLaboratoryList)
+    {
+<span class="fc" id="L37">        List&lt;ClinicalAnalysisLaboratoryDto&gt; clinicalAnalysisLaboratoryDto = new ArrayList&lt;&gt;();</span>
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">        for(ClinicalAnalysisLaboratory clinicalAnalysisLaboratory: clinicalAnalysisLaboratoryList )</span>
+        {
+<span class="nc" id="L40">           clinicalAnalysisLaboratoryDto.add(this.toDTO(clinicalAnalysisLaboratory));</span>
+<span class="nc" id="L41">        }</span>
+<span class="fc" id="L42">        return clinicalAnalysisLaboratoryDto;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

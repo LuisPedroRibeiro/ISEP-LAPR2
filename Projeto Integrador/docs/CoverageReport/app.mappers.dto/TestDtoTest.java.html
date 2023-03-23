@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TestDtoTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.mappers.dto</a> &gt; <span class="el_source">TestDtoTest.java</span></div><h1>TestDtoTest.java</h1><pre class="source lang-java linenums">package app.mappers.dto;
+
+import app.domain.model.Parameter;
+import app.domain.model.ParameterCategory;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+/**
+ * @author Luís Ribeiro &lt;1201184@isep.ipp.pt&gt;
+ * @author Pedro Graça &lt;1201188@isep.ipp.pt&gt;
+ * @author Miguel Ramos &lt;1201247@isep.ipp.pt&gt;
+ * @author André Soares &lt;1201314@isep.ipp.pt&gt;
+ */
+<span class="fc" id="L18">public class TestDtoTest {</span>
+
+    @Test
+    public void getCode() {
+<span class="fc" id="L22">        TestDto testDto=new TestDto(&quot;123456789012&quot;,&quot;123456789012&quot;,&quot;12/10/2002 12:59&quot;);</span>
+<span class="fc" id="L23">        String result=testDto.getCode();</span>
+<span class="fc" id="L24">        String expected=&quot;123456789012&quot;;</span>
+
+<span class="fc" id="L26">        Assert.assertEquals(result,expected);</span>
+<span class="fc" id="L27">    }</span>
+
+    @Test
+    public void getNhsCode() {
+<span class="fc" id="L31">        TestDto testDto=new TestDto(&quot;123456789012&quot;,&quot;123456789012&quot;,&quot;12/10/2002 12:59&quot;);</span>
+<span class="fc" id="L32">        String result=testDto.getNhsCode();</span>
+<span class="fc" id="L33">        String expected=&quot;123456789012&quot;;</span>
+
+<span class="fc" id="L35">        Assert.assertEquals(result,expected);</span>
+<span class="fc" id="L36">    }</span>
+
+    @Test
+    public void testToString() {
+<span class="fc" id="L40">        TestDto testDto=new TestDto(&quot;12345&quot;,&quot;123456789012&quot;,&quot;12/10/2002 12:59&quot;,&quot;12/10/2002 12:59&quot;,</span>
+                &quot;12/10/2002 12:59&quot;,&quot;12/10/2002 12:59&quot;);
+<span class="fc" id="L42">        String result=testDto.toString();</span>
+<span class="fc" id="L43">        String expected= String.format(&quot;##Test## %n CODE: %s %n NHS CODE: %s %n Creation Date: %s %n Sample Insertion Date: %s %n Results Insertion Date: %s %n Report Date: %s%n&quot;,</span>
+                &quot;12345&quot;,&quot;123456789012&quot;,&quot;12/10/2002 12:59&quot;,&quot;12/10/2002 12:59&quot;,
+                &quot;12/10/2002 12:59&quot;,&quot;12/10/2002 12:59&quot;);
+<span class="fc" id="L46">        Assert.assertEquals(result,expected);</span>
+<span class="fc" id="L47">        }</span>
+
+
+    @Test
+    public void toStringWithoutSample() {
+<span class="fc" id="L52">        TestTypeDto t1= new TestTypeDto(&quot;12345&quot;,&quot;method&quot;,&quot;description&quot;);</span>
+<span class="fc" id="L53">        Parameter p1 = new Parameter(&quot;55555&quot;,&quot;t&quot;,&quot;t&quot;);</span>
+<span class="fc" id="L54">        List&lt;Parameter&gt; parameterList = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L55">        parameterList.add(p1);</span>
+<span class="fc" id="L56">        ParameterCategory pc1 = new ParameterCategory(&quot;44444&quot;,&quot;name&quot;);</span>
+<span class="fc" id="L57">        List&lt;ParameterCategory&gt; parameterCategoriesList = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L58">        parameterCategoriesList.add(pc1);</span>
+<span class="fc" id="L59">        TestDto testDto=new TestDto(&quot;12345&quot;,&quot;123456789012&quot;,&quot;12/10/2002 12:59&quot;,t1,parameterList,parameterCategoriesList);</span>
+<span class="fc" id="L60">        String result=testDto.toStringWithoutSample();</span>
+<span class="fc" id="L61">        String expected= String.format(&quot;##Test## %n CODE: %s %n NHS CODE: %s %n Creation Date: %s %n %s %n %s %n %s %n&quot;,</span>
+                &quot;12345&quot;,&quot;123456789012&quot;,&quot;12/10/2002 12:59&quot;,t1,parameterList,parameterCategoriesList);
+<span class="fc" id="L63">        Assert.assertEquals(result,expected);</span>
+<span class="fc" id="L64">    }</span>
+
+
+    @Test
+    public void toStringTestWithoutReport() {
+<span class="fc" id="L69">        TestDto testDto=new TestDto(&quot;123456789012&quot;,&quot;12/10/2002 12:59&quot;,&quot;12/10/2002 12:59&quot;,</span>
+                &quot;12/10/2002 12:59&quot;);
+<span class="fc" id="L71">        String result=testDto.toStringTestWithoutReport();</span>
+<span class="fc" id="L72">        String expected= String.format(&quot;##Test##%n CODE: %s%n Creation Date: %s%n Sample Insertion Date: %s%n Results Insertion Date: %s%n&quot;,&quot;123456789012&quot;,&quot;12/10/2002 12:59&quot;,&quot;12/10/2002 12:59&quot;,</span>
+                &quot;12/10/2002 12:59&quot;);
+<span class="fc" id="L74">        Assert.assertEquals(result,expected);</span>
+<span class="fc" id="L75">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

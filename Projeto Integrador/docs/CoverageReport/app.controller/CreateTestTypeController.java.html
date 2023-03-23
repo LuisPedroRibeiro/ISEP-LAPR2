@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CreateTestTypeController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.controller</a> &gt; <span class="el_source">CreateTestTypeController.java</span></div><h1>CreateTestTypeController.java</h1><pre class="source lang-java linenums">package app.controller;
+
+import app.domain.model.Company;
+import app.domain.model.ParameterCategory;
+import app.domain.model.TestType;
+import app.list.AdapterEnum;
+import app.list.ParameterCategoryList;
+import app.mappers.ParameterCategoryMapper;
+import app.mappers.TestTypeMapper;
+import app.mappers.dto.ParameterCategoryDto;
+import app.mappers.dto.TestTypeDto;
+
+import java.util.List;
+
+/**
+ * This class allows for the creation of a controller for the test type creation
+ *
+ * @author André Soares &lt;1201314@isep.ipp.pt&gt;
+ */
+public class CreateTestTypeController {
+    /**
+     * Object of the Company class,where the store objects are saved
+     */
+    private final Company company;
+
+    /**
+     * Object of the TestType class
+     */
+    private TestType tt;
+
+    /**
+     * Object of the ParameterCategoryList class,where the selected ParameterCategory objects will be saved
+     */
+    private ParameterCategoryList cl;
+
+    /**
+     * Constructor to inicialize the Controller.
+     */
+    public CreateTestTypeController() {
+<span class="fc" id="L40">        this(App.getInstance().getCompany());</span>
+<span class="fc" id="L41">    }</span>
+
+    /**
+     *
+     * Allows the initialization of an CreateTestTypeController using the parameter company while also
+     * a TestType object with null and  a ParameterCategoryList object with null
+     *
+     * @param company  Object of the Company class
+     */
+<span class="fc" id="L50">    public CreateTestTypeController(Company company) {</span>
+<span class="fc" id="L51">        this.company = company;</span>
+<span class="fc" id="L52">        this.tt = null;</span>
+<span class="fc" id="L53">        this.cl = null;</span>
+<span class="fc" id="L54">    }</span>
+
+    /**
+     * Allows the creation of a new TestType object using a code,collection method and string while also initializing a
+     * new ParameterCategoryList object,and returning if the created TestType object is valid
+     *
+     * @param code string containing a code that identifies a test type
+     * @param collectionMethod string describing the collection method
+     * @param description string describing the test type
+     * @return boolean statement,true if the TestType object does not exist in the TestTypeStore object,false if not
+     */
+    public boolean createTestType(String code,String collectionMethod, String description) {
+<span class="fc" id="L66">        this.tt = this.company.getTestTypeStore().createTestType(code,collectionMethod,description);</span>
+<span class="fc" id="L67">        this.cl=new ParameterCategoryList();</span>
+<span class="fc" id="L68">        return this.company.getTestTypeStore().validateTestType(tt);</span>
+    }
+
+    /**
+     * Allows the save of valid ParameterCategory object in a ParameterCategoryList object using only code
+     * that identifies a ParameterCategory.
+     *
+     * @param code string containing a code that identifies a ParameterCategory
+     * @return boolean statement,true if the save was successful, false if not
+     */
+    public boolean saveParameterCategory(String code){
+<span class="fc" id="L79">        ParameterCategory pc = company.getParameterCategoryStore().getParameterCategoryByCode(code);</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        if(cl.validateParameterCategory(pc)) {</span>
+<span class="fc" id="L81">            return this.cl.saveParameterCategory(pc);</span>
+        }
+<span class="fc" id="L83">        return false;</span>
+    }
+
+    /**
+     * Allows the association of a ParameterCategoryList object to a certain TestType object ,and after conducts a save
+     * operation of said TestType object into TestTypeStore object.
+     *
+     * @return boolean statement, true if the save in the TestTypeStore was successful false if not.
+     */
+    public boolean saveTestType() {
+<span class="fc" id="L93">        tt.addParameterCategoryListToTestType(cl);</span>
+<span class="fc" id="L94">        return this.company.getTestTypeStore().saveTestType(tt);</span>
+    }
+
+    /**
+     * Allows the return of a list of ParameterCategory objects that is contained in the object of the ParameterCategoryStore.
+     *
+     *  @return A list containing all the ParameterCategory objects inside the ParameterCategoryStore.
+     */
+    private List&lt;ParameterCategory&gt; getListParameterCategory() {
+<span class="fc" id="L103">        return company.getParameterCategoryStore().getCategoryStore();</span>
+    }
+
+    /**
+     * Allows the creation of a list ParameterCategoryDto objects  from the list of ParameterCategory contained inside the parameterCategoryStore.
+     *
+     * @return list composed by ParameterCategoryDTO objects.
+     */
+    public List&lt;ParameterCategoryDto&gt; getParameterCategoryStoreDto(){
+<span class="fc" id="L112">        ParameterCategoryMapper m=new ParameterCategoryMapper();</span>
+<span class="fc" id="L113">        return m.toDTO(getListParameterCategory());</span>
+    }
+
+
+    public  void setAdapterByCode(int index){
+<span class="nc" id="L118">        tt.setAdapterAddress(AdapterEnum.getAdapterAddresss().get(index));</span>
+<span class="nc" id="L119">    }</span>
+    /**
+     * Allows the creation of a list TestTypeDto objects  from the list of TestType contained inside the testTypeStore.
+     *
+     * @return list composed by TestTypeDTO objects.
+     */
+    public List&lt;TestTypeDto&gt; getTestTypeDto(){
+<span class="fc" id="L126">        TestTypeMapper m=new TestTypeMapper();</span>
+<span class="fc" id="L127">        return m.listDTO(company.getTestTypeStore().getTypeStore());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

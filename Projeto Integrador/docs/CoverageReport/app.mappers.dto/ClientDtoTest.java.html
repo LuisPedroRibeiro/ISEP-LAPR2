@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClientDtoTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.mappers.dto</a> &gt; <span class="el_source">ClientDtoTest.java</span></div><h1>ClientDtoTest.java</h1><pre class="source lang-java linenums">package app.mappers.dto;
+
+import auth.domain.model.Email;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+/**
+ * @author Pedro Graça &lt;1201188@isep.ipp.pt&gt;
+ */
+<span class="fc" id="L11">public class ClientDtoTest {</span>
+
+    @Test
+    public void getName() {
+<span class="fc" id="L15">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L16">        String expected= &quot;Pedro&quot;;</span>
+
+<span class="fc" id="L18">        String result= clientDto.getName();</span>
+
+<span class="fc" id="L20">        assertEquals(expected,result);</span>
+<span class="fc" id="L21">    }</span>
+
+    @Test
+    public void getEmail() {
+
+<span class="fc" id="L26">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L27">        Email expected= new Email(&quot;pedro@gmail.com&quot;);</span>
+
+<span class="fc" id="L29">        Email result= clientDto.getEmail();</span>
+
+<span class="fc" id="L31">        assertEquals(expected,result);</span>
+<span class="fc" id="L32">    }</span>
+
+    @Test
+    public void getTaxIdentificationNumber() {
+
+<span class="fc" id="L37">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L38">        String expected= &quot;1234567890&quot;;</span>
+
+<span class="fc" id="L40">        String result= clientDto.getTaxIdentificationNumber();</span>
+
+<span class="fc" id="L42">        assertEquals(expected,result);</span>
+<span class="fc" id="L43">    }</span>
+
+    @Test
+    public void getCitizenCardNumber() {
+<span class="fc" id="L47">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L48">        String expected= &quot;1234567890123456&quot;;</span>
+
+<span class="fc" id="L50">        String result= clientDto.getCitizenCardNumber();</span>
+
+<span class="fc" id="L52">        assertEquals(expected,result);</span>
+<span class="fc" id="L53">    }</span>
+
+    @Test
+    public void getNhsNumber() {
+<span class="fc" id="L57">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L58">        String expected= &quot;1234567890&quot;;</span>
+
+<span class="fc" id="L60">        String result= clientDto.getNhsNumber();</span>
+
+<span class="fc" id="L62">        assertEquals(expected,result);</span>
+<span class="fc" id="L63">    }</span>
+
+    @Test
+    public void getBirthDate() {
+<span class="fc" id="L67">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L68">        String expected= &quot;11/09/2002&quot;;</span>
+
+<span class="fc" id="L70">        String result= clientDto.getBirthDate();</span>
+
+<span class="fc" id="L72">        assertEquals(expected,result);</span>
+<span class="fc" id="L73">    }</span>
+
+    @Test
+    public void getGender() {
+<span class="fc" id="L77">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L78">        String expected= &quot;Male&quot;;</span>
+
+<span class="fc" id="L80">        String result= clientDto.getGender();</span>
+
+<span class="fc" id="L82">        assertEquals(expected,result);</span>
+<span class="fc" id="L83">    }</span>
+
+    @Test
+<span class="fc" id="L86">    public void getPhoneNumber() {ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L87">        String expected= &quot;91337755612&quot;;</span>
+
+<span class="fc" id="L89">        String result= clientDto.getPhoneNumber();</span>
+
+<span class="fc" id="L91">        assertEquals(expected,result);</span>
+<span class="fc" id="L92">    }</span>
+
+    @Test
+    public void testToString() {
+<span class="fc" id="L96">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;),</span>
+                &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);
+<span class="fc" id="L98">        String expected= String.format(&quot;Client %n Name: %s %n Email: %s %n Tax Identification Number: %s %n Citizen Card Number: %s %n&quot; +</span>
+<span class="fc" id="L99">                &quot; National Healthcare Service Number: %s %n Birth Date: %s %n Gender: %s %n Phone Number: %s&quot;, clientDto.getName(),clientDto.getEmail(),clientDto.getTaxIdentificationNumber(),clientDto.getCitizenCardNumber(),clientDto.getNhsNumber(),clientDto.getBirthDate(),clientDto.getGender(),clientDto.getPhoneNumber());</span>
+
+<span class="fc" id="L101">        String result = clientDto.toString();</span>
+
+<span class="fc" id="L103">        assertEquals(expected,result);</span>
+<span class="fc" id="L104">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

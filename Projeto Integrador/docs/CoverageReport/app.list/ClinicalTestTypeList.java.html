@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClinicalTestTypeList.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.list</a> &gt; <span class="el_source">ClinicalTestTypeList.java</span></div><h1>ClinicalTestTypeList.java</h1><pre class="source lang-java linenums">package app.list;
+
+import app.domain.model.TestType;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * This class allows for the construction of a Clinical Test Type List.
+ *
+ * @author Miguel Ramos &lt;1201247@isep.ipp.pt&gt;
+ */
+public class ClinicalTestTypeList {
+
+    /**
+     * Creation of a Test Type List.
+     */
+    private final List&lt;TestType&gt; clinicalTestType;
+
+    /**
+     * Allows the creation of a new ArrayList starting from a Constructor to initialize the List of Clinical Test Type.
+     */
+<span class="fc" id="L23">    public ClinicalTestTypeList() {</span>
+<span class="fc" id="L24">        this.clinicalTestType = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L25">    }</span>
+
+    /**
+     * Allows the save of the Test Type in Clinical Test Type list checking if Test Type is validated according to
+     * saveClinicalTestType() method.
+     *
+     * @param testType Type of test introduced by the admin.
+     * @return Confirmation if Test Type is added to Clinical Test Type list.
+     */
+    public boolean saveClinicalTestType(TestType testType) {
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (validatesClinicalTestType(testType)) {</span>
+<span class="fc" id="L36">            return clinicalTestType.add(testType);</span>
+        }
+<span class="fc" id="L38">        return false;</span>
+    }
+
+    /**
+     * Allows the validation of the Test Type in the Clinical Test Type list checking if Test Type is null and if
+     * Test Type already exists in Clinical Test Type List.
+     *
+     * @param testType Type of test introduced by the admin.
+     * @return Confirmation if Test Type doesn't exist in a duplicated way.
+     */
+    public boolean validatesClinicalTestType(TestType testType) {
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        if (testType == null) {</span>
+<span class="fc" id="L50">            return false;</span>
+        }
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        return !this.clinicalTestType.contains(testType);</span>
+    }
+
+    /**
+     * Allows to get the size of a Clinical Test Type List.
+     *
+     * @return The size of Clinical Test Type List.
+     */
+    public int getSize(){
+<span class="fc" id="L61">        return clinicalTestType.size();</span>
+    }
+
+    /**
+     * Method that returns the Test Type list.
+     *
+     * @return the Test Type list.
+     */
+    public List&lt;TestType&gt; getClinicalTestType() {
+<span class="nc" id="L70">        return clinicalTestType;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

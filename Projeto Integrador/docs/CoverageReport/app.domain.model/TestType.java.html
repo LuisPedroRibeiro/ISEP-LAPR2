@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TestType.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.domain.model</a> &gt; <span class="el_source">TestType.java</span></div><h1>TestType.java</h1><pre class="source lang-java linenums">package app.domain.model;
+
+import app.list.ParameterCategoryList;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.List;
+
+
+/**
+ * This class allows for the construction of a TestType object
+ *
+ * @author André Soares &lt;1201314@isep.ipp.pt&gt;
+ */
+public class TestType {
+
+    /**
+     * Five alphanumeric string that identifies a test type
+     */
+    private final String code;
+
+    /**
+     *  Less then 20 characters string describing the collection method of a test type
+     */
+    private final String collectionMethod;
+
+    /**
+     * Less than 15 characters string with the description of the test type
+     */
+    private final String description;
+
+    /**
+     * Object of the class ParameterCategoryList where the set of categories pertaining
+     * to a specific test type will be stored
+     */
+    private ParameterCategoryList cl;
+
+    /**
+     * String of Adapter Address.
+     */
+    private String adapterAddress;
+
+    /**
+     * Allows the initialization of a test type with a code,collectionMethod and description
+     *  while also checking if those are in accordance with the rules
+     *
+     * @param code string containing a code that identifies a test type
+     * @param collectionMethod string describing the collection method of a test type
+     * @param description string describing a test type
+     */
+<span class="fc" id="L50">    public TestType(String code, String collectionMethod, String description) {</span>
+<span class="fc" id="L51">        checkCodeRules(code);</span>
+<span class="fc" id="L52">        checkDescriptionRules(description);</span>
+<span class="fc" id="L53">        checkCollectionMethodRules(collectionMethod);</span>
+<span class="fc" id="L54">        this.code = code;</span>
+<span class="fc" id="L55">        this.collectionMethod = collectionMethod;</span>
+<span class="fc" id="L56">        this.description = description;</span>
+<span class="fc" id="L57">    }</span>
+
+    /**
+     *
+     * Allows the verification of the code ,checking if it is in accordance with the rule of having 5 chars and
+     * being alphanumeric ,trowing the appropriate exception if any of the rules are broken
+     *
+     * @param code  string containing a code that identifies a test type
+     */
+    private void checkCodeRules(String code) {
+<span class="fc bfc" id="L67" title="All 2 branches covered.">        if (StringUtils.isBlank(code))</span>
+<span class="fc" id="L68">            throw new IllegalArgumentException(&quot;Code cannot be blank.&quot;);</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        if ((code.length() != 5 ))</span>
+<span class="fc" id="L70">            throw new IllegalArgumentException(&quot;Code must have 5 chars.&quot;);</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        if(!checkRulesCodeAlphaNumeric(code))</span>
+<span class="fc" id="L72">            throw new IllegalArgumentException(&quot;Code must be Alphanumeric.&quot;);</span>
+<span class="fc" id="L73">    }</span>
+
+    /**
+     * Allows the verification of the description,checking if it is in accordance with the rules
+     * of the description having no more than 15 chars and not being blank.
+     * trowing the appropriate exception if any of the rules are broken
+     *
+     * @param description string describing the test type
+     */
+    public void checkDescriptionRules(String description) {
+<span class="fc bfc" id="L83" title="All 2 branches covered.">        if (StringUtils.isBlank(description))</span>
+<span class="fc" id="L84">            throw new IllegalArgumentException(&quot;The description cannot be blank.&quot;);</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">        if (description.length() &gt; 15 )</span>
+<span class="fc" id="L86">            throw new IllegalArgumentException(&quot;The description must have no more than 15 characters.&quot;);</span>
+<span class="fc" id="L87">    }</span>
+
+    /**
+     * Allows the verification of the collectionMethod,checking if it is in accordance with
+     * the rules of the collection method not being blank and having no more than 20 chars
+     * trowing the appropriate exception if any of the rules are broken
+     *
+     *  @param collectionMethod  string describing the collection method
+     */
+
+    public void checkCollectionMethodRules(String collectionMethod) {
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        if (StringUtils.isBlank(collectionMethod))</span>
+<span class="fc" id="L99">            throw new IllegalArgumentException(&quot;The description cannot be blank.&quot;);</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">        if (collectionMethod.length() &gt; 20 )</span>
+<span class="fc" id="L101">            throw new IllegalArgumentException(&quot;The collection method must have no more than 20 characters.&quot;);</span>
+<span class="fc" id="L102">    }</span>
+
+    /**
+     * Allows the verification if the list inside the object of the ParameterCategoryList class is empty and if it is
+     * throws an appropriate exception
+     *
+     * @param cl object of the ParameterCategoryList class,where the list of ParameterCategory objects resides
+     */
+    public void validateParameterCategoryList(ParameterCategoryList cl) {
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        if(cl.getClSize()==0)</span>
+<span class="fc" id="L112">            throw new IllegalArgumentException(&quot;A test type should have at least a parameter category associated with &quot; +</span>
+                    &quot;it&quot;);
+<span class="fc" id="L114">    }</span>
+
+    /**
+     * Allows the association of a TestType object with a validated ParameterCategoryList object
+     *
+     * @param cl object of the ParameterCategoryList class
+     */
+    public void addParameterCategoryListToTestType(ParameterCategoryList cl){
+<span class="fc" id="L122">        validateParameterCategoryList(cl);</span>
+<span class="fc" id="L123">        this.cl=cl;</span>
+<span class="fc" id="L124">    }</span>
+
+    /**
+     * Allows the verification if there is only letters and numbers in code String
+     *
+     * @param code string containing a code that identifies a test type
+     * @return boolean statement,true if there is only letters and numbers in the code false if not
+     */
+    public boolean checkRulesCodeAlphaNumeric(String code){
+<span class="fc bfc" id="L133" title="All 2 branches covered.">        for(int i=0;i&lt;code.length();i++){</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">            if(!Character.isLetterOrDigit(code.charAt(i))){</span>
+<span class="fc" id="L135">                return false;</span>
+            }
+        }
+<span class="fc" id="L138">        return true;</span>
+    }
+
+    /**
+     * Allows the comparison between two object checking if it is the same object and if not checking if the
+     * unique code or the description is equal  between the two of them
+     *
+     * @param o Object that will be compared against
+     * @return boolean statement,true if its equal according to the standards or false if not
+     */
+
+    @Override
+    public boolean equals(Object o) {
+<span class="fc bfc" id="L151" title="All 2 branches covered.">        if (this == o) return true;</span>
+<span class="fc bfc" id="L152" title="All 4 branches covered.">        if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="fc" id="L153">        TestType testType = (TestType) o;</span>
+<span class="fc bfc" id="L154" title="All 4 branches covered.">        return code.equals(testType.code) || description.equals(testType.description);</span>
+    }
+
+    /**
+     * Allows the return of a string containing the code,description and collection method
+     * in a formal and organized manner
+     *
+     * @return a string containing the code,description and collection method of a testType in a organized manner
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L165">        return String.format(&quot;##Test Type## %n Code: %s %n Description: %s %n Collection Method: %s&quot;,</span>
+                code,description,collectionMethod);
+    }
+
+    /**
+     * Allows the return of the code String
+     * @return the code String
+     */
+    public String getCode() {
+<span class="fc" id="L174">        return code;</span>
+    }
+
+    /**
+     * Allows the return of the collection method String
+     * @return the collection method String
+     */
+    public String getCollectionMethod() {
+<span class="fc" id="L182">        return collectionMethod;</span>
+    }
+
+    /**
+     * Allows the return of the description String
+     * @return the description String
+     */
+    public String getDescription() {
+<span class="fc" id="L190">        return description;</span>
+    }
+
+    /**
+     * Allows the return of the ParameterCategoryList object
+     * @return the ParameterCategoryList object
+     */
+    public ParameterCategoryList getCl() {
+<span class="fc" id="L198">        return cl;</span>
+    }
+
+    /**
+     * Method that returns the Parameter Category list associated to the Test Type
+     * @return the Parameter Category List
+     */
+    public List&lt;ParameterCategory&gt; getParameterCategoryList(){
+<span class="nc" id="L206">        return cl.getCl();</span>
+    }
+
+    /**
+     * The method that allows the automatic choose of the External Module.
+     *
+     * @return The external module that wil be used
+     * @throws ClassNotFoundException Exception to be thrown if the Class is not found.
+     * @throws InstantiationException Exception to be throw if the Constructor is not available.
+     * @throws IllegalAccessException Exception to be throw if the Method does not have access to the wanted Class.
+     */
+    public ExternalModule getExternalModule() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+<span class="fc" id="L218">        Class&lt;?&gt; oClass = Class.forName(adapterAddress);</span>
+<span class="fc" id="L219">        return (ExternalModule) oClass.newInstance();</span>
+    }
+
+    /**
+     * The method that set the adapter address to String of Adapter address.
+     *
+     * @param adapterAddress The adapter Adress that will be setted.
+     */
+    public void setAdapterAddress(String adapterAddress) {
+<span class="fc" id="L228">        this.adapterAddress = adapterAddress;</span>
+<span class="fc" id="L229">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

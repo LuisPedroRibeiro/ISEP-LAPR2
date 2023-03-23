@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CreateClinicalAnalysisLaboratoryUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.ui.console</a> &gt; <span class="el_source">CreateClinicalAnalysisLaboratoryUI.java</span></div><h1>CreateClinicalAnalysisLaboratoryUI.java</h1><pre class="source lang-java linenums">package app.ui.console;
+
+import app.controller.CreateClinicalAnalysisLaboratoryController;
+import app.domain.model.TestType;
+import app.mappers.dto.TestTypeDto;
+import app.utils.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+/**
+ * This class allows the connection between Controller and Admin
+ *
+ * @author Miguel Ramos &lt;1201247@isep.ipp.pt&gt;
+ */
+<span class="nc bnc" id="L17" title="All 2 branches missed.">public class CreateClinicalAnalysisLaboratoryUI implements Runnable {</span>
+
+    /**
+     * String used for reporting a error to the user
+     */
+<span class="nc" id="L22">    private static final String ERROR = String.format(&quot;%nERROR: OPERATION TERMINATED%n &quot; +</span>
+            &quot;Motive: An inserted attribute is invalid. %n&quot;);
+
+    /**
+     * The method that need to be there.
+     */
+<span class="nc" id="L28">    public CreateClinicalAnalysisLaboratoryUI() {</span>
+        //This method is empty because only the run() method will be used.
+<span class="nc" id="L30">    }</span>
+
+    /**
+     * The method that allows all the Interface between the Client and the Data.
+     * It envolves all the requirements for the client and all the confirmations that client needs.
+     */
+    @Override
+    public void run() {
+<span class="nc" id="L38">        CreateClinicalAnalysisLaboratoryController controller = new CreateClinicalAnalysisLaboratoryController();</span>
+<span class="nc" id="L39">        String laboratoryId= getLaboratoryId();</span>
+<span class="nc" id="L40">        String address= getAddress();</span>
+<span class="nc" id="L41">        String name= getName();</span>
+<span class="nc" id="L42">        String phoneNumber= getPhoneNumber();</span>
+<span class="nc" id="L43">        String tin= getTaxIdentificationNumber();</span>
+        try {
+<span class="nc" id="L45">            List&lt;TestTypeDto&gt; ttd = new ArrayList&lt;&gt;(controller.listDto());</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if (ttd.isEmpty()) {</span>
+<span class="nc" id="L47">                Utils.printLineToConsole(&quot;Cannot create Clinical Analysis Laboratory while there isn´t a &quot; +</span>
+                        &quot;test type in the system.&quot;);
+<span class="nc" id="L49">                Utils.printLineToConsole(&quot;Please create one&quot;);</span>
+            } else {
+<span class="nc bnc" id="L51" title="All 2 branches missed.">                if (controller.createClinicalAnalysisLaboratory(laboratoryId, address, name, phoneNumber, tin)) {</span>
+<span class="nc" id="L52">                    boolean choice = true;</span>
+<span class="nc bnc" id="L53" title="All 4 branches missed.">                    while (controller.getTypeStore().isEmpty() || choice) {</span>
+<span class="nc" id="L54">                        int code = -2;</span>
+<span class="nc bnc" id="L55" title="All 4 branches missed.">                        while (code != -1 &amp;&amp; !ttd.isEmpty()) {</span>
+<span class="nc" id="L56">                            code = Utils.showAndSelectIndex(ttd, &quot;What is the Test Type &quot; +</span>
+                                    &quot;that do you want?&quot;);
+<span class="nc bnc" id="L58" title="All 2 branches missed.">                            if (code != -1) {</span>
+<span class="nc" id="L59">                                TestType testType = controller.getTestTypeCode(code);</span>
+<span class="nc" id="L60">                                Utils.printLineToConsole(ttd.get(code).toString());</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">                                if (Utils.confirm(&quot;Are you sure you want to add this Test Type to your Clinical &quot; +</span>
+                                        &quot;Analysis Laboratory?&quot;)
+<span class="nc bnc" id="L63" title="All 2 branches missed.">                                        &amp;&amp; controller.saveClinicalTestType(testType)) {</span>
+<span class="nc" id="L64">                                    Utils.printLineToConsole(&quot;Test Type was saved in Clinical Test Type List &quot; +</span>
+                                            &quot;with Success.&quot;);
+<span class="nc" id="L66">                                    ttd.remove(ttd.get(code));</span>
+                                } else {
+<span class="nc" id="L68">                                    Utils.printLineToConsole(&quot;Test Type was not saved in Clinical Test Type &quot; +</span>
+                                            &quot;List with Success.&quot;);
+                                }
+<span class="nc" id="L71">                            }</span>
+                        }
+<span class="nc" id="L73">                        choice = Utils.confirm(&quot;Do you want to save another Type of Test in Clinical &quot; +</span>
+                                &quot;Analysis Laboratory? (s/n) &quot;);
+<span class="nc" id="L75">                    }</span>
+<span class="nc" id="L76">                    controller.saveTestTypeListToClinicalAnalysisLaboratory();</span>
+                }
+<span class="nc bnc" id="L78" title="All 2 branches missed.">                if (controller.saveClinicalAnalysisLaboratory()) {</span>
+<span class="nc" id="L79">                    Utils.printLineToConsole(&quot;Clinical Analysis Laboratory was saved.&quot;);</span>
+                } else {
+<span class="nc" id="L81">                    Utils.printLineToConsole(&quot;Clinical Analysis Laboratory was not saved.&quot;);</span>
+                }
+<span class="nc" id="L83">                boolean want = Utils.confirm(&quot;Do you want to see the Clinical Analysis Laboratory Store? (s/n)&quot;);</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">                if (want) {</span>
+<span class="nc" id="L85">                    Utils.printLineToConsole(&quot;##Clinical Analysis Laboratory Store##&quot;);</span>
+<span class="nc" id="L86">                    Utils.printLineToConsole(controller.getClinicalAnalysisLaboratoryStore().toString());</span>
+                }
+            }
+<span class="nc" id="L89">        } catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L90">            Utils.printLineToConsole(ERROR);</span>
+<span class="nc" id="L91">            String exceptionMessage = String.format(&quot; %s&quot;, e.getMessage());</span>
+<span class="nc" id="L92">            Utils.printLineToConsole(exceptionMessage);</span>
+<span class="nc" id="L93">        }</span>
+<span class="nc" id="L94">    }</span>
+    public String getLaboratoryId(){
+<span class="nc" id="L96">        String laboratoryId = null;</span>
+        try {
+<span class="nc" id="L98">            laboratoryId = Utils.readLineFromConsole(&quot;Laboratory Id: &quot;);</span>
+<span class="nc bnc" id="L99" title="All 4 branches missed.">            assert laboratoryId != null;</span>
+<span class="nc" id="L100">        } catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L101">            Utils.printLineToConsole(e.getMessage());</span>
+<span class="nc" id="L102">        }</span>
+<span class="nc" id="L103">        return laboratoryId;</span>
+    }
+
+    public String getAddress(){
+<span class="nc" id="L107">        String address = null;</span>
+        try {
+<span class="nc" id="L109">            address = Utils.readLineFromConsole(&quot;Adress: &quot;);</span>
+<span class="nc bnc" id="L110" title="All 4 branches missed.">            assert address != null;</span>
+<span class="nc" id="L111">        } catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L112">            Utils.printLineToConsole(e.getMessage());</span>
+<span class="nc" id="L113">        }</span>
+<span class="nc" id="L114">        return address;</span>
+    }
+
+    public String getName(){
+<span class="nc" id="L118">        String name = null;</span>
+        try {
+<span class="nc" id="L120">            name = Utils.readLineFromConsole(&quot;Name: &quot;);</span>
+<span class="nc bnc" id="L121" title="All 4 branches missed.">            assert name != null;</span>
+<span class="nc" id="L122">        } catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L123">            Utils.printLineToConsole(e.getMessage());</span>
+<span class="nc" id="L124">        }</span>
+<span class="nc" id="L125">        return name;</span>
+    }
+
+    public String getPhoneNumber(){
+<span class="nc" id="L129">        String phoneNumber = null;</span>
+        try {
+<span class="nc" id="L131">            phoneNumber = Utils.readLineFromConsole(&quot;Phone Number: &quot;);</span>
+<span class="nc bnc" id="L132" title="All 4 branches missed.">            assert phoneNumber != null;</span>
+<span class="nc" id="L133">        } catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L134">            Utils.printLineToConsole(e.getMessage());</span>
+<span class="nc" id="L135">        }</span>
+<span class="nc" id="L136">        return phoneNumber;</span>
+    }
+
+    public String getTaxIdentificationNumber(){
+<span class="nc" id="L140">        String tin = null;</span>
+        try {
+<span class="nc" id="L142">            tin = Utils.readLineFromConsole(&quot;Tax Identification Number (TIN): &quot;);</span>
+<span class="nc bnc" id="L143" title="All 4 branches missed.">            assert tin != null;</span>
+<span class="nc" id="L144">        } catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L145">            Utils.printLineToConsole(e.getMessage());</span>
+<span class="nc" id="L146">        }</span>
+<span class="nc" id="L147">        return tin;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

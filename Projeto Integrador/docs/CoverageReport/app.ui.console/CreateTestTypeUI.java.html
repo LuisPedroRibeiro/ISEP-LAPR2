@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CreateTestTypeUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.ui.console</a> &gt; <span class="el_source">CreateTestTypeUI.java</span></div><h1>CreateTestTypeUI.java</h1><pre class="source lang-java linenums">package app.ui.console;
+
+import app.controller.CreateTestTypeController;
+
+import app.list.AdapterEnum;
+import app.mappers.dto.ParameterCategoryDto;
+import app.utils.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author André Soares
+ */
+
+
+public class CreateTestTypeUI implements  Runnable {
+
+    /**
+     * String for suggesting the user to try again, for use in run method
+     */
+    private static final String TRY_AGAIN = &quot;Please, Try Again.&quot;;
+
+
+    /**
+     * String used for reporting a error to the user
+     */
+<span class="nc" id="L28">    private static final String ERROR = String.format(&quot;%nERROR: OPERATION TERMINATED%n &quot; +</span>
+            &quot;Motive: An inserted attribute is invalid. %n&quot;);
+
+    /**
+     * Constructor of the class CreateTestTypeUI executed when creating an object
+     */
+<span class="nc" id="L34">    public CreateTestTypeUI() {</span>
+        // no need for a completed constructor in a ui,because all it needs in the user input and the controller
+<span class="nc" id="L36">    }</span>
+
+    /**
+     * Run method from the interface Runnable,executes the interaction between the controller  and the User and vice-versa
+     */
+    public void run() {
+<span class="nc" id="L42">        CreateTestTypeController testTypeController = new CreateTestTypeController();</span>
+<span class="nc" id="L43">        List&lt;ParameterCategoryDto&gt; pcStore = new ArrayList&lt;&gt;(testTypeController.getParameterCategoryStoreDto());</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        if (pcStore.isEmpty()) {</span>
+<span class="nc" id="L45">            Utils.printLineToConsole(&quot;Cannot create test types while there isn´t a parameter category in the system.&quot;);</span>
+<span class="nc" id="L46">            Utils.printLineToConsole(&quot;Please create one&quot;);</span>
+        } else {
+<span class="nc" id="L48">            Utils.printLineToConsole(&quot;###NEW TEST TYPE###&quot;);</span>
+<span class="nc" id="L49">            String code = getCorrectCode();</span>
+<span class="nc" id="L50">            String description = getCorrectDescription();</span>
+<span class="nc" id="L51">            String collectionMethod = getCorrectCollectionMethod();</span>
+<span class="nc" id="L52">            String toPrint = String.format(&quot;%n###TEST TYPE###%n%n - Code: %s%n - Description : %s%n - &quot; +</span>
+                    &quot;Collection Method : %s%n&quot;, code, description, collectionMethod);
+<span class="nc" id="L54">            Utils.printLineToConsole(toPrint);</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            if (Utils.confirm(&quot;Are you sure you want to create a Test Type with these data?&quot;)) {</span>
+
+                try {
+<span class="nc bnc" id="L58" title="All 2 branches missed.">                    if (testTypeController.createTestType(code, collectionMethod, description)) {</span>
+<span class="nc" id="L59">                        insertParameterCategories(testTypeController, pcStore);</span>
+<span class="nc" id="L60">                        int index = Utils.showAndSelectIndex(AdapterEnum.getTexts(), &quot;List of external module in the system&quot;);</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">                        if (index == -1) {</span>
+<span class="nc" id="L62">                            Utils.printLineToConsole(&quot;A test type should have a module associated with it&quot;);</span>
+                        } else {
+<span class="nc" id="L64">                            testTypeController.setAdapterByCode(index);</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">                            if (testTypeController.saveTestType()) {</span>
+<span class="nc" id="L66">                                Utils.printLineToConsole(&quot;Test type created successfully.&quot;);</span>
+<span class="nc" id="L67">                                showListOfTestTypesInTheSystem(testTypeController);</span>
+                            }
+                        }
+                    }
+<span class="nc" id="L71">                } catch(Exception e){</span>
+<span class="nc" id="L72">                    Utils.printLineToConsole(ERROR);</span>
+<span class="nc" id="L73">                    String exceptionMessage = String.format(&quot; %s&quot;, e.getMessage());</span>
+<span class="nc" id="L74">                    Utils.printLineToConsole(exceptionMessage);</span>
+<span class="nc" id="L75">                }</span>
+            }
+        }
+<span class="nc" id="L78">    }</span>
+
+    /**
+     * Asks the administrator for a code string while returning the validated one
+     *
+     * @return the validated description method
+     */
+    public String getCorrectCode() {
+<span class="nc" id="L86">        boolean codeError = true;</span>
+<span class="nc" id="L87">        String code = null;</span>
+        do {
+            try {
+<span class="nc" id="L90">                code = Utils.readLineFromConsole(&quot;Code:&quot;);</span>
+<span class="nc" id="L91">                codeError = false;</span>
+<span class="nc" id="L92">            } catch (Exception e) {</span>
+<span class="nc" id="L93">                Utils.printLineToConsole(e.getMessage());</span>
+<span class="nc" id="L94">                Utils.printLineToConsole(TRY_AGAIN);</span>
+<span class="nc" id="L95">            }</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">        } while (codeError);</span>
+<span class="nc" id="L97">        return code;</span>
+    }
+
+    /**
+     * Asks the administrator for a description string while returning the validated one
+     *
+     * @return the validated description method
+     */
+    public String getCorrectDescription() {
+<span class="nc" id="L106">        boolean descriptionError = true;</span>
+<span class="nc" id="L107">        String description = null;</span>
+        do {
+            try {
+<span class="nc" id="L110">                description = Utils.readLineFromConsole(&quot;Description:&quot;);</span>
+<span class="nc" id="L111">                descriptionError = false;</span>
+<span class="nc" id="L112">            } catch (Exception e) {</span>
+<span class="nc" id="L113">                Utils.printLineToConsole(e.getMessage());</span>
+<span class="nc" id="L114">                Utils.printLineToConsole(TRY_AGAIN);</span>
+<span class="nc" id="L115">            }</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">        } while (descriptionError);</span>
+<span class="nc" id="L117">        return description;</span>
+    }
+
+    /**
+     * Asks the administrator for a collection method string while returning the validated one
+     *
+     * @return the validated collection method
+     */
+    public String getCorrectCollectionMethod() {
+<span class="nc" id="L126">        boolean collectionMethodError = true;</span>
+<span class="nc" id="L127">        String collectionMethod = null;</span>
+        do {
+            try {
+<span class="nc" id="L130">                collectionMethod = Utils.readLineFromConsole(&quot;Collection Method:&quot;);</span>
+<span class="nc" id="L131">                collectionMethodError = false;</span>
+<span class="nc" id="L132">            } catch (Exception e) {</span>
+<span class="nc" id="L133">                Utils.printLineToConsole(e.getMessage());</span>
+<span class="nc" id="L134">                Utils.printLineToConsole(TRY_AGAIN);</span>
+<span class="nc" id="L135">            }</span>
+<span class="nc bnc" id="L136" title="All 2 branches missed.">        } while (collectionMethodError);</span>
+<span class="nc" id="L137">        return collectionMethod;</span>
+    }
+
+    /**
+     * Allows the user to chose from a list of ParameterCategoryDto objects and add the ParameterCategory with the same data of the chosen Dto
+     * to the test type being created in the controller
+     *
+     * @param controller The controller currently being used in the run method
+     * @param pcStore the list where all the ParameterCategoryDto are stored
+     */
+    public void insertParameterCategories(CreateTestTypeController controller,List&lt;ParameterCategoryDto&gt; pcStore) {
+<span class="nc" id="L148">       int option=-2;</span>
+<span class="nc bnc" id="L149" title="All 4 branches missed.">        while(option !=-1&amp;&amp;!pcStore.isEmpty()) {</span>
+<span class="nc" id="L150">        option = Utils.showAndSelectIndex(pcStore, &quot;List of categories available in the system for this test type&quot;);</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">        if (option != -1) {</span>
+<span class="nc" id="L152">            Utils.printLineToConsole(pcStore.get(option).toString());</span>
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            if (Utils.confirm(&quot;Are you sure you want to add this Parameter Category to your test type&quot;)</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">                    &amp;&amp; controller.saveParameterCategory(pcStore.get(option).getCode())) {</span>
+<span class="nc" id="L155">                pcStore.remove(option);</span>
+            }
+        }
+    }
+<span class="nc" id="L159">}</span>
+
+    /**
+     * Prints the list of existing test types in the system
+     *
+     * @param controller The controller currently being used in the run method
+     */
+    public void showListOfTestTypesInTheSystem(CreateTestTypeController controller){
+<span class="nc bnc" id="L167" title="All 2 branches missed.">        if(Utils.confirm(&quot;Do you wanna see the list of Test Types that exist in the system?&quot;)){</span>
+<span class="nc" id="L168">            Utils.showList(controller.getTestTypeDto(),&quot;##LIST OF EXISTING TEST TYPES##&quot;);</span>
+        }
+<span class="nc" id="L170">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

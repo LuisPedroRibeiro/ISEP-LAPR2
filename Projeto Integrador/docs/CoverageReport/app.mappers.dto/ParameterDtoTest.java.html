@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ParameterDtoTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.mappers.dto</a> &gt; <span class="el_source">ParameterDtoTest.java</span></div><h1>ParameterDtoTest.java</h1><pre class="source lang-java linenums">package app.mappers.dto;
+
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+/**
+ * This class allows to test the ParameterDto class.
+ *
+ * @author Pedro Graça &lt;1201188@isep.ipp.pt&gt;
+ */
+<span class="fc" id="L12">public class ParameterDtoTest {</span>
+
+    @Test
+    public void getCode() {
+<span class="fc" id="L16">        ParameterDto pDto = new ParameterDto(&quot;HH00P&quot;,&quot;HH00P&quot;,&quot;HH00Pr&quot;);</span>
+<span class="fc" id="L17">        String expected = &quot;HH00P&quot;;</span>
+
+<span class="fc" id="L19">        String result= pDto.getCode();</span>
+
+<span class="fc" id="L21">        assertEquals(expected,result);</span>
+<span class="fc" id="L22">    }</span>
+
+    @Test
+    public void testToString() {
+<span class="fc" id="L26">        ParameterDto pDto = new ParameterDto(&quot;HH00P&quot;,&quot;HH00P&quot;,&quot;HH00Pr&quot;);</span>
+<span class="fc" id="L27">        String expected = String.format(&quot;##Parameter## %n Code: %s %n Short Name: %s %n Description: %s %n &quot;, &quot;HH00P&quot;,&quot;HH00P&quot;,&quot;HH00Pr&quot;);</span>
+
+<span class="fc" id="L29">        String result= pDto.toString();</span>
+
+<span class="fc" id="L31">        assertEquals(expected,result);</span>
+
+<span class="fc" id="L33">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

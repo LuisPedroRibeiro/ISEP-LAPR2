@@ -1,0 +1,119 @@
+@startuml
+
+
+class Company{
+  - String designation
+  + getClientStore()
+  }
+class RegisterClientUI{}
+
+class RegisterClientController{
+    + createClient(ClientDto clientDto)
+    + saveClient()
+}
+
+class ClientStore{
+    + createClient(ClientDto clientDto)
+    + validateClient(Client client)
+    + saveClient(Client client)
+}
+
+interface EmailSMS{
+    sendEmail(String email,String name,String password)
+}
+
+
+
+class ClientDTO{
+    - String name
+       -  Email email
+       -  String taxIdentificationNumber
+       -  String citizenCardNumber
+       -  String nhsNumber
+       -  String birthDate
+       -  String gender
+       -  String phoneNumber
+     + getName()
+     + getEmail()
+      + getTaxIdentificationNumber()
+      + getCitizenCardNumber()
+      + getNhsNumber()
+     + getBirthDate()
+     + getGender()
+     + getPhoneNumber()
+
+
+
+}
+
+
+class Client{
+   - String name
+   -  Email email
+   -  String taxIdentificationNumber
+   -  String citizenCardNumber
+   -  String nhsNumber
+   -  String birthDate
+   -  String gender
+   -  String phoneNumber
+  + Client (ClientDto clientDto)
+  + addUserAndSendEmail()
+  + checkNameRules(String name)
+  + checkTaxIdentificationNumberRules(String taxIdentificationNumber)
+  + checkCitizenCardNumberRules(String citizenCardNumber)
+  + checkNshNumberRules(String nhsNumber)
+  + checkGenderRules(String gender)
+  + checkPhoneNumberRules(String phoneNumber)
+}
+
+class AuthFacade{
+   + boolean addUserRole(String id, String description)
+   +addUser( String name, String pwd)
+   + boolean addUserWithRole(String name,String email, String pwd, String roleId)
+   + boolean addUserWithRoles(String name,String email, String pwd, String[] rolesId)
+   + boolean existsUser (String email)
+   + UserSession doLogin(String email, String password)
+   + UserSession getCurrentUserSession()
+   + void doLogout()
+  }
+
+
+class Utils{
+ + randomPassword()
+ + quantityOfDigits(int number)
+ + onlyDigits(String str)
+ + getStringInitials(String str)
+ + printLineToConsole(String prompt)
+ + readLineFromConsole(String prompt)
+ + readIntegerFromConsole(String prompt)
+ + readDoubleFromConsole(String prompt)
+ + readDateFromConsole(String prompt)
+ + confirm(String message)
+ + showAndSelectOne(List list, String header)
+ + showAndSelectIndex(List list, String header)
+ + showList(List list, String header)
+ + selectsObject(List list)
+ + selectsIndex(List list)
+
+}
+
+
+
+RegisterClientUI ..> RegisterClientController
+RegisterClientUI ..> ClientDTO
+RegisterClientController ..> ClientDTO
+RegisterClientController ..> Company
+RegisterClientController ...> ClientStore
+RegisterClientController ....> Client
+Company "1" --> "1" ClientStore : uses
+ClientStore "1" ---> "*" Client: adopts
+Company ..> AuthFacade
+Client ..|> EmailSMS
+Client..> AuthFacade
+Client ..> ClientDTO
+Client ..> Utils
+
+
+
+
+@enduml

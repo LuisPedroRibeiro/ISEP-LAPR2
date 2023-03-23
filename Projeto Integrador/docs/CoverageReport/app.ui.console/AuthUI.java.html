@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuthUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.ui.console</a> &gt; <span class="el_source">AuthUI.java</span></div><h1>AuthUI.java</h1><pre class="source lang-java linenums">package app.ui.console;
+
+import app.controller.AuthController;
+import app.domain.shared.Constants;
+import app.utils.Utils;
+import auth.mappers.dto.UserRoleDTO;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
+
+/**
+ *
+ * @author Paulo Maio &lt;pam@isep.ipp.pt&gt;
+ */
+
+public class AuthUI implements Runnable{
+    private final AuthController ctrl;
+
+    public AuthUI()
+<span class="nc" id="L22">    {</span>
+<span class="nc" id="L23">        ctrl = new AuthController();</span>
+<span class="nc" id="L24">    }</span>
+
+    public void run()
+    {
+<span class="nc" id="L28">        boolean success = doLogin();</span>
+
+<span class="nc bnc" id="L30" title="All 2 branches missed.">        if (success)</span>
+        {
+<span class="nc" id="L32">            List&lt;UserRoleDTO&gt; roles = this.ctrl.getUserRoles();</span>
+<span class="nc bnc" id="L33" title="All 4 branches missed.">            if ( (roles == null) || (roles.isEmpty()) )</span>
+            {
+<span class="nc" id="L35">                Utils.printLineToConsole(&quot;User has not any role assigned.&quot;);</span>
+            }
+            else
+            {
+<span class="nc" id="L39">                UserRoleDTO role = selectsRole(roles);</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">                if (!Objects.isNull(role))</span>
+                {
+<span class="nc" id="L42">                    List&lt;MenuItem&gt; rolesUI = getMenuItemForRoles();</span>
+<span class="nc" id="L43">                    this.redirectToRoleUI(rolesUI,role);</span>
+<span class="nc" id="L44">                }</span>
+                else
+                {
+<span class="nc" id="L47">                    Utils.printLineToConsole(&quot;User did not select a role.&quot;);</span>
+                }
+            }
+        }
+<span class="nc" id="L51">        this.logout();</span>
+<span class="nc" id="L52">    }</span>
+
+    private List&lt;MenuItem&gt; getMenuItemForRoles()
+    {
+<span class="nc" id="L56">        List&lt;MenuItem&gt; rolesUI = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L57">        rolesUI.add(new MenuItem(Constants.ROLE_ADMIN, new AdminUI()));</span>
+<span class="nc" id="L58">        rolesUI.add(new MenuItem(Constants.ROLE_RECEP,new ChooseLabUI()));</span>
+<span class="nc" id="L59">        rolesUI.add(new MenuItem(Constants.ROLE_CHEMTECH, new ChemTechUI()));</span>
+<span class="nc" id="L60">        rolesUI.add(new MenuItem(Constants.ROLE_SPECDOC, new SpecDocUI()));</span>
+<span class="nc" id="L61">        rolesUI.add(new MenuItem(Constants.ROLE_LABCO, new LabCoUI()));</span>
+<span class="nc" id="L62">        rolesUI.add(new MenuItem(Constants.ROLE_MEDTECH, new ChooseLabUI()));</span>
+<span class="nc" id="L63">        return rolesUI;</span>
+    }
+
+    private boolean doLogin()
+    {
+<span class="nc" id="L68">        Utils.printLineToConsole(&quot;\nLogin UI:&quot;);</span>
+
+<span class="nc" id="L70">        int maxAttempts = 3;</span>
+        boolean success;
+        do
+        {
+<span class="nc" id="L74">            maxAttempts--;</span>
+<span class="nc" id="L75">            String id = Utils.readLineFromConsole(&quot;Enter UserId/Email: &quot;);</span>
+<span class="nc" id="L76">            String pwd = Utils.readLineFromConsole(&quot;Enter Password: &quot;);</span>
+
+<span class="nc" id="L78">            success = ctrl.doLogin(id, pwd);</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            if (!success)</span>
+            {
+<span class="nc" id="L81">                Utils.printLineToConsole(&quot;Invalid UserId and/or Password. \n You have  &quot; + maxAttempts + &quot; more attempt(s).&quot;);</span>
+            }
+
+<span class="nc bnc" id="L84" title="All 4 branches missed.">        } while (!success &amp;&amp; maxAttempts &gt; 0);</span>
+<span class="nc" id="L85">        return success;</span>
+    }
+
+    private void logout()
+    {
+<span class="nc" id="L90">        ctrl.doLogout();</span>
+<span class="nc" id="L91">    }</span>
+
+    private void redirectToRoleUI(List&lt;MenuItem&gt; rolesUI, UserRoleDTO role)
+    {
+<span class="nc" id="L95">        boolean found = false;</span>
+<span class="nc" id="L96">        Iterator&lt;MenuItem&gt; it = rolesUI.iterator();</span>
+<span class="nc bnc" id="L97" title="All 4 branches missed.">        while (it.hasNext() &amp;&amp; !found)</span>
+        {
+<span class="nc" id="L99">            MenuItem item = it.next();</span>
+<span class="nc" id="L100">            found = item.hasDescription(role.getDescription());</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">            if (found)</span>
+<span class="nc" id="L102">                item.run();</span>
+<span class="nc" id="L103">        }</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        if (!found)</span>
+<span class="nc" id="L105">            Utils.printLineToConsole(&quot;There is no UI for users with role '&quot; + role.getDescription() + &quot;'&quot;);</span>
+<span class="nc" id="L106">    }</span>
+
+    private UserRoleDTO selectsRole(List&lt;UserRoleDTO&gt; roles)
+    {
+<span class="nc bnc" id="L110" title="All 2 branches missed.">        if (roles.size() == 1)</span>
+<span class="nc" id="L111">            return roles.get(0);</span>
+        else
+<span class="nc" id="L113">            return (UserRoleDTO) Utils.showAndSelectOne(roles, &quot;Select the role you want to adopt in this session:&quot;);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

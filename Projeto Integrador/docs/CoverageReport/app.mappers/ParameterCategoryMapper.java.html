@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ParameterCategoryMapper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.mappers</a> &gt; <span class="el_source">ParameterCategoryMapper.java</span></div><h1>ParameterCategoryMapper.java</h1><pre class="source lang-java linenums">
+package app.mappers;
+
+import app.domain.model.ParameterCategory;
+import app.mappers.dto.ParameterCategoryDto;
+
+import java.util.ArrayList;
+import java.util.List;
+
+ /**
+ * This class allows for the creation of a ParameterCategoryMapper object
+ *
+ * @author André Soares
+ */
+
+<span class="fc" id="L16">public class ParameterCategoryMapper {</span>
+
+    /**
+     * Allows the transformation of ParameterCategory into a ParameterCategoryDTO.
+     *
+     * @param pc An object of the the ParameterCategory,the object that will be converted.
+     * @return A DTO object  converted from the one received as parameter.
+     */
+    public ParameterCategoryDto toDTO(ParameterCategory pc)
+    {
+<span class="fc" id="L26">        return new ParameterCategoryDto(pc.getCode(),pc.getName());</span>
+    }
+
+    /**
+     * Allows the transformation of list ParameterCategory objects into a list of
+     * ParameterCategoryDTO objects containing the same information (code,name).
+     *
+     * @param pcStore A list of ParameterCategory objects.
+     * @return A list of ParameterCategoryDTO objects.
+     */
+
+    public List&lt;ParameterCategoryDto&gt; toDTO(List&lt;ParameterCategory&gt; pcStore) {
+<span class="fc" id="L38">        List&lt;ParameterCategoryDto&gt; parameterCategoryDTO = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        for (ParameterCategory pc : pcStore) {</span>
+<span class="fc" id="L40">            parameterCategoryDTO.add(this.toDTO(pc));</span>
+<span class="fc" id="L41">        }</span>
+<span class="fc" id="L42">        return parameterCategoryDTO;</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

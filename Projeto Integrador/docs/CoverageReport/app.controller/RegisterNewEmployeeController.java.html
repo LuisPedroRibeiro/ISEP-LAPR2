@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegisterNewEmployeeController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.controller</a> &gt; <span class="el_source">RegisterNewEmployeeController.java</span></div><h1>RegisterNewEmployeeController.java</h1><pre class="source lang-java linenums">package app.controller;
+
+import app.domain.model.Company;
+import app.domain.model.Employee;
+import app.store.EmployeeStore;
+import auth.domain.model.Email;
+
+import java.io.IOException;
+
+/**
+ * Allows the System to control the creation of a new Employee.
+ *
+ * @author Luís Ribeiro &lt;1201184@isep.ipp.pt&gt;
+ */
+public class RegisterNewEmployeeController {
+
+    /**
+     * Employee that will be created.
+     */
+    private Employee employee;
+
+    /**
+     * Company that has got the controller.
+     */
+    private final Company company;
+
+    /**
+     * Store where the Employees are stored.
+     */
+    private EmployeeStore employeeStore;
+
+    /**
+     * Constructs an instance of RegisterNewEmployeeController with no parameters.
+     */
+    public RegisterNewEmployeeController(){
+<span class="fc" id="L36">        this(App.getInstance().getCompany());</span>
+<span class="fc" id="L37">    }</span>
+
+    /**
+     * Allows the creation of a Controller that uses a certain Company.
+     *
+     * @param company Company to be used by the Controller.
+     */
+<span class="fc" id="L44">    public  RegisterNewEmployeeController(Company company){</span>
+<span class="fc" id="L45">        this.company = company;</span>
+<span class="fc" id="L46">        this.employee = null;</span>
+<span class="fc" id="L47">    }</span>
+
+    /**
+     * Permits the creation of an Employee.
+     *
+     * @param name Name of the Employee.
+     * @param phoneNumber Phone Number of the Employee.
+     * @param emailString E-mail of the Employee.
+     * @param socCode SOC Code of the Employee.
+     * @param organizationRole Organization Role of the Employee.
+     * @param address Address of the Employee.
+     * @return Boolean Value that represents if the Employee was created or not (true = Employee was created |
+     * false = Employee was not created).
+     */
+    public boolean registerNewEmployee(String name, String phoneNumber, String emailString, String socCode,
+                                       String organizationRole, String address){
+
+<span class="fc" id="L64">        identifyStore();</span>
+
+<span class="fc" id="L66">        Email email = new Email(emailString);</span>
+
+<span class="fc" id="L68">        this.employee = this.employeeStore.registerNewEmployee(name, phoneNumber, email, socCode,</span>
+                organizationRole, address);
+
+<span class="fc" id="L71">        return this.employeeStore.validateEmployee(employee);</span>
+    }
+
+    /**
+     * Permits the creation of an Employee (Specialist Doctor).
+     *
+     * @param name Name of the Employee.
+     * @param phoneNumber Phone Number of the Employee.
+     * @param emailString E-mail of the Employee.
+     * @param socCode SOC Code of the Employee.
+     * @param organizationRole Organization Role of the Employee.
+     * @param address Address of the Employee.
+     * @return Boolean Value that represents if the Employee was created or not (true = Employee was created |
+     * false = Employee was not created).
+     */
+    public boolean registerNewEmployee(String name, String phoneNumber, String emailString, String socCode,
+                                       String organizationRole, String address, String doctorIndexNumber){
+<span class="fc" id="L88">        identifyStore();</span>
+
+<span class="fc" id="L90">        Email email = new Email(emailString);</span>
+
+<span class="fc" id="L92">        this.employee = this.employeeStore.registerNewEmployee(name, phoneNumber, email, socCode, organizationRole,</span>
+                address, doctorIndexNumber);
+
+<span class="fc" id="L95">        return this.employeeStore.validateEmployee(employee);</span>
+    }
+
+    /**
+     * Allows the addition of an Employee to the Employee Store.
+     * If the Employee is not validated, the returned boolean value will be false, if not, the value will be true.
+     *
+     * @return Boolean value considering the addition of an Employee to the Store.
+     */
+    public boolean saveEmployee() throws IOException {
+<span class="fc" id="L105">        return this.employeeStore.saveEmployee(employee);</span>
+    }
+
+    /**
+     * Allows the Controller to identify the store to be used in the creation, validation and saving of an Employee.
+     */
+    private void identifyStore(){
+<span class="fc" id="L112">        employeeStore = this.company.getEmployeeStore();</span>
+<span class="fc" id="L113">    }</span>
+
+    /**
+     * Allows the Controller to get the Employee Store and send it to the User Interface.
+     *
+     * @return Employee Store that has all the registered employees.
+     */
+    public EmployeeStore getEmployeeStore() {
+<span class="nc" id="L121">        return employeeStore;</span>
+    }
+
+    /**
+     * Allows the System to verify if the given Phone Number does already exist in the Employee Store.
+     * This is a needed confirmation has there should not be two equal Phone Numbers.
+     *
+     * @param phoneNumber E-mail of the Employee.
+     * @return Boolean value according to the confirmation (true = Phone Number already exists in the Employee
+     * Store | false = Phone Number does not exist in the Employee Store).
+     */
+    public boolean containsPhoneNumber(String phoneNumber){
+<span class="fc" id="L133">        identifyStore();</span>
+<span class="fc" id="L134">        return employeeStore.containsPhoneNumber(phoneNumber);</span>
+    }
+
+    /**
+     * Allows the System to verify if the given E-mail does already exist in the Employee Store.
+     * This is a needed confirmation has there should not be two equal E-mails.
+     *
+     * @param email E-mail of the Employee.
+     * @return Boolean value according to the confirmation (true = E-mail already exists in the Employee
+     * Store | false = E-mail does not exist in the Employee Store).
+     */
+    public boolean containsEmail(String email){
+<span class="fc" id="L146">        identifyStore();</span>
+<span class="fc" id="L147">        return employeeStore.containsEmail(email);</span>
+    }
+
+    /**
+     * Allows the System to verify if the given SOC Code does already exist in the Employee Store.
+     * This is a needed confirmation has there should not be two equal SOC Codes.
+     *
+     * @param socCode E-mail of the Employee.
+     * @return Boolean value according to the confirmation (true = SOC Code already exists in the Employee
+     * Store | false = SOC Code does not exist in the Employee Store).
+     */
+    public boolean containsSocCode(String socCode){
+<span class="fc" id="L159">        identifyStore();</span>
+<span class="fc" id="L160">        return employeeStore.containsSocCode(socCode);</span>
+    }
+
+    /**
+     * Allows the System to verify if the given Doctor Index Number does already exist in the Employee Store.
+     * This is a needed confirmation has there should not be two equal Doctor Index Numbers.
+     *
+     * @param doctorIndexNumber Doctor Index Number of the Employee.
+     * @return Boolean value according to the confirmation (true = Doctor Index Numbers already exists in
+     * the Employee Store | false = Doctor Index Number does not exist in the Employee Store).
+     */
+    public boolean containsDoctorIndexNumber(String doctorIndexNumber){
+<span class="fc" id="L172">        identifyStore();</span>
+<span class="fc" id="L173">        return employeeStore.containsDoctorIndexNumber(doctorIndexNumber);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

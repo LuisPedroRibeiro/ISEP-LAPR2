@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TestToBeValidatedListTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.list</a> &gt; <span class="el_source">TestToBeValidatedListTest.java</span></div><h1>TestToBeValidatedListTest.java</h1><pre class="source lang-java linenums">package app.list;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+<span class="fc" id="L9">public class TestToBeValidatedListTest {</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkTestToBeValidatedListIsEmpty() {
+<span class="fc" id="L13">        TestToBeValidatedList testToBeValidatedList=new TestToBeValidatedList();</span>
+<span class="nc" id="L14">        testToBeValidatedList.checkTestToBeValidatedList();</span>
+<span class="nc" id="L15">    }</span>
+
+    @Test
+    public void checkTestToBeValidatedListIsNotEmpty(){
+<span class="fc" id="L19">        TestToBeValidatedList testToBeValidatedList=new TestToBeValidatedList();</span>
+<span class="fc" id="L20">        app.domain.model.Test t=new app.domain.model.Test(&quot;123456789012&quot;);</span>
+
+<span class="fc" id="L22">        testToBeValidatedList.saveTestToTestToBeValidatedList(t);</span>
+<span class="fc" id="L23">        testToBeValidatedList.checkTestToBeValidatedList();</span>
+
+<span class="fc" id="L25">        Assert.assertTrue(true);</span>
+
+<span class="fc" id="L27">    }</span>
+
+    @Test
+    public void createListWithAllTestsAvailableToBeValidated() {
+<span class="fc" id="L31">        TestToBeValidatedList testToBeValidatedList=new TestToBeValidatedList();</span>
+<span class="fc" id="L32">        app.domain.model.Test t=new app.domain.model.Test(&quot;123456789012&quot;);</span>
+<span class="fc" id="L33">        app.domain.model.Test t1=new app.domain.model.Test(&quot;123456789011&quot;);</span>
+<span class="fc" id="L34">        List&lt;app.domain.model.Test&gt; expected=new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L35">        expected.add(t);</span>
+<span class="fc" id="L36">        expected.add(t1);</span>
+<span class="fc" id="L37">        testToBeValidatedList.createListWithAllTestsAvailableToBeValidated(expected);</span>
+
+<span class="fc" id="L39">        List&lt;app.domain.model.Test&gt; result=testToBeValidatedList.getTestToBeValidated();</span>
+<span class="fc" id="L40">        boolean b=true;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        for (int i = 0; i &lt;result.size(); i++) {</span>
+<span class="pc bpc" id="L42" title="1 of 2 branches missed.">            if (!(result.get(i).equals(expected.get(i)))) {</span>
+<span class="nc" id="L43">                b = false;</span>
+<span class="nc" id="L44">                break;</span>
+            }
+        }
+<span class="fc" id="L47">        Assert.assertTrue(b);</span>
+
+<span class="fc" id="L49">    }</span>
+
+    @Test
+    public void validateTest() {
+<span class="fc" id="L53">    }</span>
+
+    @Test
+    public void saveTestToTestToBeValidatedList() {
+<span class="fc" id="L57">        TestToBeValidatedList testToBeValidatedList=new TestToBeValidatedList();</span>
+<span class="fc" id="L58">        app.domain.model.Test t=new app.domain.model.Test(&quot;123456789012&quot;);</span>
+
+<span class="fc" id="L60">        boolean b= testToBeValidatedList.saveTestToTestToBeValidatedList(t);</span>
+<span class="fc" id="L61">        boolean b1= testToBeValidatedList.saveTestToTestToBeValidatedList(t);</span>
+
+<span class="fc" id="L63">        Assert.assertTrue(b);</span>
+<span class="fc" id="L64">        Assert.assertFalse(b1);</span>
+
+<span class="fc" id="L66">    }</span>
+
+    @Test
+    public void getTestToBeValidated() {
+<span class="fc" id="L70">        TestToBeValidatedList testToBeValidatedList=new TestToBeValidatedList();</span>
+<span class="fc" id="L71">        app.domain.model.Test t=new app.domain.model.Test(&quot;123456789012&quot;);</span>
+<span class="fc" id="L72">        testToBeValidatedList.saveTestToTestToBeValidatedList(t);</span>
+
+<span class="fc" id="L74">        List&lt;app.domain.model.Test&gt; result=testToBeValidatedList.getTestToBeValidated();</span>
+<span class="fc" id="L75">        List&lt;app.domain.model.Test&gt; expected=new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L76">        expected.add(t);</span>
+
+<span class="fc" id="L78">        Assert.assertEquals(result,expected);</span>
+<span class="fc" id="L79">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

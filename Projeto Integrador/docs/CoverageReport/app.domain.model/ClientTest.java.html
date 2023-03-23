@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClientTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.domain.model</a> &gt; <span class="el_source">ClientTest.java</span></div><h1>ClientTest.java</h1><pre class="source lang-java linenums">package app.domain.model;
+
+import app.mappers.dto.ClientDto;
+import app.utils.Utils;
+import auth.domain.model.Email;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.io.IOException;
+
+import static org.junit.Assert.*;
+
+/**
+ * @author Pedro Graça &lt;1201188@isep.ipp.pt&gt;
+ */
+
+<span class="fc" id="L17">public class ClientTest {</span>
+
+
+    @Test(expected = NullPointerException.class)
+    public void clientNull(){
+<span class="nc" id="L22">        Client client = new Client(null);</span>
+<span class="nc" id="L23">    }</span>
+
+    @Test
+    public void getEmail() {
+<span class="fc" id="L27">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L28">        Client client = new Client(clientDto);</span>
+<span class="fc" id="L29">        Email expected = new Email(&quot;pedro@gmail.com&quot;);</span>
+
+<span class="fc" id="L31">        Email result = client.getEmail();</span>
+
+<span class="fc" id="L33">        assertEquals(expected, result);</span>
+<span class="fc" id="L34">    }</span>
+
+    @Test
+    public void getPhoneNumber() {
+<span class="fc" id="L38">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L39">        Client client = new Client(clientDto);</span>
+<span class="fc" id="L40">        String expected = &quot;91337755612&quot;;</span>
+
+<span class="fc" id="L42">        String result = client.getPhoneNumber();</span>
+
+<span class="fc" id="L44">        assertEquals(expected, result);</span>
+<span class="fc" id="L45">    }</span>
+
+    @Test
+    public void checkNameRulesSuccess() {
+<span class="fc" id="L49">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L50">        Client client = new Client(clientDto);</span>
+
+<span class="fc" id="L52">        assertTrue(true);</span>
+<span class="fc" id="L53">    }</span>
+    @Test
+    public void checkNameRulesSuccess35chars() {
+<span class="fc" id="L56">        ClientDto clientDto = new ClientDto(&quot;abcdefghijklmnopqrstuvwxyzPedroGege&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L57">        Client client = new Client(clientDto);</span>
+
+<span class="fc" id="L59">        assertTrue(true);</span>
+<span class="fc" id="L60">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkNameRulesBlank() {
+<span class="fc" id="L64">        ClientDto clientDto = new ClientDto(&quot;&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="nc" id="L65">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L66">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkNameRulesGreater() {
+<span class="fc" id="L70">        ClientDto clientDto = new ClientDto(&quot;PedroHenriqueMacielGraçaTemDeTerMaisDeTrintaECincoSenãoNãFunciona&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="nc" id="L71">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L72">    }</span>
+
+    @Test
+    public void checkTaxIdentificationNumberRulesSuccess() {
+<span class="fc" id="L76">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L77">        Client client = new Client(clientDto);</span>
+
+<span class="fc" id="L79">        assertTrue(true);</span>
+<span class="fc" id="L80">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkTaxIdentificationRulesBlank() {
+<span class="fc" id="L84">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="nc" id="L85">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L86">    }</span>
+    @Test(expected = IllegalArgumentException.class)
+    public void checkTaxIdentificationRulesEquals0() {
+<span class="fc" id="L89">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;0&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="nc" id="L90">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L91">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkTaxIdentificationRulesLessThan() {
+<span class="fc" id="L95">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;12345&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="nc" id="L96">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L97">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkTaxIdentificationRulesGreater() {
+<span class="fc" id="L101">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;11234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="nc" id="L102">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L103">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkTaxIdentificationRulesNegative() {
+<span class="fc" id="L107">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;-123456789&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="nc" id="L108">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L109">    }</span>
+
+
+    @Test
+    public void checkCitizenCardNumberRulesSuccess() {
+<span class="fc" id="L114">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L115">        Client client = new Client(clientDto);</span>
+
+<span class="fc" id="L117">        assertTrue(true);</span>
+<span class="fc" id="L118">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkCitizenCardNumberRulesBlank() {
+<span class="fc" id="L122">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="nc" id="L123">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L124">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkCitizenCardNumberRulesEquas0() {
+<span class="fc" id="L128">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;0&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="nc" id="L129">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L130">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkCitizenCardNumberRulesLessThan() {
+<span class="fc" id="L134">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;123456789012345&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="nc" id="L135">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L136">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkCitizenCardNumberRulesGreater() {
+<span class="fc" id="L140">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;12345678901234561&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="nc" id="L141">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L142">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkCitizenCardNumberRulesNegative() {
+<span class="fc" id="L146">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;-123456789012345&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="nc" id="L147">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L148">    }</span>
+
+    @Test
+    public void checkNhsNumberRulesSuccess() {
+<span class="fc" id="L152">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L153">        Client client = new Client(clientDto);</span>
+
+<span class="fc" id="L155">        assertTrue(true);</span>
+<span class="fc" id="L156">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkNhsNumberRulesBlank() {
+<span class="fc" id="L160">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="nc" id="L161">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L162">    }</span>
+    @Test(expected = IllegalArgumentException.class)
+    public void checkNhsNumberRulesEquals() {
+<span class="fc" id="L165">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;0&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="nc" id="L166">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L167">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkNhsNumberRulesLessThan() {
+<span class="fc" id="L171">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="nc" id="L172">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L173">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkNhsNumberRulesGreater() {
+<span class="fc" id="L177">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;12345678901&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="nc" id="L178">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L179">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkNhsNumberRulesNegative() {
+<span class="fc" id="L183">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;-123456789&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="nc" id="L184">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L185">    }</span>
+
+
+    @Test
+    public void checkGenderRulesSuccessMale() {
+<span class="fc" id="L190">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L191">        Client client = new Client(clientDto);</span>
+
+<span class="fc" id="L193">        assertTrue(true);</span>
+<span class="fc" id="L194">    }</span>
+
+    @Test
+    public void checkGenderRulesSuccessFemale() {
+<span class="fc" id="L198">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Female&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L199">        Client client = new Client(clientDto);</span>
+
+<span class="fc" id="L201">        assertTrue(true);</span>
+<span class="fc" id="L202">    }</span>
+
+    @Test
+    public void checkGenderRulesSuccessOmission() {
+<span class="fc" id="L206">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L207">        Client client = new Client(clientDto);</span>
+
+<span class="fc" id="L209">        assertTrue(true);</span>
+<span class="fc" id="L210">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkGenderRulesError() {
+<span class="fc" id="L214">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;No&quot;, &quot;91337755612&quot;);</span>
+<span class="nc" id="L215">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L216">    }</span>
+
+    @Test
+    public void checkPhoneNumberRulesSuccess() {
+<span class="fc" id="L220">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L221">        Client client = new Client(clientDto);</span>
+
+<span class="fc" id="L223">        assertTrue(true);</span>
+<span class="fc" id="L224">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkPhoneNumberRulesBlank() {
+<span class="fc" id="L228">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;&quot;);</span>
+<span class="nc" id="L229">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L230">    }</span>
+    @Test(expected = IllegalArgumentException.class)
+    public void checkNhsNumberRulesEquals0() {
+<span class="fc" id="L233">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;0&quot;);</span>
+<span class="nc" id="L234">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L235">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkPhoneNumberRulesLessThan() {
+<span class="fc" id="L239">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;913377556&quot;);</span>
+<span class="nc" id="L240">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L241">    }</span>
+    @Test(expected = IllegalArgumentException.class)
+    public void checkPhoneNumberRulesGreater() {
+<span class="fc" id="L244">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;9133775566666&quot;);</span>
+<span class="nc" id="L245">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L246">    }</span>
+    @Test(expected = IllegalArgumentException.class)
+    public void checkPhoneNumberRulesNegative() {
+<span class="fc" id="L249">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;-9133775561&quot;);</span>
+<span class="nc" id="L250">        Client client = new Client(clientDto);</span>
+<span class="nc" id="L251">    }</span>
+
+    @Test
+    public void setPassword() {
+<span class="fc" id="L255">            ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L256">            Client client = new Client(clientDto);</span>
+<span class="fc" id="L257">            int expected= 10;</span>
+
+<span class="fc" id="L259">            String result = Utils.randomPassword();</span>
+
+<span class="fc" id="L261">            Assert.assertEquals(expected,result.length());</span>
+
+
+<span class="fc" id="L264">    }</span>
+
+    @Test
+    public void addUserAndSendEmail() throws IOException {
+        /*ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);
+        Client client = new Client(clientDto);
+        client.setPassword();
+        client.addUserAndSendEmail();
+
+        boolean result = App.getInstance().getCompany().getAuthFacade().existsUser(client.getEmail().toString());
+
+        assertTrue(result);
+*/
+
+<span class="fc" id="L278">    }</span>
+
+    @Test
+    public void testEquals() {
+<span class="fc" id="L282">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L283">        Client client = new Client(clientDto);</span>
+<span class="fc" id="L284">        ClientDto clientDto2 = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro2@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;91337755632&quot;);</span>
+<span class="fc" id="L285">        Client client2 = new Client(clientDto2);</span>
+<span class="fc" id="L286">        Object o = new Object();</span>
+<span class="fc" id="L287">        assertNotEquals(client, o);</span>
+<span class="fc" id="L288">        Assert.assertFalse(false);</span>
+<span class="fc" id="L289">        assertEquals(client, client);</span>
+<span class="fc" id="L290">        assertEquals(client2, client2);</span>
+<span class="fc" id="L291">        assertNotEquals(client, client2);</span>
+
+<span class="fc" id="L293">    }</span>
+    @Test
+    public void testEqualsDifferentName(){
+<span class="fc" id="L296">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L297">        Client client = new Client(clientDto);</span>
+<span class="fc" id="L298">        ClientDto clientDto2 = new ClientDto(&quot;Peter&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;,&quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L299">        Client client2 = new Client(clientDto2);</span>
+<span class="fc" id="L300">        assertNotEquals(client,client2);</span>
+<span class="fc" id="L301">    }</span>
+    @Test
+    public void testEqualsDifferentEmail(){
+<span class="fc" id="L304">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L305">        Client client = new Client(clientDto);</span>
+<span class="fc" id="L306">        ClientDto clientDto2 = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro1@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;,&quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L307">        Client client2 = new Client(clientDto2);</span>
+<span class="fc" id="L308">        assertNotEquals(client,client2);</span>
+<span class="fc" id="L309">    }</span>
+    @Test
+    public void testEqualsDifferentTaxIdentificationNumber(){
+<span class="fc" id="L312">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L313">        Client client = new Client(clientDto);</span>
+<span class="fc" id="L314">        ClientDto clientDto2 = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567891&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;,&quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L315">        Client client2 = new Client(clientDto2);</span>
+<span class="fc" id="L316">        assertNotEquals(client,client2);</span>
+<span class="fc" id="L317">    }</span>
+    @Test
+    public void testEqualsDifferentCitizenCardNumber(){
+<span class="fc" id="L320">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L321">        Client client = new Client(clientDto);</span>
+<span class="fc" id="L322">        ClientDto clientDto2 = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123455&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;,&quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L323">        Client client2 = new Client(clientDto2);</span>
+<span class="fc" id="L324">        assertNotEquals(client,client2);</span>
+<span class="fc" id="L325">    }</span>
+    @Test
+    public void testEqualsDifferentNhsNumber(){
+<span class="fc" id="L328">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L329">        Client client = new Client(clientDto);</span>
+<span class="fc" id="L330">        ClientDto clientDto2 = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567891&quot;, &quot;11/09/2002&quot;,&quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L331">        Client client2 = new Client(clientDto2);</span>
+<span class="fc" id="L332">        assertNotEquals(client,client2);</span>
+<span class="fc" id="L333">    }</span>
+    @Test
+    public void testEqualsDifferentBirthDate(){
+<span class="fc" id="L336">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L337">        Client client = new Client(clientDto);</span>
+<span class="fc" id="L338">        ClientDto clientDto2 = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2003&quot;,&quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L339">        Client client2 = new Client(clientDto2);</span>
+<span class="fc" id="L340">        assertNotEquals(client,client2);</span>
+<span class="fc" id="L341">    }</span>
+    @Test
+    public void testEqualsDifferentGender(){
+<span class="fc" id="L344">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L345">        Client client = new Client(clientDto);</span>
+<span class="fc" id="L346">        ClientDto clientDto2 = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;,&quot;(Unknown)&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L347">        Client client2 = new Client(clientDto2);</span>
+<span class="fc" id="L348">        assertNotEquals(client,client2);</span>
+<span class="fc" id="L349">    }</span>
+    @Test
+    public void testEqualsDifferentPhoneNumber(){
+<span class="fc" id="L352">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L353">        Client client = new Client(clientDto);</span>
+<span class="fc" id="L354">        ClientDto clientDto2 = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;,&quot;Male&quot;, &quot;91337755613&quot;);</span>
+<span class="fc" id="L355">        Client client2 = new Client(clientDto2);</span>
+<span class="fc" id="L356">        assertNotEquals(client,client2);</span>
+<span class="fc" id="L357">    }</span>
+
+    @Test
+    public void testToString() {
+<span class="fc" id="L361">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L362">        Client client = new Client(clientDto);</span>
+<span class="fc" id="L363">        String expected = String.valueOf(client);</span>
+
+<span class="fc" id="L365">        String result = client.toString();</span>
+
+<span class="fc" id="L367">        assertEquals(expected, result);</span>
+<span class="fc" id="L368">    }</span>
+    @Test(expected = NullPointerException.class)
+    public void testToStringNull(){
+<span class="fc" id="L371">        Client client = null;</span>
+<span class="fc" id="L372">        String expected=null;</span>
+
+<span class="nc" id="L374">        String result= client.toString();</span>
+<span class="nc" id="L375">         assertNull(result);</span>
+
+<span class="nc" id="L377">    }</span>
+
+    @Test
+    public void getTaxIdentificationNumber() {
+<span class="fc" id="L381">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L382">        Client client = new Client(clientDto);</span>
+<span class="fc" id="L383">        String expected = &quot;1234567890&quot;;</span>
+
+<span class="fc" id="L385">        String result = client.getTaxIdentificationNumber();</span>
+
+<span class="fc" id="L387">        Assert.assertEquals(expected,result);</span>
+
+<span class="fc" id="L389">    }</span>
+
+    @Test
+    public void addTest() {
+<span class="fc" id="L393">        app.domain.model.Test test = new app.domain.model.Test(&quot;123456789011&quot;);</span>
+<span class="fc" id="L394">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L395">        Client client = new Client(clientDto);</span>
+
+<span class="fc" id="L397">        boolean result = client.addTest(test);</span>
+
+<span class="fc" id="L399">        assertTrue(result);</span>
+
+<span class="fc" id="L401">    }</span>
+
+    @Test
+    public void getName() {
+<span class="fc" id="L405">        app.domain.model.Test test = new app.domain.model.Test(&quot;123456789011&quot;);</span>
+<span class="fc" id="L406">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L407">        Client client = new Client(clientDto);</span>
+<span class="fc" id="L408">        String expected = &quot;Pedro&quot;;</span>
+
+<span class="fc" id="L410">        String result = client.getName();</span>
+
+<span class="fc" id="L412">        assertEquals(expected,result);</span>
+
+<span class="fc" id="L414">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

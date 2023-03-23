@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TestParameter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.domain.model</a> &gt; <span class="el_source">TestParameter.java</span></div><h1>TestParameter.java</h1><pre class="source lang-java linenums">package app.domain.model;
+
+
+public class TestParameter {
+
+    /**
+     * The Parameter Object.
+     */
+    private final Parameter parameter;
+
+    /**
+     * The TestParameterResult Object.
+     */
+    private TestParameterResult testResult;
+
+    /**
+     * Constructor that allows the initialization of Test Parameter instances.
+     *
+     * @param parameter The parameter of the TestParameter.
+     */
+<span class="fc" id="L21">    public TestParameter(Parameter parameter) {</span>
+<span class="fc" id="L22">        this.parameter = parameter;</span>
+<span class="fc" id="L23">    }</span>
+
+    /**
+     * The method that allows the return of the Parameter.
+     *
+     * @return The parameter of the TestParameter.
+     */
+    public Parameter getParameter() {
+<span class="fc" id="L31">        return parameter;</span>
+    }
+
+    /**
+     * The method that allows the set of a Test Result with result, metric and Reference Values to a TestResult
+     *
+     * @param result The result of Test Parameter.
+     * @param metric The metric of Test Parameter.
+     * @param refValue The References Values of Test Parameter.
+     */
+    public void addTestResult(double result,String metric,ReferenceValue refValue){
+<span class="fc" id="L42">        testResult = new TestParameterResult(metric,result,refValue);</span>
+<span class="fc" id="L43">    }</span>
+
+    /**
+     * The method that allows the return of TestParameterResult object.
+     *
+     * @return The TestParameterResult object inside the TestParameter object
+     */
+    public TestParameterResult getTestResult(){
+<span class="fc" id="L51">        return this.testResult;</span>
+    }
+
+    /**
+     * The method that allows seeing all the parameters of a Test Parameter in a formatted organized way.
+     *
+     * @return All parameters of a Clinical Analysis Laboratory with a specific format.
+     */
+    public String toString(){
+<span class="fc" id="L60">        return String.format(&quot;%sResult Value: %.2f%n Metric: %s&quot;, this.parameter.toString(), this.testResult.getValue(),</span>
+<span class="fc" id="L61">                this.testResult.getMetric());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,0 +1,65 @@
+@startuml
+'https://plantuml.com/class-diagram
+class Company {
+    - designation
+    + getParameterStore()
+    + getParameterCategoryStore()
+}
+
+class CreateParameterController{
+    + createParameter(shortName,code,description)
+    + saveParameter()
+    + saveParameterCategory(code)
+    + getParameterCategoryStoreDto()
+    + getListParameterCategory()
+}
+
+class CreateParameterUI{
+}
+class ParameterCategoryDto{
+-code
+-name
++ParameterCategoryDto(code,name)
+}
+class ParameterCategoryMapper{
++toDto(pc)
++toDto(pcStore)
+}
+
+class Parameter{
+    - shortName
+    - code
+    - description
+    + Parameter(shortName,code,description)
+    + addParameterCategoryToParameter(pc)
+}
+
+class ParameterStore{
+    + createParameter(name,code,description)
+    + validateParameter(parameter)
+    + saveParameter(parameter)
+    - addParameter(parameter)
+}
+
+class ParameterCategory{
+-code
+- name
+}
+
+class ParameterCategoryStore{
+    + getParameterCategoryByCode(code)
+}
+ParameterCategoryMapper ..> ParameterCategory
+CreateParameterController .> ParameterCategoryDto
+CreateParameterController ..> ParameterCategoryMapper
+ParameterCategoryMapper ..> ParameterCategoryDto
+CreateParameterUI ..> CreateParameterController
+CreateParameterUI .> ParameterCategoryDto
+CreateParameterController ..> Company
+CreateParameterController ..> Parameter
+Company "1" --> "1" ParameterStore : uses >
+ParameterStore "1" --> "*" Parameter : adopts >
+Parameter "1" --> "1" ParameterCategory : presented under >
+ParameterCategoryStore "1" --> "*" ParameterCategory : conducts >
+CreateParameterController .> ParameterCategoryStore
+@enduml

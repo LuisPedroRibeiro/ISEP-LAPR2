@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EmployeeStoreTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.store</a> &gt; <span class="el_source">EmployeeStoreTest.java</span></div><h1>EmployeeStoreTest.java</h1><pre class="source lang-java linenums">package app.store;
+
+import app.domain.model.Employee;
+import app.domain.model.SpecialistDoctor;
+import app.domain.shared.Constants;
+import auth.domain.model.Email;
+import org.junit.Test;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import static org.junit.Assert.*;
+
+/**
+ * @author Luís Ribeiro &lt;1201184@isep.ipp.pt&gt;
+ */
+<span class="fc" id="L17">public class EmployeeStoreTest {</span>
+
+
+    @Test
+    public void registerNewEmployeeWithPhoneNumber() {
+<span class="fc" id="L22">        EmployeeStore employeeStore = new EmployeeStore();</span>
+
+<span class="fc" id="L24">        Employee employeeOne = new Employee(&quot;Test Person One&quot;, &quot;12345678911&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+<span class="fc" id="L26">        Employee employeeTwo = employeeStore.registerNewEmployee(&quot;Test Person One&quot;, &quot;12345678911&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+
+<span class="fc" id="L29">        assertTrue(employeeOne.equals(employeeTwo));</span>
+
+<span class="fc" id="L31">        Employee employeeThree = employeeStore.registerNewEmployee(&quot;Test Person Two&quot;, &quot;12345678910&quot;,</span>
+                new Email(&quot;testPersonTwo@test.com&quot;), &quot;1235&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+
+<span class="fc" id="L34">        assertFalse(employeeOne.equals(employeeThree));</span>
+<span class="fc" id="L35">    }</span>
+
+    @Test
+    public void testRegisterNewEmployeeSpecialistDoctorWithPhoneNumber() {
+<span class="fc" id="L39">        EmployeeStore employeeStore = new EmployeeStore();</span>
+
+<span class="fc" id="L41">        SpecialistDoctor specialistDoctorOne = new SpecialistDoctor(&quot;Test Person One&quot;, &quot;12345678911&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1234&quot;, Constants.ROLE_SPECDOC,
+                &quot;Test City&quot;, &quot;111111&quot;);
+<span class="fc" id="L44">        SpecialistDoctor specialistDoctorTwo = new SpecialistDoctor(&quot;Test Person One&quot;, &quot;12345678911&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1234&quot;, Constants.ROLE_SPECDOC,
+                &quot;Test City&quot;, &quot;111111&quot;);
+
+<span class="fc" id="L48">        assertTrue(specialistDoctorOne.equals(specialistDoctorTwo));</span>
+
+<span class="fc" id="L50">        SpecialistDoctor specialistDoctorThree = new SpecialistDoctor(&quot;Test Person Two&quot;, &quot;12345678910&quot;,</span>
+                new Email(&quot;testPersonTwo@test.com&quot;), &quot;1235&quot;, Constants.ROLE_SPECDOC,
+                &quot;Test City&quot;, &quot;111128&quot;);
+
+<span class="fc" id="L54">        assertFalse(specialistDoctorOne.equals(specialistDoctorThree));</span>
+<span class="fc" id="L55">    }</span>
+
+    @Test
+    public void saveEmployeeSuccess() throws IOException {
+<span class="fc" id="L59">        EmployeeStore employeeStore = new EmployeeStore();</span>
+
+<span class="fc" id="L61">        Employee employeeOne = new Employee(&quot;Test Person One&quot;, &quot;12345678911&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+
+<span class="fc" id="L64">        boolean result = employeeStore.saveEmployee(employeeOne);</span>
+
+<span class="fc" id="L66">        assertTrue(result);</span>
+<span class="fc" id="L67">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void saveEmployeeBadName() {
+<span class="fc" id="L71">        EmployeeStore employeeStore = new EmployeeStore();</span>
+
+<span class="nc" id="L73">        Employee employeeOne = new Employee(&quot;&quot;, &quot;12345678911&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+<span class="nc" id="L75">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void saveEmployeeBadEmail() {
+<span class="fc" id="L79">        EmployeeStore employeeStore = new EmployeeStore();</span>
+
+<span class="nc" id="L81">        Employee employeeOne = new Employee(&quot;&quot;, &quot;12345678911&quot;,</span>
+                new Email(&quot;&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+<span class="nc" id="L83">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void saveEmployeeBadAddress() {
+<span class="fc" id="L87">        EmployeeStore employeeStore = new EmployeeStore();</span>
+
+<span class="nc" id="L89">        Employee employeeOne = new Employee(&quot;&quot;, &quot;12345678911&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;&quot;);
+<span class="nc" id="L91">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void saveEmployeeBadSOCCode() {
+<span class="fc" id="L95">        EmployeeStore employeeStore = new EmployeeStore();</span>
+
+<span class="nc" id="L97">        Employee employeeOne = new Employee(&quot;&quot;, &quot;12345678911&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;123456&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+<span class="nc" id="L99">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void saveEmployeeBadOrganizationRole() {
+<span class="fc" id="L103">        EmployeeStore employeeStore = new EmployeeStore();</span>
+
+<span class="nc" id="L105">        Employee employeeOne = new Employee(&quot;&quot;, &quot;12345678911&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1234&quot;, &quot;&quot;, &quot;Test City&quot;);
+<span class="nc" id="L107">    }</span>
+
+    @Test
+    public void validateEmployeeNull() {
+<span class="fc" id="L111">        EmployeeStore employeeStore = new EmployeeStore();</span>
+
+<span class="fc" id="L113">        Employee employeeOne = new Employee(&quot;Test Person One&quot;, &quot;12345678911&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+
+<span class="fc" id="L116">        assertTrue(employeeStore.validateEmployee(employeeOne));</span>
+
+<span class="fc" id="L118">        Employee employeeTwo = null;</span>
+
+<span class="fc" id="L120">        assertFalse(employeeStore.validateEmployee(employeeTwo));</span>
+<span class="fc" id="L121">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void validateEmployeeException() throws IOException {
+<span class="fc" id="L125">        EmployeeStore employeeStore = new EmployeeStore();</span>
+
+<span class="nc" id="L127">        Employee employeeOne = new Employee(&quot;&quot;, &quot;&quot;,</span>
+                new Email(&quot;&quot;), &quot;&quot;, &quot;&quot;, &quot;&quot;);
+
+<span class="nc" id="L130">        employeeStore.saveEmployee(employeeOne);</span>
+<span class="nc" id="L131">    }</span>
+
+    @Test
+    public void getEmployeeList() {
+<span class="fc" id="L135">    }</span>
+
+    @Test
+    public void containsPhoneNumber() throws IOException {
+<span class="fc" id="L139">        EmployeeStore employeeStore = new EmployeeStore();</span>
+
+<span class="fc" id="L141">        Employee employeeOne = new Employee(&quot;Test Person One&quot;, &quot;12345678911&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+
+<span class="fc" id="L144">        employeeStore.saveEmployee(employeeOne);</span>
+
+<span class="fc" id="L146">        Employee employeeTwo = employeeStore.registerNewEmployee(&quot;Test Person Two&quot;, &quot;12345678911&quot;,</span>
+                new Email(&quot;testPersonTwo@test.com&quot;), &quot;1233&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+
+<span class="fc" id="L149">        assertTrue(employeeStore.containsPhoneNumber(employeeTwo.getPhoneNumber()));</span>
+<span class="fc" id="L150">    }</span>
+
+    @Test
+    public void containsEmail() throws IOException {
+<span class="fc" id="L154">        EmployeeStore employeeStore = new EmployeeStore();</span>
+
+<span class="fc" id="L156">        Employee employeeOne = new Employee(&quot;Test Person One&quot;, &quot;12345678911&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+
+<span class="fc" id="L159">        employeeStore.saveEmployee(employeeOne);</span>
+
+<span class="fc" id="L161">        Employee employeeTwo = employeeStore.registerNewEmployee(&quot;Test Person Two&quot;, &quot;12345678910&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1233&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+
+<span class="fc" id="L164">        assertTrue(employeeStore.containsEmail(employeeTwo.getEmail()));</span>
+<span class="fc" id="L165">    }</span>
+
+    @Test
+    public void containsSocCode() throws IOException {
+<span class="fc" id="L169">        EmployeeStore employeeStore = new EmployeeStore();</span>
+
+<span class="fc" id="L171">        Employee employeeOne = new Employee(&quot;Test Person One&quot;, &quot;12345678911&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+
+<span class="fc" id="L174">        employeeStore.saveEmployee(employeeOne);</span>
+
+<span class="fc" id="L176">        Employee employeeTwo = employeeStore.registerNewEmployee(&quot;Test Person Two&quot;, &quot;12345678910&quot;,</span>
+                new Email(&quot;testPersonTwo@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+
+<span class="fc" id="L179">        assertTrue(employeeStore.containsSocCode(employeeTwo.getSocCode()));</span>
+<span class="fc" id="L180">    }</span>
+
+
+    @Test
+    public void containsDoctorIndexNumber() throws IOException {
+<span class="fc" id="L185">        EmployeeStore employeeStore = new EmployeeStore();</span>
+
+<span class="fc" id="L187">        SpecialistDoctor specialistDoctorOne = new SpecialistDoctor(&quot;Test Person One&quot;, &quot;12345678911&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1234&quot;, Constants.ROLE_SPECDOC,
+                &quot;Test City&quot;, &quot;111111&quot;);
+
+<span class="fc" id="L191">        employeeStore.saveEmployee(specialistDoctorOne);</span>
+
+<span class="fc" id="L193">        SpecialistDoctor specialistDoctorTwo = new SpecialistDoctor(&quot;Test Person One&quot;, &quot;12345678911&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1234&quot;, Constants.ROLE_SPECDOC,
+                &quot;Test City&quot;, &quot;111111&quot;);
+
+<span class="fc" id="L197">        assertTrue(employeeStore.containsDoctorIndexNumber(specialistDoctorTwo.getDoctorIndexNumber()));</span>
+<span class="fc" id="L198">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

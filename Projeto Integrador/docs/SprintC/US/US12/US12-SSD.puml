@@ -1,0 +1,38 @@
+@startuml
+
+actor "Clinical Chemistry Technologist" as CHEMTEC
+participant ":System" as SYS
+
+autonumber
+
+activate CHEMTEC
+
+CHEMTEC -> SYS: Asks to record the Results of a Test
+activate SYS
+SYS --> CHEMTEC: Asks for the Barcode number of the Test
+deactivate SYS
+
+CHEMTEC -> SYS: Types the Barcode number of the Test (barcode)
+activate SYS
+
+loop For each Test Parameter of the chosen Test
+
+    SYS --> CHEMTEC: Shows the list of test parameters for the test being analysed
+    deactivate SYS
+
+    CHEMTEC -> SYS: Chooses a test parameter
+    activate SYS
+    SYS --> CHEMTEC: Requests the result value
+    deactivate SYS
+
+    CHEMTEC -> SYS: Types the requested data
+    activate SYS
+
+end
+
+SYS --> CHEMTEC: Informs of operation success
+deactivate SYS
+
+deactivate CHEMTEC
+
+@enduml

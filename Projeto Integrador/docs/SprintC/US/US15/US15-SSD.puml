@@ -1,0 +1,55 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+actor LaboratoryCoordinator as cord
+participant ":System" as sys
+
+activate cord
+cord -> sys:Asks to validate existent unvalidated tests
+activate sys
+sys --> cord:Asks to choose between validate all the tests or a subset of them
+deactivate sys
+
+cord -> sys:Selects a option
+activate sys
+activate sys
+activate sys
+alt the laboratory coordinator chooses to validate all the tests
+
+sys --> cord:Shows the list of unvalidated tests  and their respective dates\n(test registration date,sample insertion date,\n chemical analysis date and diagnosis date)
+deactivate sys
+sys --> cord:Asks for confirmation for the validation of all tests
+cord -> sys:Validates all the tests shown
+activate sys
+
+else  the laboratory coordinator wants to validate a subset
+autonumber 4
+loop While the laboratory coordinator wants to chose a test\n from the unvalidated test list and there are tests available
+
+sys --> cord:Shows the list of unvalidated tests  and their respective dates\n(test registration date,sample insertion date,\n chemical analysis date and diagnosis date) and asks to chose one
+deactivate sys
+deactivate sys
+
+cord -> sys: Chooses one test
+activate sys
+
+sys --> cord:Shows chosen test and asks for confirmation
+deactivate sys
+cord -> sys: Confirms the chosen test
+activate sys
+end
+sys --> cord:Asks for validation for the chosen tests
+deactivate sys
+
+
+cord -> sys:Validates the the chosen tests
+activate sys
+end
+autonumber 7/10
+sys --> cord: Informs of the operation´s success
+deactivate cord
+deactivate sys
+deactivate sys
+deactivate sys
+@enduml

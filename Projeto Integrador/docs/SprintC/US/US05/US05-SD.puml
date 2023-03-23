@@ -1,0 +1,119 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor MedicalLabTechnician as MLT
+participant ":RecordSamplesUI" as UI
+participant ":RecordSamplesController" as Controller
+participant ":Company" as Company
+participant "list:TestStore" as TestStore
+participant "utils:Utils" as Utils
+participant "test:Test" as Test
+participant "mapper:TestMapper" as ToBeSampledMapper
+participant ":TestDTO" as ToBeSampledListDTO
+participant "sample:Sample" as Sample
+participant ":BarcodeExternalModule" as ExternalModule
+participant ":BarcodeAdapter" as Adapter
+participant "barcode:BarbecueAPI" as API
+
+activate MLT
+MLT -> UI: Asks to show the List of Tests to be Sampled.
+note left : Before register a Test, the MedicalLabTechnician needs \nto select the Clinical Analysis Laboratory where is \nworking at (Check US05-ChooseLabSD.puml).
+    activate UI
+    UI -> Controller: getTestStore().
+        activate Controller
+        Controller -> Company: getTestStore().
+        activate Company
+        deactivate Company
+        Controller -> TestStore: getTestToBeSampledList().
+            activate TestStore
+loop for each test on TestStore verify which of them have sample
+TestStore -> TestStore: testShow=get(index)
+activate TestStore
+deactivate TestStore
+    TestStore -> Test: booleanDate=hasSample().
+    activate Test
+    deactivate Test
+
+    alt if booleanDate is false
+    TestStore -> TestStore: addTestList(testShow).
+    activate TestStore
+    deactivate TestStore
+    end
+            deactivate TestStore
+end
+            Controller -> Company: mapper=toDtoForSample().
+            activate Company
+            deactivate Controller
+            Company -> ToBeSampledMapper**: toDtoForSample().
+                deactivate Company
+                UI -> MLT: Shows the List of Tests to be sampled.
+    deactivate UI
+MLT -> UI: Choose the Test from Test to be sampled List.
+    activate UI
+    UI -> Controller: getTestToBeSampledByIndex(index).
+        activate Controller
+        Controller -> TestStore: list=getTestToBeSampledByIndex(index).
+            activate TestStore
+            deactivate TestStore
+        deactivate Controller
+        UI -> MLT: Informs success and ask for how many samples Medical Lab Technician wanna create.
+    deactivate UI
+loop number of samples
+
+MLT -> UI: Introduce a number of samples creating the samples with a automatic barcode for that Test.
+    activate UI
+    UI -> Controller: createSample().
+        activate Controller
+            Controller -> Test: sample=createSample().
+                activate Test
+                Test -> Sample**: createSample().
+                deactivate Test
+                    activate Sample
+                    Sample -> ExternalModule : barcode=getBarcode().
+                    deactivate Sample
+                    activate ExternalModule
+                    ExternalModule -> Adapter : getBarcode()
+                    deactivate ExternalModule
+                        activate Adapter
+                            Adapter -> API : getBarcode()
+                            deactivate Adapter
+                            activate API
+                            deactivate API
+                Controller -> Test : test=getTest().
+                    activate Test
+                    Test -> Test: addSampleToTest().
+                    activate Test
+                    deactivate Test
+                    deactivate Test
+    UI -> MLT: Asks for confirmation of a Test with samples.
+        deactivate Controller
+    deactivate UI
+
+end
+MLT -> UI: Confirms.
+    activate UI
+    UI -> Controller : saveTestWithSample(test)
+        activate Controller
+        Controller -> Utils : utils=getCurrentDate()
+        activate Utils
+        Utils -> Test : setSampleDate()
+        deactivate Utils
+            activate Test
+        Controller -> TestStore : saveTestWithSamples(test)
+            deactivate Test
+            activate TestStore
+            TestStore -> TestStore : validatesTestWithSamples(test)
+                activate TestStore
+                deactivate TestStore
+                TestStore -> TestStore : addTestWithSamples(test)
+                    activate TestStore
+                    deactivate TestStore
+            deactivate TestStore
+            UI -> MLT: Informs operation success.
+        deactivate Controller
+    deactivate UI
+
+
+@enduml

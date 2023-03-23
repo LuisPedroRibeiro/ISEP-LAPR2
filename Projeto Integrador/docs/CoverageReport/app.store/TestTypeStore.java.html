@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TestTypeStore.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.store</a> &gt; <span class="el_source">TestTypeStore.java</span></div><h1>TestTypeStore.java</h1><pre class="source lang-java linenums">package app.store;
+
+import app.domain.model.TestType;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * This class allows for the construction of an object testTypeStore,where the all the created test types will be stored
+ *
+ * @author André Soares &lt;1201314@isep.ipp.pt&gt;
+ * @author Miguel Ramos &lt;1201247@isep.ipp.pt&gt;
+ */
+public class TestTypeStore {
+
+    /**
+     * A list designed to contain objects of the TestType class.
+     */
+    private final List&lt;TestType&gt; typeStore;
+
+    /**
+     * Initializes a new testTypeStore, while also assigning it an empty array list where the test types will be stored.
+     */
+<span class="fc" id="L24">    public TestTypeStore() {</span>
+<span class="fc" id="L25">        this.typeStore = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L26">    }</span>
+
+    /**
+     * Initializes a test type with a code,collectionMethod and description.
+     *
+     * @param code             string containing a code that identifies a test type.
+     * @param collectionMethod string describing the collection method.
+     * @param description      string describing the test type.
+     * @return returns the created the test type using the parameters.
+     */
+    public TestType createTestType(String code, String collectionMethod, String description) {
+<span class="fc" id="L37">        return new TestType(code, collectionMethod, description);</span>
+    }
+
+    /**
+     * Allows the validation of an existing test type and throwing an exception if already exists inside the store.
+     *
+     * @param tt An existing TestType object.
+     * @return a boolean statement true if the TestType object is not null and does not exist in the test type store,
+     * false if null.
+     */
+    public boolean validateTestType(TestType tt) {
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if (tt == null) {</span>
+<span class="fc" id="L49">            return false;</span>
+        }
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        if (typeStore.contains(tt)) {</span>
+<span class="fc" id="L52">            throw new IllegalArgumentException(&quot;There already exists a test type with that information&quot;);</span>
+        }
+<span class="fc" id="L54">        return true;</span>
+    }
+
+    /**
+     * Allows the addition of an validated TestType object to the the list testTypeStore of the object TestTypeStore.
+     *
+     * @param tt An existing TestType object.
+     * @return a boolean statement, true if the test type was added successfully to the test type store false if not.
+     */
+    public boolean saveTestType(TestType tt) {
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        if (validateTestType(tt))</span>
+<span class="fc" id="L65">            return typeStore.add(tt);</span>
+<span class="fc" id="L66">        return false;</span>
+    }
+
+    /**
+     * This method allows other classes to take the Test Type Store.
+     *
+     * @return a List of Test Type Store.
+     */
+    public List&lt;TestType&gt; getTypeStore() {
+<span class="fc" id="L75">        List&lt;TestType&gt; copy = typeStore;</span>
+<span class="fc" id="L76">        return copy;</span>
+    }
+
+    /**
+     * This method allows get a test type by a code.
+     *
+     * @param code The parameter that will be compared.
+     * @return The test type that has the same code.
+     */
+    public TestType getTestTypeByCode(int code) {
+<span class="fc" id="L86">        return typeStore.get(code);</span>
+    }
+
+
+    /**
+     * This method allows get a test type by hisn code.
+     *
+     * @param code The parameter that will be given as a parameter.
+     * @return The test type that has the same code.
+     */
+    public TestType getTestTypeByCode(String code) {
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        for (TestType testType : typeStore) {</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">            if (testType.getCode().equals(code))</span>
+<span class="nc" id="L99">                return testType;</span>
+<span class="nc" id="L100">        }</span>
+<span class="nc" id="L101">        return null;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

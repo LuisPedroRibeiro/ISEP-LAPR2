@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TestParameterResult.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.domain.model</a> &gt; <span class="el_source">TestParameterResult.java</span></div><h1>TestParameterResult.java</h1><pre class="source lang-java linenums">package app.domain.model;
+
+import app.utils.Utils;
+
+public class TestParameterResult {
+
+    /**
+     * A string with the metric.
+     */
+    private final String metric;
+
+    /**
+     * A string with the created data of Test Parameter Result.
+     */
+    private final String createdAt;
+
+    /**
+     * A decimal number with the value.
+     */
+    private final double value;
+
+    /**
+     * A ReferenceValue Object.
+     */
+    private final ReferenceValue refValue;
+
+    /**
+     * Constructor that allows the inicialization of Test Parameter Result instances.
+     *
+     * @param metric The metric of Test Parameter Result.
+     * @param value The value of Test Parameter Result.
+     * @param refValue The reference values of Test Parameter Result.
+     */
+<span class="fc" id="L34">    public TestParameterResult(String metric, double value,ReferenceValue refValue) {</span>
+<span class="fc" id="L35">        this.metric = metric;</span>
+<span class="fc" id="L36">        this.value = value;</span>
+<span class="fc" id="L37">        createdAt= Utils.currentDate();</span>
+<span class="fc" id="L38">        this.refValue=refValue;</span>
+<span class="fc" id="L39">    }</span>
+
+    /**
+     * The method that allows the return of ReferenceValue Object.
+     *
+     * @return The ReferenceValue Object.
+     */
+    public ReferenceValue getRefValue(){
+<span class="fc" id="L47">        return this.refValue;</span>
+    }
+
+    /**
+     * The method that allows the return of Metric instance of TestParameterResult.
+     *
+     * @return The Metric instance of TestParameterResult.
+     */
+<span class="fc" id="L55">    public String getMetric(){return this.metric;}</span>
+
+    /**
+     * The method that allows the return of Value instance of TestParameterResult.
+     *
+     * @return The Value instance of TestParameterResult.
+     */
+<span class="fc" id="L62">    public double getValue(){return  this.value;}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

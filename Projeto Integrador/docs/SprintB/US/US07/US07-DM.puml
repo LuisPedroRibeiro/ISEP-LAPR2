@@ -1,0 +1,51 @@
+@startuml
+
+class Administrator{
+}
+
+class Company{
+    designation
+}
+
+class ClinicalChemistryTechnologist
+
+class Employee{
+    name
+    phoneNumber
+    email
+    password
+    employeeID
+    socCode
+    organizationRole
+    address
+}
+
+class Receptionist
+class MedicalLabTechnician
+class LaboratoryCoordinator
+
+class SpecialistDoctor{
+    doctorIndexNumber
+}
+
+class User{
+    name
+    email
+    password
+}
+
+Administrator "1" -- "1" Employee: creates >
+Administrator "1" -- "1" Company: works at >
+
+Company "1" -- "1..*" Employee: has >
+
+User "1" -- "0..1" Employee: relates to <
+
+Employee <|-- SpecialistDoctor
+Employee <|-- Receptionist
+Employee <|-- MedicalLabTechnician
+Employee <|-- LaboratoryCoordinator
+Employee <|-- ClinicalChemistryTechnologist
+Employee <|-- Administrator
+
+@enduml

@@ -1,0 +1,135 @@
+@startuml
+
+actor "Clinical Chemistry Technologist" as CHEMTEC
+participant ": RecordResultsUI" as UI
+participant ": RecordResultsController" as CONTROL
+participant ": Company" as COMPANY
+participant "testStore: TestStore" as STORE
+participant "test: Test" as TEST
+participant ":Utils" as UTILS
+participant "testParameter: TestParameter" as TESTPARAM
+participant "parameter: Parameter" as PARAM
+participant "testType: TestType" as TYPE
+participant "externalModule: ExternalModule" as EXTMOD
+participant ":ParameterMapper" as pMp
+participant "listParameters:List<Parameter>"
+participant "listParametersDto:List<ParameterDto>" as pDto
+autonumber
+
+activate CHEMTEC
+
+CHEMTEC -> UI: Asks to record the Results of a Test
+activate UI
+
+UI --> CHEMTEC: Asks for the Barcode number of the Test
+deactivate UI
+
+CHEMTEC -> UI: Types the Barcode number of the Test (barcode)
+activate UI
+
+    UI -> CONTROL: getTestByBarcode(barcode)
+    activate CONTROL
+
+        CONTROL -> COMPANY: testStore = getTestStore()
+        activate COMPANY
+        deactivate COMPANY
+
+        CONTROL -> STORE: test = getTestByBarcode(barcode)
+        activate STORE
+        deactivate STORE
+
+    deactivate CONTROL
+    UI -> CONTROL: getParameterList()
+    activate CONTROL
+    CONTROL -> TEST: listParameters= getParametersAssociatedWithTest()
+    activate TEST
+    deactivate TEST
+    CONTROL -> pMp: listParametersDto = toDto(listParameters)
+    activate pMp
+    deactivate pMp
+    deactivate CONTROL
+
+loop For each Test Parameter of the chosen Test
+
+    UI --> CHEMTEC: Shows the list of test parameters for the test being analysed
+    deactivate UI
+
+    CHEMTEC -> UI: Chooses a test parameter
+    activate UI
+
+    UI --> CHEMTEC: Requests the result value
+    deactivate UI
+
+    CHEMTEC -> UI: Types the requested data
+    activate UI
+
+        UI -> CONTROL: addTestResult(parameterCode, result)
+        activate CONTROL
+
+            CONTROL -> TEST: addTestResult(parameterCode, result)
+            activate TEST
+
+                TEST -> TEST: testParameter=getTestParameterFor(parameterCode)
+                activate TEST
+                deactivate TEST
+
+                TEST -> TESTPARAM: parameter = getParameter()
+                activate TESTPARAM
+                deactivate TESTPARAM
+
+                TEST -> TYPE: externalModule = getExternalModule()
+                activate TYPE
+                deactivate TYPE
+
+
+
+                    TEST -> EXTMOD:referenceValue=getReferenceValue(parameter)
+                    activate EXTMOD
+
+                        create participant "referenceValue: ReferenceValue" as REFVALUE
+                        EXTMOD -> REFVALUE: create()
+
+                    deactivate EXTMOD
+                    TEST -> EXTMOD:metric=getMetric(parameter)
+                         activate EXTMOD
+                         deactivate EXTMOD
+
+
+                TEST -> TESTPARAM: addTestResult(result, metric, referenceValue)
+                activate TESTPARAM
+
+                    create participant "testResult: TestParameterResult" as RESULT
+                    TESTPARAM -> RESULT: create(result, metric, referenceValue)
+
+                deactivate TESTPARAM
+
+            deactivate TEST
+
+        deactivate CONTROL
+
+    end
+
+    UI -> CONTROL: validateTestResult()
+    activate CONTROL
+
+        CONTROL -> STORE: addTestResultDate()
+        activate STORE
+
+            STORE -> UTILS: testResultDate = currentDate()
+            activate UTILS
+            deactivate UTILS
+
+            STORE -> TEST: setTestResultDate(testResultDate)
+            activate TEST
+            deactivate TEST
+
+        deactivate STORE
+
+    deactivate CONTROL
+
+UI --> CHEMTEC: Informs of operation success
+deactivate UI
+
+deactivate CHEMTEC
+
+@enduml

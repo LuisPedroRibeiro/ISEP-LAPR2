@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdapterEnum.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.list</a> &gt; <span class="el_source">AdapterEnum.java</span></div><h1>AdapterEnum.java</h1><pre class="source lang-java linenums">package app.list;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Class Enum where the address and informal representation of the various external modules will be stored.
+ */
+<span class="fc" id="L9">public enum AdapterEnum {</span>
+
+    /**
+     * Object representative of the External Module that relates to all SARS-CoV-2 Tests.
+     */
+<span class="fc" id="L14">    EXTERNAL_MODULE_COVID(&quot;app.adapter.ExternalModuleAdapter1&quot;, &quot;Covid Module&quot;),</span>
+
+    /**
+     * Object representative of the External Module that relates to all Blood Tests.
+     */
+<span class="fc" id="L19">    EXTERNAL_MODULE_BLOOD1(&quot;app.adapter.ExternalModuleAdapter2&quot;, &quot;Blood Module 1&quot;),</span>
+
+    /**
+     * Object representative of the External Module that relates to all the Other Tests.
+     */
+<span class="fc" id="L24">    EXTERNAL_MODULE_BLOOD2(&quot;app.adapter.ExternalModuleAdapter3&quot;, &quot;Blood Module 2&quot;);</span>
+
+    /**
+     * String containing hte adapter address of a specific external module
+     */
+    private final String adapterAddress;
+
+    /**
+     * A string containing the informal representation of a specific external module
+     */
+    private final String text;
+
+    /**
+     * Allows the initialization of a enum object assigning it their respective address and informal representation.
+     *
+     * @param adapterAddress String containing hte adapter address of a specific external module.
+     * @param text A string containing the informal representation of a specific external module.
+     */
+<span class="fc" id="L42">    AdapterEnum(String adapterAddress, String text) {</span>
+<span class="fc" id="L43">        this.adapterAddress = adapterAddress;</span>
+<span class="fc" id="L44">        this.text = text;</span>
+<span class="fc" id="L45">    }</span>
+
+    /**
+     *Allows the creation List that will contain the adapters address available in the system.
+     */
+    public static List&lt;String&gt; getAdapterAddresss() {
+<span class="nc" id="L51">        List&lt;String&gt; sList = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L52">        sList.add(EXTERNAL_MODULE_COVID.getAdapterAddress());</span>
+<span class="nc" id="L53">        sList.add(EXTERNAL_MODULE_BLOOD1.getAdapterAddress());</span>
+<span class="nc" id="L54">        sList.add(EXTERNAL_MODULE_BLOOD2.getAdapterAddress());</span>
+<span class="nc" id="L55">        return sList;</span>
+    }
+
+    /**
+     * Allows the creation of the List that will contain the informal representation of the modules.
+     */
+    public static List&lt;String&gt; getTexts() {
+<span class="nc" id="L62">        List&lt;String&gt; sList = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L63">        sList.add(EXTERNAL_MODULE_COVID.getText());</span>
+<span class="nc" id="L64">        sList.add(EXTERNAL_MODULE_BLOOD1.getText());</span>
+<span class="nc" id="L65">        sList.add(EXTERNAL_MODULE_BLOOD2.getText());</span>
+<span class="nc" id="L66">        return sList;</span>
+    }
+
+    /**
+     * Allows the return of A string containing an adapter address belonging to a specific object.
+     *
+     * @return A string containing an adapter address.
+     */
+    public String getAdapterAddress() {
+<span class="fc" id="L75">        return adapterAddress;</span>
+    }
+
+    /**
+     * Allows the return of A string containing containing the specific representation  of a specific module.
+     *
+     * @return A string containing the informal representation of the modules.
+     */
+    public String getText() {
+<span class="nc" id="L84">        return text;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

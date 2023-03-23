@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant "cStore:ClientStore" as cStore
+participant ":EmailSMS" as emailS
+participant "client:Client" as client
+participant "test:Test" as test
+
+activate cStore
+cStore->cStore:sendEmail(client, test)
+activate cStore
+cStore -> test:nhsCode=getNhsCode()
+activate test
+deactivate test
+cStore -> client:name = getName()
+activate client
+deactivate client
+cStore -> client:email = getEmail()
+activate client
+deactivate client
+cStore -> emailS:sendTestNotification(email,name, nhsCode)
+activate emailS
+deactivate emailS
+deactivate cStore
+deactivate cStore
+
+@enduml

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TestToBeValidatedList.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.list</a> &gt; <span class="el_source">TestToBeValidatedList.java</span></div><h1>TestToBeValidatedList.java</h1><pre class="source lang-java linenums">package app.list;
+
+import app.domain.model.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Class responsible for holding all the Test objects chosen to be validated by the laboratory coordinator.
+ *
+ * @author André Soares &lt;1201314@isep.ipp.pt&gt;
+ */
+public class TestToBeValidatedList {
+
+    /**
+     * A list designed to contain objects of the Test class,where the chosen tests will be saved.
+     */
+    private final List&lt;Test&gt; testToBeValidated;
+
+    /**
+     * Allows the initialization of an object of the TestToBeValidatedList class,while also creating an empty array.
+     */
+<span class="fc" id="L23">    public TestToBeValidatedList() {</span>
+<span class="fc" id="L24">        this.testToBeValidated = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L25">    }</span>
+
+    /**
+     * Check if the testToBeValidated is empty throwing the appropriate exception if it is.
+     */
+    public void checkTestToBeValidatedList() {
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        if (testToBeValidated.isEmpty()) {</span>
+<span class="fc" id="L32">            throw new IllegalArgumentException(&quot;For the validation process to occur at least a test must be chosen from the list &quot;);</span>
+        }
+<span class="fc" id="L34">    }</span>
+
+    /**
+     * Allows the  copying of the Test objects  from the array list received as parameter to the list the testToBeValidated list.
+     *
+     * @param testsWithReportList list of objects of the Test class.
+     */
+    public void createListWithAllTestsAvailableToBeValidated(List&lt;Test&gt; testsWithReportList) {
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        for (Test t : testsWithReportList) {</span>
+<span class="fc" id="L43">            saveTestToTestToBeValidatedList(t);</span>
+<span class="fc" id="L44">        }</span>
+<span class="fc" id="L45">    }</span>
+
+    /**
+     * Allows for the validation of a test object before being added to the testToBeValidated list.
+     *
+     * @param t A object of Test class.
+     * @return boolean statement,true if the Test object does not exist in the testToBeValidated list ,false if not.
+     */
+    public boolean validateTest(Test t) {
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        return !testToBeValidated.contains(t);</span>
+    }
+
+    /**
+     * Allows the addition of an object of the Test class to the testToBeValidated list.
+     *
+     * @param test An object of the Test class.
+     * @return boolean statement,true if the Test object does not exist in the testToBeValidated list,false if not.
+     */
+    public boolean saveTestToTestToBeValidatedList(Test test) {
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        if (validateTest(test)) {</span>
+<span class="fc" id="L65">            return testToBeValidated.add(test);</span>
+        }
+<span class="fc" id="L67">        return false;</span>
+    }
+
+    /**
+     * Allows the return of a list of Test objects.
+     *
+     * @return A list containing Test objects.
+     */
+    public List&lt;Test&gt; getTestToBeValidated() {
+<span class="fc" id="L76">        return testToBeValidated;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

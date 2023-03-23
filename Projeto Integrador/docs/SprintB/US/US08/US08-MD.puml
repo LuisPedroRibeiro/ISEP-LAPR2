@@ -1,0 +1,34 @@
+@startuml
+
+class Administrator
+class ClinicalAnalysisLaboratory
+class TestType
+
+class Administrator {
+name
+phoneNumber
+email
+password
+employeeID
+socCode
+organizationRole
+address
+}
+
+class ClinicalAnalysisLaboratory {
+address
+phoneNumber
+tinNumber
+name
+laboratoryID
+}
+
+class TestType {
+designation
+}
+
+Administrator "1" -- "1" TestType : creates >
+Administrator "1" -- "1.." ClinicalAnalysisLaboratory : creates >
+ClinicalAnalysisLaboratory "1" -- "1..*" TestType : has >
+
+@enduml

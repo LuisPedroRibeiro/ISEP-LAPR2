@@ -1,0 +1,32 @@
+@startuml
+
+autonumber
+
+actor MedicalLabTechnician as MLT
+participant System
+
+activate MLT
+MLT -> System: Asks to show the List of Tests to be Sampled.
+activate System
+note left: See the steps of the Clinical Analysis Laboratory selection \n(US05-ChooseLabSSD.puml) before seeing the US05.
+System -> MLT: Shows the List of Tests to be sampled.
+deactivate System
+
+MLT -> System: Choose the Test from Test to be sampled List.
+
+loop number of samples
+
+MLT -> System: Introduce a number of samples creating the samples with a automatic barcode for that Test.
+activate System
+
+end
+
+System -> MLT: Asks for confirmation of a Test with samples.
+deactivate System
+MLT -> System: Confirms.
+
+activate System
+System -> MLT: Informs operation success
+deactivate System
+
+@enduml

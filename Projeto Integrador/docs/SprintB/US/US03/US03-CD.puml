@@ -1,0 +1,76 @@
+@startuml
+
+
+class Company{
+  - designation
+  + getClientStore()
+  }
+class RegisterClientUI{}
+
+class RegisterClientController{
+    + registerClient(name, phoneNumber, taxIdentificationNumber,\nemail, birthDate, gender, nhsId, citizenCardNumber, password)
+    + saveClient()
+}
+
+class ClientStore{
+    + registerClient(name, phoneNumber, taxIdentificationNumber,\nemail, birthDate, gender, nhsId, citizenCardNumber, password)
+    + validateClient(client)
+    + saveClient(client)
+}
+
+
+class Client{
+  - name
+  - phoneNumber
+  -  taxIdentificationNumber
+  -  email
+  -  birthDate
+  -  gender
+  -  nhsId
+  -  citizenCardNumber
+  -  password
+  + Client (name, phoneNumber, taxIdentificationNumber,\nemail, birthDate, gender, nhsId, citizenCardNumber,password))
+  + addUser(name, email, password)
+  + emailSender(email)
+}
+
+class AuthFacade{
+   + boolean addUserRole(String id, String description)
+   +addUser( String name, String pwd)
+   + boolean addUserWithRole(String name,String email, String pwd, String roleId)
+   + boolean addUserWithRoles(String name,String email, String pwd, String[] rolesId)
+   + boolean existsUser (String email)
+   + UserSession doLogin(String email, String password)
+   + UserSession getCurrentUserSession()
+   + void doLogout()
+  }
+
+
+class Password{
+  -  password
+  +createRandomPassword()
+  + Password(String password)
+  + boolean validate(String password)
+  - String createHash(String password)
+  + boolean checkPassword( String pwd)
+  + int hashCode()
+  + boolean equals(Object o)
+
+  }
+
+
+
+RegisterClientUI ..> RegisterClientController
+RegisterClientUI ..> Password
+RegisterClientController ..> Company
+RegisterClientController ...> ClientStore
+RegisterClientController ....> Client
+Company "1" --> "1" ClientStore : uses
+ClientStore "1" ---> "*" Client: adopts
+Client..> AuthFacade
+
+
+
+
+
+@enduml

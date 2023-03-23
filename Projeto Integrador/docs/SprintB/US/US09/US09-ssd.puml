@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+actor Administrator as admin
+participant ":System" as sys
+
+activate admin
+
+admin -> sys: Asks to create a new test type
+activate sys
+admin <-- sys: Requests data(code,collectionMethod,description)
+deactivate sys
+admin -> sys: Types requested data
+activate sys
+
+loop While the administrator wants to choose parameter categories \n and there are  parameter categories available \n for the test type being created
+            sys --> admin: Shows parameter categories available in the system
+            deactivate sys
+            sys <- admin : Selects parameter category
+            activate sys
+            sys --> admin: Shows selected parameter category and asks for confirmation
+            deactivate sys
+            sys <- admin: Confirms the parameter category chosen
+            activate sys
+        end
+
+
+
+sys --> admin: Shows all the data, requesting confirmation
+deactivate sys
+sys <- admin: Confirms the data
+activate sys
+sys --> admin: Informs of operation success
+deactivate admin
+deactivate sys
+
+@enduml

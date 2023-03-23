@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TestReport.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.domain.model</a> &gt; <span class="el_source">TestReport.java</span></div><h1>TestReport.java</h1><pre class="source lang-java linenums">package app.domain.model;
+
+import app.utils.Utils;
+import org.apache.commons.lang3.StringUtils;
+
+/**
+ * Allows the System to create and work on a Test Report.
+ *
+ * @author Luís Ribeiro &lt;1201184@isep.ipp.pt&gt;
+ */
+public class TestReport {
+
+    /**
+     * Header of the Test Report (contains test number).
+     */
+    private final String header;
+    /**
+     * Text/Body of the Test Report.
+     */
+    private final String text;
+    /**
+     * E-mail of the Specialist Doctor that wrote the Test Report;
+     */
+    private final String specialistDoctorEmail;
+    /**
+     * Name of the Specialist Doctor that wrote the Test Report;
+     */
+    private final String specialistDoctorName;
+
+    /**
+     * Creates a Test Report using the test written by the Specialist Doctor.
+     *
+     * @param text Text/Body of the Test Report.
+     * @param numberOfTheTest Number of the Test.
+     * @param specialistDoctorName Name of the Specialist Doctor that wrote the Report.
+     * @param specialistDoctorEmail E-mail of the Specialist Doctor that wrote the Report.
+     */
+    public TestReport(String text, String numberOfTheTest, String specialistDoctorName,
+<span class="fc" id="L39">                      String specialistDoctorEmail){</span>
+<span class="fc" id="L40">        checkText(text);</span>
+<span class="fc" id="L41">        this.header = setHeader(numberOfTheTest);</span>
+<span class="fc" id="L42">        this.text = text;</span>
+<span class="fc" id="L43">        this.specialistDoctorName = specialistDoctorName;</span>
+<span class="fc" id="L44">        this.specialistDoctorEmail = specialistDoctorEmail;</span>
+<span class="fc" id="L45">    }</span>
+
+    /**
+     * Allows the System to check if the text written by the Specialist Doctor is right, according to the acceptance
+     * criteria.
+     * Checks if the text is blank or if it has more than four hundred words.
+     *
+     * @param text Text/Body to be checked.
+     */
+    public void checkText(String text){
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if(StringUtils.isBlank(text)){</span>
+<span class="fc" id="L56">            throw new IllegalArgumentException(&quot;The Test Report can not be blank.&quot;);</span>
+        }
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if(Utils.numberOfWords(text) &gt; 400){</span>
+<span class="fc" id="L59">            throw new IllegalArgumentException(&quot;The Test Report can not have more than 400 words.&quot;);</span>
+        }
+<span class="fc" id="L61">    }</span>
+
+    /**
+     * Allows the System to create an Header for the Test Report (can be used on a file to identify the test).
+     *
+     * @param numberOfTheTest Number of the Test that is getting a Test Report.
+     * @return Header of the Test Report.
+     */
+    public String setHeader(String numberOfTheTest){
+<span class="fc" id="L70">        return String.format(&quot;TEST REPORT | Test Code: %s&quot;, numberOfTheTest);</span>
+    }
+
+    /**
+     * Allows the System to obtain the Header of the Test Report.
+     *
+     * @return Header of the Test Report.
+     */
+<span class="fc" id="L78">    public String getHeader(){return this.header;}</span>
+    /**
+     * Allows the System to obtain the Text/Body of the Test Report.
+     *
+     * @return Text/Body of the Test Report.
+     */
+<span class="fc" id="L84">    public String getText(){return this.text;}</span>
+
+    /**
+     * Allows the System to get the Report in a format that contains the Header and Text.
+     *
+     * @return Test Report in a format (Header and Text).
+     */
+    public String toString() {
+<span class="fc" id="L92">        return String.format(&quot;%s%n %s%n Written by: %s | E-mail: %s&quot;, this.header, this.text,</span>
+            this.specialistDoctorName, this.specialistDoctorEmail);
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

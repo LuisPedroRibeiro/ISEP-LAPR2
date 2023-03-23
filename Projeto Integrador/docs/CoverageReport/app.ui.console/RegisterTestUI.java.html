@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegisterTestUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.ui.console</a> &gt; <span class="el_source">RegisterTestUI.java</span></div><h1>RegisterTestUI.java</h1><pre class="source lang-java linenums">package app.ui.console;
+import app.controller.RegisterTestController;
+import app.mappers.dto.ParameterCategoryDto;
+import app.mappers.dto.ParameterDto;
+import app.mappers.dto.TestTypeDto;
+import app.utils.Utils;
+import java.util.List;
+
+
+/**
+ * This class allows the creation of a Register Test User Interface object.
+ *
+ * @author Pedro Graça &lt;1201188@isep.ipp.pt&gt;
+ */
+public class RegisterTestUI implements Runnable {
+
+    private static final String TRY_AGAIN = &quot;Invalid Format. Please try again.&quot;;
+
+    private static final String CANCEL_MSG = &quot;Operation Canceled.&quot;;
+
+<span class="nc" id="L21">    public RegisterTestUI() {</span>
+        //Constructs a RegisterTestUI with no parameters
+<span class="nc" id="L23">    }</span>
+
+    /**
+     * Method to run this UI
+     */
+    @Override
+    public void run() {
+        String taxIdentificationNumber;
+        String nhsCode;
+<span class="nc" id="L32">        RegisterTestController registerTestController = ChooseLabUI.getRegisterTestController();</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">        if (!registerTestController.verifyIfClientListIsEmpty()) {</span>
+            do {
+<span class="nc" id="L35">                taxIdentificationNumber = Utils.getTaxIdentificationNumber();</span>
+<span class="nc" id="L36">                nhsCode = getCorrectNhsCode();</span>
+<span class="nc" id="L37">                String print = String.format(&quot; %n Tax Identification Number (TIN) : %s%n NHS Code: %s%n&quot;, taxIdentificationNumber, nhsCode);</span>
+<span class="nc" id="L38">                Utils.printLineToConsole(print);</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            } while (!Utils.confirm(&quot;Do you want to confirm this data? (s|n)&quot;));</span>
+
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            if (registerTestController.verifyClientByTin(taxIdentificationNumber)) {</span>
+<span class="nc" id="L42">                createTest(registerTestController, nhsCode, taxIdentificationNumber);</span>
+            } else {
+<span class="nc" id="L44">                Utils.printLineToConsole(&quot;Does not exist a Client registered with the typed Tax Identification Number.&quot;);</span>
+            }
+        } else {
+<span class="nc" id="L47">            Utils.printLineToConsole(&quot;Please register a Client before register a test.&quot;);</span>
+        }
+<span class="nc" id="L49">    }</span>
+
+
+    /**
+     * Method to create the Test object
+     *
+     * @param registerTestController  the controller used for the Test creation
+     * @param nhsCode                 the National Healthcare Service Number of the Test
+     * @param taxIdentificationNumber the  Tax Identification Number of the Client the Test will be associated to
+     */
+    public void createTest(RegisterTestController registerTestController, String nhsCode, String taxIdentificationNumber) {
+        try {
+<span class="nc bnc" id="L61" title="All 2 branches missed.">            if (registerTestController.createTest(nhsCode)) {</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">                if (!registerTestController.getClinicalAnalysisLaboratoryListToDto().isEmpty()) {</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">                    if (!registerTestController.getTestTypeListToDto().isEmpty()) {</span>
+<span class="nc" id="L64">                        int testTypeIdx = setTestType(registerTestController);</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">                        if (testTypeIdx != -1) {</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">                            if (!registerTestController.verifyIfListParameterCategoryListIsNull()) {</span>
+<span class="nc" id="L67">                                setParameters(registerTestController);</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">                                if (registerTestController.verifyIfTestParametersWereAdded()) {</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">                                    if (Utils.confirm(&quot;Are you sure you want to create this Test? (s|n)&quot;)) {</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">                                        if (registerTestController.saveTest()) {</span>
+<span class="nc" id="L71">                                            registerTestController.addTestToClient(taxIdentificationNumber);</span>
+<span class="nc" id="L72">                                            Utils.printLineToConsole(&quot;The Test was created successfully.&quot;);</span>
+                                        }
+                                    }
+                                }
+                            } else {
+<span class="nc" id="L77">                                Utils.printLineToConsole(&quot;The selected Test Type does not have any Parameter Category associated.&quot;);</span>
+                            }
+                        }
+<span class="nc" id="L80">                    } else {</span>
+<span class="nc" id="L81">                        Utils.printLineToConsole(&quot;The selected Clinical Analysis Laboratory does not have any Test Type associated.&quot;);</span>
+                    }
+                } else {
+<span class="nc" id="L84">                    Utils.printLineToConsole(&quot;There is no Clinical Analysis Laboratories registered in the System.&quot;);</span>
+                }
+
+            }
+<span class="nc" id="L88">        } catch (Exception e) {</span>
+<span class="nc" id="L89">            String exceptionMessage = String.format(&quot; %s&quot;, e.getMessage());</span>
+<span class="nc" id="L90">            Utils.printLineToConsole(exceptionMessage);</span>
+<span class="nc" id="L91">        }</span>
+
+<span class="nc" id="L93">    }</span>
+
+
+    /**
+     * Asks the receptionist for a NHS code string while returning the validated one
+     *
+     * @return the validated NHS code method
+     */
+    public String getCorrectNhsCode() {
+<span class="nc" id="L102">        boolean nhsCodeError = true;</span>
+<span class="nc" id="L103">        String nhsCode = null;</span>
+        do {
+            try {
+<span class="nc" id="L106">                nhsCode = Utils.readLineFromConsole(&quot;NHS Code:&quot;);</span>
+<span class="nc" id="L107">                nhsCodeError = false;</span>
+<span class="nc" id="L108">            } catch (Exception e) {</span>
+<span class="nc" id="L109">                Utils.printLineToConsole(e.getMessage());</span>
+<span class="nc" id="L110">                Utils.printLineToConsole(TRY_AGAIN);</span>
+<span class="nc" id="L111">            }</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">        } while (nhsCodeError);</span>
+<span class="nc" id="L113">        return nhsCode;</span>
+    }
+
+    /**
+     * Method to set the Test Type of the Test
+     *
+     * @param registerTestController the controller associated to the UI
+     */
+    public int setTestType(RegisterTestController registerTestController) {
+<span class="nc" id="L122">        List&lt;TestTypeDto&gt; testTypeList = registerTestController.getTestTypeListToDto();</span>
+        int testType;
+<span class="nc" id="L124">        testType = Utils.showAndSelectIndex(testTypeList, &quot;Test Types:&quot;);</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">        if (testType != -1) {</span>
+<span class="nc" id="L126">            registerTestController.saveTestType(registerTestController.getTestTypeListToDto().get(testType).getCode());</span>
+        } else {
+<span class="nc" id="L128">            Utils.printLineToConsole(CANCEL_MSG);</span>
+        }
+<span class="nc" id="L130">        return testType;</span>
+    }
+
+    /**
+     * Method to set the Parameters of the Test
+     *
+     * @param registerTestController the controller associated to the UI
+     */
+    public void setParameters(RegisterTestController registerTestController) {
+<span class="nc" id="L139">        List&lt;ParameterCategoryDto&gt; paramCatList = registerTestController.getParameterCategoryListToDto();</span>
+<span class="nc" id="L140">        int paramCat = Utils.showAndSelectIndexForParameterAndCategories(paramCatList, &quot;Parameter Category List:&quot;);</span>
+<span class="nc bnc" id="L141" title="All 4 branches missed.">        while (paramCat != -1 &amp;&amp; !paramCatList.isEmpty()) {</span>
+<span class="nc" id="L142">            registerTestController.setParameterCategory(paramCatList.get(paramCat).getCode());</span>
+<span class="nc" id="L143">            List&lt;ParameterDto&gt; paramList = registerTestController.getParameterListToDto();</span>
+            int param;
+            do {
+<span class="nc" id="L146">                param = Utils.showAndSelectIndexForParameterAndCategories(paramList, &quot;Parameters List:&quot;);</span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">                if (param != -1) {</span>
+<span class="nc" id="L148">                    registerTestController.addParameter(paramList.get(param).getCode());</span>
+<span class="nc" id="L149">                    paramList.remove(param);</span>
+                }
+<span class="nc bnc" id="L151" title="All 4 branches missed.">            } while (param != -1 &amp;&amp; !paramList.isEmpty());</span>
+<span class="nc" id="L152">            paramCatList.remove(paramCat);</span>
+<span class="nc" id="L153">            paramCat = Utils.showAndSelectIndexForParameterAndCategories(paramCatList, &quot;Parameter Category List:&quot;);</span>
+<span class="nc" id="L154">        }</span>
+<span class="nc" id="L155">    }</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

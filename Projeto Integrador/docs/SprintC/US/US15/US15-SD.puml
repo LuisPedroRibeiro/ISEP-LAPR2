@@ -1,0 +1,144 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor "LaboratoryCoordinator" as cord
+
+participant ":ValidationUI" as UI
+participant ":ValidationController" as CTRL
+participant ":Company" as COM
+participant "store:TestStore" as ts
+participant "test:Test" as test
+participant ":TestMapper" as tMapper
+participant "testsToBeValidatedList:TestToBeValidatedList" as tValidation
+participant "cStore:ClientStore" as cStore
+participant "client:Client" as client
+participant "validation:TestValidation" as val
+participant ":Utils" as UTILS
+participant "testsWithReportList:List<Test>" as trl
+participant "testsWithReportListDto:List<TestDto>" as listDto
+
+autonumber
+
+activate cord
+cord-> UI : Asks to validate existent unvalidated tests
+activate UI
+UI --> cord:Asks to choose between validate all the tests or a subset of them
+deactivate UI
+cord -> UI:Selects an option
+activate UI
+activate UI
+UI -> CTRL : getListOfUnvalidatedTestsDto()
+activate CTRL
+CTRL -> COM: store=getTestStore()
+activate COM
+deactivate COM
+CTRL -> COM: cStore=getClientStore()
+activate COM
+deactivate COM
+CTRL -> ts : testsWithReportList=getTestsWithReportList()
+activate ts
+loop for each test in the test store
+ts -> test: reportDateBoolean = hasReport()
+activate test
+deactivate test
+ts -> test: validationBoolean = hasValidation()
+activate test
+deactivate test
+alt reportDateBoolean is true and validationBoolean is false
+ts -> trl: add(test)
+activate trl
+ note right: This method is a method from the Collections used by Java, \nit is represented in this Sequence Diagram because without its representation, \nthe Sequence would not be as comprehensible.
+deactivate trl
+end
+end
+deactivate ts
+CTRL -> tMapper: testsWithReportListDto=toDtoWithDate(testsWithReportList)
+activate tMapper
+deactivate tMapper
+deactivate CTRL
+alt the laboratory coordinator chooses to validate all the tests
+UI --> cord:Shows the list of unvalidated tests  and their respective dates\n(test registration date,sample insertion date\n,chemical analysis date and diagnosis date)
+deactivate UI
+UI -->cord:Asks for confirmation for the validation of all tests
+cord -> UI:Validates all the tests shown
+activate UI
+UI -> CTRL:createListWithAllTestsAvailableToBeValidated()
+deactivate UI
+activate CTRL
+CTRL -> tValidation:createListWithAllTestsAvailableToBeValidate(testsWithReportList)
+activate tValidation
+loop for each test inside the testsWithReportList
+tValidation -> trl:test=get(i)
+activate trl
+deactivate trl
+tValidation -> tValidation:saveTestToTestToBeValidatedList(test)
+activate tValidation
+deactivate tValidation
+end
+deactivate tValidation
+deactivate CTRL
+else  the laboratory coordinator wants to validate a subset of tests
+autonumber 12
+loop While the laboratory coordinator wants to chose test \n and there are tests unvalidated available
+UI --> cord: shows the list of unvalidated tests along  their respective dates\n(test registration date,sample insertion date\n chemical analysis date and diagnosis date) and asks to chose one
+deactivate UI
+deactivate UI
+cord -> UI: chooses one of the unvalidated tests
+activate UI
+UI --> cord: Asks for confirmation for the chosen test
+deactivate UI
+cord -> UI: Confirms the chosen test
+activate UI
+UI -> CTRL:saveTestInListByNhsCode(nhsCode)
+activate CTRL
+CTRL -> ts :test=getTestByNhsCode(nhsCode)
+activate ts
+deactivate ts
+CTRL -> tValidation:saveTestToTestToBeValidatedList(test)
+activate tValidation
+deactivate tValidation
+deactivate CTRL
+end
+UI --->cord: Asks for validation for all the chosen tests
+deactivate UI
+cord -> UI: Validates the tests
+activate UI
+end
+activate UI
+activate UI
+autonumber 19/21
+UI -> CTRL:validateTestsInsideTestsToBeValidatedList()
+activate CTRL
+autonumber 20/22
+CTRL -> tValidation:checkTestToBeValidatedList()
+activate tValidation
+deactivate tValidation
+loop for each test inside the testsToBeValidatedList
+autonumber 21/23
+CTRL -> test: validateTest()
+activate test
+autonumber 22/24
+test --> val**:create()
+activate val
+autonumber 23/25
+val -> UTILS: validatedAt = currentDate()
+activate UTILS
+deactivate UTILS
+deactivate val
+deactivate test
+autonumber 24/26
+CTRL -> cStore: client=getClientByTest(test)
+activate cStore
+deactivate cStore
+autonumber 25/27
+CTRL -> cStore:sendEmail(client,test)
+activate cStore
+deactivate cStore
+deactivate CTRL
+end
+autonumber 26/28
+UI --> cord: Informs of the operations´s success
+deactivate UI
+deactivate cord
+
+@enduml

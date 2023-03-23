@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Sem2App:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a29bc158-526d-4e54-81f4-834be799400e" name="Default Changelist" comment="move adapters to adapters package [ALL]">
+      <change afterPath="$PROJECT_DIR$/out/artifacts/Sem2App_jar/config.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/artifacts/Sem2App_jar/emailAndSMSMessages.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Sem2App_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Sem2App_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/App.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/App.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/AuthController.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/AuthController.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/CreateClinicalAnalysisLaboratoryController.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/CreateClinicalAnalysisLaboratoryController.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/CreateClinicalAnalysisLaboratoryControllerTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/CreateClinicalAnalysisLaboratoryControllerTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/CreateParameterCategoryController.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/CreateParameterCategoryController.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/CreateParameterController.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/CreateParameterController.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/CreateTestTypeController.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/CreateTestTypeController.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/CreateTestTypeControllerTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/CreateTestTypeControllerTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/RegisterClientController.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/RegisterClientController.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/RegisterClientControllerTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/RegisterClientControllerTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/RegisterNewEmployeeController.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/RegisterNewEmployeeController.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/RegisterNewEmployeeControllerTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/RegisterNewEmployeeControllerTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.controller/index.source.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/Client.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/Client.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/ClientTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/ClientTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/ClinicalAnalysisLaboratory.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/ClinicalAnalysisLaboratory.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/ClinicalAnalysisLaboratoryTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/ClinicalAnalysisLaboratoryTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/Company.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/Company.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/Employee.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/Employee.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/EmployeeTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/EmployeeTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/Parameter.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/Parameter.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/ParameterCategory.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/ParameterCategory.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/ParameterCategoryTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/ParameterCategoryTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/ParameterTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/ParameterTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/SpecialistDoctor.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/SpecialistDoctor.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/SpecialistDoctorTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/SpecialistDoctorTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/TestType.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/TestType.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/TestTypeTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/TestTypeTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.model/index.source.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.shared/Constants.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.shared/Constants.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.shared/EmailSMS.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.shared/EmailSMS.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.shared/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.domain.shared/index.source.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.list/ClinicalTestTypeList.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.list/ClinicalTestTypeList.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.list/ClinicalTestTypeListTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.list/ClinicalTestTypeListTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.list/EmployeeRolesList.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.list/EmployeeRolesList.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.list/ParameterCategoryList.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.list/ParameterCategoryList.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.list/ParameterCategoryListTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.list/ParameterCategoryListTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.list/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.list/index.source.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers.dto/ClientDto.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers.dto/ClientDto.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers.dto/ClientDtoTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers.dto/ClientDtoTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers.dto/ParameterCategoryDto.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers.dto/ParameterCategoryDto.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers.dto/ParameterCategoryDtoTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers.dto/ParameterCategoryDtoTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers.dto/TestTypeDto.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers.dto/TestTypeDto.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers.dto/TestTypeDtoTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers.dto/TestTypeDtoTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers.dto/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers.dto/index.source.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers/ParameterCategoryMapper.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers/ParameterCategoryMapper.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers/ParameterCategoryMapperTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers/ParameterCategoryMapperTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers/TestTypeMapper.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers/TestTypeMapper.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers/TestTypeMapperTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers/TestTypeMapperTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.mappers/index.source.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/ClientStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/ClientStore.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/ClientStoreTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/ClientStoreTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/ClinicalAnalysisLaboratoryStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/ClinicalAnalysisLaboratoryStore.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/ClinicalAnalysisLaboratoryStoreTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/ClinicalAnalysisLaboratoryStoreTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/EmployeeStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/EmployeeStore.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/EmployeeStoreTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/EmployeeStoreTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/ParameterCategoryStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/ParameterCategoryStore.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/ParameterCategoryStoreTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/ParameterCategoryStoreTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/ParameterStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/ParameterStore.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/ParameterStoreTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/ParameterStoreTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/TestTypeStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/TestTypeStore.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/TestTypeStoreTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/TestTypeStoreTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.store/index.source.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/AdminUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/AdminUI.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/AuthUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/AuthUI.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/CreateClinicalAnalysisLaboratoryUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/CreateClinicalAnalysisLaboratoryUI.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/CreateParameterCategoryUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/CreateParameterCategoryUI.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/CreateParameterUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/CreateParameterUI.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/CreateTestTypeUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/CreateTestTypeUI.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/DevTeamUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/DevTeamUI.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/MainMenuUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/MainMenuUI.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/MenuItem.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/MenuItem.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/RecepUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/RecepUI.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/RegisterClientUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/RegisterClientUI.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/RegisterNewEmployeeUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/RegisterNewEmployeeUI.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/ShowTextUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/ShowTextUI.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui.console/index.source.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui/Main.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui/Main.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.ui/index.source.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.utils/Utils.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.utils/Utils.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.utils/UtilsTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.utils/UtilsTest.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.utils/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/app.utils/index.source.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.domain.model/Email.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.domain.model/Email.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.domain.model/Password.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.domain.model/Password.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.domain.model/User.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.domain.model/User.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.domain.model/UserRole.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.domain.model/UserRole.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.domain.model/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.domain.model/index.source.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.domain.store/UserRoleStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.domain.store/UserRoleStore.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.domain.store/UserStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.domain.store/UserStore.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.domain.store/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.domain.store/index.source.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.mappers.dto/UserRoleDTO.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.mappers.dto/UserRoleDTO.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.mappers.dto/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.mappers.dto/index.source.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.mappers/UserRoleMapper.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.mappers/UserRoleMapper.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.mappers/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth.mappers/index.source.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth/AuthFacade.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth/AuthFacade.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth/UserSession.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth/UserSession.java.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/auth/index.source.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/jacoco-resources/branchfc.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/jacoco-resources/branchnc.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/jacoco-resources/branchpc.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/jacoco-resources/bundle.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/jacoco-resources/class.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/jacoco-resources/down.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/jacoco-resources/greenbar.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/jacoco-resources/group.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/jacoco-resources/method.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/jacoco-resources/package.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/jacoco-resources/prettify.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/jacoco-resources/prettify.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/jacoco-resources/redbar.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/jacoco-resources/report.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/jacoco-resources/report.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/jacoco-resources/session.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/jacoco-resources/sort.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/jacoco-resources/sort.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/jacoco-resources/source.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/jacoco-resources/up.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CoverageReport/jacoco-sessions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/allclasses-index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/allclasses.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/allpackages-index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/App.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/AuthController.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/CreateClinicalAnalysisLaboratoryController.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/CreateClinicalAnalysisLaboratoryControllerTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/CreateParameterCategoryController.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/CreateParameterController.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/CreateTestTypeController.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/CreateTestTypeControllerTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/RegisterClientController.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/RegisterClientControllerTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/RegisterNewEmployeeController.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/RegisterNewEmployeeControllerTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/class-use/App.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/class-use/AuthController.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/class-use/CreateClinicalAnalysisLaboratoryController.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/class-use/CreateClinicalAnalysisLaboratoryControllerTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/class-use/CreateParameterCategoryController.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/class-use/CreateParameterController.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/class-use/CreateTestTypeController.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/class-use/CreateTestTypeControllerTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/class-use/RegisterClientController.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/class-use/RegisterClientControllerTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/class-use/RegisterNewEmployeeController.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/class-use/RegisterNewEmployeeControllerTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/controller/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/Client.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/ClientTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/ClinicalAnalysisLaboratory.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/ClinicalAnalysisLaboratoryTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/Company.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/Employee.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/EmployeeTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/Parameter.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/ParameterCategory.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/ParameterCategoryTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/ParameterTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/SpecialistDoctor.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/SpecialistDoctorTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/TestType.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/TestTypeTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/class-use/Client.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/class-use/ClientTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/class-use/ClinicalAnalysisLaboratory.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/class-use/ClinicalAnalysisLaboratoryTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/class-use/Company.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/class-use/Employee.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/class-use/EmployeeTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/class-use/Parameter.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/class-use/ParameterCategory.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/class-use/ParameterCategoryTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/class-use/ParameterTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/class-use/SpecialistDoctor.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/class-use/SpecialistDoctorTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/class-use/TestType.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/class-use/TestTypeTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/model/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/shared/Constants.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/shared/EmailSMS.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/shared/class-use/Constants.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/shared/class-use/EmailSMS.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/shared/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/shared/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/domain/shared/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/list/ClinicalTestTypeList.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/list/ClinicalTestTypeListTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/list/EmployeeRolesList.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/list/ParameterCategoryList.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/list/ParameterCategoryListTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/list/class-use/ClinicalTestTypeList.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/list/class-use/ClinicalTestTypeListTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/list/class-use/EmployeeRolesList.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/list/class-use/ParameterCategoryList.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/list/class-use/ParameterCategoryListTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/list/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/list/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/list/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/ParameterCategoryMapper.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/ParameterCategoryMapperTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/TestTypeMapper.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/TestTypeMapperTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/class-use/ParameterCategoryMapper.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/class-use/ParameterCategoryMapperTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/class-use/TestTypeMapper.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/class-use/TestTypeMapperTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/dto/ClientDto.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/dto/ClientDtoTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/dto/ParameterCategoryDto.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/dto/ParameterCategoryDtoTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/dto/TestTypeDto.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/dto/TestTypeDtoTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/dto/class-use/ClientDto.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/dto/class-use/ClientDtoTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/dto/class-use/ParameterCategoryDto.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/dto/class-use/ParameterCategoryDtoTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/dto/class-use/TestTypeDto.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/dto/class-use/TestTypeDtoTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/dto/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/dto/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/dto/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/mappers/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/ClientStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/ClientStoreTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/ClinicalAnalysisLaboratoryStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/ClinicalAnalysisLaboratoryStoreTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/EmployeeStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/EmployeeStoreTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/ParameterCategoryStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/ParameterCategoryStoreTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/ParameterStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/ParameterStoreTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/TestTypeStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/TestTypeStoreTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/class-use/ClientStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/class-use/ClientStoreTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/class-use/ClinicalAnalysisLaboratoryStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/class-use/ClinicalAnalysisLaboratoryStoreTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/class-use/EmployeeStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/class-use/EmployeeStoreTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/class-use/ParameterCategoryStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/class-use/ParameterCategoryStoreTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/class-use/ParameterStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/class-use/ParameterStoreTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/class-use/TestTypeStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/class-use/TestTypeStoreTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/store/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/Main.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/class-use/Main.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/AdminUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/AuthUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/CreateClinicalAnalysisLaboratoryUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/CreateParameterCategoryUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/CreateParameterUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/CreateTestTypeUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/DevTeamUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/MainMenuUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/MenuItem.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/RecepUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/RegisterClientUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/RegisterNewEmployeeUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/ShowTextUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/class-use/AdminUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/class-use/AuthUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/class-use/CreateClinicalAnalysisLaboratoryUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/class-use/CreateParameterCategoryUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/class-use/CreateParameterUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/class-use/CreateTestTypeUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/class-use/DevTeamUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/class-use/MainMenuUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/class-use/MenuItem.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/class-use/RecepUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/class-use/RegisterClientUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/class-use/RegisterNewEmployeeUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/class-use/ShowTextUI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/console/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/ui/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/utils/Utils.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/utils/UtilsTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/utils/class-use/Utils.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/utils/class-use/UtilsTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/utils/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/utils/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/app/utils/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/AuthFacade.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/UserSession.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/class-use/AuthFacade.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/class-use/UserSession.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/domain/model/Email.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/domain/model/Password.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/domain/model/User.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/domain/model/UserRole.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/domain/model/class-use/Email.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/domain/model/class-use/Password.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/domain/model/class-use/User.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/domain/model/class-use/UserRole.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/domain/model/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/domain/model/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/domain/model/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/domain/store/UserRoleStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/domain/store/UserStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/domain/store/class-use/UserRoleStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/domain/store/class-use/UserStore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/domain/store/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/domain/store/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/domain/store/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/mappers/UserRoleMapper.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/mappers/class-use/UserRoleMapper.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/mappers/dto/UserRoleDTO.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/mappers/dto/class-use/UserRoleDTO.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/mappers/dto/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/mappers/dto/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/mappers/dto/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/mappers/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/mappers/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/mappers/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/auth/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/constant-values.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/deprecated-list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/element-list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/help-doc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/index-files/index-1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/index-files/index-10.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/index-files/index-11.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/index-files/index-12.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/index-files/index-13.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/index-files/index-14.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/index-files/index-15.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/index-files/index-16.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/index-files/index-17.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/index-files/index-18.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/index-files/index-19.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/index-files/index-2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/index-files/index-3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/index-files/index-4.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/index-files/index-5.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/index-files/index-6.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/index-files/index-7.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/index-files/index-8.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/index-files/index-9.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/external/jquery/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/images/ui-bg_glass_55_fbf9ee_1x400.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/images/ui-bg_glass_65_dadada_1x400.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/images/ui-bg_glass_75_dadada_1x400.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/images/ui-bg_glass_75_e6e6e6_1x400.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/images/ui-bg_glass_95_fef1ec_1x400.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/images/ui-bg_highlight-soft_75_cccccc_1x100.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/images/ui-icons_222222_256x240.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/images/ui-icons_2e83ff_256x240.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/images/ui-icons_454545_256x240.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/images/ui-icons_888888_256x240.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/images/ui-icons_cd0a0a_256x240.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/jquery-3.5.1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/jquery-ui.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/jquery-ui.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/jquery-ui.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/jquery-ui.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/jquery-ui.structure.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/jquery-ui.structure.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/jszip-utils/dist/jszip-utils-ie.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/jszip-utils/dist/jszip-utils-ie.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/jszip-utils/dist/jszip-utils.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/jszip-utils/dist/jszip-utils.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/jszip/dist/jszip.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/jquery/jszip/dist/jszip.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/member-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/member-search-index.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/overview-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/overview-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/package-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/package-search-index.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/resources/glass.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/resources/x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/search.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/stylesheet.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/type-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/JavaDocumentation/type-search-index.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailAndSMSMessages.txt" beforeDir="false" afterPath="$PROJECT_DIR$/emailAndSMSMessages.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Sem2App_jar/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Sem2App_jar/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Sem2App_jar/Sem2App.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Sem2App_jar/bcrypt-0.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Sem2App_jar/bytes-1.3.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Sem2App_jar/commons-lang3-3.5.jar" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OPEN_IN_BROWSER" value="true" />
+    <option name="OUTPUT_DIRECTORY" value="C:\Users\pc\IdeaProjects\Projeto Integrador\docs\CoverageReport" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="UML Sequence" />
+        <option value="JUnit3 Test Class" />
+        <option value="JUnit4 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/pom.xml" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Educational Edition 2020.2.3\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1sJF9OTACtdAOwlv0TlBPAks5Rd" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultPlantUmlFileTemplate" value="UML Sequence" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3" value="junit.framework.TestCase" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/out/artifacts/Sem2App_jar" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.48560208" />
+    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\pc\IdeaProjects\Projeto Integrador\out\artifacts\Sem2App_jar" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\pc\IdeaProjects\Projeto Integrador\out\artifacts\Sem2App_jar" />
+      <recent name="C:\Users\pc\IdeaProjects\Projeto Integrador\docs\SprintB\DM" />
+      <recent name="C:\Users\Usar\Desktop\LAPR2-2021-G18-Application\out\artifacts\Sem2App_jar" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+      <recent name="junit.framework.TestCase" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="app.adapter" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="app.domain.model" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.All in Sem2App">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="app.ui.Main" />
+      <module name="Sem2App" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.ui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in Sem2App" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Sem2App" />
+      <extension name="coverage" runner="jacoco" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BarcodeAdapterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Sem2App" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.adapter.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="app.adapter" />
+      <option name="MAIN_CLASS_NAME" value="app.adapter.BarcodeAdapterTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestDtoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Sem2App" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.mappers.dto.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="app.mappers.dto" />
+      <option name="MAIN_CLASS_NAME" value="app.mappers.dto.TestDtoTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestMapperTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Sem2App" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.mappers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="app.mappers" />
+      <option name="MAIN_CLASS_NAME" value="app.mappers.TestMapperTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.TestDtoTest" />
+      <item itemvalue="JUnit.TestMapperTest" />
+      <item itemvalue="JUnit.BarcodeAdapterTest" />
+      <item itemvalue="JUnit.All in Sem2App" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in Sem2App" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.BarcodeAdapterTest" />
+        <item itemvalue="JUnit.TestMapperTest" />
+        <item itemvalue="JUnit.TestDtoTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a29bc158-526d-4e54-81f4-834be799400e" name="Default Changelist" comment="" />
+      <created>1620582634951</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1620582634951</updated>
+    </task>
+    <task id="LOCAL-00001" summary="move adapters to adapters package [ALL]">
+      <created>1622187104534</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1622187104534</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="move adapters to adapters package [ALL]" />
+    <option name="LAST_COMMIT_MESSAGE" value="move adapters to adapters package [ALL]" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Sem2App$TestMapperTest.ic" NAME="TestMapperTest Coverage Results" MODIFIED="1622309546659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.mappers.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Sem2App$TestDtoTest.ic" NAME="TestDtoTest Coverage Results" MODIFIED="1622303210679" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.mappers.dto.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Sem2App$ClinicalAnalysisLaboratoryStoreTest.ic" NAME="ClinicalAnalysisLaboratoryStoreTest Coverage Results" MODIFIED="1622309819051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.store.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Sem2App$All_in_Sem2App.ic" NAME="All in Sem2App Coverage Results" MODIFIED="1622409007116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Sem2App$UtilsTest.ic" NAME="UtilsTest Coverage Results" MODIFIED="1620582859696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.utils.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Sem2App$All_in_Sem2App.exec" NAME="All in Sem2App Coverage Results" MODIFIED="1622409348258" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>

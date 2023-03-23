@@ -1,0 +1,107 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class Company{
+- designation
++ getTestStore()
++ getClientStore()
+
+}
+class ValidationController{
++ getListOfUnvalidatedTestsDto()
++ createListWithAllTestsAvailableToBeValidated()
++ saveTestInListByNhsCode(nhsCode)
++ validateTestsInsideTestsToBeValidatedList()
+}
+class Test{
+- code
+- nhsCode
+- createdAt
+- resultDate
+- sampleDate
+- reportDate
++ getNhsCode()
++ hasReport()
++ hasValidation()
++ getSampleDate()
++ getCreatedAt()
++ getResultDate()
++ getReportDate()
++ validateTest()
+}
+class TestStore{
++ getTestByNhsCode(nhsCode)
++ getTestsWithReportList()
+}
+class TestMapper{
++ toDtoWithDate(test)
++ toDtoWithDate(testsWithReportList)
+}
+class TestDto{
+- code
+- nhsCode
+- createdAt
+- resultDate
+- sampleDate
+- reportDate
++ TestDto(nhsCode,createdAt,sampleDate,resultDate,reportCreatedAt)
+}
+class Utils{
++ currentDate()
+}
+class Client{
+- name
+- phoneNumber
+- taxIdentificationNumber
+- email
+- birthDate
+- gender
+- nhsId
+- citizenCardNumber
+- password
++ getEmail()
++ getName()
+}
+class ClientStore{
++ getClientByTest(test)
++ sendEmail(client,test)
+}
+class EmailSMS{
++ sendTestNotification(email,name, nhsCode)
+}
+class TestValidation{
+- validatedAt
++ TestValidation()
+}
+class TestToBeValidatedList{
++ checkTestToBeValidatedList()
++ createListWithAllTestsAvailableToBeValidate(testsWithReportList)
++ saveTestToTestToBeValidatedList(test)
+}
+
+ValidationController .> TestStore
+ValidationController .> ClientStore
+ValidationController .> Test
+ValidationController ..> Company
+ValidationController .> Client
+ValidationController .> TestDto
+ValidationController ..> TestMapper
+ValidationController ..> TestToBeValidatedList
+ValidationUI .> ValidationController
+ValidationUI .> TestDto
+TestMapper ..> TestDto
+TestMapper .> Test
+TestValidation .> Utils
+ValidationController .> TestValidation
+ValidationUI .......> Utils
+
+Company "1" --"1" TestStore : uses >
+Company "1" -- "1" ClientStore : uses >
+TestStore "1" -- "*" Test: has >
+ClientStore "1" -- "*" Client: has >
+ClientStore ..> EmailSMS
+Test "1" -- "1" TestValidation: has >
+Client "1" -- "*" Test: has >
+TestToBeValidatedList "1" -- "*" Test: composed by >
+
+@enduml

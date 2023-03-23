@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SpecialistDoctorTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.domain.model</a> &gt; <span class="el_source">SpecialistDoctorTest.java</span></div><h1>SpecialistDoctorTest.java</h1><pre class="source lang-java linenums">package app.domain.model;
+
+import app.domain.shared.Constants;
+import auth.domain.model.Email;
+import org.junit.Assert;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+/**
+ * @author Luís Ribeiro &lt;1201184@isep.ipp.pt&gt;
+ */
+<span class="fc" id="L13">public class SpecialistDoctorTest {</span>
+
+    @Test
+    public void checkDoctorIndexNumberExceptionSuccess() {
+<span class="fc" id="L17">        SpecialistDoctor specialistDoctor = new SpecialistDoctor(&quot;Test Person&quot;, &quot;12345678998&quot;,</span>
+                new Email(&quot;testPersonFifteen@test.com&quot;), &quot;9431&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;,
+                &quot;999999&quot;);
+<span class="fc" id="L20">        Assert.assertTrue(true);</span>
+<span class="fc" id="L21">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkDoctorIndexNumberExceptionIsBlank() {
+<span class="nc" id="L25">        SpecialistDoctor specialistDoctor = new SpecialistDoctor(&quot;Test Person&quot;, &quot;12345678653&quot;,</span>
+                new Email(&quot;testPersonSixteen@test.com&quot;), &quot;9433&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;,
+                &quot;&quot;);
+<span class="nc" id="L28">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkDoctorIndexNumberExceptionMoreThanSixDigits() {
+<span class="nc" id="L32">        SpecialistDoctor specialistDoctor = new SpecialistDoctor(&quot;Test Person&quot;, &quot;12345678076&quot;,</span>
+                new Email(&quot;testPersonSeventeen@test.com&quot;), &quot;9781&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;,
+                &quot;9123459&quot;);
+<span class="nc" id="L35">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkDoctorIndexNumberExceptionLessThanSixDigits() {
+<span class="nc" id="L39">        SpecialistDoctor specialistDoctor = new SpecialistDoctor(&quot;Test Person&quot;, &quot;12345678001&quot;,</span>
+                new Email(&quot;testPersonFourteen@test.com&quot;), &quot;1847&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;,
+                &quot;9123&quot;);
+<span class="nc" id="L42">    }</span>
+
+    @Test
+    public void testEqualsAllCategories() {
+<span class="fc" id="L46">        SpecialistDoctor specialistDoctor1 = new SpecialistDoctor(&quot;Test Person One&quot;, &quot;12345678901&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1234&quot;, Constants.ROLE_SPECDOC, &quot;Test City&quot;,
+                &quot;123456&quot;);
+
+<span class="fc" id="L50">        SpecialistDoctor specialistDoctor2 = new SpecialistDoctor(&quot;Test Person One&quot;, &quot;12345678901&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1234&quot;, Constants.ROLE_SPECDOC, &quot;Test City&quot;,
+                &quot;123456&quot;);
+
+<span class="fc" id="L54">        boolean result = specialistDoctor1.equals(specialistDoctor2);</span>
+
+<span class="fc" id="L56">        assertTrue(result);</span>
+<span class="fc" id="L57">    }</span>
+
+    @Test
+    public void testEqualsPhoneNumber() {
+<span class="fc" id="L61">        SpecialistDoctor specialistDoctor1 = new SpecialistDoctor(&quot;Test Person One&quot;, &quot;12345678901&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1234&quot;, Constants.ROLE_SPECDOC, &quot;Test City&quot;,
+                &quot;123459&quot;);
+
+<span class="fc" id="L65">        SpecialistDoctor specialistDoctor2 = new SpecialistDoctor(&quot;Test Person Two&quot;, &quot;12345678901&quot;,</span>
+                new Email(&quot;testPersonTwo@test.com&quot;), &quot;1233&quot;, Constants.ROLE_SPECDOC, &quot;Test City&quot;,
+                &quot;123409&quot;);
+
+<span class="fc" id="L69">        boolean result = specialistDoctor1.equals(specialistDoctor2);</span>
+
+<span class="fc" id="L71">        assertTrue(result);</span>
+<span class="fc" id="L72">    }</span>
+
+    @Test
+    public void testEqualsEmail() {
+<span class="fc" id="L76">        SpecialistDoctor specialistDoctor1 = new SpecialistDoctor(&quot;Test Person One&quot;, &quot;12345678901&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1234&quot;, Constants.ROLE_SPECDOC, &quot;Test City&quot;,
+                &quot;123457&quot;);
+
+<span class="fc" id="L80">        SpecialistDoctor specialistDoctor2 = new SpecialistDoctor(&quot;Test Person Two&quot;, &quot;12345678902&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1233&quot;, Constants.ROLE_SPECDOC, &quot;Test City&quot;,
+                &quot;123450&quot;);
+
+<span class="fc" id="L84">        boolean result = specialistDoctor1.equals(specialistDoctor2);</span>
+
+<span class="fc" id="L86">        assertTrue(result);</span>
+<span class="fc" id="L87">    }</span>
+
+    @Test
+    public void testEqualsDoctorIndexNumber() {
+<span class="fc" id="L91">        SpecialistDoctor specialistDoctor1 = new SpecialistDoctor(&quot;Test Person One&quot;, &quot;12345678901&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1234&quot;, Constants.ROLE_SPECDOC, &quot;Test City&quot;,
+                &quot;123451&quot;);
+
+<span class="fc" id="L95">        SpecialistDoctor specialistDoctor2 = new SpecialistDoctor(&quot;Test Person Two&quot;, &quot;12345678902&quot;,</span>
+                new Email(&quot;testPersonTwo@test.com&quot;), &quot;1233&quot;, Constants.ROLE_SPECDOC, &quot;Test City&quot;,
+                &quot;123451&quot;);
+
+<span class="fc" id="L99">        boolean result = specialistDoctor1.equals(specialistDoctor2);</span>
+
+<span class="fc" id="L101">        assertTrue(result);</span>
+<span class="fc" id="L102">    }</span>
+
+    @Test
+    public void getDoctorIndexNumber() {
+<span class="fc" id="L106">        SpecialistDoctor specialistDoctor1 = new SpecialistDoctor(&quot;Test Person One&quot;, &quot;12345678901&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1234&quot;, Constants.ROLE_SPECDOC, &quot;Test City&quot;,
+                &quot;123456&quot;);
+
+<span class="fc" id="L110">        String expected = &quot;123456&quot;;</span>
+<span class="fc" id="L111">        String result = specialistDoctor1.getDoctorIndexNumber();</span>
+
+<span class="fc" id="L113">        assertEquals(expected, result);</span>
+<span class="fc" id="L114">    }</span>
+
+    @Test
+    public void testToString() {
+<span class="fc" id="L118">        SpecialistDoctor specialistDoctor1 = new SpecialistDoctor(&quot;Test Person One&quot;, &quot;12345678901&quot;,</span>
+                new Email(&quot;testPersonOne@test.com&quot;), &quot;1234&quot;, Constants.ROLE_SPECDOC, &quot;Test City&quot;,
+                &quot;123458&quot;);
+
+<span class="fc" id="L122">        String expected = String.format(&quot;%n1. NAME AND ADDRESS %n - Name: %s %n - Address: %s %n%n2. CONTACTS %n &quot; +</span>
+                        &quot;- Phone Number: %s %n - E-mail: %s %n%n3. COMPANY INFORMATION %n - Role: %s %n &quot; +
+                        &quot;- Employee ID: %s %n - SOC Code: %s %n - Doctor Index Number: %s %n&quot;,
+<span class="fc" id="L125">                specialistDoctor1.getName(), specialistDoctor1.getAddress(), specialistDoctor1.getPhoneNumber(),</span>
+<span class="fc" id="L126">                specialistDoctor1.getEmail(), specialistDoctor1.getOrganizationRole(), specialistDoctor1.getEmployeeID(),</span>
+<span class="fc" id="L127">                specialistDoctor1.getSocCode(), specialistDoctor1.getDoctorIndexNumber());</span>
+<span class="fc" id="L128">        String result = specialistDoctor1.toString();</span>
+
+<span class="fc" id="L130">        assertEquals(expected, result);</span>
+<span class="fc" id="L131">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

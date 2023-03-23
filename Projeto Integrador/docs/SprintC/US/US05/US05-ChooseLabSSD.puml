@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+autonumber
+
+actor MedicalLabTechnician as MLT
+
+participant ":System" as Sys
+activate MLT
+activate Sys
+Sys --> MLT: Shows the Clinical Analysis Laboratories and asks to select one
+deactivate Sys
+MLT -> Sys: Selects the Clinical Analysis Laboratory
+activate Sys
+deactivate Sys
+
+@enduml

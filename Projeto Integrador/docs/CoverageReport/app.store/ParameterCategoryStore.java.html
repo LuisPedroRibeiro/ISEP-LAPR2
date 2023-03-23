@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ParameterCategoryStore.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.store</a> &gt; <span class="el_source">ParameterCategoryStore.java</span></div><h1>ParameterCategoryStore.java</h1><pre class="source lang-java linenums">package app.store;
+
+import app.domain.model.ParameterCategory;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author André Soares &lt;1201314@isep.ipp.pt&gt;
+ */
+public class ParameterCategoryStore {
+
+    /**
+     * A list designed to contain objects of the ParameterCategory class
+     */
+    private final List&lt;ParameterCategory&gt; categoryStore;
+
+    /**
+     * Initializes a new categoryStore, while also assigning it an empty array list where the parameter categories will be stored
+     */
+<span class="fc" id="L21">    public ParameterCategoryStore(){</span>
+<span class="fc" id="L22">        this.categoryStore =new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L23">    }</span>
+
+    /**
+     * Initializes a parameter category with a code,name.
+     *
+     * @param code  the code of the Parameter Category
+     * @param name the name of the Parameter Category
+     * @return returns the created  Parameter Category object using the parameters
+     */
+    public ParameterCategory createParameterCategory(String code, String name) {
+<span class="fc" id="L33">        return new ParameterCategory(code, name);</span>
+    }
+
+    /**
+     * Allows the validation of an existing parameter category and throwing  an exception if already inside the store
+     *
+     * @param pc An existing parameter category object
+     * @return a boolean statement true if the parameter category is not null and does not exist in the parameter category store,
+     * false if not
+     */
+    public boolean validateParameterCategory(ParameterCategory pc) {
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        if (pc == null) {</span>
+<span class="fc" id="L45">            return false;</span>
+        }
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        if (categoryStore.contains(pc)) {</span>
+<span class="fc" id="L48">            throw new IllegalArgumentException(&quot;There already exists a parameter category with that information&quot;);</span>
+        }
+<span class="fc" id="L50">        return true;</span>
+    }
+
+    /**
+     * Allows the addition of an validated parameter category to the the list categoryStore of the object ParameterCategoryStore
+     *
+     * @param pc An existing ParameterCategory object
+     * @return a boolean statement, true if the parameter category was added successfully to the parameter category store false if not
+     */
+    public boolean saveParameterCategory(ParameterCategory pc) {
+<span class="fc bfc" id="L60" title="All 2 branches covered.">        if (!validateParameterCategory(pc))</span>
+<span class="fc" id="L61">            return false;</span>
+<span class="fc" id="L62">        return this.categoryStore.add(pc);</span>
+    }
+
+    /**
+     * Allows the search and return of a parameterCategory using a code String
+     *
+     * @param code string containing a code that identifies a ParameterCategory object
+     * @return The ParameterCategory object if found, null if not found
+     */
+    public ParameterCategory getParameterCategoryByCode(String code){
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        for(ParameterCategory pc : getCategoryStore()){</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">            if(pc.getCode().equals(code))</span>
+<span class="fc" id="L74">                return pc;</span>
+<span class="fc" id="L75">        }</span>
+<span class="fc" id="L76">        return null;</span>
+    }
+
+    /**
+     * Allows the return of a copy of the list containing parameter categories
+     *
+     * @return a copy of a list containing parameter categories
+     */
+    public List&lt;ParameterCategory&gt; getCategoryStore() {
+
+<span class="fc" id="L86">        return new ArrayList&lt;&gt;(categoryStore);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

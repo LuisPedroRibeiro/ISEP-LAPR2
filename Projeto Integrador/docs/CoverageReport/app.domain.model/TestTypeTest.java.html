@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TestTypeTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.domain.model</a> &gt; <span class="el_source">TestTypeTest.java</span></div><h1>TestTypeTest.java</h1><pre class="source lang-java linenums">package app.domain.model;
+
+import org.junit.Assert;
+import org.junit.Test;
+import app.list.ParameterCategoryList;
+
+/**
+ * @author André Soares &lt;1201314@isep.ipp.pt&gt;
+ */
+<span class="fc" id="L10">public class TestTypeTest {</span>
+    @Test
+    public void RulesExceptionSuccess() {
+<span class="fc" id="L13">        TestType tt = new TestType(&quot;12345&quot;, &quot;method&quot;, &quot;description&quot;);</span>
+<span class="fc" id="L14">        Assert.assertTrue(true);</span>
+<span class="fc" id="L15">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkCodeRulesExceptionBlank() {
+<span class="nc" id="L19">        TestType tt = new TestType(&quot;&quot;, &quot;method&quot;, &quot;description&quot;);</span>
+<span class="nc" id="L20">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkCodeRulesExceptionLessThen() {
+<span class="nc" id="L24">        TestType tt = new TestType(&quot;1234&quot;, &quot;method&quot;, &quot;description&quot;);</span>
+<span class="nc" id="L25">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkCodeRulesExceptionGreater() {
+<span class="nc" id="L29">        TestType tt = new TestType(&quot;123456&quot;, &quot;method&quot;, &quot;description&quot;);</span>
+<span class="nc" id="L30">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkDescriptionRulesExceptionBlank() {
+<span class="nc" id="L34">        TestType tt = new TestType(&quot;12345&quot;, &quot;method&quot;, &quot;&quot;);</span>
+<span class="nc" id="L35">    }</span>
+
+    @Test
+    public void checkDescriptionRulesExceptionEqualTo() {
+<span class="fc" id="L39">        TestType tt = new TestType(&quot;12345&quot;, &quot;method&quot;, &quot;descriptionthat&quot;);</span>
+<span class="fc" id="L40">        Assert.assertTrue(true);</span>
+<span class="fc" id="L41">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkDescriptionRulesExceptionIsGreaterThen() {
+
+<span class="nc" id="L46">        TestType tt = new TestType(&quot;12345&quot;, &quot;method&quot;, &quot;descriptionthats&quot;);</span>
+<span class="nc" id="L47">    }</span>
+
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkCollectionMethodRulesExceptionBlank() {
+<span class="nc" id="L52">        TestType tt = new TestType(&quot;12345&quot;, &quot;&quot;, &quot;description&quot;);</span>
+<span class="nc" id="L53">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkCollectionMethodRulesExceptionIsGreaterThen() {
+<span class="nc" id="L57">        TestType tt = new TestType(&quot;12345&quot;, &quot;abcdefgijklmnopkrstuy&quot;, &quot;description&quot;);</span>
+<span class="nc" id="L58">    }</span>
+
+    @Test
+    public void checkCollectionMethodRulesExceptionIsEqualTo() {
+<span class="fc" id="L62">        TestType tt = new TestType(&quot;12345&quot;, &quot;abcdefgijklmnopkrstu&quot;, &quot;description&quot;);</span>
+<span class="fc" id="L63">        Assert.assertTrue(true);</span>
+<span class="fc" id="L64">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkParameterCategoryListRules() {
+<span class="fc" id="L68">        ParameterCategoryList cl = new ParameterCategoryList();</span>
+<span class="fc" id="L69">        TestType tt = new TestType(&quot;12345&quot;, &quot;method&quot;, &quot;description&quot;);</span>
+<span class="nc" id="L70">        tt.validateParameterCategoryList(cl);</span>
+<span class="nc" id="L71">    }</span>
+
+    @Test
+    public void addParameterCategoryListToTestType() {
+<span class="fc" id="L75">        ParameterCategoryList expected = new ParameterCategoryList();</span>
+<span class="fc" id="L76">        TestType tt = new TestType(&quot;12345&quot;, &quot;method&quot;, &quot;description&quot;);</span>
+<span class="fc" id="L77">        expected.saveParameterCategory(new ParameterCategory(&quot;12345&quot;, &quot;name&quot;));</span>
+<span class="fc" id="L78">        tt.addParameterCategoryListToTestType(expected);</span>
+
+<span class="fc" id="L80">        ParameterCategoryList result=tt.getCl();</span>
+
+<span class="fc" id="L82">        Assert.assertEquals(result, expected);</span>
+
+<span class="fc" id="L84">    }</span>
+
+    @Test
+    public void testEquals() {
+<span class="fc" id="L88">        ParameterCategory pc = new ParameterCategory(&quot;12345&quot;, &quot;name&quot;);</span>
+<span class="fc" id="L89">        TestType tt = new TestType(&quot;12345&quot;, &quot;method&quot;, &quot;description&quot;);</span>
+<span class="fc" id="L90">        TestType tt1 = new TestType(&quot;12345&quot;, &quot;methodd&quot;, &quot;descr&quot;);</span>
+<span class="fc" id="L91">        TestType tt2 = new TestType(&quot;12345&quot;, &quot;methoddd&quot;, &quot;description&quot;);</span>
+<span class="fc" id="L92">        TestType tt3 = new TestType(&quot;12355&quot;, &quot;method&quot;, &quot;descr&quot;);</span>
+<span class="fc" id="L93">        TestType tt4=null;</span>
+
+<span class="fc" id="L95">        Assert.assertNotEquals(tt, tt4);</span>
+<span class="fc" id="L96">        Assert.assertEquals(tt, tt);</span>
+<span class="fc" id="L97">        Assert.assertNotEquals(tt, pc);</span>
+<span class="fc" id="L98">        Assert.assertEquals(tt, tt1);</span>
+<span class="fc" id="L99">        Assert.assertEquals(tt, tt2);</span>
+<span class="fc" id="L100">        Assert.assertNotEquals(tt, tt3);</span>
+
+<span class="fc" id="L102">    }</span>
+
+    @Test
+    public void getCode() {
+<span class="fc" id="L106">        TestType tt = new TestType(&quot;12345&quot;, &quot;method&quot;, &quot;description&quot;);</span>
+<span class="fc" id="L107">        String result = tt.getCode();</span>
+<span class="fc" id="L108">        String expected = &quot;12345&quot;;</span>
+<span class="fc" id="L109">        Assert.assertEquals(result, expected);</span>
+<span class="fc" id="L110">    }</span>
+
+    @Test
+    public void getDescription() {
+<span class="fc" id="L114">        TestType tt = new TestType(&quot;12345&quot;, &quot;method&quot;, &quot;description&quot;);</span>
+<span class="fc" id="L115">        String result = tt.getCollectionMethod();</span>
+<span class="fc" id="L116">        String expected = &quot;method&quot;;</span>
+<span class="fc" id="L117">        Assert.assertEquals(result, expected);</span>
+
+
+<span class="fc" id="L120">    }</span>
+
+    @Test
+    public void getCollectionMethod() {
+<span class="fc" id="L124">        TestType tt = new TestType(&quot;12345&quot;, &quot;method&quot;, &quot;description&quot;);</span>
+<span class="fc" id="L125">        String result = tt.getDescription();</span>
+<span class="fc" id="L126">        String expected = &quot;description&quot;;</span>
+<span class="fc" id="L127">        Assert.assertEquals(result, expected);</span>
+<span class="fc" id="L128">    }</span>
+
+    @Test
+    public void toStringTest() {
+<span class="fc" id="L132">        TestType tt = new TestType(&quot;12345&quot;, &quot;method&quot;, &quot;description&quot;);</span>
+
+<span class="fc" id="L134">        String result = tt.toString();</span>
+<span class="fc" id="L135">        String expected = String.format(&quot;##Test Type## %n Code: %s %n Description: %s %n Collection Method: %s&quot;,</span>
+<span class="fc" id="L136">                tt.getCode(), tt.getDescription(), tt.getCollectionMethod());</span>
+<span class="fc" id="L137">        Assert.assertEquals(result, expected);</span>
+
+
+<span class="fc" id="L140">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkRulesCodeIsAlphaNumeric() {
+<span class="nc" id="L144">        TestType tt = new TestType(&quot;123/5&quot;, &quot;method&quot;, &quot;description&quot;);</span>
+<span class="nc" id="L145">    }</span>
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testTypeNull(){
+<span class="nc" id="L149">        TestType tt= new TestType(null,null,null);</span>
+<span class="nc" id="L150">    }</span>
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

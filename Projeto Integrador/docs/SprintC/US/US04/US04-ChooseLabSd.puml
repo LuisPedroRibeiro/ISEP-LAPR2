@@ -1,0 +1,45 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Receptionist" as R
+participant ":ChooseLabUI" as UI
+participant ":RegisterTestController" as Ctrl
+participant ":Company" as Cmp
+
+participant "clinicalAnalysisLaboratoryStore\n:ClinicalAnalysisLaboratoryStore" as calStore
+participant ":ClinicalAnalysisLaboratoryMapper" as calMapper
+
+participant "listClinicalAnalysisLaboratory: List<ClinicalAnalysisLaboratory>" as listCal
+participant "listClinicalAnalysisLaboratoryDto: List<ClinicalAnalysisLaboratoryDto>" as listCalDto
+participant "clinicalAnalysisLaboratory::ClinicalAnalysisLaboratory" as cal
+
+activate R
+UI -> Ctrl: ListClinicalAnalysisLaboratoryDto = getClinicalAnalysisLaboratoryListToDto()
+note left: After the Receptionist logs in, has to select the \nClinical Analysis Laboratory where is working at.
+activate UI
+activate Ctrl
+Ctrl -> Cmp: clinicalAnalysisLaboratoryStore = getClinicalAnalysisLaboratoryStore()
+activate Cmp
+deactivate Cmp
+Ctrl -> calStore: listClinicalAnalysisLaboratory = getClinicalAnalysisLaboratoryList()
+activate calStore
+deactivate calStore
+Ctrl -> calMapper: listClinicalAnalysisLaboratoryDto = toDto(listClinicalAnalysisLaboratory)
+activate calMapper
+deactivate calMapper
+deactivate Ctrl
+UI --> R : shows the Clinical Analysis Laboratories and asks to select one
+deactivate UI
+R -> UI: selects the Clinical Analysis Laboratory
+activate UI
+UI-> Ctrl: saveClinicalAnalysisLab(laboratoryId)
+activate Ctrl
+Ctrl -> calStore: clinicalAnalysisLaboratory = getClinicalAnalysisLaboratoryById(laboratoryId)
+activate calStore
+deactivate calStore
+deactivate Ctrl
+deactivate UI
+
+@enduml

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TestStore.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.store</a> &gt; <span class="el_source">TestStore.java</span></div><h1>TestStore.java</h1><pre class="source lang-java linenums">package app.store;
+
+import app.domain.model.Client;
+import app.domain.model.Test;
+import app.domain.model.TestReport;
+import app.ui.console.ChooseLabUI;
+import app.utils.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * This Class allows the creation of a Test Store.
+ *
+ * @author Luís Ribeiro &lt;1201184@isep.ipp.pt&gt;
+ * @author Pedro Graça &lt;1201188@isep.ipp.pt&gt;
+ * @author Miguel Ramos &lt;1201247@isep.ipp.pt&gt;
+ * @author André Soares &lt;1201314@isep.ipp.pt&gt;
+ */
+public class TestStore {
+
+    /**
+     * A list designed to contain objects of the Test class
+     */
+    private final List&lt;Test&gt; testList;
+
+    /**
+     * The number that will initialize the sequential code
+     */
+<span class="fc" id="L30">    long n = 1;</span>
+
+    /**
+     * Initializes a new testList, while also assigning it an empty array list where the tests will be stored
+     */
+<span class="fc" id="L35">    public TestStore() {</span>
+<span class="fc" id="L36">        this.testList = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L37">    }</span>
+
+
+    /**
+     * Method that returns a new Test with the attribute given as a parameter
+     *
+     * @param nhsCode the National Healthcare Service Code of the Test
+     * @return a Test with the attributes given by parameter
+     */
+    public Test createTest(String nhsCode) {
+<span class="fc" id="L47">        return new Test(nhsCode);</span>
+    }
+
+    /**
+     * Method to validate the Test in a global way
+     *
+     * @param test the Test to be validated
+     * @return the boolean result of the Test validation
+     */
+    public boolean validateTest(Test test) {
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">        if (test == null)</span>
+<span class="nc" id="L58">            return false;</span>
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">        return !this.testList.contains(test);</span>
+    }
+
+    /**
+     * Allows the addition of an validated Test object to the the Test List
+     *
+     * @param test An existing Test object
+     * @return a boolean statement, true if the test  was added successfully to the test list, false if not
+     */
+    public boolean saveTest(Test test) {
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">        if (validateTest(test)) {</span>
+<span class="fc" id="L70">            String code = nextCode(n);</span>
+<span class="fc" id="L71">            n++;</span>
+<span class="fc" id="L72">            String createdAt= Utils.currentDate();</span>
+<span class="fc" id="L73">            test.setCode(code);</span>
+<span class="fc" id="L74">            test.setCreatedAt(createdAt);</span>
+<span class="fc" id="L75">            return testList.add(test);</span>
+        }
+<span class="nc" id="L77">        return false;</span>
+    }
+
+    /**
+     * The Method that returns the list of Tests without Samples.
+     *
+     * @return the Test List without Samples.
+     */
+    public List&lt;Test&gt; getTestsWithoutSamplesList() {
+<span class="fc" id="L86">        List&lt;Test&gt; testWithoutSamples = new ArrayList&lt;&gt;();</span>
+<span class="pc bpc" id="L87" title="1 of 2 branches missed.">        for (Test test : testList) {</span>
+<span class="pc bpc" id="L88" title="1 of 2 branches missed.">            if (!test.hasSamples() &amp;&amp;</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">                    ChooseLabUI.getRegisterTestController().getClinicalAnalysisLaboratory().equals(test.getClinicalAnalysisLaboratory())) {</span>
+<span class="nc" id="L90">                testWithoutSamples.add(test);</span>
+            }
+<span class="nc" id="L92">        }</span>
+<span class="nc" id="L93">        return testWithoutSamples;</span>
+    }
+
+    /**
+     * The method that returns the Test without Sample in that index.
+     *
+     * @param index index chosen by the User.
+     * @return Test chosen by index.
+     */
+    public Test getTestToBeSampledByIndex(int index){
+<span class="nc" id="L103">        return getTestsWithoutSamplesList().get(index);</span>
+    }
+
+    /**
+     * The method that save a Test With Samples, but return a boolean value.
+     *
+     * @param test Test that will be saved with Samples.
+     * @return True if the Test is saved, false if not.
+     */
+    public boolean saveTestWithSamples(Test test){
+<span class="nc bnc" id="L113" title="All 2 branches missed.">        if(!validatesTestWithSamples(test)){</span>
+<span class="nc" id="L114">            return false;</span>
+        }
+<span class="nc" id="L116">        return getTestsWithoutSamplesList().add(test);</span>
+    }
+
+    /**
+     * The method that validates a Test with Sample, but return a boolean value.
+     *
+     * @param test Test that will be saved with Samples.
+     * @return rue if the Test is validated, false if not.
+     */
+    public boolean validatesTestWithSamples(Test test){
+<span class="pc bpc" id="L126" title="1 of 2 branches missed.">        if(test== null){</span>
+<span class="nc" id="L127">            return false;</span>
+        }
+<span class="pc bpc" id="L129" title="1 of 2 branches missed.">        return !test.hasSamples();</span>
+    }
+
+    /**
+     * The method that return the List of Tests that have already a result.
+     *
+     * @return The List of Tests that have a result.
+     */
+    public List&lt;Test&gt; getTestWithResultList(){
+<span class="fc" id="L138">        List&lt;Test&gt; testsWithResultList = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L139" title="All 2 branches covered.">        for(Test test : testList){</span>
+<span class="pc bpc" id="L140" title="1 of 4 branches missed.">            if(test.hasResults() &amp;&amp; !test.hasReport()){</span>
+<span class="fc" id="L141">                testsWithResultList.add(test);</span>
+            }
+<span class="fc" id="L143">        }</span>
+<span class="fc" id="L144">        return testsWithResultList;</span>
+    }
+
+    /**
+     * Method that returns the list of Tests with Report and without validation.
+     *
+     * @return the Test List with Report.
+     */
+    public List&lt;Test&gt; getTestsWithReportList() {
+<span class="fc" id="L153">        List&lt;Test&gt; testWithReportList = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L154" title="All 2 branches covered.">        for (Test test : testList) {</span>
+<span class="pc bpc" id="L155" title="1 of 4 branches missed.">            if (test.hasReport() &amp;&amp; !test.hasValidation()) {</span>
+<span class="fc" id="L156">                testWithReportList.add(test);</span>
+            }
+<span class="fc" id="L158">        }</span>
+<span class="fc" id="L159">        return testWithReportList;</span>
+    }
+
+    /**
+     * Method that returns the Test that contains the nhsCode given as parameter.
+     *
+     * @param nhsCode the National Healthcare Service Number of the Test.
+     * @return the Test that contains the given nhsCode.
+     */
+    public Test getTestByNhsCode(String nhsCode) {
+<span class="fc bfc" id="L169" title="All 2 branches covered.">        for (Test test : testList) {</span>
+<span class="fc bfc" id="L170" title="All 2 branches covered.">            if (test.getNhsCode().equals(nhsCode)) {</span>
+<span class="fc" id="L171">                return test;</span>
+            }
+<span class="fc" id="L173">        }</span>
+<span class="fc" id="L174">        return null;</span>
+    }
+
+    /**
+     * Allows the Store to save a Test Report on the Test.
+     * The Store will start by validating the Test Report, and after that, it will associate the Test Report to
+     * the Test and set the Report Date to the current one.
+     *
+     * @param test Test that will contain the Test Report.
+     * @param testReport Test Report that will be associated to the Test.
+     * @return Boolean value that represents if the Test Report was saved or not.
+     */
+    public boolean saveTestReport(Test test, TestReport testReport){
+<span class="fc bfc" id="L187" title="All 2 branches covered.">        if(! validateTestReport(testReport)){</span>
+<span class="fc" id="L188">            return false;</span>
+        }
+        else{
+<span class="fc" id="L191">            test.addTestReport(testReport);</span>
+<span class="fc" id="L192">            test.addReportDate();</span>
+<span class="fc" id="L193">            return true;</span>
+        }
+    }
+
+    /**
+     * Allows the Store to validate the Test Report that was made by the Specialist Doctor.
+     *
+     * @param testReport Test Report to be validated.
+     * @return Boolean value that represents if the Test Report was validated or not.
+     */
+    private boolean validateTestReport(TestReport testReport){
+<span class="fc bfc" id="L204" title="All 2 branches covered.">        return testReport != null;</span>
+    }
+
+    /**
+     * Method that returns the boolean Value of the addition of a Test to a Client.
+     *
+     * @param client the Client that the test will be added to.
+     * @param test the Test that will be added.
+     * @return the Boolean value of the operation.
+     */
+    public boolean addTestToClient(Client client, Test test){
+<span class="fc" id="L215">        return client.addTest(test);</span>
+    }
+
+    /**
+     * Method that returns the sequential code.
+     *
+     * @param n the test number.
+     * @return the String with the code.
+     */
+    public String nextCode(long n){
+        String s;
+<span class="fc" id="L226">        s=String.format(&quot;%012d&quot;,n);</span>
+<span class="fc" id="L227">        return s;</span>
+    }
+
+    /**
+     * The method that return the Test Store.
+     *
+     * @return Test Store.
+     */
+    public List&lt;Test&gt; getStore(){
+<span class="fc" id="L236">        List&lt;Test&gt; copy = this.testList;</span>
+<span class="fc" id="L237">        return copy;</span>
+    }
+
+    /**
+     * The method that return the Test by Barcode.
+     *
+     * @param barcode Barcode of the Test.
+     * @return A Test by their barcode.
+     */
+    public Test getTestByBarcode(String barcode) {
+<span class="nc bnc" id="L247" title="All 2 branches missed.">        for (Test t : testList) {</span>
+<span class="nc bnc" id="L248" title="All 6 branches missed.">            if (t.hasSamples() &amp;&amp; !t.hasResults() &amp;&amp; t.isBarcodeInSampleList(barcode)) {</span>
+<span class="nc" id="L249">                return t;</span>
+            }
+<span class="nc" id="L251">        }</span>
+<span class="nc" id="L252">        throw new IllegalArgumentException(&quot;No test with a sample with the supplied barcode found&quot;);</span>
+    }
+
+    /**
+     * Method that returns if in the Client list exists someone with the Email given by parameter.
+     *
+     * @param nhsCode the NHS code given as a parameter.
+     * @return the boolean result of the list containing this NHS code.
+     */
+    public boolean containsNhsCode(String nhsCode) {
+<span class="fc bfc" id="L262" title="All 2 branches covered.">        for (Test test : testList) {</span>
+<span class="fc bfc" id="L263" title="All 2 branches covered.">            if (nhsCode.equals(test.getNhsCode())) {</span>
+<span class="fc" id="L264">                return true;</span>
+            }
+<span class="fc" id="L266">        }</span>
+<span class="fc" id="L267">        return false;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

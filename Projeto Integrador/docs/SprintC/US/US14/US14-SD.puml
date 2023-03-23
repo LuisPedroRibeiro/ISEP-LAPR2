@@ -1,0 +1,216 @@
+@startuml
+
+actor "Specialist Doctor" as SPECDOC
+participant ":WriteReportUI" as UI
+participant ":WriteReportController" as CONTROL
+participant ":Company" as COMPANY
+participant "testStore: TestStore" as STORE
+participant ": TestMapper" as MAPPER
+participant "test: Test" as TEST
+participant "parameter: Parameter" as PARAM
+participant ": Utils" as UTILS
+participant "testWithResultList: List<Test>" as LIST_TESTS
+participant "testList : List<TestDTO>" as LIST_DTO
+participant ": UserSession" as USERSESSION
+participant "testDTO: TestDTO" as DTO
+participant ": AuthFacade" as FACADE
+participant ": User" as USER
+
+autonumber
+
+activate SPECDOC
+
+SPECDOC -> UI: Asks to write a Report/Diagnosis about a Test
+activate UI
+
+    UI -> CONTROL: generateTestsWithResultList()
+    activate CONTROL
+
+        CONTROL -> COMPANY: testStore = getTestStore()
+        activate COMPANY
+        note right: This method is repeated in other methods on the code,\n but on this Diagram it will appear only in here,\n as it defines the wanted variable.
+        deactivate COMPANY
+
+        CONTROL -> STORE: testsWithResultList = getTestsWithResultList()
+        activate STORE
+
+            loop For each Test on the Store
+
+                STORE -> TEST: resultDateBoolean = checkResultDate()
+                activate TEST
+                deactivate TEST
+
+                STORE -> TEST: reportDateBoolean = checkReportDate()
+                activate TEST
+                deactivate TEST
+
+                alt reportDateBoolean is false and resultDateBoolean is true
+
+                    STORE -> LIST_TESTS: add(test)
+                    note right: This method is a method from the Collections used by Java, \nit is represented in this Sequence Diagram because without its representation, \nthe Sequence would not be as comprehensible.
+                    activate LIST_TESTS
+                    deactivate LIST_TESTS
+
+                end
+
+            end
+
+        deactivate STORE
+    deactivate CONTROL
+
+    loop Until the Specialist Doctor decides to leave or until there are no more Test to do a Report on
+
+            UI -> CONTROL: getTestsWithResultList()
+            activate CONTROL
+
+                CONTROL -> MAPPER: testsWithResultListDTO = toDtoForReport(testsWithResultList)
+                activate MAPPER
+                deactivate MAPPER
+
+            deactivate CONTROL
+
+        UI --> SPECDOC: Shows the list of Tests without Report/Diagnosis
+        deactivate UI
+
+        SPECDOC -> UI: Chooses one Test (with Result and without Report)\n to write a Report/Diagnosis about
+        activate UI
+        UI --> SPECDOC: Asks for confirmation of the selected Test
+        deactivate UI
+
+        SPECDOC -> UI: Confirms the Test to the report on
+        activate UI
+
+            UI -> CONTROL: getTestByIndex(index)
+            activate CONTROL
+
+                CONTROL -> STORE: test = getTestByNhsCode(nhsCode)
+                activate STORE
+                deactivate STORE
+
+            deactivate CONTROL
+
+            UI -> CONTROL: showTestResults()
+            activate CONTROL
+
+            loop For each Test Parameter of the chosen Test
+
+                CONTROL -> TEST: parameter = getTestParameterByIndex(index)
+                activate TEST
+                deactivate TEST
+
+                CONTROL -> PARAM: testParameterResultString = testParameterResultToString()
+                activate PARAM
+                deactivate PARAM
+
+                CONTROL -> CONTROL: addString(testParameterResultString)
+                activate CONTROL
+                deactivate CONTROL
+
+            end
+
+            deactivate CONTROL
+
+        UI --> SPECDOC: Shows the results of the Test and asks for data (text)
+        deactivate UI
+
+        SPECDOC -> UI: Types the requested data
+        activate UI
+
+            UI -> CONTROL: generateTestReport(text)
+            activate CONTROL
+
+                CONTROL -> TEST: code = getCode()
+                activate TEST
+                deactivate TEST
+
+                CONTROL -> CONTROL: specialistDoctorName = getSpecialistDoctorName()
+                activate CONTROL
+
+                    CONTROL -> USERSESSION: getUserName()
+                    activate USERSESSION
+                    deactivate USERSESSION
+
+                deactivate CONTROL
+
+                CONTROL -> CONTROL: specialistDoctorEmail = getSpecialistDoctorEmail()
+                activate CONTROL
+
+                    CONTROL -> USERSESSION: getUserID()
+                    activate USERSESSION
+                    deactivate USERSESSION
+
+                deactivate CONTROL
+
+                create participant "testReport: TestReport" as REPORT
+                CONTROL --> REPORT: create(text, code, specialistDoctorName, specialistDoctorEmail)
+                activate REPORT
+
+                    REPORT -> REPORT: setHeader(code)
+                    activate REPORT
+                    deactivate REPORT
+
+                deactivate REPORT
+
+            deactivate CONTROL
+
+
+        UI -> CONTROL: showTestReport()
+        activate CONTROL
+
+            CONTROL -> REPORT: toString()
+            activate REPORT
+            deactivate REPORT
+
+        deactivate CONTROL
+
+    UI --> SPECDOC: Asks for confirmation of the given data
+    deactivate UI
+
+    SPECDOC -> UI: Confirms the data
+    activate UI
+
+        UI -> CONTROL: saveTestReport()
+        activate CONTROL
+
+            CONTROL -> STORE: saveTestReport(test, testReport)
+            activate STORE
+
+                STORE -> STORE: validateTestReport(testReport)
+                activate STORE
+                deactivate STORE
+
+                STORE -> TEST: addTestReport(testReport)
+                activate TEST
+                deactivate TEST
+
+                STORE -> TEST: addReportDate()
+                activate TEST
+
+                    TEST -> UTILS: currentDate()
+                    activate UTILS
+                    deactivate UTILS
+
+                deactivate TEST
+
+            deactivate STORE
+
+            CONTROL -> CONTROL: removeTestFromList(test)
+            activate CONTROL
+            deactivate CONTROL
+
+        deactivate CONTROL
+
+    UI --> SPECDOC: Informs of operation success
+    UI --> SPECDOC: Asks if the Specialist Doctor wants to write another\n Report
+    deactivate UI
+
+    SPECDOC -> UI: Decides if he wants to write another Report
+    activate UI
+    UI --> SPECDOC: Confirms the Specialist Doctor's decision
+    deactivate UI
+
+end
+
+deactivate SPECDOC
+
+@enduml

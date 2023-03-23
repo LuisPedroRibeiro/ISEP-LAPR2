@@ -1,0 +1,50 @@
+@startuml
+
+autonumber
+
+actor Receptionist as Recep
+
+participant ":System" as Sys
+
+activate Recep
+Recep -> Sys : Requests to register a Test
+note left : See the steps of the Clinical Analysis Laboratory selection \n(US04-ChooseLabSSD.puml) before seeing the US04.
+activate Sys
+Sys --> Recep : Asks some data (taxIdentificationNumber,nhsCode)
+deactivate Sys
+Recep -> Sys : Types the requested data
+activate Sys
+Sys --> Recep : Asks for confirmation
+deactivate Sys
+Recep -> Sys : Confirms the typed data
+activate Sys
+Sys --> Recep : Shows the Test Type list associated to the Clinical Analysis Laboratory and asks to select one
+deactivate Sys
+Recep -> Sys : Selects the Test Type
+activate Sys
+
+loop While the Receptionist wants to add Parameters to the Test
+Sys --> Recep : Shows the list of Parameter Categories associated with the Test Type
+deactivate Sys
+Recep -> Sys : Selects a Parameter Category
+activate Sys
+loop While the Receptionist wants to add Parameters associated with the Parameter Category that has been selected
+Sys --> Recep: Shows the list of Parameters associated with the Parameter Category
+deactivate Sys
+Recep -> Sys : Selects a Parameter
+activate Sys
+end
+end
+Sys --> Recep : Asks for confirmation
+deactivate Sys
+Recep -> Sys: Confirms all data
+activate Sys
+Sys --> Recep: Informs of operation success
+deactivate Sys
+
+
+
+
+
+
+@enduml

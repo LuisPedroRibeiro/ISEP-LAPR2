@@ -1,0 +1,47 @@
+@startuml
+
+actor "Specialist Doctor" as SPECDOC
+participant ":System" as SYS
+
+autonumber
+
+activate SPECDOC
+
+SPECDOC -> SYS: Asks to write a Report/Diagnosis about a Test
+activate SYS
+SYS --> SPECDOC: Shows list of Tests with Result
+deactivate SYS
+
+loop Until the Specialist Doctor decides to leave or until \nthere are no more Test to do a Report on
+
+SPECDOC -> SYS: Chooses one Test (with Result and without Report)\n to write a Report/Diagnosis about
+activate SYS
+SYS --> SPECDOC: Asks for confirmation of the selected Test
+deactivate SYS
+
+SPECDOC -> SYS: Confirms the Test to the report on
+activate SYS
+SYS --> SPECDOC: Shows the results of the Test and asks for data (text)
+deactivate SYS
+
+SPECDOC -> SYS: Types the requested data
+activate SYS
+SYS --> SPECDOC: Asks for confirmation of the typed data
+deactivate SYS
+
+SPECDOC -> SYS: Confirms the typed data
+activate SYS
+SYS --> SPECDOC: Informs of operation success
+SYS --> SPECDOC: Asks if the Specialist Doctor wants to write another\n Report
+deactivate SYS
+
+SPECDOC -> SYS: Decides if he wants to write another Report
+activate SYS
+SYS --> SPECDOC: Confirms the Specialist Doctor's decision
+deactivate SYS
+
+end
+
+deactivate SPECDOC
+
+@enduml

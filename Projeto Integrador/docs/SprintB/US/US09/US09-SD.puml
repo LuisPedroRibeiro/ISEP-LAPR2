@@ -1,0 +1,140 @@
+@startuml
+autonumber
+'hide footbox
+actor "Administrator" as ADM
+
+participant ":CreateTestTypeUI" as UI
+participant ":CreateTestTypeController" as CTRL
+participant ":Company" as COM
+participant "store:TestType\n:Store" as Store
+participant "storePc:ParameterCategory\nStore" as storePc
+participant "testType\n:TestType" as Type
+participant "pc\n:ParameterCategory" as pc
+participant "cl\n:ParameterCategoryList" as cl
+participant "listParameterCategory:List<ParameterCategory>" as listPc
+participant ":ParameterCategoryMapper" as pcMapper
+participant "listParameterCategoryDto:List<ParameterCategoryDto" as listDto
+activate ADM
+ADM -> UI : Asks to create a new type of test
+activate UI
+UI --> ADM : requests data (code,collectionMethod,description)
+deactivate UI
+
+ADM -> UI : types requested data
+activate UI
+UI --> ADM: Asks for confirmation
+deactivate UI
+ADM -> UI:Confirms the data
+activate UI
+
+UI -> CTRL : createTestType(code,collectionMethod,description)
+activate CTRL
+
+
+CTRL -> COM: store=getTestTypeStore()
+activate COM
+deactivate COM
+
+CTRL -> Store: testType=createTestType(code,collectionMethod,description)
+activate Store
+
+Store --> Type**: create(code,collectionMethod,description)
+deactivate Store
+CTRL --> cl** : create()
+CTRL -> Store: validateTestType(testType)
+activate Store
+deactivate Store
+CTRL -> COM  : storePc=getParameterCategoryStore()
+activate COM
+deactivate COM
+
+UI -> CTRL: getListParameterCategory()
+CTRL -> storePc: getListParameterCategory()
+activate storePc
+storePc --> CTRL: listParameterCategory
+deactivate storePc
+CTRL -> pcMapper: toDto(listParameterCategory)
+activate pcMapper
+pcMapper --> listDto**: create()
+pcMapper --> CTRL: listParameterCategoryDto
+deactivate pcMapper
+UI <-- CTRL: listParameterCategoryDto
+deactivate CTRL
+
+loop While administrator wants to choose parameters categories  and there are parameter categories available for the test type
+UI --> ADM : shows parameter categories list and asks to select one
+deactivate UI
+
+ADM -> UI : selects a parameter category
+activate UI
+ADM <-- UI : Asks for confirmation
+deactivate UI
+ADM -> UI :  confirms the parameter category chosen
+activate UI
+UI -> CTRL:saveParameterCategory(categoryCode)
+note left: The use of the variable name categoryCode \n is so that it wont be confused with the test type code  \n but in the code implementation and other diagrams \n this variable is named as code
+activate CTRL
+CTRL -> storePc : pc=getParameterCategoryByCode(categoryCode)
+activate storePc
+deactivate storePc
+CTRL -> cl:saveParameterCategory(pc)
+activate cl
+
+cl-> cl: validateParameterCategory(pc)
+activate cl
+deactivate cl
+cl -> cl: addParameterCategory(pc)
+activate cl
+deactivate cl
+deactivate cl
+deactivate storePc
+deactivate CTRL
+
+
+
+end
+deactivate cl
+
+deactivate Store
+
+
+UI --> ADM: shows all the data and requests confirmation
+
+
+deactivate Store
+
+deactivate CTRL
+deactivate UI
+
+ADM -> UI : confirms the data
+activate UI
+UI -> CTRL : saveTestType()
+activate CTRL
+
+CTRL -> Type: addParameterCategoryListToTestType(cl)
+activate Type
+Type -> Type : validateParameterCategoryList(cl)
+Type -> Type :addParameterCategoryListToTestType(cl)
+activate Type
+deactivate Type
+CTRL -> Store : saveTestType(testType)
+
+deactivate Type
+activate Store
+
+Store -> Store: validateTestType(testType)
+activate Store
+deactivate Store
+Store -> Store: addTestType(testType)
+
+activate Store
+deactivate Store
+deactivate CTRL
+deactivate Store
+
+UI --> ADM : informs of the operation´s success
+deactivate UI
+
+deactivate ADM
+
+@enduml

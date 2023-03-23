@@ -1,0 +1,67 @@
+@startuml
+
+class Company
+class Employee
+class Receptionist
+class Test
+class Sample
+class MedicalLabTechnician
+class BarcodeAPI
+class ClinicalAnalysisLaboratory
+
+class Company{
+-designation
+}
+
+class Employee{
+- name
+- phoneNumber
+- email
+- employeeID
+- socCode
+- organizationRole
+- address
+}
+
+class Receptionist {
+}
+
+class Test {
+- code
+- nhsCode
+- createdAt
+- resultDate
+- sampleDate
+- reportDate
+- testType
+- clinicalAnalysisLaboratory
+- testReport
+}
+class Sample {
+-barcodeNumber
+}
+
+class MedicalLabTechnician {
+}
+
+class BarcodeAPI {
+}
+
+class ClinicalAnalysisLaboratory {
+-address
+-phoneNumber
+-tinNumber
+-name
+-laboratoryID
+}
+
+Company "1" -- "*" ClinicalAnalysisLaboratory : owns >
+Company "1" -- "*" Employee : has >
+BarcodeAPI "1" - "1" Sample : is created by <
+Test "1" -- "1" Sample : needs <
+Receptionist "1" - "1" Test : registers >
+Employee o- Receptionist
+MedicalLabTechnician "1" -- "1" Sample : is collected by <
+MedicalLabTechnician "1" - "*" ClinicalAnalysisLaboratory : works at <
+
+@enduml

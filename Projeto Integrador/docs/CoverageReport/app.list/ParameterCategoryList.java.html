@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ParameterCategoryList.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.list</a> &gt; <span class="el_source">ParameterCategoryList.java</span></div><h1>ParameterCategoryList.java</h1><pre class="source lang-java linenums">package app.list;
+
+import app.domain.model.ParameterCategory;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * This class allows for the construction of an object parameterCategoryList ,where the selected
+ * parameter category by the user will be stored
+ *
+ * @author André Soares &lt;1201314@isep.ipp.pt&gt;
+ */
+public class ParameterCategoryList {
+
+    /**
+     * A list designed to contain objects of the ParameterCategory class
+     */
+    private final List&lt;ParameterCategory&gt; cl;
+
+
+    /**
+     * Initializes a new list, while also assigning it an empty array list where
+     * the chosen categories will be stored.
+     */
+<span class="fc" id="L26">    public ParameterCategoryList(){</span>
+<span class="fc" id="L27">        this.cl=new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L28">    }</span>
+
+    /**
+     * Allows the validation of an existing ParameterCategory object.
+     *
+     * @param pc An existing ParameterCategory object.
+     * @return a boolean statement true,if the ParameterCategory object is validated , false if not.
+     */
+    public boolean validateParameterCategory(ParameterCategory pc) {
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if (pc == null) {</span>
+<span class="fc" id="L38">            return false;</span>
+        }
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        return !cl.contains(pc);</span>
+    }
+
+    /**
+     * Allows the addition of an validated ParameterCategory object to the the parameter category
+     * list of the object of the class ParameterCategoryList.
+     *
+     * @param pc An existing ParameterCategory object.
+     * @return a boolean statement, true if the ParameterCategory object was added successfully to the parameter category
+     * list false if not.
+     */
+    public boolean saveParameterCategory(ParameterCategory pc) {
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        if (validateParameterCategory(pc)) {</span>
+<span class="fc" id="L53">            return cl.add(pc);</span>
+        }
+<span class="fc" id="L55">        return false;</span>
+    }
+
+    /**
+     * Allows for the return of the size of the list cl.
+     *
+     * @return size in a integer of the list cl.
+     */
+    public int getClSize() {
+<span class="fc" id="L64">        return cl.size();</span>
+    }
+
+    /**
+     * Method that returns the Parameter Category list.
+     *
+     * @return the Parameter Category list.
+     */
+    public List&lt;ParameterCategory&gt; getCl(){
+<span class="nc" id="L73">        return cl;</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

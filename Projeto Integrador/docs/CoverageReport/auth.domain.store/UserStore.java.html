@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserStore.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">auth.domain.store</a> &gt; <span class="el_source">UserStore.java</span></div><h1>UserStore.java</h1><pre class="source lang-java linenums">package auth.domain.store;
+
+import auth.domain.model.Email;
+import auth.domain.model.Password;
+import auth.domain.model.User;
+
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+
+/**
+ *
+ * @author Paulo Maio &lt;pam@isep.ipp.pt&gt;
+ */
+<span class="fc" id="L15">public class UserStore {</span>
+
+<span class="fc" id="L17">    private Set&lt;User&gt; store = new HashSet&lt;User&gt;();</span>
+
+    public User create(String name, String email, String password)
+    {
+<span class="fc" id="L21">        return new User(new Email(email), new Password(password), name);</span>
+    }
+
+    public boolean add(User user)
+    {
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">        if (user != null) {</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">            if (!exists(user))</span>
+<span class="fc" id="L28">                return this.store.add(user);</span>
+        }
+<span class="fc" id="L30">        return false;</span>
+    }
+
+    public boolean remove(User user)
+    {
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        if (user != null)</span>
+<span class="nc" id="L36">            return this.store.remove(user);</span>
+<span class="nc" id="L37">        return false;</span>
+    }
+
+    public Optional&lt;User&gt; getById(String email)
+    {
+<span class="fc" id="L42">        return this.getById(new Email(email));</span>
+    }
+
+    public Optional&lt;User&gt; getById(Email email)
+    {
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">        for(User user: this.store)</span>
+        {
+<span class="fc bfc" id="L49" title="All 2 branches covered.">            if(user.hasId(email))</span>
+<span class="fc" id="L50">                return Optional.of(user);</span>
+<span class="fc" id="L51">        }</span>
+<span class="nc" id="L52">        return Optional.empty();</span>
+    }
+
+    public boolean exists(String email)
+    {
+<span class="fc" id="L57">        Optional&lt;User&gt; result = getById(email);</span>
+<span class="fc" id="L58">        return result.isPresent();</span>
+    }
+
+    public boolean exists(Email email)
+    {
+<span class="nc" id="L63">        Optional&lt;User&gt; result = getById(email);</span>
+<span class="nc" id="L64">        return result.isPresent();</span>
+    }
+
+    public boolean exists(User user)
+    {
+<span class="fc" id="L69">        return this.store.contains(user);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

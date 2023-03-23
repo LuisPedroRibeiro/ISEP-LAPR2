@@ -1,0 +1,123 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+class RecordResultsUI{
+}
+
+class RecordResultsController{
+    + RecordResultsController()
+    + RecordResultsController(company)
+    + getParameterList()
+    + getTestByBarcode(barcode)
+    + addTestResult(parameterCode,result)
+    + validateTestResult()
+}
+
+class Company{
+    - designation
+
+    + getTestStore()
+}
+
+class TestStore{
+    + getTestByBarcode(barcode)
+    + addTestResultDate()
+}
+
+class Test{
+    - nhsCode
+    - code
+    - createdAt
+    - sampleDate
+    - resultDate
+    - reportDate
+
+    + addTestResult(result, parameterCode, metric)
+    + getTestParameterFor(parameterCode)
+    + setTestResultDate(testResultDate)
+}
+
+class Utils{
+    + currentDate()
+}
+class ParameterMapper{
+    + toDto(parameter)
+    + toDto(parameterList)
+}
+class TestParameter{
+    + getParameter()
+    + addTestResult(result, metric, referenceValue)
+}
+class ParameterDto{
+    - code
+    - shortName
+    - description
+    + parameterDto(code,shortName,description)
+}
+class Parameter{
+    - code
+    - shortName
+    - description
+}
+
+class TestType{
+    + getExternalModule()
+}
+
+class ExternalModuleAdapter1{
+    + getReferenceValue(parameter)
+    + getMetric(parameter)
+}
+class ExternalModuleAdapter2{
+    + getReferenceValue(parameter)
+     + getMetric(parameter)
+}
+class ExternalModuleAdapter3{
+    + getReferenceValue(parameter)
+     + getMetric(parameter)
+}
+
+Interface ExternalModule{
+    + getReferenceValue(parameter)
+     + getMetric(parameter)
+}
+
+class ReferenceValue{
+    - lowerReferenceValue
+    - upperReferenceValue
+
+    + ReferenceValue()
+}
+
+class TestParameterResult{
+    + TestParameterResult(result, metric, referenceValue)
+}
+
+RecordResultsUI ..> ParameterDto
+
+RecordResultsUI .> RecordResultsController
+RecordResultsController ..> Company
+RecordResultsController ..> TestStore
+RecordResultsController ..> Test
+Test ..> ExternalModule
+ExternalModule <|.. ExternalModuleAdapter1
+ExternalModule <|..  ExternalModuleAdapter2
+ExternalModule <|.. ExternalModuleAdapter3
+TestStore "1" -- "*" Test: has >
+TestStore .> Utils
+ParameterMapper ..> ParameterDto
+ParameterMapper ..> Parameter
+RecordResultsController ..> ParameterMapper
+RecordResultsController ..> ParameterDto
+Company "1" --- "*" Test: performs >
+TestType "*" ---- "1" ExternalModule: makes use of >
+Company "1" - "*" Parameter: capable of analysing >
+TestParameter "1" -- "0..1" TestParameterResult: contains >
+TestParameterResult "1" -- "1" ReferenceValue: records >
+Test "1" - "1..*" TestParameter: requests analysis of >
+TestParameter "*" - "1" Parameter: refers to >
+Test "*" -- "1" TestType: is of >
+
+
+@enduml

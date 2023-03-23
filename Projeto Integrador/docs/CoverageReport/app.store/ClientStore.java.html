@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClientStore.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.store</a> &gt; <span class="el_source">ClientStore.java</span></div><h1>ClientStore.java</h1><pre class="source lang-java linenums">package app.store;
+
+import app.domain.model.Client;
+import app.domain.model.Test;
+import app.domain.shared.EmailSMS;
+import app.mappers.dto.ClientDto;
+import app.utils.Utils;
+import auth.domain.model.Email;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author Pedro Graça &lt;1201188@isep.ipp.pt&gt;
+ */
+<span class="fc" id="L16">public class ClientStore {</span>
+
+    /**
+     * List with the capacity of save Client objects
+     */
+<span class="fc" id="L21">     List&lt;Client&gt; clientList = new ArrayList&lt;&gt;();</span>
+
+    /**
+     * Method that returns a new Client with the attributes contained in the ClientDto object
+     *
+     * @param clientDto the Client Data Transfer Object that contains the Client attributes
+     * @return a Client with the attributes given by parameter
+     */
+    public Client createClient(ClientDto clientDto) {
+<span class="fc" id="L30">        return new Client(clientDto);</span>
+    }
+
+    /**
+     * Method to validate the Client in a global way
+     *
+     * @param client the Client to be validated
+     * @return the boolean result of the Client validation
+     */
+    public boolean validateClient(Client client) {
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if (client == null)</span>
+<span class="fc" id="L41">            return false;</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        return !this.clientList.contains(client);</span>
+    }
+
+    /**
+     * Method to save the Client in the Client List
+     *
+     * @param client the Client to be added
+     * @return the boolean result of the addition of the Client to the Client List
+     */
+    public boolean saveClient(Client client) throws IOException {
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        if (!validateClient(client)) {</span>
+<span class="fc" id="L53">            return false;</span>
+        }else{
+<span class="fc" id="L55">            client.setPassword();</span>
+<span class="fc" id="L56">            client.addUserAndSendEmail();</span>
+        }
+<span class="fc" id="L58">        return this.clientList.add(client);</span>
+    }
+
+    /**
+     * Method just to save a Client to run the bootstrap
+     *
+     * @param client the Client
+     */
+    public void saveClientBootstrap(Client client) {
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">        if (!validateClient(client)) {</span>
+<span class="nc" id="L68">            return;</span>
+        }else{
+<span class="fc" id="L70">            client.setPassword();</span>
+        }
+<span class="fc" id="L72">        this.clientList.add(client);</span>
+<span class="fc" id="L73">    }</span>
+
+    /**
+     * Method that returns the list of Clients
+     *
+     * @return the list of Clients
+     */
+    public List&lt;Client&gt; getClientList() {
+<span class="fc" id="L81">        return clientList;</span>
+    }
+
+    /**
+     * Method that returns if in the Client list exists someone with the Phone Number that is given by parameter
+     *
+     * @param phoneNumber the Phone Number given by parameter
+     * @return the boolean result of the list containing this Phone Number
+     */
+    public boolean containsPhoneNumber(String phoneNumber) {
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        for (Client client : clientList) {</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">            if (phoneNumber.equals(client.getPhoneNumber())) {</span>
+<span class="fc" id="L93">                Utils.printLineToConsole(&quot;This Phone Number is already being used.&quot;);</span>
+<span class="fc" id="L94">                return true;</span>
+            }
+<span class="fc" id="L96">        }</span>
+<span class="fc" id="L97">        return false;</span>
+    }
+
+    /**
+     * Method that returns if in the Client list exists someone with the Email given by parameter
+     *
+     * @param email the Email given by parameter
+     * @return the boolean result of the list containing this Email
+     */
+    public boolean containsEmail(Email email) {
+<span class="fc bfc" id="L107" title="All 2 branches covered.">        for (Client client : clientList) {</span>
+<span class="fc bfc" id="L108" title="All 2 branches covered.">            if (email.equals(client.getEmail())) {</span>
+<span class="fc" id="L109">                Utils.printLineToConsole(&quot;This Email is already being used.&quot;);</span>
+<span class="fc" id="L110">                return true;</span>
+            }
+<span class="fc" id="L112">        }</span>
+<span class="fc" id="L113">        return false;</span>
+    }
+
+    /**
+     * Method that returns if a Client exists at the Company
+     *
+     * @param taxIdentificationNumber the TIN of the Client
+     * @return the boolean result of the verification
+     */
+    public boolean verifyClientByTin(String taxIdentificationNumber){
+<span class="nc bnc" id="L123" title="All 2 branches missed.">        for (Client client:clientList) {</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">            if(client.getTaxIdentificationNumber().equals(taxIdentificationNumber)){</span>
+<span class="nc" id="L125">                return true;</span>
+            }
+<span class="nc" id="L127">        }</span>
+<span class="nc" id="L128">       return false;</span>
+    }
+
+    /**
+     * Method that returns the Client that contains the Tax Identification Number given as a parameter
+     *
+     * @param taxIdentificationNumber the TIN of the Client
+     * @return the Client with the given data
+     */
+    public Client getClientByTin(String taxIdentificationNumber){
+<span class="nc bnc" id="L138" title="All 2 branches missed.">        for(Client client: clientList){</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            if (client.getTaxIdentificationNumber().equals(taxIdentificationNumber))</span>
+<span class="nc" id="L140">                return client;</span>
+<span class="nc" id="L141">        }</span>
+<span class="nc" id="L142">        return null;</span>
+    }
+
+    /**
+     * Allows the return of the client that possesses a test received as parameter
+     *
+     * @param test a object of the Test class
+     * @return The client if the test received as parameter belongs to a client in the clientList,null if it does not
+     */
+    public Client getClientByTest(Test test){
+<span class="pc bpc" id="L152" title="1 of 2 branches missed.">        for(Client client: clientList){</span>
+<span class="pc bpc" id="L153" title="1 of 2 branches missed.">            if(client.isTestInsideClientTestList(test)){</span>
+<span class="fc" id="L154">                return client;</span>
+            }
+<span class="nc" id="L156">        }</span>
+<span class="nc" id="L157">        return null;</span>
+    }
+
+    /**
+     * Allows the sending of a  text to the txt file emailAndSMSMessages.txt
+     * containing some information about the test being validated and the client the test belongs too.
+     *
+     * @param client An object of the Client class
+     * @param test An object of the Test class
+     */
+    public void sendEmail(Client client,Test test) throws IOException {
+<span class="fc" id="L168">        EmailSMS.sendTestNotification(client.getEmail(),client.getName(),test.getNhsCode());</span>
+<span class="fc" id="L169">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

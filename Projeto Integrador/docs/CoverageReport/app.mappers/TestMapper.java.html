@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TestMapper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.mappers</a> &gt; <span class="el_source">TestMapper.java</span></div><h1>TestMapper.java</h1><pre class="source lang-java linenums">package app.mappers;
+
+import app.domain.model.Parameter;
+import app.domain.model.ParameterCategory;
+import app.domain.model.Test;
+import app.domain.model.TestParameter;
+import app.mappers.dto.TestDto;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * This Class allows the interaction between User and System in a safety way.
+ *
+ * @author Miguel Ramos &lt;1201247@isep.ipp.pt&gt;
+ * @author André Soares &lt;1201314@isep.ipp.pt&gt;
+ * @author Luís Ribeiro &lt;1201184@isep.ipp.pt&gt;
+ */
+<span class="fc" id="L19">public class TestMapper{</span>
+    /**
+     * Allows the transformation of a Test to a Data Transfer Object.
+     *
+     * @param test the Test that will be transformed
+     * @return a new Test Dto
+     */
+    public TestDto toDTOWithDate(Test test)
+    {
+<span class="fc" id="L28">        return new TestDto(test.getCode(), test.getNhsCode(),test.getCreatedAt(), test.getSampleDate(), test.getResultDate(),test.getReportDate());</span>
+    }
+    /**
+     * Allows the transformation of a Test to a Data Transfer Object.
+     *
+     * @param test the Test that will be transformed.
+     * @return a new Test Dto.
+     */
+    public TestDto toDTOForReport(Test test){
+<span class="fc" id="L37">        return new TestDto(test.getCode(), test.getCreatedAt(), test.getSampleDate(), test.getResultDate());</span>
+    }
+
+    /**
+     * Allows the transformation of a Test to a Data Transfer Object.
+     *
+     * @param test the Test that will be transformed.
+     * @return a new Test Dto.
+     */
+    public TestDto toDTOForSample(Test test){
+<span class="fc" id="L47">        List&lt;TestParameter&gt; testParameterList=test.getTestParameterList();</span>
+<span class="fc" id="L48">        List&lt;Parameter&gt; parameterList=new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        for(TestParameter tp : testParameterList) {</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">            if (!parameterList.contains(tp.getParameter())) {</span>
+<span class="fc" id="L51">                parameterList.add(tp.getParameter());</span>
+            }
+<span class="fc" id="L53">        }</span>
+<span class="fc" id="L54">        List&lt;ParameterCategory&gt; parameterCategoriesList=new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        for(Parameter tp : parameterList) {</span>
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">            if (!parameterCategoriesList.contains(tp.getPc())) {</span>
+<span class="fc" id="L57">                parameterCategoriesList.add(tp.getPc());</span>
+            }
+<span class="fc" id="L59">        }</span>
+<span class="fc" id="L60">         return new TestDto(test.getCode(),test.getNhsCode(), test.getCreatedAt(), TestTypeMapper.toDTO(test.getTestType()),</span>
+                 parameterList, parameterCategoriesList);
+    }
+
+    /**
+     * Allows the transformation of list Test objects into a list of TestDTO objects containing the same information
+     * (nhsCode,registrationDate,sample insertion date,result insertion Date and report insertion date).
+     *
+     * @param testWithReportList A list of Test objects.
+     * @return A list of TestDTO objects.
+     */
+    public List&lt;TestDto&gt; toDTOWithDate(List&lt;Test&gt; testWithReportList)
+    {
+<span class="fc" id="L73">        List&lt;TestDto&gt; testList = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        for(Test test: testWithReportList)</span>
+        {
+<span class="fc" id="L76">            testList.add(this.toDTOWithDate(test));</span>
+<span class="fc" id="L77">        }</span>
+<span class="fc" id="L78">        return testList;</span>
+    }
+
+    /**
+     * Allows the transformation of list Test objects into a list of TestDTO objects containing the same information
+     * (code,registrationDate,sample insertion date,result insertion date).
+     *
+     * @param testStore A list of Test objects.
+     * @return A list of TestDTO objects.
+     */
+    public List&lt;TestDto&gt; toDTOForReport(List&lt;Test&gt; testStore) {
+<span class="fc" id="L89">        List&lt;TestDto&gt; testList = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">        for(Test test: testStore)</span>
+        {
+<span class="fc" id="L92">            testList.add(this.toDTOForReport(test));</span>
+<span class="fc" id="L93">        }</span>
+<span class="fc" id="L94">        return testList;</span>
+    }
+
+    /**
+     * Allows the transformation of list Test objects into a list of TestDTO objects containing the same information
+     * (code,registrationDate,sample insertion date,result insertion date).
+     *
+     * @param testStore A list of Test objects.
+     * @return A list of TestDTO objects.
+     */
+    public List&lt;TestDto&gt; toDTOForSample(List&lt;Test&gt; testStore) {
+<span class="nc" id="L105">        List&lt;TestDto&gt; testList = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">        for(Test test: testStore)</span>
+        {
+<span class="nc" id="L108">            testList.add(this.toDTOForSample(test));</span>
+<span class="nc" id="L109">        }</span>
+<span class="nc" id="L110">        return testList;</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

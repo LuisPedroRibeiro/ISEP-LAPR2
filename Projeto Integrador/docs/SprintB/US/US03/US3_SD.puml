@@ -1,0 +1,70 @@
+@startuml
+
+actor Receptionist as R
+participant ":RegisterClientUI" as A
+participant ":RegisterClientController" as B
+participant ":Company" as C
+participant "store: ClientStore" as D
+
+
+
+
+
+autonumber
+activate R
+R -> A: starts client registration
+activate A
+A -> R: requests data ( name, phoneNumber, taxIdentificationNumber, \n email, birhtDate, gender, nhsID, citizenCardNumber)
+create "password: Password" as P
+A-> P : password = createRandomPassword()
+deactivate A
+R -> A: types requested data
+activate A
+A-> B: registerClient(name, phoneNumber, taxIdentificationNumber, \n email, birhtDate, gender, nhsID, citizenCardNumber,password)
+activate B
+B-> C: store = getClientStore()
+activate C
+deactivate C
+B -> D: client = registerClient(name, phoneNumber, taxIdentificationNumber, \n email, birhtDate, gender, nhsID, citizenCardNumber, password)
+activate D
+
+create  "client: Client" as E
+D ->E: create(name, phoneNumber, taxIdentificationNumber,email, birhtDate, gender, nhsID, citizenCardNumber, password)
+
+create "authFacade: \n AuthFacade" as Auth
+activate E
+E->Auth: addUser(name,email,password)
+E-> E : emailSender(email)
+activate E
+deactivate E
+deactivate E
+deactivate D
+B -> D: validateClient(client)
+activate D
+deactivate D
+deactivate B
+A -> R: shows the typed data and requests a confirmation
+deactivate A
+R-> A:  confirms the data
+activate A
+
+A-> B: saveClient()
+activate B
+
+B -> D: saveClient(client)
+activate D
+
+D -> D: validateClient(client)
+activate D
+deactivate D
+D -> D: addClient(client)
+activate D
+deactivate D
+A -> R: informs operation success
+deactivate B
+deactivate D
+deactivate A
+deactivate R
+
+
+@enduml

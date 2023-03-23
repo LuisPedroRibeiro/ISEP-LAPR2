@@ -1,0 +1,123 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class ClinicalAnalysisLaboratory
+class MedicalLabTechnician
+class RecordSamplesUI
+class RecordSamplesController
+class Company
+class TestMapper
+class TestDTO
+class Test
+class Sample
+interface BarcodeExternalModule
+class BarcodeAdapter
+class Utils
+class BarbecueAPI
+
+MedicalLabTechnician ..> RecordSamplesUI
+RecordSamplesUI ..> RecordSamplesController
+Company <. RecordSamplesController
+TestMapper <.. RecordSamplesController
+TestDTO <. TestMapper
+RecordSamplesController ..> Test
+BarcodeExternalModule <. BarcodeAdapter
+RecordSamplesController .> TestStore
+TestMapper <. RecordSamplesUI
+TestDTO <. RecordSamplesUI
+
+ClinicalAnalysisLaboratory "1" <- "*" MedicalLabTechnician : works at
+BarcodeAdapter -> BarbecueAPI
+Sample "1" -> "1" BarcodeExternalModule : uses
+RecordSamplesController "1" -> "1" Utils : uses
+Test "1" --> "*" Sample : has
+Company "1" -> "*" Sample : has
+Company "1" --> "1" TestStore: has
+TestStore "1" -> "*" Test : has
+
+class ClinicalAnalysisLaboratory{
+}
+
+class RecordSamplesUI {
+}
+
+class RecordSamplesController {
++getTestToBeSampledList()
++listDto()
++getTestToBeSampledByIndex(index)
++createSample()
++getTest()
++addSampleToTest()
++saveTestWithSamples(test)
+}
+
+class Company {
++getTestToBeSampledList()
++toDtoForSample()
++getSample()
++getTest()
+}
+
+class TestDTO{
+}
+
+class TestMapper{
++toDtoForSample()
+}
+
+class TestStore{
++get(index)
++hasSample()
++checkSampleIsNull()
++addTestList(testShow)
++getTestToBeSampledByIndex(index)
++saveTestWithSample(test)
++validatesTestWithSamples(test)
+-addTestWithSamples(test)
+}
+
+class Test {
+- code
+- nhsCode
+- createdAt
+- resultDate
+- sampleDate
+- reportDate
+- testType
+- clinicalAnalysisLaboratory
+- testReport
++createSample()
++setSampleDate()
++getTest()
++addSampleToTest()
++hasSample()
+}
+
+class Sample {
+-barcode
++createSample()
++getBarcode()
+}
+
+interface BarcodeExternalModule {
++getBarcode()
+}
+
+class BarcodeAdapter {
++getBarcode()
+}
+
+class BarbecueAPI{
++createUPCA();
++setBarHeight();
++setBarWidth();
++setAlignmentX();
++setAlignmentY();
++saveJPEG();
+}
+
+class Utils{
++getCurrentDate()
+}
+
+@enduml

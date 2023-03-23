@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CreateTestTypeControllerTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.controller</a> &gt; <span class="el_source">CreateTestTypeControllerTest.java</span></div><h1>CreateTestTypeControllerTest.java</h1><pre class="source lang-java linenums">package app.controller;
+
+import app.mappers.dto.ParameterCategoryDto;
+import app.mappers.dto.TestTypeDto;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.List;
+
+/**
+ * @author André Soares &lt;1201314@isep.ipp.pt&gt;
+ */
+<span class="fc" id="L13">public class CreateTestTypeControllerTest {</span>
+
+    @Test
+    public void createTestType() {
+<span class="fc" id="L17">        CreateTestTypeController testTypeController=new CreateTestTypeController();</span>
+
+<span class="fc" id="L19">        boolean result=testTypeController.createTestType(&quot;14490&quot;,&quot;method&quot;,&quot;descriptio&quot;);</span>
+
+<span class="fc" id="L21">        Assert.assertTrue(result);</span>
+<span class="fc" id="L22">    }</span>
+
+    @Test
+    public void saveParameterCategory() {
+<span class="fc" id="L26">        CreateParameterCategoryController parameterCategoryController=new CreateParameterCategoryController();</span>
+<span class="fc" id="L27">        parameterCategoryController.createParameterCategory(&quot;12245&quot;,&quot;nam&quot;);</span>
+<span class="fc" id="L28">        parameterCategoryController.saveParameterCategory();</span>
+<span class="fc" id="L29">        CreateTestTypeController testTypeController=new CreateTestTypeController();</span>
+<span class="fc" id="L30">        testTypeController.createTestType(&quot;11344&quot;,&quot;method&quot;,&quot;descriptione&quot;);</span>
+
+<span class="fc" id="L32">        boolean result=testTypeController.saveParameterCategory(&quot;12245&quot;);</span>
+<span class="fc" id="L33">        boolean result1=testTypeController.saveParameterCategory(&quot;12245&quot;);</span>
+
+<span class="fc" id="L35">        Assert.assertTrue(result);</span>
+<span class="fc" id="L36">        Assert.assertFalse(result1);</span>
+<span class="fc" id="L37">    }</span>
+
+    @Test
+    public void saveTestType() {
+<span class="fc" id="L41">        CreateParameterCategoryController parameterCategoryController=new CreateParameterCategoryController();</span>
+<span class="fc" id="L42">        parameterCategoryController.createParameterCategory(&quot;12346&quot;,&quot;namek&quot;);</span>
+<span class="fc" id="L43">        parameterCategoryController.saveParameterCategory();</span>
+<span class="fc" id="L44">        CreateTestTypeController testTypeController=new CreateTestTypeController();</span>
+<span class="fc" id="L45">        testTypeController.createTestType(&quot;00006&quot;,&quot;method&quot;,&quot;descriptionn&quot;);</span>
+<span class="fc" id="L46">        testTypeController.saveParameterCategory(&quot;12346&quot;);</span>
+
+<span class="fc" id="L48">        boolean result=testTypeController.saveTestType();</span>
+
+<span class="fc" id="L50">        Assert.assertTrue(result);</span>
+<span class="fc" id="L51">    }</span>
+
+    @Test
+    public void getParameterCategoryStoreDto() {
+<span class="fc" id="L55">        CreateParameterCategoryController parameterCategoryController=new CreateParameterCategoryController();</span>
+<span class="fc" id="L56">        parameterCategoryController.createParameterCategory(&quot;16386&quot;,&quot;namebb&quot;);</span>
+<span class="fc" id="L57">        parameterCategoryController.saveParameterCategory();</span>
+<span class="fc" id="L58">        CreateTestTypeController testTypeController=new CreateTestTypeController();</span>
+<span class="fc" id="L59">        List&lt;ParameterCategoryDto&gt;  parameterCategoryDtoList = testTypeController.getParameterCategoryStoreDto();</span>
+<span class="fc" id="L60">        boolean result=false;</span>
+
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        for (ParameterCategoryDto pc:parameterCategoryDtoList){</span>
+<span class="pc bpc" id="L63" title="1 of 4 branches missed.">            if(pc.getCode().equals(&quot;16386&quot;) &amp;&amp; pc.getName().equals(&quot;namebb&quot;)){</span>
+<span class="fc" id="L64">                result=true;</span>
+            }
+<span class="fc" id="L66">        }</span>
+
+<span class="fc" id="L68">        Assert.assertTrue(result);</span>
+<span class="fc" id="L69">    }</span>
+    @Test
+    public void getTestTypeDto() {
+<span class="fc" id="L72">        CreateTestTypeController testTypeController= new CreateTestTypeController();</span>
+
+<span class="fc" id="L74">        testTypeController.createTestType(&quot;11133&quot;,&quot;method&quot;,&quot;descrition&quot;);</span>
+<span class="fc" id="L75">        CreateParameterCategoryController parameterCategoryController=new CreateParameterCategoryController();</span>
+<span class="fc" id="L76">        parameterCategoryController.createParameterCategory(&quot;98760&quot;,&quot;namel&quot;);</span>
+<span class="fc" id="L77">        parameterCategoryController.saveParameterCategory();</span>
+<span class="fc" id="L78">        testTypeController.saveParameterCategory(&quot;98760&quot;);</span>
+<span class="fc" id="L79">        testTypeController.saveTestType();</span>
+
+<span class="fc" id="L81">        List&lt;TestTypeDto&gt; testTypeDtoList= testTypeController.getTestTypeDto();</span>
+
+<span class="fc" id="L83">        boolean print=false;</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        for (TestTypeDto ttDto: testTypeDtoList){</span>
+<span class="pc bpc" id="L85" title="1 of 4 branches missed.">            if(ttDto.getCode().equals(&quot;11133&quot;) &amp;&amp; ttDto.getDescription().equals(&quot;descrition&quot;)){</span>
+<span class="fc" id="L86">                print=true;</span>
+            }
+<span class="fc" id="L88">        }</span>
+<span class="fc" id="L89">        Assert.assertTrue(print);</span>
+<span class="fc" id="L90">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

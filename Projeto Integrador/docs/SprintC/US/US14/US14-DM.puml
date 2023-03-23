@@ -1,0 +1,59 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Company{
+    designation
+}
+
+class SpecialistDoctor{
+    doctorIndexNumber
+}
+
+class TestReport{
+    description
+    header
+}
+class Employee{
+    name
+    phoneNumber
+    email
+    password
+    employeeID
+    socCode
+    organizationRole
+    address
+}
+
+class TestParameterResult{
+    value
+    metric
+    createdAt
+}
+
+class Test{
+    code
+    nhsCode
+    description
+    createdAt
+    sampleDate
+    resultDate
+    reportDate
+}
+
+class ReferenceValue {
+    upperReferenceValue
+    lowerReferenceValue
+}
+
+SpecialistDoctor --|> Employee
+SpecialistDoctor "1" -- "1" TestReport: generates >
+
+TestReport "1" -- "1..*" TestParameterResult: generated from >
+TestReport "0..1" -- "1" Test: relates to >
+
+TestParameterResult "1" -- "1" ReferenceValue: records >
+
+Company "1" -- "*" Test: performs >
+Company "1" -- "1..*" Employee: has >
+
+@enduml

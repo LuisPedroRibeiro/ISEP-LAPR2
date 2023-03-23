@@ -1,0 +1,65 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Company{
+designation
+}
+class Test{
+ code
+ nhsCode
+ createdAt
+ sampleDate
+ resultDate
+ reportDate
+}
+class TestType{
+code
+description
+collectionMethod
+}
+class TestParameter
+class ExternalModule
+class ReferenceValue{
+lowerReferenceValue
+upperReferenceValue
+}
+class Parameter{
+code
+shortName
+description
+}
+class TestParameterResult{
+createdAt
+value
+metric
+}
+class Sample{
+barcodeNumber
+}
+class ClinicalChemistryTechnologist{
+}
+class Employee{
+    name
+    phoneNumber
+    email
+    password
+    employeeID
+    socCode
+    organizationRole
+    address
+}
+Company "1" -- "1..*" Employee: has >
+ClinicalChemistryTechnologist --|> Employee
+Company "1" -- "*" TestType: conducts >
+Company "1" -- "*" Test: performs >
+TestType "*" - "1" ExternalModule: makes use of >
+Company "1" -- "*" Parameter: capable of analysing >
+Sample "*" -- "1" Test: has <
+TestParameter "1" -- "0..1" TestParameterResult: contains >
+TestParameterResult "1" -- "1" ReferenceValue: records >
+TestParameterResult "*" -- "1" ClinicalChemistryTechnologist: records <
+ReferenceValue "*" -- "1" ExternalModule: provided by >
+Test "*" - "1..*" Parameter: requests analysis of >
+(Test, Parameter) .. TestParameter
+Test "*" -- "1" TestType: is of >
+@enduml

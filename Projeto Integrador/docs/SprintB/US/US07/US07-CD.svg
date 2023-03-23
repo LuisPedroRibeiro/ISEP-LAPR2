@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1361.25px" preserveAspectRatio="none" style="width:1260px;height:1361px;" version="1.1" viewBox="0 0 1260 1361" width="1260px" zoomAndPan="magnify"><defs><filter height="300%" id="f1xbfwf7dpa4km" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.5"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="5.0" dy="5.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[02e4b9b7573f1156f41e60aa5b4e25a4]
+class Company--><rect codeLine="3" fill="#FEFECE" filter="url(#f1xbfwf7dpa4km)" height="94.5898" id="Company" style="stroke:#A80036;stroke-width:1.875;" width="151.25" x="559.375" y="419.375"/><ellipse cx="598.375" cy="439.375" fill="#ADD1B2" rx="13.75" ry="13.75" style="stroke:#A80036;stroke-width:1.25;"/><path d="M600.875,435 Q601.1289,434.375 601.4219,434.0625 Q601.7148,433.75 602.0469,433.75 Q602.6328,433.75 603.0039,434.1016 Q603.375,434.4531 603.375,435.2734 L603.375,437.2266 Q603.375,438.0469 603.0234,438.3984 Q602.6719,438.75 602.125,438.75 Q601.6367,438.75 601.3242,438.5352 Q601.0117,438.3203 600.875,437.7539 Q600.8164,437.3633 600.6016,437.1484 Q600.2109,436.7383 599.5078,436.5039 Q598.8047,436.25 598.1016,436.25 Q597.2227,436.25 596.4805,436.6016 Q595.7578,436.9531 595.1914,437.7344 Q594.625,438.5156 594.625,439.5898 L594.625,440.7422 Q594.625,442.0313 595.6797,442.8906 Q596.7344,443.75 598.6094,443.75 Q599.7227,443.75 600.5039,443.4961 Q600.9531,443.3594 601.4609,442.9102 Q601.793,442.6563 601.9688,442.5781 Q602.1445,442.5 602.3594,442.5 Q602.7695,442.5 603.0625,442.832 Q603.375,443.1445 603.375,443.5938 Q603.375,444.0234 602.9453,444.5313 Q602.3203,445.2734 601.3242,445.6836 Q600.0156,446.25 598.4141,446.25 Q596.5391,446.25 595.0352,445.5078 Q593.8242,444.9219 592.9648,443.6523 Q592.125,442.3828 592.125,440.8789 L592.125,439.5117 Q592.125,437.9492 592.8672,436.582 Q593.6289,435.2148 594.9375,434.4922 Q596.2656,433.75 597.75,433.75 Q598.6484,433.75 599.4297,434.0625 Q600.2109,434.375 600.875,435 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="15" lengthAdjust="spacing" textLength="66.25" x="620.375" y="445.5127">Company</text><line style="stroke:#A80036;stroke-width:1.875;" x1="560.625" x2="709.375" y1="459.375" y2="459.375"/><rect fill="none" height="7.5" style="stroke:#C82930;stroke-width:1.25;" width="7.5" x="569.375" y="469.375"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="68.75" x="584.375" y="478.6487">designation</text><line style="stroke:#A80036;stroke-width:1.875;" x1="560.625" x2="709.375" y1="486.6699" y2="486.6699"/><ellipse cx="573.125" cy="500.4199" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="118.75" x="584.375" y="505.9436">getEmployeeStore()</text><!--MD5=[7421f545a0d8420c5bec41e74b387d9c]
+class Employee--><rect codeLine="9" fill="#FEFECE" filter="url(#f1xbfwf7dpa4km)" height="284.834" id="Employee" style="stroke:#A80036;stroke-width:1.875;" width="260" x="427.5" y="663.75"/><ellipse cx="517.8125" cy="683.75" fill="#ADD1B2" rx="13.75" ry="13.75" style="stroke:#A80036;stroke-width:1.25;"/><path d="M520.3125,679.375 Q520.5664,678.75 520.8594,678.4375 Q521.1523,678.125 521.4844,678.125 Q522.0703,678.125 522.4414,678.4766 Q522.8125,678.8281 522.8125,679.6484 L522.8125,681.6016 Q522.8125,682.4219 522.4609,682.7734 Q522.1094,683.125 521.5625,683.125 Q521.0742,683.125 520.7617,682.9102 Q520.4492,682.6953 520.3125,682.1289 Q520.2539,681.7383 520.0391,681.5234 Q519.6484,681.1133 518.9453,680.8789 Q518.2422,680.625 517.5391,680.625 Q516.6602,680.625 515.918,680.9766 Q515.1953,681.3281 514.6289,682.1094 Q514.0625,682.8906 514.0625,683.9648 L514.0625,685.1172 Q514.0625,686.4063 515.1172,687.2656 Q516.1719,688.125 518.0469,688.125 Q519.1602,688.125 519.9414,687.8711 Q520.3906,687.7344 520.8984,687.2852 Q521.2305,687.0313 521.4063,686.9531 Q521.582,686.875 521.7969,686.875 Q522.207,686.875 522.5,687.207 Q522.8125,687.5195 522.8125,687.9688 Q522.8125,688.3984 522.3828,688.9063 Q521.7578,689.6484 520.7617,690.0586 Q519.4531,690.625 517.8516,690.625 Q515.9766,690.625 514.4727,689.8828 Q513.2617,689.2969 512.4023,688.0273 Q511.5625,686.7578 511.5625,685.2539 L511.5625,683.8867 Q511.5625,682.3242 512.3047,680.957 Q513.0664,679.5898 514.375,678.8672 Q515.7031,678.125 517.1875,678.125 Q518.0859,678.125 518.8672,678.4375 Q519.6484,678.75 520.3125,679.375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="15" lengthAdjust="spacing" textLength="68.75" x="543.4375" y="689.8877">Employee</text><line style="stroke:#A80036;stroke-width:1.875;" x1="428.75" x2="686.25" y1="703.75" y2="703.75"/><rect fill="none" height="7.5" style="stroke:#C82930;stroke-width:1.25;" width="7.5" x="437.5" y="713.75"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="32.5" x="452.5" y="723.0237">name</text><rect fill="none" height="7.5" style="stroke:#C82930;stroke-width:1.25;" width="7.5" x="437.5" y="731.0449"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="83.75" x="452.5" y="740.3186">phoneNumber</text><rect fill="none" height="7.5" style="stroke:#C82930;stroke-width:1.25;" width="7.5" x="437.5" y="748.3398"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="30" x="452.5" y="757.6135">email</text><rect fill="none" height="7.5" style="stroke:#C82930;stroke-width:1.25;" width="7.5" x="437.5" y="765.6348"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="62.5" x="452.5" y="774.9084">password</text><rect fill="none" height="7.5" style="stroke:#C82930;stroke-width:1.25;" width="7.5" x="437.5" y="782.9297"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="68.75" x="452.5" y="792.2034">employeeID</text><rect fill="none" height="7.5" style="stroke:#C82930;stroke-width:1.25;" width="7.5" x="437.5" y="800.2246"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="53.75" x="452.5" y="809.4983">socCode</text><rect fill="none" height="7.5" style="stroke:#C82930;stroke-width:1.25;" width="7.5" x="437.5" y="817.5195"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="100" x="452.5" y="826.7932">organizationRole</text><rect fill="none" height="7.5" style="stroke:#C82930;stroke-width:1.25;" width="7.5" x="437.5" y="834.8145"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="50" x="452.5" y="844.0881">address</text><line style="stroke:#A80036;stroke-width:1.875;" x1="428.75" x2="686.25" y1="852.1094" y2="852.1094"/><ellipse cx="441.25" cy="865.8594" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="227.5" x="452.5" y="871.3831">Employee(name, phoneNumber, email,</text><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="223.75" x="456.25" y="888.678">socCode, organizationRole, address)</text><ellipse cx="441.25" cy="900.4492" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="91.25" x="452.5" y="905.9729">setPassword()</text><ellipse cx="441.25" cy="917.7441" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="97.5" x="452.5" y="923.2678">setEmployeeID()</text><ellipse cx="441.25" cy="935.0391" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="102.5" x="452.5" y="940.5627">setAuthFacade()</text><!--MD5=[7d96fd15f3014691d2fcaf89c5791e2a]
+class SpecialistDoctor--><rect codeLine="25" fill="#FEFECE" filter="url(#f1xbfwf7dpa4km)" height="111.8848" id="SpecialistDoctor" style="stroke:#A80036;stroke-width:1.875;" width="385" x="8.75" y="1128.75"/><ellipse cx="139.6875" cy="1148.75" fill="#ADD1B2" rx="13.75" ry="13.75" style="stroke:#A80036;stroke-width:1.25;"/><path d="M142.1875,1144.375 Q142.4414,1143.75 142.7344,1143.4375 Q143.0273,1143.125 143.3594,1143.125 Q143.9453,1143.125 144.3164,1143.4766 Q144.6875,1143.8281 144.6875,1144.6484 L144.6875,1146.6016 Q144.6875,1147.4219 144.3359,1147.7734 Q143.9844,1148.125 143.4375,1148.125 Q142.9492,1148.125 142.6367,1147.9102 Q142.3242,1147.6953 142.1875,1147.1289 Q142.1289,1146.7383 141.9141,1146.5234 Q141.5234,1146.1133 140.8203,1145.8789 Q140.1172,1145.625 139.4141,1145.625 Q138.5352,1145.625 137.793,1145.9766 Q137.0703,1146.3281 136.5039,1147.1094 Q135.9375,1147.8906 135.9375,1148.9648 L135.9375,1150.1172 Q135.9375,1151.4063 136.9922,1152.2656 Q138.0469,1153.125 139.9219,1153.125 Q141.0352,1153.125 141.8164,1152.8711 Q142.2656,1152.7344 142.7734,1152.2852 Q143.1055,1152.0313 143.2813,1151.9531 Q143.457,1151.875 143.6719,1151.875 Q144.082,1151.875 144.375,1152.207 Q144.6875,1152.5195 144.6875,1152.9688 Q144.6875,1153.3984 144.2578,1153.9063 Q143.6328,1154.6484 142.6367,1155.0586 Q141.3281,1155.625 139.7266,1155.625 Q137.8516,1155.625 136.3477,1154.8828 Q135.1367,1154.2969 134.2773,1153.0273 Q133.4375,1151.7578 133.4375,1150.2539 L133.4375,1148.8867 Q133.4375,1147.3242 134.1797,1145.957 Q134.9414,1144.5898 136.25,1143.8672 Q137.5781,1143.125 139.0625,1143.125 Q139.9609,1143.125 140.7422,1143.4375 Q141.5234,1143.75 142.1875,1144.375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="15" lengthAdjust="spacing" textLength="112.5" x="165.3125" y="1154.8877">SpecialistDoctor</text><line style="stroke:#A80036;stroke-width:1.875;" x1="10" x2="392.5" y1="1168.75" y2="1168.75"/><rect fill="none" height="7.5" style="stroke:#C82930;stroke-width:1.25;" width="7.5" x="18.75" y="1178.75"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="117.5" x="33.75" y="1188.0237">doctorIndexNumber</text><line style="stroke:#A80036;stroke-width:1.875;" x1="10" x2="392.5" y1="1196.0449" y2="1196.0449"/><ellipse cx="22.5" cy="1209.7949" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="267.5" x="33.75" y="1215.3186">SpecialistDoctor(name, phoneNumber, email,</text><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="348.75" x="37.5" y="1232.6135">socCode, organizationRole, address, doctorIndexNumber)</text><!--MD5=[e97daf9298e09b9cb975d7fc43fc205e]
+class RegisterNewEmployeeUI--><rect codeLine="31" fill="#FEFECE" filter="url(#f1xbfwf7dpa4km)" height="60" id="RegisterNewEmployeeUI" style="stroke:#A80036;stroke-width:1.875;" width="213.75" x="528.125" y="8.75"/><ellipse cx="546.875" cy="28.75" fill="#ADD1B2" rx="13.75" ry="13.75" style="stroke:#A80036;stroke-width:1.25;"/><path d="M549.375,24.375 Q549.6289,23.75 549.9219,23.4375 Q550.2148,23.125 550.5469,23.125 Q551.1328,23.125 551.5039,23.4766 Q551.875,23.8281 551.875,24.6484 L551.875,26.6016 Q551.875,27.4219 551.5234,27.7734 Q551.1719,28.125 550.625,28.125 Q550.1367,28.125 549.8242,27.9102 Q549.5117,27.6953 549.375,27.1289 Q549.3164,26.7383 549.1016,26.5234 Q548.7109,26.1133 548.0078,25.8789 Q547.3047,25.625 546.6016,25.625 Q545.7227,25.625 544.9805,25.9766 Q544.2578,26.3281 543.6914,27.1094 Q543.125,27.8906 543.125,28.9648 L543.125,30.1172 Q543.125,31.4063 544.1797,32.2656 Q545.2344,33.125 547.1094,33.125 Q548.2227,33.125 549.0039,32.8711 Q549.4531,32.7344 549.9609,32.2852 Q550.293,32.0313 550.4688,31.9531 Q550.6445,31.875 550.8594,31.875 Q551.2695,31.875 551.5625,32.207 Q551.875,32.5195 551.875,32.9688 Q551.875,33.3984 551.4453,33.9063 Q550.8203,34.6484 549.8242,35.0586 Q548.5156,35.625 546.9141,35.625 Q545.0391,35.625 543.5352,34.8828 Q542.3242,34.2969 541.4648,33.0273 Q540.625,31.7578 540.625,30.2539 L540.625,28.8867 Q540.625,27.3242 541.3672,25.957 Q542.1289,24.5898 543.4375,23.8672 Q544.7656,23.125 546.25,23.125 Q547.1484,23.125 547.9297,23.4375 Q548.7109,23.75 549.375,24.375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="15" lengthAdjust="spacing" textLength="173.75" x="564.375" y="34.8877">RegisterNewEmployeeUI</text><line style="stroke:#A80036;stroke-width:1.875;" x1="529.375" x2="740.625" y1="48.75" y2="48.75"/><line style="stroke:#A80036;stroke-width:1.875;" x1="529.375" x2="740.625" y1="58.75" y2="58.75"/><!--MD5=[2f01b1126ff33a0669651ec2488a5ef9]
+class Password--><rect codeLine="34" fill="#FEFECE" filter="url(#f1xbfwf7dpa4km)" height="267.5391" id="Password" style="stroke:#A80036;stroke-width:1.875;" width="175" x="171.25" y="672.5"/><ellipse cx="219.25" cy="692.5" fill="#ADD1B2" rx="13.75" ry="13.75" style="stroke:#A80036;stroke-width:1.25;"/><path d="M221.75,688.125 Q222.0039,687.5 222.2969,687.1875 Q222.5898,686.875 222.9219,686.875 Q223.5078,686.875 223.8789,687.2266 Q224.25,687.5781 224.25,688.3984 L224.25,690.3516 Q224.25,691.1719 223.8984,691.5234 Q223.5469,691.875 223,691.875 Q222.5117,691.875 222.1992,691.6602 Q221.8867,691.4453 221.75,690.8789 Q221.6914,690.4883 221.4766,690.2734 Q221.0859,689.8633 220.3828,689.6289 Q219.6797,689.375 218.9766,689.375 Q218.0977,689.375 217.3555,689.7266 Q216.6328,690.0781 216.0664,690.8594 Q215.5,691.6406 215.5,692.7148 L215.5,693.8672 Q215.5,695.1563 216.5547,696.0156 Q217.6094,696.875 219.4844,696.875 Q220.5977,696.875 221.3789,696.6211 Q221.8281,696.4844 222.3359,696.0352 Q222.668,695.7813 222.8438,695.7031 Q223.0195,695.625 223.2344,695.625 Q223.6445,695.625 223.9375,695.957 Q224.25,696.2695 224.25,696.7188 Q224.25,697.1484 223.8203,697.6563 Q223.1953,698.3984 222.1992,698.8086 Q220.8906,699.375 219.2891,699.375 Q217.4141,699.375 215.9102,698.6328 Q214.6992,698.0469 213.8398,696.7773 Q213,695.5078 213,694.0039 L213,692.6367 Q213,691.0742 213.7422,689.707 Q214.5039,688.3398 215.8125,687.6172 Q217.1406,686.875 218.625,686.875 Q219.5234,686.875 220.3047,687.1875 Q221.0859,687.5 221.75,688.125 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="15" lengthAdjust="spacing" textLength="70" x="243.25" y="698.6377">Password</text><line style="stroke:#A80036;stroke-width:1.875;" x1="172.5" x2="345" y1="712.5" y2="712.5"/><rect fill="none" height="7.5" style="stroke:#C82930;stroke-width:1.25;" width="7.5" x="181.25" y="722.5"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="62.5" x="196.25" y="731.7737">password</text><rect fill="none" height="7.5" style="stroke:#C82930;stroke-width:1.25;" width="7.5" x="181.25" y="739.7949"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="87.5" x="196.25" y="749.0686">numbersArray</text><rect fill="none" height="7.5" style="stroke:#C82930;stroke-width:1.25;" width="7.5" x="181.25" y="757.0898"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="72.5" x="196.25" y="766.3635">lettersArray</text><rect fill="none" height="7.5" style="stroke:#C82930;stroke-width:1.25;" width="7.5" x="181.25" y="774.3848"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="85" x="196.25" y="783.6584">symbolsArray</text><line style="stroke:#A80036;stroke-width:1.875;" x1="172.5" x2="345" y1="791.6797" y2="791.6797"/><ellipse cx="185" cy="805.4297" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="117.5" x="196.25" y="810.9534">randomPassword()</text><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="0" x="200" y="828.2483"/><ellipse cx="185" cy="840.0195" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="135" x="196.25" y="845.5432">Password(password)</text><ellipse cx="185" cy="857.3145" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="118.75" x="196.25" y="862.8381">validate(password)</text><rect fill="#F24D5C" height="7.5" style="stroke:#C82930;stroke-width:1.25;" width="7.5" x="181.25" y="870.8594"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="142.5" x="196.25" y="880.1331">createHash(password)</text><ellipse cx="185" cy="891.9043" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="136.25" x="196.25" y="897.428">checkPassword(pwd)</text><ellipse cx="185" cy="909.1992" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="71.25" x="196.25" y="914.7229">hashCode()</text><ellipse cx="185" cy="926.4941" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="57.5" x="196.25" y="932.0178">equals(o)</text><!--MD5=[e98dbd2dbb15b74fee5fb51c2f897ceb]
+class RegisterNewEmployeeController--><rect codeLine="50" fill="#FEFECE" filter="url(#f1xbfwf7dpa4km)" height="146.4746" id="RegisterNewEmployeeController" style="stroke:#A80036;stroke-width:1.875;" width="461.25" x="404.375" y="145"/><ellipse cx="516.5625" cy="165" fill="#ADD1B2" rx="13.75" ry="13.75" style="stroke:#A80036;stroke-width:1.25;"/><path d="M519.0625,160.625 Q519.3164,160 519.6094,159.6875 Q519.9023,159.375 520.2344,159.375 Q520.8203,159.375 521.1914,159.7266 Q521.5625,160.0781 521.5625,160.8984 L521.5625,162.8516 Q521.5625,163.6719 521.2109,164.0234 Q520.8594,164.375 520.3125,164.375 Q519.8242,164.375 519.5117,164.1602 Q519.1992,163.9453 519.0625,163.3789 Q519.0039,162.9883 518.7891,162.7734 Q518.3984,162.3633 517.6953,162.1289 Q516.9922,161.875 516.2891,161.875 Q515.4102,161.875 514.668,162.2266 Q513.9453,162.5781 513.3789,163.3594 Q512.8125,164.1406 512.8125,165.2148 L512.8125,166.3672 Q512.8125,167.6563 513.8672,168.5156 Q514.9219,169.375 516.7969,169.375 Q517.9102,169.375 518.6914,169.1211 Q519.1406,168.9844 519.6484,168.5352 Q519.9805,168.2813 520.1563,168.2031 Q520.332,168.125 520.5469,168.125 Q520.957,168.125 521.25,168.457 Q521.5625,168.7695 521.5625,169.2188 Q521.5625,169.6484 521.1328,170.1563 Q520.5078,170.8984 519.5117,171.3086 Q518.2031,171.875 516.6016,171.875 Q514.7266,171.875 513.2227,171.1328 Q512.0117,170.5469 511.1523,169.2773 Q510.3125,168.0078 510.3125,166.5039 L510.3125,165.1367 Q510.3125,163.5742 511.0547,162.207 Q511.8164,160.8398 513.125,160.1172 Q514.4531,159.375 515.9375,159.375 Q516.8359,159.375 517.6172,159.6875 Q518.3984,160 519.0625,160.625 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="15" lengthAdjust="spacing" textLength="226.25" x="542.1875" y="171.1377">RegisterNewEmployeeController</text><line style="stroke:#A80036;stroke-width:1.875;" x1="405.625" x2="864.375" y1="185" y2="185"/><line style="stroke:#A80036;stroke-width:1.875;" x1="405.625" x2="864.375" y1="195" y2="195"/><ellipse cx="418.125" cy="208.75" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="372.5" x="429.375" y="214.2737">registerNewEmployee(name, password, phoneNumber, email,</text><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="425" x="433.125" y="231.5686">employeeID, socCode, organizationRole, address, doctorIndexNumber)</text><ellipse cx="418.125" cy="243.3398" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="412.5" x="429.375" y="248.8635">registerNewEmployeeDoctor(name, password, phoneNumber, email,</text><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="300" x="433.125" y="266.1584">employeeID, socCode, organizationRole, address)</text><ellipse cx="418.125" cy="277.9297" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="155" x="429.375" y="283.4534">saveEmployee(employee)</text><!--MD5=[829fb52c07ade3ad64ef85b99d1fca10]
+class EmployeeStore--><rect codeLine="56" fill="#FEFECE" filter="url(#f1xbfwf7dpa4km)" height="267.5391" id="EmployeeStore" style="stroke:#A80036;stroke-width:1.875;" width="461.25" x="781.875" y="672.5"/><ellipse cx="954.6875" cy="692.5" fill="#ADD1B2" rx="13.75" ry="13.75" style="stroke:#A80036;stroke-width:1.25;"/><path d="M957.1875,688.125 Q957.4414,687.5 957.7344,687.1875 Q958.0273,686.875 958.3594,686.875 Q958.9453,686.875 959.3164,687.2266 Q959.6875,687.5781 959.6875,688.3984 L959.6875,690.3516 Q959.6875,691.1719 959.3359,691.5234 Q958.9844,691.875 958.4375,691.875 Q957.9492,691.875 957.6367,691.6602 Q957.3242,691.4453 957.1875,690.8789 Q957.1289,690.4883 956.9141,690.2734 Q956.5234,689.8633 955.8203,689.6289 Q955.1172,689.375 954.4141,689.375 Q953.5352,689.375 952.793,689.7266 Q952.0703,690.0781 951.5039,690.8594 Q950.9375,691.6406 950.9375,692.7148 L950.9375,693.8672 Q950.9375,695.1563 951.9922,696.0156 Q953.0469,696.875 954.9219,696.875 Q956.0352,696.875 956.8164,696.6211 Q957.2656,696.4844 957.7734,696.0352 Q958.1055,695.7813 958.2813,695.7031 Q958.457,695.625 958.6719,695.625 Q959.082,695.625 959.375,695.957 Q959.6875,696.2695 959.6875,696.7188 Q959.6875,697.1484 959.2578,697.6563 Q958.6328,698.3984 957.6367,698.8086 Q956.3281,699.375 954.7266,699.375 Q952.8516,699.375 951.3477,698.6328 Q950.1367,698.0469 949.2773,696.7773 Q948.4375,695.5078 948.4375,694.0039 L948.4375,692.6367 Q948.4375,691.0742 949.1797,689.707 Q949.9414,688.3398 951.25,687.6172 Q952.5781,686.875 954.0625,686.875 Q954.9609,686.875 955.7422,687.1875 Q956.5234,687.5 957.1875,688.125 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="15" lengthAdjust="spacing" textLength="105" x="980.3125" y="698.6377">EmployeeStore</text><line style="stroke:#A80036;stroke-width:1.875;" x1="783.125" x2="1241.875" y1="712.5" y2="712.5"/><line style="stroke:#A80036;stroke-width:1.875;" x1="783.125" x2="1241.875" y1="722.5" y2="722.5"/><ellipse cx="795.625" cy="736.25" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="372.5" x="806.875" y="741.7737">registerNewEmployee(name, password, phoneNumber, email,</text><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="425" x="810.625" y="759.0686">employeeID, socCode, organizationRole, address, doctorIndexNumber)</text><ellipse cx="795.625" cy="770.8398" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="412.5" x="806.875" y="776.3635">registerNewEmployeeDoctor(name, password, phoneNumber, email,</text><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="300" x="810.625" y="793.6584">employeeID, socCode, organizationRole, address)</text><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="0" x="810.625" y="810.9534"/><ellipse cx="795.625" cy="822.7246" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="171.25" x="806.875" y="828.2483">validateEmployee(employee)</text><ellipse cx="795.625" cy="840.0195" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="155" x="806.875" y="845.5432">saveEmployee(employee)</text><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="0" x="810.625" y="862.8381"/><ellipse cx="795.625" cy="874.6094" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="228.75" x="806.875" y="880.1331">containsPhoneNumber(phoneNumber)</text><ellipse cx="795.625" cy="891.9043" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="170" x="806.875" y="897.428">containsSocCode(socCode)</text><ellipse cx="795.625" cy="909.1992" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="297.5" x="806.875" y="914.7229">containsDoctorIndexNumber(doctorIndexNumber)</text><ellipse cx="795.625" cy="926.4941" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="121.25" x="806.875" y="932.0178">containsEmail(email)</text><!--MD5=[f8d2b21678b6ea5d90e779ee6463ca37]
+class Utils--><rect codeLine="69" fill="#FEFECE" filter="url(#f1xbfwf7dpa4km)" height="319.4238" id="Utils" style="stroke:#A80036;stroke-width:1.875;" width="238.75" x="438.125" y="1025"/><ellipse cx="536.5625" cy="1045" fill="#ADD1B2" rx="13.75" ry="13.75" style="stroke:#A80036;stroke-width:1.25;"/><path d="M539.0625,1040.625 Q539.3164,1040 539.6094,1039.6875 Q539.9023,1039.375 540.2344,1039.375 Q540.8203,1039.375 541.1914,1039.7266 Q541.5625,1040.0781 541.5625,1040.8984 L541.5625,1042.8516 Q541.5625,1043.6719 541.2109,1044.0234 Q540.8594,1044.375 540.3125,1044.375 Q539.8242,1044.375 539.5117,1044.1602 Q539.1992,1043.9453 539.0625,1043.3789 Q539.0039,1042.9883 538.7891,1042.7734 Q538.3984,1042.3633 537.6953,1042.1289 Q536.9922,1041.875 536.2891,1041.875 Q535.4102,1041.875 534.668,1042.2266 Q533.9453,1042.5781 533.3789,1043.3594 Q532.8125,1044.1406 532.8125,1045.2148 L532.8125,1046.3672 Q532.8125,1047.6563 533.8672,1048.5156 Q534.9219,1049.375 536.7969,1049.375 Q537.9102,1049.375 538.6914,1049.1211 Q539.1406,1048.9844 539.6484,1048.5352 Q539.9805,1048.2813 540.1563,1048.2031 Q540.332,1048.125 540.5469,1048.125 Q540.957,1048.125 541.25,1048.457 Q541.5625,1048.7695 541.5625,1049.2188 Q541.5625,1049.6484 541.1328,1050.1563 Q540.5078,1050.8984 539.5117,1051.3086 Q538.2031,1051.875 536.6016,1051.875 Q534.7266,1051.875 533.2227,1051.1328 Q532.0117,1050.5469 531.1523,1049.2773 Q530.3125,1048.0078 530.3125,1046.5039 L530.3125,1045.1367 Q530.3125,1043.5742 531.0547,1042.207 Q531.8164,1040.8398 533.125,1040.1172 Q534.4531,1039.375 535.9375,1039.375 Q536.8359,1039.375 537.6172,1039.6875 Q538.3984,1040 539.0625,1040.625 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="15" lengthAdjust="spacing" textLength="31.25" x="562.1875" y="1051.1377">Utils</text><line style="stroke:#A80036;stroke-width:1.875;" x1="439.375" x2="675.625" y1="1065" y2="1065"/><line style="stroke:#A80036;stroke-width:1.875;" x1="439.375" x2="675.625" y1="1075" y2="1075"/><ellipse cx="451.875" cy="1088.75" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="117.5" x="463.125" y="1094.2737">randomPassword()</text><ellipse cx="451.875" cy="1106.0449" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="150" x="463.125" y="1111.5686">quantityOfDigits(number)</text><ellipse cx="451.875" cy="1123.3398" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="83.75" x="463.125" y="1128.8635">onlyDigits(str)</text><ellipse cx="451.875" cy="1140.6348" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="116.25" x="463.125" y="1146.1584">getStringInitials(str)</text><ellipse cx="451.875" cy="1157.9297" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="166.25" x="463.125" y="1163.4534">printLineToConsole(prompt)</text><ellipse cx="451.875" cy="1175.2246" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="182.5" x="463.125" y="1180.7483">readLineFromConsole(prompt)</text><ellipse cx="451.875" cy="1192.5195" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="198.75" x="463.125" y="1198.0432">readIntegerFromConsole(prompt)</text><ellipse cx="451.875" cy="1209.8145" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="198.75" x="463.125" y="1215.3381">readDoubleFromConsole(prompt)</text><ellipse cx="451.875" cy="1227.1094" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="185" x="463.125" y="1232.6331">readDateFromConsole(prompt)</text><ellipse cx="451.875" cy="1244.4043" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="110" x="463.125" y="1249.928">confirm(message)</text><ellipse cx="451.875" cy="1261.6992" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="198.75" x="463.125" y="1267.2229">showAndSelectOne(list, header)</text><ellipse cx="451.875" cy="1278.9941" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="206.25" x="463.125" y="1284.5178">showAndSelectIndex(list, header)</text><ellipse cx="451.875" cy="1296.2891" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="132.5" x="463.125" y="1301.8127">showList(list, header)</text><ellipse cx="451.875" cy="1313.584" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="108.75" x="463.125" y="1319.1077">selectsObject(list)</text><ellipse cx="451.875" cy="1330.8789" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="102.5" x="463.125" y="1336.4026">selectsIndex(list)</text><!--MD5=[8ae808d068a8995f06b9b3ec51357f0b]
+class AuthFacade--><rect codeLine="88" fill="#FEFECE" filter="url(#f1xbfwf7dpa4km)" height="198.3594" id="AuthFacade" style="stroke:#A80036;stroke-width:1.875;" width="306.25" x="754.375" y="367.5"/><ellipse cx="861.5625" cy="387.5" fill="#ADD1B2" rx="13.75" ry="13.75" style="stroke:#A80036;stroke-width:1.25;"/><path d="M864.0625,383.125 Q864.3164,382.5 864.6094,382.1875 Q864.9023,381.875 865.2344,381.875 Q865.8203,381.875 866.1914,382.2266 Q866.5625,382.5781 866.5625,383.3984 L866.5625,385.3516 Q866.5625,386.1719 866.2109,386.5234 Q865.8594,386.875 865.3125,386.875 Q864.8242,386.875 864.5117,386.6602 Q864.1992,386.4453 864.0625,385.8789 Q864.0039,385.4883 863.7891,385.2734 Q863.3984,384.8633 862.6953,384.6289 Q861.9922,384.375 861.2891,384.375 Q860.4102,384.375 859.668,384.7266 Q858.9453,385.0781 858.3789,385.8594 Q857.8125,386.6406 857.8125,387.7148 L857.8125,388.8672 Q857.8125,390.1563 858.8672,391.0156 Q859.9219,391.875 861.7969,391.875 Q862.9102,391.875 863.6914,391.6211 Q864.1406,391.4844 864.6484,391.0352 Q864.9805,390.7813 865.1563,390.7031 Q865.332,390.625 865.5469,390.625 Q865.957,390.625 866.25,390.957 Q866.5625,391.2695 866.5625,391.7188 Q866.5625,392.1484 866.1328,392.6563 Q865.5078,393.3984 864.5117,393.8086 Q863.2031,394.375 861.6016,394.375 Q859.7266,394.375 858.2227,393.6328 Q857.0117,393.0469 856.1523,391.7773 Q855.3125,390.5078 855.3125,389.0039 L855.3125,387.6367 Q855.3125,386.0742 856.0547,384.707 Q856.8164,383.3398 858.125,382.6172 Q859.4531,381.875 860.9375,381.875 Q861.8359,381.875 862.6172,382.1875 Q863.3984,382.5 864.0625,383.125 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="15" lengthAdjust="spacing" textLength="81.25" x="887.1875" y="393.6377">AuthFacade</text><line style="stroke:#A80036;stroke-width:1.875;" x1="755.625" x2="1059.375" y1="407.5" y2="407.5"/><line style="stroke:#A80036;stroke-width:1.875;" x1="755.625" x2="1059.375" y1="417.5" y2="417.5"/><ellipse cx="768.125" cy="431.25" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="171.25" x="779.375" y="436.7737">addUserRole(id, description)</text><ellipse cx="768.125" cy="448.5449" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="128.75" x="779.375" y="454.0686">addUser(name, pwd)</text><ellipse cx="768.125" cy="465.8398" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="258.75" x="779.375" y="471.3635">addUserWithRole(name, email, pwd, roleId)</text><ellipse cx="768.125" cy="483.1348" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="273.75" x="779.375" y="488.6584">addUserWithRoles(name, email, pwd, rolesId)</text><ellipse cx="768.125" cy="500.4297" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="108.75" x="779.375" y="505.9534">existsUser (email)</text><ellipse cx="768.125" cy="517.7246" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="157.5" x="779.375" y="523.2483">doLogin(email, password)</text><ellipse cx="768.125" cy="535.0195" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="151.25" x="779.375" y="540.5432">getCurrentUserSession()</text><ellipse cx="768.125" cy="552.3145" fill="#84BE84" rx="3.75" ry="3.75" style="stroke:#038048;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="66.25" x="779.375" y="557.8381">doLogout()</text><!--MD5=[a274005f5d4aa67681b23215c7c094eb]
+class EmailSMS--><rect codeLine="99" fill="#FEFECE" filter="url(#f1xbfwf7dpa4km)" height="77.2949" id="EmailSMS" style="stroke:#A80036;stroke-width:1.875;" width="333.75" x="720.625" y="1146.25"/><ellipse cx="846.5625" cy="1166.25" fill="#B4A7E5" rx="13.75" ry="13.75" style="stroke:#A80036;stroke-width:1.25;"/><path d="M847.8125,1162.5 L847.8125,1170 L850.3125,1170 L850.918,1170 L851.5625,1170.7813 L851.5625,1171.25 L851.5625,1171.7188 L850.918,1172.5 L850.3125,1172.5 L842.8125,1172.5 L842.207,1172.5 L841.5625,1171.7188 L841.5625,1171.25 L841.5625,1170.7813 L842.207,1170 L842.8125,1170 L845.3125,1170 L845.3125,1162.5 L842.8125,1162.5 L842.207,1162.5 L841.5625,1161.7188 L841.5625,1161.25 L841.5625,1160.7813 L842.207,1160 L842.8125,1160 L850.3125,1160 L850.918,1160 L851.5625,1160.7813 L851.5625,1161.25 L851.5625,1161.7188 L850.918,1162.5 L850.3125,1162.5 L847.8125,1162.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="15" font-style="italic" lengthAdjust="spacing" textLength="71.25" x="872.1875" y="1172.3877">EmailSMS</text><line style="stroke:#A80036;stroke-width:1.875;" x1="721.875" x2="1053.125" y1="1186.25" y2="1186.25"/><line style="stroke:#A80036;stroke-width:1.875;" x1="721.875" x2="1053.125" y1="1196.25" y2="1196.25"/><text fill="#000000" font-family="sans-serif" font-size="13.75" lengthAdjust="spacing" textLength="318.75" x="728.125" y="1215.5237">sendEmail(String email,String name,String password)</text><!--MD5=[09366576ee87d48d594df10cacc83f45]
+link Company to Employee--><path codeLine="103" d="M624.3,514.6125 C615.7625,551.725 603.3125,605.875 591.4625,657.3875 " fill="none" id="Company-to-Employee" style="stroke:#A80036;stroke-width:1.25;"/><polygon fill="#A80036" points="590.0125,663.65,597.3951,653.7981,591.4061,657.5574,587.6469,651.5683,590.0125,663.65" style="stroke:#A80036;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="26.25" x="605" y="621.8689">has</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="8.75" x="613.1474" y="540.751">1</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="25" x="566.3571" y="650.2864">1..*</text><!--MD5=[ce859576cba61219b3cb4d2d23fdcd81]
+link Company to EmployeeStore--><path codeLine="104" d="M679.8625,514.85 C696.15,531.3875 714.8875,549.925 732.5,566.25 C768.9375,600.0125 809.075,635.2875 847.3,668.05 " fill="none" id="Company-to-EmployeeStore" style="stroke:#A80036;stroke-width:1.25;"/><polygon fill="#A80036" points="852.4375,672.45,847.1498,661.3323,847.6921,668.3826,840.6419,668.9249,852.4375,672.45" style="stroke:#A80036;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="35" x="792.5" y="621.8689">uses</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="8.75" x="677.3121" y="540.6614">1</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="8.75" x="831.6116" y="658.7733">1</text><!--MD5=[717d4b03d3c4372f4eafe5e342a0a7dd]
+link Company to AuthFacade--><path codeLine="105" d="M711.1125,466.875 C723.3,466.875 735.5,466.875 747.6875,466.875 " fill="none" id="Company-to-AuthFacade" style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="754.075,466.875,742.825,461.875,747.825,466.875,742.825,471.875,754.075,466.875" style="stroke:#A80036;stroke-width:1.25;"/><!--MD5=[372bd27a178b4208a6d241b4516ac7e6]
+reverse link Employee to SpecialistDoctor--><path codeLine="107" d="M409.8875,963.4 C354.3125,1022.1 294.65,1085.1125 253.425,1128.65 " fill="none" id="Employee-backto-SpecialistDoctor" style="stroke:#A80036;stroke-width:1.25;"/><polygon fill="none" points="403.825,957.075,427.375,944.9375,416.5375,969.1,403.825,957.075" style="stroke:#A80036;stroke-width:1.25;"/><!--MD5=[1cb8c02731700e5cd6cd7af43f5bdcc9]
+reverse link Employee to EmployeeStore--><path codeLine="108" d="M694.475,806.25 C722.0625,806.25 751.7625,806.25 781.5375,806.25 " fill="none" id="Employee-backto-EmployeeStore" style="stroke:#A80036;stroke-width:1.25;"/><polygon fill="#A80036" points="687.8875,806.25,699.1375,811.25,694.1375,806.25,699.1375,801.25,687.8875,806.25" style="stroke:#A80036;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="48.75" x="710.3125" y="798.1189">adopts</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="6.25" x="697.6923" y="802.4068">*</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="8.75" x="762.8592" y="802.7055">1</text><!--MD5=[ffff9989ef345d9af7c03e263be55a07]
+link Employee to Utils--><path codeLine="109" d="M557.5,949.2125 C557.5,971.775 557.5,995.2875 557.5,1018.3375 " fill="none" id="Employee-to-Utils" style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="557.5,1024.825,562.5,1013.575,557.5,1018.575,552.5,1013.575,557.5,1024.825" style="stroke:#A80036;stroke-width:1.25;"/><!--MD5=[dece1e75370a0677af070ee8e1325d09]
+link Employee to EmailSMS--><path codeLine="110" d="M681.7875,949.2125 C741.725,1017.55 809.3,1094.6 850.125,1141.1375 " fill="none" id="Employee-to-EmailSMS" style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="854.4875,1146.1,850.8422,1134.341,850.3718,1141.3964,843.3164,1140.926,854.4875,1146.1" style="stroke:#A80036;stroke-width:1.25;"/><!--MD5=[73cadc03975af7b029cb9e9b3757f5ac]
+reverse link Password to Employee--><path codeLine="112" d="M352.95,806.25 C376.5125,806.25 402.2,806.25 427.175,806.25 " fill="none" id="Password-backto-Employee" style="stroke:#A80036;stroke-width:1.25;"/><polygon fill="#A80036" points="346.3625,806.25,357.6125,811.25,352.6125,806.25,357.6125,801.25,346.3625,806.25" style="stroke:#A80036;stroke-width:1.25;"/><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="35" x="369.375" y="798.1189">uses</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="8.75" x="356.4236" y="802.047">1</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="8.75" x="408.9539" y="802.4371">1</text><!--MD5=[5fc8e087277250d91dd0288c4602b9fc]
+link RegisterNewEmployeeController to Company--><path codeLine="114" d="M635,291.2625 C635,330.15 635,377.3375 635,412.8125 " fill="none" id="RegisterNewEmployeeController-to-Company" style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="635,419.3,640,408.05,635,413.05,630,408.05,635,419.3" style="stroke:#A80036;stroke-width:1.25;"/><!--MD5=[98585e0de2f711839463467484a33855]
+link RegisterNewEmployeeController to Employee--><path codeLine="115" d="M575.4625,291.5875 C560.025,314.475 545.5,340.8125 537.5,367.5 C509.4875,461.025 514.6,570.8 526.6625,656.9875 " fill="none" id="RegisterNewEmployeeController-to-Employee" style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="527.625,663.675,530.9646,651.8255,526.7311,657.4893,521.0674,653.2558,527.625,663.675" style="stroke:#A80036;stroke-width:1.25;"/><!--MD5=[fe3d2520d49d0b541959280db6a6af09]
+link RegisterNewEmployeeController to EmployeeStore--><path codeLine="116" d="M865.8875,240.4875 C947.8625,260.4125 1032.1875,297.85 1082.5,367.5 C1144.5375,453.375 1119.5625,573.475 1083.2375,666.125 " fill="none" id="RegisterNewEmployeeController-to-EmployeeStore" style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="1080.8375,672.1875,1089.6352,663.5757,1083.1433,666.3784,1080.3406,659.8865,1080.8375,672.1875" style="stroke:#A80036;stroke-width:1.25;"/><!--MD5=[6febec97a3011c6da29f2097abbb874f]
+link RegisterNewEmployeeUI to RegisterNewEmployeeController--><path codeLine="118" d="M635,68.8125 C635,87.85 635,113.8 635,138.65 " fill="none" id="RegisterNewEmployeeUI-to-RegisterNewEmployeeController" style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="635,144.9375,640,133.6875,635,138.6875,630,133.6875,635,144.9375" style="stroke:#A80036;stroke-width:1.25;"/><!--MD5=[76a6e570a272081680315ea8b193067c]
+@startuml
+'https://plantuml.com/class-diagram
+
+class Company{
+    - designation
+
+    + getEmployeeStore()
+}
+
+class Employee{
+    - name
+    - phoneNumber
+    - email
+    - password
+    - employeeID
+    - socCode
+    - organizationRole
+    - address
+
+    + Employee(name, phoneNumber, email,\n socCode, organizationRole, address)
+    + setPassword()
+    + setEmployeeID()
+    + setAuthFacade()
+}
+
+class SpecialistDoctor{
+    - doctorIndexNumber
+
+    + SpecialistDoctor(name, phoneNumber, email,\n socCode, organizationRole, address, doctorIndexNumber)
+}
+
+class RegisterNewEmployeeUI{
+}
+
+class Password{
+    - password
+    - numbersArray
+    - lettersArray
+    - symbolsArray
+
+    + randomPassword()
+
+    + Password(password)
+    + validate(password)
+    - createHash(password)
+    + checkPassword(pwd)
+    + hashCode()
+    + equals(o)
+}
+
+class RegisterNewEmployeeController{
+    + registerNewEmployee(name, password, phoneNumber, email,\n employeeID, socCode, organizationRole, address, doctorIndexNumber)
+    + registerNewEmployeeDoctor(name, password, phoneNumber, email,\n employeeID, socCode, organizationRole, address)
+    + saveEmployee(employee)
+}
+
+class EmployeeStore{
+    + registerNewEmployee(name, password, phoneNumber, email,\n employeeID, socCode, organizationRole, address, doctorIndexNumber)
+    + registerNewEmployeeDoctor(name, password, phoneNumber, email,\n employeeID, socCode, organizationRole, address)
+
+    + validateEmployee(employee)
+    + saveEmployee(employee)
+
+    + containsPhoneNumber(phoneNumber)
+    + containsSocCode(socCode)
+    + containsDoctorIndexNumber(doctorIndexNumber)
+    + containsEmail(email)
+}
+
+class Utils{
+    + randomPassword()
+    + quantityOfDigits(number)
+    + onlyDigits(str)
+    + getStringInitials(str)
+    + printLineToConsole(prompt)
+    + readLineFromConsole(prompt)
+    + readIntegerFromConsole(prompt)
+    + readDoubleFromConsole(prompt)
+    + readDateFromConsole(prompt)
+    + confirm(message)
+    + showAndSelectOne(list, header)
+    + showAndSelectIndex(list, header)
+    + showList(list, header)
+    + selectsObject(list)
+    + selectsIndex(list)
+
+}
+
+class AuthFacade{
+    + addUserRole(id, description)
+    + addUser(name, pwd)
+    + addUserWithRole(name, email, pwd, roleId)
+    + addUserWithRoles(name, email, pwd, rolesId)
+    + existsUser (email)
+    + doLogin(email, password)
+    + getCurrentUserSession()
+    + doLogout()
+}
+
+interface EmailSMS{
+    sendEmail(String email,String name,String password)
+}
+
+Company "1" - -> "1..*" Employee: has
+Company "1" - -> "1" EmployeeStore: uses
+Company .> AuthFacade
+
+Employee <|- - SpecialistDoctor
+Employee "*" <- "1" EmployeeStore: adopts
+Employee ..> Utils
+Employee ..> EmailSMS
+
+Password "1" <- "1" Employee: uses
+
+RegisterNewEmployeeController ..> Company
+RegisterNewEmployeeController ..> Employee
+RegisterNewEmployeeController ..> EmployeeStore
+
+RegisterNewEmployeeUI ..> RegisterNewEmployeeController
+
+@enduml
+
+@startuml
+
+class Company{
+    - designation
+
+    + getEmployeeStore()
+}
+
+class Employee{
+    - name
+    - phoneNumber
+    - email
+    - password
+    - employeeID
+    - socCode
+    - organizationRole
+    - address
+
+    + Employee(name, phoneNumber, email,\n socCode, organizationRole, address)
+    + setPassword()
+    + setEmployeeID()
+    + setAuthFacade()
+}
+
+class SpecialistDoctor{
+    - doctorIndexNumber
+
+    + SpecialistDoctor(name, phoneNumber, email,\n socCode, organizationRole, address, doctorIndexNumber)
+}
+
+class RegisterNewEmployeeUI{
+}
+
+class Password{
+    - password
+    - numbersArray
+    - lettersArray
+    - symbolsArray
+
+    + randomPassword()
+
+    + Password(password)
+    + validate(password)
+    - createHash(password)
+    + checkPassword(pwd)
+    + hashCode()
+    + equals(o)
+}
+
+class RegisterNewEmployeeController{
+    + registerNewEmployee(name, password, phoneNumber, email,\n employeeID, socCode, organizationRole, address, doctorIndexNumber)
+    + registerNewEmployeeDoctor(name, password, phoneNumber, email,\n employeeID, socCode, organizationRole, address)
+    + saveEmployee(employee)
+}
+
+class EmployeeStore{
+    + registerNewEmployee(name, password, phoneNumber, email,\n employeeID, socCode, organizationRole, address, doctorIndexNumber)
+    + registerNewEmployeeDoctor(name, password, phoneNumber, email,\n employeeID, socCode, organizationRole, address)
+
+    + validateEmployee(employee)
+    + saveEmployee(employee)
+
+    + containsPhoneNumber(phoneNumber)
+    + containsSocCode(socCode)
+    + containsDoctorIndexNumber(doctorIndexNumber)
+    + containsEmail(email)
+}
+
+class Utils{
+    + randomPassword()
+    + quantityOfDigits(number)
+    + onlyDigits(str)
+    + getStringInitials(str)
+    + printLineToConsole(prompt)
+    + readLineFromConsole(prompt)
+    + readIntegerFromConsole(prompt)
+    + readDoubleFromConsole(prompt)
+    + readDateFromConsole(prompt)
+    + confirm(message)
+    + showAndSelectOne(list, header)
+    + showAndSelectIndex(list, header)
+    + showList(list, header)
+    + selectsObject(list)
+    + selectsIndex(list)
+
+}
+
+class AuthFacade{
+    + addUserRole(id, description)
+    + addUser(name, pwd)
+    + addUserWithRole(name, email, pwd, roleId)
+    + addUserWithRoles(name, email, pwd, rolesId)
+    + existsUser (email)
+    + doLogin(email, password)
+    + getCurrentUserSession()
+    + doLogout()
+}
+
+interface EmailSMS{
+    sendEmail(String email,String name,String password)
+}
+
+Company "1" - -> "1..*" Employee: has
+Company "1" - -> "1" EmployeeStore: uses
+Company .> AuthFacade
+
+Employee <|- - SpecialistDoctor
+Employee "*" <- "1" EmployeeStore: adopts
+Employee ..> Utils
+Employee ..> EmailSMS
+
+Password "1" <- "1" Employee: uses
+
+RegisterNewEmployeeController ..> Company
+RegisterNewEmployeeController ..> Employee
+RegisterNewEmployeeController ..> EmployeeStore
+
+RegisterNewEmployeeUI ..> RegisterNewEmployeeController
+
+@enduml
+
+PlantUML version 1.2021.00(Sun Jan 10 10:25:05 GMT 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>

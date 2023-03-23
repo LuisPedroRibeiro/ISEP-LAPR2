@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RecordResultsUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.ui.console</a> &gt; <span class="el_source">RecordResultsUI.java</span></div><h1>RecordResultsUI.java</h1><pre class="source lang-java linenums">package app.ui.console;
+
+import app.controller.RecordResultsController;
+import app.mappers.dto.ParameterDto;
+import app.utils.Utils;
+import net.sourceforge.barbecue.BarcodeException;
+import net.sourceforge.barbecue.output.OutputException;
+
+import java.io.IOException;
+import java.util.List;
+
+/**
+ * User Interface for the User Story 12 (Record the Results of a Test).
+ *
+ * @author Luís Ribeiro &lt;1201184@isep.ipp.pt&gt;
+ */
+public class RecordResultsUI implements Runnable {
+
+    /**
+     * String that contains a declaration of an error.
+     */
+<span class="nc" id="L22">    private static final String ERROR = String.format(&quot;%nERROR: OPERATION TERMINATED%n &quot; +</span>
+            &quot;Motive: Some error has occurred.&quot;);
+    /**
+     * String that contains a declaration of the end of the function.
+     */
+    private static final String FINISHED = &quot;OPERATION FINISHED&quot;;
+
+<span class="nc" id="L29">    public RecordResultsUI(){</span>
+        //Constructs a RecordResultsUI with no attributes.
+<span class="nc" id="L31">    }</span>
+
+    /**
+     * Allows the System to run the function of the Chemical Analysis Technologist of recording the results of
+     * a given Test.
+     */
+    @Override
+    public void run() {
+<span class="nc" id="L39">        boolean cancel = false;</span>
+<span class="nc" id="L40">        boolean barcodeLoop = true;</span>
+
+<span class="nc" id="L42">        RecordResultsController controller = new RecordResultsController();</span>
+
+        try{
+            do {
+<span class="nc" id="L46">                String barcodeNumber = Utils.readLineFromConsole(&quot;Barcode of the Test:&quot;);</span>
+                try {
+<span class="nc" id="L48">                    controller.getTestByBarcode(barcodeNumber);</span>
+<span class="nc" id="L49">                    barcodeLoop = false;</span>
+<span class="nc" id="L50">                } catch (OutputException | BarcodeException | IOException e) {</span>
+<span class="nc" id="L51">                    Utils.printLineToConsole(&quot;Barcode not found please insert a new one&quot;);</span>
+<span class="nc" id="L52">                }</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            }while (barcodeLoop);</span>
+
+<span class="nc" id="L55">            List&lt;ParameterDto&gt; list = controller.getParameterList();</span>
+
+<span class="nc bnc" id="L57" title="All 4 branches missed.">           while(!list.isEmpty() &amp;&amp; !cancel){</span>
+<span class="nc" id="L58">                int index = Utils.showAndSelectIndex(list, &quot;\nLIST OF PARAMETERS&quot;);</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">                if(index == -1){</span>
+<span class="nc" id="L60">                    cancel = true;</span>
+                } else{
+<span class="nc" id="L62">                    double value = Utils.readDoubleFromConsole(&quot;Result Value:&quot;);</span>
+
+<span class="nc bnc" id="L64" title="All 2 branches missed.">                    while(value &lt; 0){</span>
+<span class="nc" id="L65">                        Utils.printLineToConsole(&quot;The Result value can not be negative.&quot;);</span>
+<span class="nc" id="L66">                        value = Utils.readDoubleFromConsole(&quot;Result value:&quot;);</span>
+                    }
+
+                    try {
+<span class="nc" id="L70">                        controller.addTestResult(list.get(index).getCode(), value);</span>
+<span class="nc" id="L71">                        list.remove(index);</span>
+<span class="nc" id="L72">                    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {</span>
+<span class="nc" id="L73">                        Utils.printLineToConsole(&quot;Operation Unsuccessful.&quot;);</span>
+<span class="nc" id="L74">                        Utils.printLineToConsole(&quot;Please try again.&quot;);</span>
+<span class="nc" id="L75">                    }</span>
+                }
+<span class="nc" id="L77">           }</span>
+
+<span class="nc bnc" id="L79" title="All 2 branches missed.">           if(cancel){</span>
+<span class="nc" id="L80">               Utils.printLineToConsole(FINISHED);</span>
+           } else {
+<span class="nc" id="L82">               controller.validateTestResult();</span>
+<span class="nc" id="L83">               Utils.printLineToConsole(&quot;OPERATION SUCCESSFUL&quot;);</span>
+           }
+<span class="nc" id="L85">        } catch (Exception exception){</span>
+<span class="nc" id="L86">            Utils.printLineToConsole(ERROR);</span>
+<span class="nc" id="L87">            String exceptionMessage = String.format(&quot; Error Description: %s&quot;, exception.getMessage());</span>
+<span class="nc" id="L88">            Utils.printLineToConsole(exceptionMessage);</span>
+<span class="nc" id="L89">        }</span>
+<span class="nc" id="L90">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

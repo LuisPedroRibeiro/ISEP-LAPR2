@@ -1,0 +1,49 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+class Employee{
+    name
+    phoneNumber
+    email
+    password
+    employeeID
+    socCode
+    organizationRole
+    address
+}
+
+
+class Administrator{
+}
+class TestType{
+description
+code
+collectionMethod
+}
+
+class ParameterCategory{
+code
+name
+}
+class Company{
+designation
+}
+class User{
+    name
+    email
+    password
+}
+User "1" - "0..1" Employee: relates to <
+Employee <|-- Administrator
+Administrator "1" -- "1" Employee: creates >
+Company "1" -- "1..*" Employee: has >
+Company "1" -- "*" TestType : conducts >
+Administrator "1" -- "*" TestType : creates >
+Company "1" -- "*" Administrator : works at <
+TestType "1" - "*" ParameterCategory: has a set of >
+Company "1" -- "*" ParameterCategory: adopts >
+Administrator "1" -- "*" ParameterCategory: creates >
+
+
+@enduml

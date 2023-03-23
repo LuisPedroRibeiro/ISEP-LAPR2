@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClinicalAnalysisLaboratoryTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.domain.model</a> &gt; <span class="el_source">ClinicalAnalysisLaboratoryTest.java</span></div><h1>ClinicalAnalysisLaboratoryTest.java</h1><pre class="source lang-java linenums">package app.domain.model;
+
+import app.list.ClinicalTestTypeList;
+import org.junit.Assert;
+import org.junit.Test;
+
+/**
+ * @author Miguel Ramos &lt;1201247@isep.ipp.pt&gt;
+ */
+<span class="fc" id="L10">public class ClinicalAnalysisLaboratoryTest {</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkLaboratoryIdRulesBlank() {
+<span class="nc" id="L14">        ClinicalAnalysisLaboratory c= new ClinicalAnalysisLaboratory(&quot;&quot;,&quot;Rua&quot;,&quot;Miguel&quot;,</span>
+                &quot;12345678912&quot;,&quot;1234567891&quot;);
+<span class="nc" id="L16">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkLaboratoryIdRulesUp() {
+<span class="nc" id="L20">        ClinicalAnalysisLaboratory c = new ClinicalAnalysisLaboratory(&quot;1234567&quot;, &quot;Rua&quot;, &quot;Miguel&quot;,</span>
+                &quot;12345678912&quot;, &quot;1234567891&quot;);
+<span class="nc" id="L22">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkLaboratoryIdRulesDown() {
+<span class="nc" id="L26">        ClinicalAnalysisLaboratory c = new ClinicalAnalysisLaboratory(&quot;123&quot;, &quot;Rua&quot;, &quot;Miguel&quot;,</span>
+                &quot;12345678912&quot;, &quot;1234567891&quot;);
+<span class="nc" id="L28">    }</span>
+
+    @Test
+    public void checkLaboratoryIdRulesRight() {
+<span class="fc" id="L32">        ClinicalAnalysisLaboratory c= new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Rua&quot;,&quot;Miguel&quot;,</span>
+                &quot;12345678912&quot;,&quot;1234567891&quot;);
+<span class="fc" id="L34">        Assert.assertTrue(true);</span>
+<span class="fc" id="L35">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkAddressRulesBlank() {
+<span class="nc" id="L39">        ClinicalAnalysisLaboratory c= new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;&quot;,&quot;Miguel&quot;,</span>
+                &quot;12345678912&quot;,&quot;1234567891&quot;);
+<span class="nc" id="L41">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkAddressRulesUp() {
+<span class="nc" id="L45">        ClinicalAnalysisLaboratory c= new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Ruacamoescamoescamoes&quot;,</span>
+                &quot;Miguel&quot;, &quot;12345678912&quot;,&quot;1234567891&quot;);
+<span class="nc" id="L47">    }</span>
+
+    @Test
+    public void checkAddressRulesDown() {
+<span class="fc" id="L51">        ClinicalAnalysisLaboratory c= new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Rua&quot;,</span>
+                &quot;Miguel&quot;, &quot;12345678912&quot;,&quot;1234567891&quot;);
+<span class="fc" id="L53">        Assert.assertTrue(true);</span>
+<span class="fc" id="L54">    }</span>
+
+    @Test
+    public void checkAddressRulesRight() {
+<span class="fc" id="L58">        ClinicalAnalysisLaboratory c= new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Rua Luis de Camoesss&quot;,</span>
+                &quot;Miguel&quot;, &quot;12345678912&quot;,&quot;1234567891&quot;);
+<span class="fc" id="L60">        Assert.assertTrue(true);</span>
+<span class="fc" id="L61">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkNameRulesBlank() {
+<span class="nc" id="L65">        ClinicalAnalysisLaboratory c= new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Rua&quot;,&quot;&quot;,</span>
+                &quot;12345678912&quot;,&quot;1234567891&quot;);
+<span class="nc" id="L67">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkNameRulesUp() {
+<span class="nc" id="L71">        ClinicalAnalysisLaboratory c= new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Rua&quot;,</span>
+                &quot;MiguelMiguelMiguelMiguelMiguelMiguelMiguel&quot;, &quot;12345678912&quot;,
+                &quot;1234567891&quot;);
+<span class="nc" id="L74">    }</span>
+
+    @Test
+    public void checkNameRulesDown() {
+<span class="fc" id="L78">        ClinicalAnalysisLaboratory c= new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Rua&quot;,</span>
+                &quot;Miguel&quot;, &quot;12345678912&quot;,&quot;1234567891&quot;);
+<span class="fc" id="L80">        Assert.assertTrue(true);</span>
+<span class="fc" id="L81">    }</span>
+
+    @Test
+    public void checkNameRulesEqual() {
+<span class="fc" id="L85">        ClinicalAnalysisLaboratory c = new ClinicalAnalysisLaboratory(&quot;12345&quot;, &quot;Rua&quot;,</span>
+                &quot;MiguelMiguelMiguelMiguelMiguel&quot;, &quot;12345678912&quot;,
+                &quot;1234567891&quot;);
+<span class="fc" id="L88">        Assert.assertTrue(true);</span>
+<span class="fc" id="L89">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkPhoneNumberRulesOnlyDigits() {
+<span class="nc" id="L93">        ClinicalAnalysisLaboratory c= new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Rua&quot;,</span>
+                &quot;Miguel&quot;, &quot;letras&quot;,&quot;1234567891&quot;);
+<span class="nc" id="L95">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkPhoneNumberRulesBlank() {
+<span class="nc" id="L99">        ClinicalAnalysisLaboratory c= new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Rua&quot;,</span>
+                &quot;Miguel&quot;, &quot;&quot;,&quot;1234567891&quot;);
+<span class="nc" id="L101">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkPhoneNumberRulesUp() {
+<span class="nc" id="L105">        ClinicalAnalysisLaboratory c= new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Rua&quot;,</span>
+                &quot;Miguel&quot;, &quot;123456789123&quot;,&quot;1234567891&quot;);
+<span class="nc" id="L107">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkPhoneNumberRulesDown() {
+<span class="nc" id="L111">        ClinicalAnalysisLaboratory c= new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Rua&quot;,</span>
+                &quot;Miguel&quot;, &quot;1234567891&quot;,&quot;1234567891&quot;);
+<span class="nc" id="L113">    }</span>
+
+    @Test
+    public void checkPhoneNumberRulesEqual() {
+<span class="fc" id="L117">        ClinicalAnalysisLaboratory c= new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Rua&quot;,</span>
+                &quot;Miguel&quot;, &quot;12345678912&quot;,&quot;1234567891&quot;);
+<span class="fc" id="L119">        Assert.assertTrue(true);</span>
+<span class="fc" id="L120">    }</span>
+
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkTaxIdentificationNumberRulesOnlyDigits() {
+<span class="nc" id="L125">        ClinicalAnalysisLaboratory c= new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Rua&quot;,</span>
+                &quot;Miguel&quot;, &quot;12345678912&quot;,&quot;letras&quot;);
+<span class="nc" id="L127">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkTaxIdentificationNumberRulesBlank() {
+<span class="nc" id="L131">        ClinicalAnalysisLaboratory c= new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Rua&quot;,</span>
+                &quot;Miguel&quot;, &quot;12345678912&quot;,&quot;&quot;);
+<span class="nc" id="L133">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkTaxIdentificationNumberRulesUp() {
+<span class="nc" id="L137">        ClinicalAnalysisLaboratory c= new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Rua&quot;,</span>
+                &quot;Miguel&quot;, &quot;12345678912&quot;,&quot;12345678912&quot;);
+<span class="nc" id="L139">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkTaxIdentificationNumberRulesDown() {
+<span class="nc" id="L143">        ClinicalAnalysisLaboratory c= new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Rua&quot;,</span>
+                &quot;Miguel&quot;, &quot;12345678912&quot;,&quot;123456789&quot;);
+<span class="nc" id="L145">    }</span>
+
+    @Test
+    public void checkTaxIdentificationNumberRulesEqual() {
+<span class="fc" id="L149">        ClinicalAnalysisLaboratory c= new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Rua&quot;,</span>
+                &quot;Miguel&quot;, &quot;12345678912&quot;,&quot;1234567891&quot;);
+<span class="fc" id="L151">        Assert.assertTrue(true);</span>
+<span class="fc" id="L152">    }</span>
+
+    @Test
+    public void getLaboratoryId(){
+<span class="fc" id="L156">        String expected = &quot;12345&quot;;</span>
+<span class="fc" id="L157">        String result = new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Rua&quot;,</span>
+<span class="fc" id="L158">                &quot;Miguel&quot;, &quot;12345678912&quot;,&quot;1234567891&quot;).getLaboratoryId();</span>
+<span class="fc" id="L159">        Assert.assertEquals(expected,result);</span>
+<span class="fc" id="L160">    }</span>
+
+    @Test
+    public void getAddress(){
+<span class="fc" id="L164">        String expected = &quot;Rua&quot;;</span>
+<span class="fc" id="L165">        String result = new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Rua&quot;,</span>
+<span class="fc" id="L166">                &quot;Miguel&quot;, &quot;12345678912&quot;,&quot;1234567891&quot;).getAddress();</span>
+<span class="fc" id="L167">        Assert.assertEquals(expected,result);</span>
+<span class="fc" id="L168">    }</span>
+
+    @Test
+    public void getName(){
+<span class="fc" id="L172">        String expected = &quot;Miguel&quot;;</span>
+<span class="fc" id="L173">        String result = new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Rua&quot;,</span>
+<span class="fc" id="L174">                &quot;Miguel&quot;, &quot;12345678912&quot;,&quot;1234567891&quot;).getName();</span>
+<span class="fc" id="L175">        Assert.assertEquals(expected,result);</span>
+<span class="fc" id="L176">    }</span>
+
+    @Test
+    public void getPhoneNumber(){
+<span class="fc" id="L180">        String expected = &quot;12345678912&quot;;</span>
+<span class="fc" id="L181">        String result = new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Rua&quot;,</span>
+<span class="fc" id="L182">                &quot;Miguel&quot;, &quot;12345678912&quot;,&quot;1234567891&quot;).getPhoneNumber();</span>
+<span class="fc" id="L183">        Assert.assertEquals(expected,result);</span>
+<span class="fc" id="L184">    }</span>
+
+    @Test
+    public void getTaxIdentificationNumber(){
+<span class="fc" id="L188">        String expected = &quot;1234567891&quot;;</span>
+<span class="fc" id="L189">        String result = new ClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Rua&quot;,</span>
+<span class="fc" id="L190">                &quot;Miguel&quot;, &quot;12345678912&quot;,&quot;1234567891&quot;).getTaxIdentificationNumber();</span>
+<span class="fc" id="L191">        Assert.assertEquals(expected,result);</span>
+<span class="fc" id="L192">    }</span>
+
+    @Test
+    public void saveTestTypeListToClinicalAnalysisLaboratory(){
+<span class="fc" id="L196">        TestType t1 = new TestType(&quot;12345&quot;, &quot;test&quot;, &quot;test&quot;);</span>
+<span class="fc" id="L197">        TestType t2 = new TestType(&quot;67890&quot;, &quot;test&quot;, &quot;test&quot;);</span>
+
+<span class="fc" id="L199">        ClinicalTestTypeList tl1 = new ClinicalTestTypeList();</span>
+<span class="fc" id="L200">        tl1.saveClinicalTestType(t1);</span>
+<span class="fc" id="L201">        tl1.saveClinicalTestType(t2);</span>
+
+<span class="fc" id="L203">        ClinicalTestTypeList tl2= new ClinicalTestTypeList();</span>
+<span class="fc" id="L204">        tl2.saveClinicalTestType(t2);</span>
+<span class="fc" id="L205">        ClinicalTestTypeList expected = tl1;</span>
+
+<span class="fc" id="L207">        Assert.assertEquals(expected,tl1);</span>
+<span class="fc" id="L208">        Assert.assertNotEquals(expected,tl2);</span>
+<span class="fc" id="L209">    }</span>
+
+    @Test
+    public void saveTestTypeListToClinicalAnalysisLaboratoryEmpty(){
+<span class="fc" id="L213">        ClinicalTestTypeList tl1 = new ClinicalTestTypeList();</span>
+
+<span class="fc" id="L215">        ClinicalTestTypeList expected = tl1;</span>
+
+<span class="fc" id="L217">        Assert.assertEquals(expected,tl1);</span>
+<span class="fc" id="L218">        Assert.assertNotEquals(null,tl1);</span>
+<span class="fc" id="L219">    }</span>
+
+    @Test
+    public void equals(){
+<span class="fc" id="L223">        ClinicalAnalysisLaboratory result= new ClinicalAnalysisLaboratory(&quot;12345&quot;, &quot;Rua&quot;,</span>
+                &quot;Miguel&quot;, &quot;12345678912&quot;, &quot;1234567891&quot;);
+
+<span class="fc" id="L226">        ClinicalAnalysisLaboratory expected= new ClinicalAnalysisLaboratory(&quot;12345&quot;, &quot;Rua&quot;,</span>
+                &quot;Miguel&quot;, &quot;12345678912&quot;, &quot;1234567891&quot;);
+<span class="fc" id="L228">        Assert.assertEquals(expected,result);</span>
+
+<span class="fc" id="L230">        Assert.assertNotEquals(expected, null);</span>
+
+<span class="fc" id="L232">        TestType result2= new TestType(&quot;12345&quot;, &quot;method&quot;, &quot;description&quot;);</span>
+<span class="fc" id="L233">        Assert.assertNotEquals(expected,result2);</span>
+
+<span class="fc" id="L235">        ClinicalAnalysisLaboratory result3= new ClinicalAnalysisLaboratory(&quot;54321&quot;, &quot;Rua&quot;,</span>
+                &quot;Miguel&quot;, &quot;12345678912&quot;, &quot;1234567891&quot;);
+<span class="fc" id="L237">        ClinicalAnalysisLaboratory result4= new ClinicalAnalysisLaboratory(&quot;12345&quot;, &quot;Rua Camoes&quot;,</span>
+                &quot;Miguel&quot;, &quot;12345678912&quot;, &quot;1234567891&quot;);
+<span class="fc" id="L239">        ClinicalAnalysisLaboratory result5= new ClinicalAnalysisLaboratory(&quot;12345&quot;, &quot;Rua&quot;,</span>
+                &quot;Miguel&quot;, &quot;12345678911&quot;, &quot;1234567891&quot;);
+<span class="fc" id="L241">        ClinicalAnalysisLaboratory result6= new ClinicalAnalysisLaboratory(&quot;12345&quot;, &quot;Rua&quot;,</span>
+                &quot;Miguel&quot;, &quot;12345678912&quot;, &quot;1234567899&quot;);
+<span class="fc" id="L243">        ClinicalAnalysisLaboratory result7= new ClinicalAnalysisLaboratory(&quot;12345&quot;, &quot;Rua&quot;,</span>
+                &quot;Miguel Angelo&quot;, &quot;12345678912&quot;, &quot;1234567899&quot;);
+
+<span class="fc" id="L246">        ClinicalAnalysisLaboratory result8= new ClinicalAnalysisLaboratory(&quot;54321&quot;, &quot;Rua Camoes&quot;,</span>
+                &quot;Miguel Angelo&quot;, &quot;12345678911&quot;, &quot;1234567899&quot;);
+<span class="fc" id="L248">        Assert.assertEquals(result3,expected);</span>
+<span class="fc" id="L249">        Assert.assertEquals(result4,expected);</span>
+<span class="fc" id="L250">        Assert.assertEquals(result5,expected);</span>
+<span class="fc" id="L251">        Assert.assertEquals(result6,expected);</span>
+<span class="fc" id="L252">        Assert.assertEquals(result7,expected);</span>
+
+<span class="fc" id="L254">        Assert.assertNotEquals(result8,expected);</span>
+
+<span class="fc" id="L256">    }</span>
+
+    @Test
+    public void toStringTest(){
+<span class="fc" id="L260">        ClinicalAnalysisLaboratory c = new ClinicalAnalysisLaboratory(&quot;12345&quot;, &quot;Rua&quot;,</span>
+                &quot;Miguel&quot;, &quot;12345678912&quot;, &quot;1234567891&quot;);
+<span class="fc" id="L262">        String expected= String.format(&quot;##Clinical Analysis Laboratory## %n Laboratory Id: %s %n Address: %s %n &quot; +</span>
+<span class="fc" id="L263">                        &quot;Name: %s %n Phone number: %s %n TIN: %s %n&quot;,c.getLaboratoryId(),c.getAddress(),c.getName(),</span>
+<span class="fc" id="L264">                c.getPhoneNumber(),c.getTaxIdentificationNumber());</span>
+<span class="fc" id="L265">        String result = c.toString();</span>
+
+<span class="fc" id="L267">        Assert.assertEquals(expected,result);</span>
+<span class="fc" id="L268">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

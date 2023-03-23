@@ -1,0 +1,96 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class ClinicalAnalysisLaboratory
+class TestType
+class Company
+class CreateClinicalAnalysisLaboratoryUI
+class CreateClinicalAnalysisLaboratoryController
+class TestTypeStore
+class ClinicalAnalysisLaboratoryStore
+class ClinicalTestTypeList
+class TestTypeMapper
+class TestTypeDto
+
+CreateClinicalAnalysisLaboratoryUI ..> CreateClinicalAnalysisLaboratoryController
+Company <. CreateClinicalAnalysisLaboratoryController
+CreateClinicalAnalysisLaboratoryController ..> ClinicalAnalysisLaboratory
+CreateClinicalAnalysisLaboratoryController ..> TestType
+CreateClinicalAnalysisLaboratoryController ..> TestTypeStore
+CreateClinicalAnalysisLaboratoryController .> ClinicalAnalysisLaboratoryStore
+CreateClinicalAnalysisLaboratoryController ..> ClinicalTestTypeList
+TestTypeMapper <. CreateClinicalAnalysisLaboratoryController
+CreateClinicalAnalysisLaboratoryUI .> TestTypeMapper
+CreateClinicalAnalysisLaboratoryUI .> TestTypeDto
+TestTypeMapper .> TestTypeDto
+
+ClinicalAnalysisLaboratoryStore "1" --> "*" ClinicalAnalysisLaboratory: has
+TestTypeStore "1" --> "*" TestType : has
+ClinicalTestTypeList "1" --> "*" TestType : has
+Company "1" -> "*" TestTypeStore : has
+Company "1" -> "*" ClinicalAnalysisLaboratoryStore : has
+ClinicalAnalysisLaboratory "1" -> "*" ClinicalTestTypeList : has
+
+class ClinicalAnalysisLaboratory {
+-laboratoryID
+-address
+-name
+-phoneNumber
+-taxIdentificationNumber
++createClinicalAnalysisLaboratory(laboratoryID, address, name, phoneNumber, taxIdentificationNumber)
++addTestTypeListToClinicalAnalysisLaboratory(list)
+}
+
+class TestType {
+-designation
+}
+
+class Company {
++getClinicalAnalysisLaboratoryStore()
++getTypeStore()
+}
+
+class CreateClinicalAnalysisLaboratoryUI {
+}
+
+class CreateClinicalAnalysisLaboratoryController {
++getClinicalAnalysisLaboratory()
++createClinicalAnalysisLaboratory(laboratoryID, address, name, phoneNumber, taxIdentificationNumber)
++getTestTypeByCode(code)
+-addTestTypeToLab(type)
++getClinicalTestTypeList()
++saveClinicalAnalysisLaboratory(lab)
++saveTestTypeListToClinicalAnalysisLaboratory(list)
++listDto()
+}
+
+class TestTypeStore {
++getTestTypeByCode(code)
++getTypeStore()
+}
+
+class ClinicalAnalysisLaboratoryStore {
++createClinicalAnalysisLaboratory(laboratoryID, address, name, phoneNumber, taxIdentificationNumber)
++saveClinicalAnalysisLaboratory(lab)
++validatesClinicalAnalysisLaboratory(lab)
+-addClinicalAnalysisLaboratory(lab)
+}
+
+class ClinicalTestTypeList {
++saveClinicalTestType(type)
++validatesClinicalTestType(type)
+-addClinicalTestType(type)
+}
+
+class TestTypeMapper{
++listDto()
+}
+
+class TestTypeDto{
+-code
+-collectionMethod
+-designation
++create()
+}
+
+@enduml

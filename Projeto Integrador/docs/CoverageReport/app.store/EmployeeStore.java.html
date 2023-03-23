@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EmployeeStore.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.store</a> &gt; <span class="el_source">EmployeeStore.java</span></div><h1>EmployeeStore.java</h1><pre class="source lang-java linenums">package app.store;
+
+import app.domain.model.*;
+import auth.domain.model.Email;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author Luís Ribeiro &lt;1201184@isep.ipp.pt&gt;
+ */
+<span class="fc" id="L13">public class EmployeeStore {</span>
+
+    /**
+     * List of Employees working for the Company.
+     */
+<span class="fc" id="L18">    List&lt;Employee&gt; employeeList = new ArrayList&lt;&gt;();</span>
+
+    /**
+     * Generates an instance of an Employee, having in consideration his/her role in the system.
+     *
+     * @param name Name of the Employee.
+     * @param phoneNumber Phone Number of the Employee.
+     * @param email E-mail of the Employee.
+     * @param socCode SOC Code of the Employee.
+     * @param organizationRole Organization role of the Employee.
+     * @param address Address of the Employee.
+     */
+    public Employee registerNewEmployee(String name, String phoneNumber, Email email, String socCode,
+                                        String organizationRole, String address){
+<span class="fc" id="L32">        return new Employee(name, phoneNumber, email, socCode, organizationRole, address);</span>
+    }
+
+    /**
+     * Generates an instance of an Employee, considering that his/her role is Specialist Doctor.
+     *
+     * @param name Name of the Employee.
+     * @param phoneNumber Phone Number of the Employee.
+     * @param email E-mail of the Employee.
+     * @param socCode SOC Code of the Employee.
+     * @param organizationRole Organization role of the Employee.
+     * @param address Address of the Employee.
+     */
+    public Employee registerNewEmployee(String name, String phoneNumber, Email email, String socCode,
+                                        String organizationRole, String address, String doctorIndexNumber){
+<span class="fc" id="L47">        return new SpecialistDoctor(name, phoneNumber, email, socCode, organizationRole, address,</span>
+                doctorIndexNumber);
+    }
+
+    /**
+     * Allows the system to add an Employee to the List of Employees.
+     *
+     * @param employee Employee to be added to the List.
+     * @return Boolean value relative to the addition of an Employee to the Employee Store.
+     */
+    public boolean saveEmployee(Employee employee) throws IOException {
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">        if(! validateEmployee(employee)){</span>
+<span class="nc" id="L59">            Employee.reduceNumberOfEmployees();</span>
+<span class="nc" id="L60">            return false;</span>
+        }
+        else{
+<span class="fc" id="L63">            employee.setPassword();</span>
+<span class="fc" id="L64">            employee.setEmployeeID();</span>
+<span class="fc" id="L65">            employee.registerUserAndSendEmail();</span>
+        }
+<span class="fc" id="L67">        return this.employeeList.add(employee);</span>
+    }
+
+    /**
+     * Checks if an Employee can be added to the List of Employees.
+     * Returns true if the Employee was validated.
+     *
+     * @param employee Employee to be validated.
+     * @return Boolean that represents if the Employee was validated or not.
+     */
+    public boolean validateEmployee(Employee employee){
+<span class="fc bfc" id="L78" title="All 2 branches covered.">        if(employee == null){</span>
+<span class="fc" id="L79">            return false;</span>
+        }
+        else{
+<span class="fc bfc" id="L82" title="All 2 branches covered.">            for(Employee employee1 : employeeList){</span>
+<span class="pc bpc" id="L83" title="1 of 2 branches missed.">                if(employee.equals(employee1)){</span>
+<span class="nc" id="L84">                    return false;</span>
+                }
+<span class="fc" id="L86">            }</span>
+        }
+<span class="pc bpc" id="L88" title="1 of 2 branches missed.">        return !this.employeeList.contains(employee);</span>
+    }
+
+    /**
+     * Allows the system to access the Employee Store and get the List that has all of the employees.
+     *
+     * @return List with all the registered Employees.
+     */
+    public List&lt;Employee&gt; getEmployeeList() {
+<span class="nc" id="L97">        return employeeList;</span>
+    }
+
+    /**
+     * Generates a String that represents the List that has all of the registered employees.
+     *
+     * @return String that represents all the Employees registered on the Store.
+     */
+    @Override
+    public String toString(){
+<span class="nc" id="L107">        StringBuilder stringBuilder = new StringBuilder();</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">        for(Employee employee : employeeList){</span>
+<span class="nc" id="L109">            stringBuilder.append(employee.toString());</span>
+<span class="nc" id="L110">        }</span>
+<span class="nc" id="L111">        return stringBuilder.toString().trim();</span>
+    }
+
+    /**
+     * Allows the System to verify if the given Phone Number does already exist in the Employee Store.
+     * This is a needed confirmation has there should not be two equal phone numbers.
+     *
+     * @param phoneNumber Phone Number of the Employee.
+     * @return Boolean value according to the confirmation (true = Phone Number already exists in the Employee
+     * Store | false = Phone Number does not exist in the Employee Store).
+     */
+    public boolean containsPhoneNumber(String phoneNumber){
+<span class="fc bfc" id="L123" title="All 2 branches covered.">        for(Employee employee : employeeList){</span>
+<span class="fc bfc" id="L124" title="All 2 branches covered.">            if(phoneNumber.equals(employee.getPhoneNumber())){</span>
+<span class="fc" id="L125">                return true;</span>
+            }
+<span class="fc" id="L127">        }</span>
+<span class="fc" id="L128">        return false;</span>
+    }
+
+    /**
+     * Allows the System to verify if the given E-mail does already exist in the Employee Store.
+     * This is a needed confirmation has there should not be two equal E-mails.
+     *
+     * @param email E-mail of the Employee.
+     * @return Boolean value according to the confirmation (true = E-mail already exists in the Employee
+     * Store | false = E-mail does not exist in the Employee Store).
+     */
+    public boolean containsEmail(String email){
+<span class="fc bfc" id="L140" title="All 2 branches covered.">        for(Employee employee : employeeList){</span>
+<span class="fc bfc" id="L141" title="All 2 branches covered.">            if(email.equals(employee.getEmail())){</span>
+<span class="fc" id="L142">                return true;</span>
+            }
+<span class="fc" id="L144">        }</span>
+<span class="fc" id="L145">        return false;</span>
+    }
+
+    /**
+     * Allows the System to verify if the given SOC Code does already exist in the Employee Store.
+     * This is a needed confirmation has there should not be two equal SOC Codes.
+     *
+     * @param socCode SOC Code of the Employee.
+     * @return Boolean value according to the confirmation (true = SOC Code already exists in the Employee
+     * Store | false = SOC Code does not exist in the Employee Store).
+     */
+    public boolean containsSocCode(String socCode){
+<span class="fc bfc" id="L157" title="All 2 branches covered.">        for(Employee employee : employeeList){</span>
+<span class="fc bfc" id="L158" title="All 2 branches covered.">            if(socCode.equals(employee.getSocCode())){</span>
+<span class="fc" id="L159">                return true;</span>
+            }
+<span class="fc" id="L161">        }</span>
+<span class="fc" id="L162">        return false;</span>
+    }
+
+    /**
+     * Allows the System to verify if the given Doctor Index Number does already exist in the Employee Store.
+     * This is a needed confirmation has there should not be two equal Doctor Index Number.
+     *
+     * @param doctorIndexNumber Doctor Index Number of the Employee.
+     * @return Boolean value according to the confirmation (true = Doctor Index Number already exists in the
+     * Employee Store | false = Doctor Index Number does not exist in the Employee Store).
+     */
+    public boolean containsDoctorIndexNumber(String doctorIndexNumber){
+<span class="fc bfc" id="L174" title="All 2 branches covered.">        for(Employee employee : employeeList){</span>
+<span class="fc bfc" id="L175" title="All 4 branches covered.">            if(employee instanceof SpecialistDoctor &amp;&amp; doctorIndexNumber.equals(((SpecialistDoctor) employee).getDoctorIndexNumber())){</span>
+<span class="fc" id="L176">                return true;</span>
+            }
+<span class="fc" id="L178">        }</span>
+<span class="fc" id="L179">        return false;</span>
+    }
+
+    /**
+     * Method that returns the Role of a certain Employee giving his Email as a Parameter
+     *
+     * @param email the Email used to found the Employee
+     * @return the Employee organization Role
+     */
+    public String getRoleByEmail(Email email){
+<span class="nc bnc" id="L189" title="All 2 branches missed.">        for(Employee employee: employeeList){</span>
+<span class="nc bnc" id="L190" title="All 2 branches missed.">            if(employee.getEmail().equals(email.toString())){</span>
+<span class="nc" id="L191">                return employee.getOrganizationRole();</span>
+            }
+<span class="nc" id="L193">        }</span>
+<span class="nc" id="L194">        throw new IllegalArgumentException(&quot;There is no employees with the given Email.&quot;);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

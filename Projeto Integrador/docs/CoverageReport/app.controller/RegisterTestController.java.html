@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegisterTestController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.controller</a> &gt; <span class="el_source">RegisterTestController.java</span></div><h1>RegisterTestController.java</h1><pre class="source lang-java linenums">package app.controller;
+import app.domain.model.*;
+import app.mappers.ClinicalAnalysisLaboratoryMapper;
+import app.mappers.ParameterCategoryMapper;
+import app.mappers.ParameterMapper;
+import app.mappers.TestTypeMapper;
+import app.mappers.dto.ClinicalAnalysisLaboratoryDto;
+import app.mappers.dto.ParameterCategoryDto;
+import app.mappers.dto.ParameterDto;
+import app.mappers.dto.TestTypeDto;
+import app.store.*;
+import java.util.List;
+
+/**
+ * This class allows the creation of a Test Controller.
+ *
+ * @author Pedro Graça &lt;1201188@isep.ipp.pt&gt;
+ */
+public class RegisterTestController {
+
+    /**
+     * Company that will have the controller
+     */
+    private final Company company;
+
+    /**
+     * Test that will be controlled
+     */
+    private Test test;
+
+    /**
+     * Store the Tests
+     */
+    private TestStore testStore;
+
+    /**
+     * Store that contains the Clients
+     */
+    private ClientStore clientStore;
+
+    /**
+     * Store that contains the Clinical Analysis Laboratories
+     */
+    private ClinicalAnalysisLaboratoryStore clinicalAnalysisLaboratoryStore;
+
+    /**
+     * The Clinical Analysis Laboratory chosen by the Receptionist
+     */
+    private ClinicalAnalysisLaboratory clinicalAnalysisLaboratory;
+
+    /**
+     * Store that contains the Test Types
+     */
+    private TestTypeStore testTypeStore;
+
+    /**
+     * The Test Type chosen by the Receptionist
+     */
+    private TestType testType;
+
+    /**
+     * Store that contains the Parameters
+     */
+    private ParameterStore parameterStore;
+
+    /**
+     * Store that contains the Parameter Categories
+     */
+    private ParameterCategoryStore parameterCategoryStore;
+
+    /**
+     * The Parameter Category chosen by the Receptionist
+     */
+    private ParameterCategory parameterCategory;
+
+    /**
+     * * Constructs an instance of RegisterTestController with no parameters
+     */
+    public RegisterTestController()  {
+<span class="fc" id="L80">        this(App.getInstance().getCompany());</span>
+<span class="fc" id="L81">    }</span>
+
+    /**
+     * Constructs an instance of RegisterTestController receiving the Company
+     *
+     * @param company the Company that will be on the controller
+     */
+<span class="fc" id="L88">    public RegisterTestController(Company company) {</span>
+<span class="fc" id="L89">        this.company = company;</span>
+<span class="fc" id="L90">        this.test = null;</span>
+<span class="fc" id="L91">    }</span>
+
+    /**
+     * Returns the boolean value of the Test construction with the nhsCode
+     *
+     * @param nhsCode the National Healthcare Service code of the Test;
+     * @return the boolean value of the creation of the Test
+     */
+    public boolean createTest(String nhsCode) {
+<span class="nc" id="L100">        setTestStore();</span>
+<span class="nc" id="L101">        this.test = this.testStore.createTest(nhsCode);</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">        if(this.testStore.containsNhsCode(nhsCode)){</span>
+<span class="nc" id="L103">            throw new IllegalArgumentException(&quot;There is already a test with the same NHS code registered in the System.&quot;);</span>
+        }
+<span class="nc" id="L105">        return this.testStore.validateTest(test);</span>
+    }
+
+    /**
+     * Method to identify the Client Store
+     */
+    public void setClientStore() {
+<span class="nc" id="L112">        clientStore = this.company.getClientStore();</span>
+<span class="nc" id="L113">    }</span>
+
+    /**
+     * Method to identify the Test Store
+     */
+    public void setTestStore() {
+<span class="nc" id="L119">        testStore = this.company.getTestStore();</span>
+<span class="nc" id="L120">    }</span>
+
+    /**
+     * Method to identify the Clinical Analysis Laboratory Store
+     */
+    public void setClinicalAnalysisLaboratoryStore() {
+<span class="nc" id="L126">        clinicalAnalysisLaboratoryStore = this.company.getClinicalAnalysisLaboratoryStore();</span>
+<span class="nc" id="L127">    }</span>
+
+    /**
+     * Method to identify the Test Type Store
+     */
+    public void setTestTypeStore() {
+<span class="nc" id="L133">        testTypeStore = this.company.getTestTypeStore();</span>
+<span class="nc" id="L134">    }</span>
+
+    /**
+     * Method to identify the Parameter Store
+     */
+    public void setParameterStore() {
+<span class="nc" id="L140">        parameterStore = this.company.getParameterStore();</span>
+<span class="nc" id="L141">    }</span>
+
+    /**
+     * Method to identify the Parameter Category Store
+     */
+    public void setParameterCategoryStore() {
+<span class="nc" id="L147">        this.parameterCategoryStore = this.company.getParameterCategoryStore();</span>
+<span class="nc" id="L148">    }</span>
+
+    /**
+     * Method to verify if the Client exists
+     */
+    public boolean verifyClientByTin(String taxIdentificationNumber) {
+<span class="nc" id="L154">        setClientStore();</span>
+<span class="nc" id="L155">        return clientStore.verifyClientByTin(taxIdentificationNumber);</span>
+    }
+
+    /**
+     * Method that returns the list of the Clinical Analysis Laboratories that belong to the Company
+     *
+     * @return the list of the Clinical Analysis Laboratories
+     */
+    private List&lt;ClinicalAnalysisLaboratory&gt; getClinicalAnalysisLaboratoryList() {
+<span class="nc" id="L164">        setClinicalAnalysisLaboratoryStore();</span>
+<span class="nc" id="L165">        return clinicalAnalysisLaboratoryStore.getClinicalAnalysisLaboratoryList();</span>
+    }
+
+    /**
+     * Method that returns the list of Test Types associated to the selected Clinical Analysis Laboratory
+     * @return the List of Test Types
+     */
+    private List&lt;TestType&gt; getTestTypeList(){
+<span class="nc" id="L173">       return this.clinicalAnalysisLaboratory.getClinicalTestTypeList();</span>
+    }
+
+    /**
+     * Method that returns the list of Parameter Categories associated to the selected Test Type
+     * @return the List of Parameter Categories
+     */
+    private List&lt;ParameterCategory&gt; getParameterCategoryList(){
+<span class="nc" id="L181">        return this.testType.getParameterCategoryList();</span>
+    }
+
+    /**
+     * Method that returns the list of Parameter Categories associated to the selected Test Type
+     * @return the List of Parameter Categories
+     */
+    private List&lt;Parameter&gt; getParameterList(){
+<span class="nc" id="L189">        return this.parameterCategory.getParameterList();</span>
+    }
+
+    /**
+     * Allows the creation of a list Clinical Analysis Laboratory Dto objects from the list of Clinical Analysis Laboratory
+     *
+     * @return list composed by ClinicalAnalysisLaboratoryDTO objects
+     */
+    public List&lt;ClinicalAnalysisLaboratoryDto&gt; getClinicalAnalysisLaboratoryListToDto() {
+<span class="nc" id="L198">        ClinicalAnalysisLaboratoryMapper clinicalAnalysisLaboratoryMapper = new ClinicalAnalysisLaboratoryMapper();</span>
+<span class="nc" id="L199">        return clinicalAnalysisLaboratoryMapper.toDTO(getClinicalAnalysisLaboratoryList());</span>
+    }
+
+    /**
+     * Allows the creation of a list of Test Type Dto objects from the list of Test Types
+     *
+     * @return list composed by TestTypeDTO objects
+     */
+    public List&lt;TestTypeDto&gt; getTestTypeListToDto() {
+<span class="nc" id="L208">       TestTypeMapper testTypeMapper = new TestTypeMapper();</span>
+<span class="nc" id="L209">       return  testTypeMapper.listDTO(getTestTypeList());</span>
+    }
+
+    /**
+     * Allows the creation of a list of Parameter Category Dto objects from the list of Parameter Categories
+     *
+     * @return list composed by ParameterCategoryDTO objects
+     */
+    public List&lt;ParameterCategoryDto&gt; getParameterCategoryListToDto() {
+<span class="nc" id="L218">        ParameterCategoryMapper parameterCategoryMapper = new ParameterCategoryMapper();</span>
+<span class="nc" id="L219">        return  parameterCategoryMapper.toDTO(getParameterCategoryList());</span>
+    }
+
+    /**
+     * Allows the creation of a list of Parameter  Dto objects from the list of Parameters
+     *
+     * @return list composed by ParameterDTO objects
+     */
+    public List&lt;ParameterDto&gt; getParameterListToDto() {
+<span class="nc" id="L228">        ParameterMapper parameterMapper = new ParameterMapper();</span>
+<span class="nc" id="L229">        return  parameterMapper.toDTO(getParameterList());</span>
+    }
+
+    /**
+     * Method that saves the selected Clinical Analysis Laboratory
+     *
+     * @param laboratoryId the Laboratory ID
+     * @return the boolean value of the operation
+     */
+    public boolean saveClinicalAnalysisLaboratory(String laboratoryId) {
+<span class="nc" id="L239">        this.clinicalAnalysisLaboratory = this.clinicalAnalysisLaboratoryStore.getClinicalAnalysisLaboratoryById(laboratoryId);</span>
+<span class="nc" id="L240">        return true;</span>
+    }
+
+    /**
+     * Method that saves the selected Test Type
+     *
+     * @param code the Test Type code
+     * @return the boolean value of the operation
+     */
+    public boolean saveTestType(String code) {
+<span class="nc" id="L250">        setTestTypeStore();</span>
+<span class="nc" id="L251">        this.testType = this.testTypeStore.getTestTypeByCode(code);</span>
+<span class="nc" id="L252">        this.test.saveTestType(testType);</span>
+<span class="nc" id="L253">        return true;</span>
+    }
+
+    /**
+     * Method that add Parameters that will be Test Parameters
+     *
+     * @param code the code of the Parameter
+     * @return the boolean value of the operation
+     */
+    public boolean addParameter(String code){
+<span class="nc" id="L263">        setParameterStore();</span>
+<span class="nc" id="L264">        Parameter parameter = this.parameterStore.getParameterByCode(code);</span>
+<span class="nc" id="L265">        this.test.addTestParameter(parameter);</span>
+<span class="nc" id="L266">        return true;</span>
+    }
+
+    /**
+     * Method to set the Parameter Category selected by the Receptionist
+     * @param code the code that identifies the Parameter Category
+     */
+    public void setParameterCategory(String code) {
+<span class="nc" id="L274">        setParameterCategoryStore();</span>
+<span class="nc" id="L275">        this.parameterCategory = parameterCategoryStore.getParameterCategoryByCode(code);</span>
+<span class="nc" id="L276">    }</span>
+
+    /**
+     * Method that returns the boolean value of the addition of a Test to a certain Client
+     *
+     * @param taxIdentificationNumber the TIN of the Client
+     * @return the Boolean Value of the operation
+     */
+    public boolean addTestToClient(String taxIdentificationNumber) {
+<span class="nc" id="L285">        Client client = this.clientStore.getClientByTin(taxIdentificationNumber);</span>
+<span class="nc" id="L286">        return this.testStore.addTestToClient(client, this.test);</span>
+    }
+
+    /**
+     * Method that save the created Test
+     * @return the boolean value of the operation
+     */
+    public boolean saveTest(){
+<span class="nc" id="L294">        setTestStore();</span>
+<span class="nc" id="L295">        this.test.saveClinicalAnalysisLaboratory(clinicalAnalysisLaboratory);</span>
+<span class="nc" id="L296">       return this.testStore.saveTest(test);</span>
+    }
+
+    /**
+     * Method to verify if the list of Parameter Categories associated to the Test Type is null
+     * @return the boolean value of the operation
+     */
+    public boolean verifyIfListParameterCategoryListIsNull(){
+<span class="nc bnc" id="L304" title="All 2 branches missed.">        return testType.getCl() == null;</span>
+    }
+
+    /**
+     * Method that check if the Client List is empty.
+     *
+     * @return True if the Client list is Empty, false if not.
+     */
+    public boolean verifyIfClientListIsEmpty(){
+<span class="nc" id="L313">        setClientStore();</span>
+<span class="nc" id="L314">        return  this.clientStore.getClientList().isEmpty();</span>
+    }
+
+    /**
+     * Method to verify if Test Parameters were added to the test
+     * @return the boolean value of the operation
+     */
+    public boolean verifyIfTestParametersWereAdded(){
+<span class="nc bnc" id="L322" title="All 2 branches missed.">        return !test.getTestParameterList().isEmpty();</span>
+    }
+
+    /**
+     * Method to return the Clinical Analysis Laboratory associated to the Controller
+     */
+    public ClinicalAnalysisLaboratory getClinicalAnalysisLaboratory() {
+<span class="fc" id="L329">        return clinicalAnalysisLaboratory;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

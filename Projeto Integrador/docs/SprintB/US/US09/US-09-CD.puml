@@ -1,0 +1,71 @@
+@startuml
+'https://plantuml.com/class-diagram
+class TestTypeStore{
++ createTestType(code,collectionMethod,description)
++ validateTestType(testType)
++ saveTestType(testType)
+-addTestType(testType)
+
+}
+class TestType{
+-code
+-description
+-collectionMethod
++ TestType(code,collectionMethod,description)
++ validateParameterCategoryList(cl)
++addParameterCategoryListToTestType(cl)
+}
+class ParameterCategoryDto{
+-code
+-name
++ParameterCategoryDto(code,name)
+}
+class ParameterCategoryMapper{
++ toDto(pc)
++ toDto(pcStore)
+}
+
+class CreateTestTypeController{
++ createTestType(code,collectionMethod,description)
++ saveTestType()
++ saveParameterCategory(code)
++ getListParameterCategory()
++ getParameterCategoryStoreDto()
+}
+class ParameterCategoryStore{
++getParameterCategoryByCode(code)
+}
+class CreateTestTypeUI{
+}
+class Company{
+-designation
++ getTestTypeStore()
++ getParameterCategoryStore()
+}
+class ParameterCategory{
+-code
+-name
+}
+class ParameterCategoryList{
++ParameterCategoryList()
++validateParameterCategory(pc)
+-addParameterCategory(pc)
+}
+CreateTestTypeController .> ParameterCategoryDto
+CreateTestTypeController ..> ParameterCategoryMapper
+ParameterCategoryMapper ..> ParameterCategoryDto
+CreateTestTypeUI ..> CreateTestTypeController
+CreateTestTypeUI .> ParameterCategoryDto
+CreateTestTypeController ..> Company
+CreateTestTypeController .> TestTypeStore
+CreateTestTypeController .> ParameterCategoryStore
+ParameterCategoryMapper ..> ParameterCategory
+Company "1" -->"1" TestTypeStore: uses >
+Company "1" ->"1" ParameterCategoryStore: uses >
+TestTypeStore"1" -->"*" TestType: conducts >
+CreateTestTypeController ..> TestType
+ParameterCategoryStore "1" --> "*" ParameterCategory :conducts >
+TestType "1" --> "1" ParameterCategoryList: has >
+CreateTestTypeController ..> ParameterCategoryList
+ParameterCategoryList "1" -> "*" ParameterCategory: composed by >
+@enduml

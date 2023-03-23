@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClientDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.mappers.dto</a> &gt; <span class="el_source">ClientDto.java</span></div><h1>ClientDto.java</h1><pre class="source lang-java linenums">package app.mappers.dto;
+import auth.domain.model.Email;
+
+/**
+ * @author Pedro Graça &lt;1201188@isep.ipp.pt&gt;
+ */
+public class ClientDto {
+
+        /**
+         * Name of the Client
+         */
+        private final String name;
+
+        /**
+         * Email of the Client
+         */
+        private final Email email;
+
+        /**
+         * Tax Identification Number of the Client (must have 10 digits)
+         */
+        private final String taxIdentificationNumber;
+
+        /**
+         * Citizen Card Number of the Client (must have 16 digits)
+         */
+        private final String citizenCardNumber;
+
+        /**
+         * National Healthcare Service Number of the Client (must have 10 digits)
+         */
+        private final String nhsNumber;
+
+        /**
+         * Birth Date of the Client (must be in DD/MM/YY format)
+         */
+        private final String birthDate;
+
+        /**
+         * Gender of the Client (must be Male/Female) (is not mandatory)
+         */
+        private final String gender;
+
+        /**
+         * Phone Number of the Client (must have 16 digits)
+         */
+        private final String phoneNumber;
+
+        /**
+         * Gender of the Client by omission
+         */
+        private static final String GENDER_BY_OMISSION = &quot;(Unknown)&quot;;
+
+        /**
+         * Constructs an instance of Client receiving the name, the email, the Tax Identification Number,
+         * the Citizen Card Number, the National Healthcare Service Number, the Birth Date, the Gender and
+         * the Phone Number.
+         *
+         * @param name                    the Name of the Client
+         * @param email                   the Email of the Client
+         * @param taxIdentificationNumber the Tax Identification Number of the Client
+         * @param citizenCardNumber       the Citizen Card Number of the Client
+         * @param nhsNumber               the National Healthcare Service Number of the Client
+         * @param birthDate               the Birth Date of the Client
+         * @param gender                  the Gender of the Client
+         * @param phoneNumber             the Phone Number of the Client
+         */
+        public ClientDto(String name, Email email, String taxIdentificationNumber, String citizenCardNumber,
+<span class="fc" id="L69">                      String nhsNumber, String birthDate, String gender, String phoneNumber) {</span>
+<span class="fc" id="L70">            this.name = name;</span>
+<span class="fc" id="L71">            this.email = email;</span>
+<span class="fc" id="L72">            this.taxIdentificationNumber = taxIdentificationNumber;</span>
+<span class="fc" id="L73">            this.citizenCardNumber = citizenCardNumber;</span>
+<span class="fc" id="L74">            this.nhsNumber = nhsNumber;</span>
+<span class="fc" id="L75">            this.birthDate = birthDate;</span>
+<span class="fc" id="L76">            this.gender = gender;</span>
+<span class="fc" id="L77">            this.phoneNumber = phoneNumber;</span>
+<span class="fc" id="L78">        }</span>
+
+        /**
+         * Constructs an instance of Client receiving the name, the email, the Tax Identification Number,
+         * the Citizen Card Number, the National Healthcare Service Number, the Birth Date and the Phone Number.
+         * Assigns the Gender by omission.
+         *
+         * @param name                    the Name of the Client
+         * @param email                   the Email of the Client
+         * @param taxIdentificationNumber the Tax Identification Number of the Client
+         * @param citizenCardNumber       the Citizen Card Number of the Client
+         * @param nhsNumber               the National Healthcare Service Number of the Client
+         * @param birthDate               the Birth Date of the Client
+         * @param phoneNumber             the Phone Number of the Client
+         */
+        public ClientDto(String name, Email email, String taxIdentificationNumber, String citizenCardNumber, String nhsNumber,
+<span class="fc" id="L94">                      String birthDate, String phoneNumber) {</span>
+<span class="fc" id="L95">            this.name = name;</span>
+<span class="fc" id="L96">            this.email = email;</span>
+<span class="fc" id="L97">            this.taxIdentificationNumber = taxIdentificationNumber;</span>
+<span class="fc" id="L98">            this.citizenCardNumber = citizenCardNumber;</span>
+<span class="fc" id="L99">            this.nhsNumber = nhsNumber;</span>
+<span class="fc" id="L100">            this.birthDate = birthDate;</span>
+<span class="fc" id="L101">            this.phoneNumber = phoneNumber;</span>
+<span class="fc" id="L102">            gender = GENDER_BY_OMISSION;</span>
+<span class="fc" id="L103">        }</span>
+
+    /**
+     * Returns the Name of the Client.
+     *
+     * @return the Name of the Client.
+     */
+    public String getName() {
+<span class="fc" id="L111">        return name;</span>
+    }
+
+    /**
+     * Returns the Email of the Client.
+     *
+     * @return the Email of the Client.
+     */
+    public Email getEmail() {
+<span class="fc" id="L120">        return email;</span>
+    }
+
+    /**
+     * Returns the Tax Identification Number of the Client.
+     *
+     * @return the Tax Identification Number of the Client.
+     */
+    public String getTaxIdentificationNumber() {
+<span class="fc" id="L129">        return taxIdentificationNumber;</span>
+    }
+
+    /**
+     * Returns the Citizen Card Number of the Client.
+     *
+     * @return the Tax Identification Number of the Client.
+     */
+    public String getCitizenCardNumber() {
+<span class="fc" id="L138">        return citizenCardNumber;</span>
+    }
+
+    /**
+     * Returns the National Healthcare Number of the Client.
+     *
+     * @return the National Healthcare Number of the Client.
+     */
+    public String getNhsNumber() {
+<span class="fc" id="L147">        return nhsNumber;</span>
+    }
+
+    /**
+     * Returns the Birth Date of the Client.
+     *
+     * @return the Birth Date of the Client.
+     */
+    public String getBirthDate() {
+<span class="fc" id="L156">        return birthDate;</span>
+    }
+
+    /**
+     * Returns the Gender of the Client.
+     *
+     * @return the Gender of the Client.
+     */
+    public String getGender() {
+<span class="fc" id="L165">        return gender;</span>
+    }
+
+    /**
+     * Returns the Phone Number of the Client.
+     *
+     * @return the Phone Number of the Client.
+     */
+    public String getPhoneNumber() {
+<span class="fc" id="L174">        return phoneNumber;</span>
+    }
+
+    /**
+     * Returns the textual description of the Client.
+     *
+     * @return attributes of the Client.
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L184">        return String.format(&quot;Client %n Name: %s %n Email: %s %n Tax Identification Number: %s %n Citizen Card Number: %s %n&quot; +</span>
+                        &quot; National Healthcare Service Number: %s %n Birth Date: %s %n Gender: %s %n Phone Number: %s&quot;,
+<span class="fc" id="L186">                name, email.toString(),taxIdentificationNumber, citizenCardNumber, nhsNumber, birthDate, gender, phoneNumber);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

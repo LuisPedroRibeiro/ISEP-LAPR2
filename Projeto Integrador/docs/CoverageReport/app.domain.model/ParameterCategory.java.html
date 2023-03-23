@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ParameterCategory.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.domain.model</a> &gt; <span class="el_source">ParameterCategory.java</span></div><h1>ParameterCategory.java</h1><pre class="source lang-java linenums">package app.domain.model;
+
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author André Soares &lt;1201314@isep.ipp.pt&gt;
+ */
+public class ParameterCategory {
+
+    /**
+     * The code of the Parameter Category ( must have 5 chars)
+     */
+    private final String code;
+
+    /**
+     * The name of the Parameter Category (must have no more than 10 chars) (
+     */
+    private final String name;
+
+    /**
+     * A list that contains the Parameters associated to the Category
+     */
+<span class="fc" id="L26">    private final List&lt;Parameter&gt; parameterList = new ArrayList&lt;&gt;();</span>
+
+    /**
+     * Constructs an instance of Parameter Category receiving the code and the name
+     *
+     * @param code  the Code of the Parameter Category
+     * @param name the name of the Parameter Category
+     */
+<span class="fc" id="L34">    public ParameterCategory(String code, String name) {</span>
+<span class="fc" id="L35">        checkCodeRules(code);</span>
+<span class="fc" id="L36">        checkNameRules(name);</span>
+<span class="fc" id="L37">        this.code = code;</span>
+<span class="fc" id="L38">        this.name = name;</span>
+<span class="fc" id="L39">    }</span>
+
+    /**
+     * Return  the code string
+     *
+     * @return the code string
+     */
+    public String getCode() {
+<span class="fc" id="L47">        return code;</span>
+    }
+
+    /**
+     * Return the description string
+     *
+     * @return the description string
+     */
+    public String getName() {
+<span class="fc" id="L56">        return name;</span>
+    }
+
+
+    /**
+     * Method to check the rules applied to Parameter Category codes
+     *
+     * @param code the Code of the Parameter Category
+     */
+    public void checkCodeRules(String code) {
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        if (StringUtils.isBlank(code))</span>
+<span class="fc" id="L67">            throw new IllegalArgumentException(&quot;Code cannot be blank.&quot;);</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        if (code.length() !=5 )</span>
+<span class="fc" id="L69">            throw new IllegalArgumentException(&quot;Code must have 5 chars.&quot;);</span>
+<span class="fc" id="L70">    }</span>
+
+    /**
+     * Method to check the rules applied to Parameter Category descriptions
+     *
+     * @param name the name of the Parameter Category
+     */
+    public void checkNameRules(String name) {
+<span class="fc bfc" id="L78" title="All 2 branches covered.">        if (StringUtils.isBlank(name))</span>
+<span class="fc" id="L79">            throw new IllegalArgumentException(&quot;Name cannot be blank.&quot;);</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        if (name.length() &gt; 10)</span>
+<span class="fc" id="L81">            throw new IllegalArgumentException(&quot;Name  must have no more that 10 chars&quot;);</span>
+<span class="fc" id="L82">    }</span>
+
+    /**
+     * Returns if this Parameter Category is equal to other Object
+     *
+     * @param o the Object received as a parameter
+     * @return boolean value of the equality between the Parameter Category
+     * and the Object received as a parameter
+     */
+    @Override
+    public boolean equals(Object o) {
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        if (this == o) return true;</span>
+<span class="fc bfc" id="L94" title="All 4 branches covered.">        if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="fc" id="L95">        ParameterCategory pc = (ParameterCategory) o;</span>
+<span class="fc bfc" id="L96" title="All 4 branches covered.">        return code.equals(pc.code) || name.equals(pc.name);</span>
+    }
+
+    /**
+     * Method to add a Parameter to the Category
+     * @param parameter the Parameter that will be added
+     * @return the boolean value of the operation
+     */
+    public boolean addParameter(Parameter parameter){
+<span class="fc" id="L105">        return this.parameterList.add(parameter);</span>
+    }
+
+    /**
+     * Returns the list of Parameters of the Category
+     * @return the list of Parameters
+     */
+    public List&lt;Parameter&gt; getParameterList() {
+<span class="nc" id="L113">        return parameterList;</span>
+    }
+
+    /**
+     * Returns the textual description of the Parameter Category
+     *
+     * @return attributes of the Parameter Category
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L123">        return String.format(&quot;##Parameter Category## %n Code: %s %nName: %s %n&quot;,</span>
+                code, name);
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

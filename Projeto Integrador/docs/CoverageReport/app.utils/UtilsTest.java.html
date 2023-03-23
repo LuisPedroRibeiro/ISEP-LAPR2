@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UtilsTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.utils</a> &gt; <span class="el_source">UtilsTest.java</span></div><h1>UtilsTest.java</h1><pre class="source lang-java linenums">package app.utils;
+
+import org.junit.Assert;
+import org.junit.Test;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author Luís Ribeiro &lt;1201184@isep.ipp.pt&gt;
+ * @author Pedro Graça &lt;1201188@isep.ipp.pt&gt;
+ * @author Miguel Ramos &lt;1201247@isep.ipp.pt&gt;
+ * @author André Soares &lt;1201314@isep.ipp.pt&gt;
+ */
+
+<span class="fc" id="L15">public class UtilsTest {</span>
+
+    @Test
+    public void containsNumber() {
+<span class="fc" id="L19">        ArrayList&lt;Integer&gt; lInt=new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L20">        lInt.add(1);</span>
+<span class="fc" id="L21">        lInt.add(2);</span>
+<span class="fc" id="L22">        boolean b=Utils.containsNumber(lInt,1);</span>
+<span class="fc" id="L23">        boolean b1=Utils.containsNumber(lInt,10);</span>
+<span class="fc" id="L24">        Assert.assertTrue(b);</span>
+<span class="fc" id="L25">        Assert.assertFalse(b1);</span>
+<span class="fc" id="L26">    }</span>
+
+    @Test
+    public void quantityOfDigits() {
+<span class="fc" id="L30">        int n1=0;</span>
+<span class="fc" id="L31">        int result=Utils.quantityOfDigits(n1);</span>
+<span class="fc" id="L32">        int expected=0;</span>
+<span class="fc" id="L33">        int n2=1;</span>
+<span class="fc" id="L34">        int result1=Utils.quantityOfDigits(n2);</span>
+<span class="fc" id="L35">        int expected1=1;</span>
+<span class="fc" id="L36">        int n3=-1;</span>
+<span class="fc" id="L37">        int result2=Utils.quantityOfDigits(n3);</span>
+<span class="fc" id="L38">        int expected2=1;</span>
+<span class="fc" id="L39">        int n4=1000;</span>
+<span class="fc" id="L40">        int result3=Utils.quantityOfDigits(n4);</span>
+<span class="fc" id="L41">        int expected3=4;</span>
+
+<span class="fc" id="L43">        Assert.assertEquals(result,expected);</span>
+<span class="fc" id="L44">        Assert.assertEquals(result1,expected1);</span>
+<span class="fc" id="L45">        Assert.assertEquals(result2,expected2);</span>
+<span class="fc" id="L46">        Assert.assertEquals(result3,expected3);</span>
+<span class="fc" id="L47">    }</span>
+
+    @Test
+    public void getStringInitials() {
+<span class="fc" id="L51">        String s=&quot;Andre Francisco&quot;;</span>
+<span class="fc" id="L52">        String result=Utils.getStringInitials(s).toString();</span>
+<span class="fc" id="L53">        String expected=&quot;AF&quot;;</span>
+<span class="fc" id="L54">        Assert.assertEquals(result,expected);</span>
+<span class="fc" id="L55">    }</span>
+
+    @Test
+    public void numberOfWords(){
+<span class="fc" id="L59">        int expected = 2;</span>
+<span class="fc" id="L60">        int result = Utils.numberOfWords(&quot;Test Test&quot;);</span>
+<span class="fc" id="L61">        int result2 = Utils.numberOfWords(&quot;Test Test Test&quot;);</span>
+<span class="fc" id="L62">        Assert.assertEquals(result,expected);</span>
+<span class="fc" id="L63">        Assert.assertNotEquals(result2,expected);</span>
+<span class="fc" id="L64">    }</span>
+
+    @Test
+    public void numberOfWordsWithOneWord(){
+<span class="fc" id="L68">        String text = &quot;Word.&quot;;</span>
+
+<span class="fc" id="L70">        int expected = 1;</span>
+<span class="fc" id="L71">        int result = Utils.numberOfWords(text);</span>
+
+<span class="fc" id="L73">        Assert.assertEquals(expected, result);</span>
+<span class="fc" id="L74">    }</span>
+
+    @Test
+    public void numberOfWordsWithMoreThanOneWord(){
+<span class="fc" id="L78">        String text = &quot;This is a text that is being used to calculate the number of words that are present in this &quot; +</span>
+                &quot;String.&quot;;
+
+<span class="fc" id="L81">        int expected = 20;</span>
+<span class="fc" id="L82">        int result = Utils.numberOfWords(text);</span>
+
+<span class="fc" id="L84">        Assert.assertEquals(expected, result);</span>
+<span class="fc" id="L85">    }</span>
+
+    @Test
+    public void numberOfWordsWithSpaceBetweenWordAndFinalPoint(){
+<span class="fc" id="L89">        String text = &quot;This is a text that is being used to calculate the number of words that are present in this &quot; +</span>
+                &quot;String .&quot;;
+
+<span class="fc" id="L92">        int expected = 20;</span>
+<span class="fc" id="L93">        int result = Utils.numberOfWords(text);</span>
+
+<span class="fc" id="L95">        Assert.assertEquals(expected, result);</span>
+<span class="fc" id="L96">    }</span>
+
+    @Test
+    public void numberOfWordsWithSpaceBetweenWordAndSemicolon(){
+<span class="fc" id="L100">        String text = &quot;This is a text that is being used to calculate the number of words that are present in this &quot; +</span>
+                &quot;String ; so lets proceed to the test.&quot;;
+
+<span class="fc" id="L103">        int expected = 26;</span>
+<span class="fc" id="L104">        int result = Utils.numberOfWords(text);</span>
+
+<span class="fc" id="L106">        Assert.assertEquals(expected, result);</span>
+<span class="fc" id="L107">    }</span>
+
+    @Test
+    public void numberOfWordsWithSpaceBetweenWordAndColon(){
+<span class="fc" id="L111">        String text = &quot;This is a text that is being used to calculate the number of words that are present in this &quot; +</span>
+                &quot;String , so lets proceed to the test.&quot;;
+<span class="fc" id="L113">        int expected = 26;</span>
+<span class="fc" id="L114">        int result = Utils.numberOfWords(text);</span>
+
+<span class="fc" id="L116">        Assert.assertEquals(expected, result);</span>
+<span class="fc" id="L117">    }</span>
+
+    @Test
+    public void onlyDigitsTrue() {
+<span class="fc" id="L121">        String str=&quot;12345&quot;;</span>
+<span class="fc" id="L122">        boolean result = Utils.onlyDigits(str);</span>
+
+<span class="fc" id="L124">        Assert.assertTrue(result);</span>
+<span class="fc" id="L125">    }</span>
+
+    @Test
+    public void onlyDigitsFalse() {
+<span class="fc" id="L129">        String str=&quot;1234e&quot;;</span>
+<span class="fc" id="L130">        boolean result = Utils.onlyDigits(str);</span>
+
+<span class="fc" id="L132">        Assert.assertFalse(result);</span>
+<span class="fc" id="L133">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Test.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.domain.model</a> &gt; <span class="el_source">Test.java</span></div><h1>Test.java</h1><pre class="source lang-java linenums">package app.domain.model;
+
+import app.utils.Utils;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * This Class allows the initialization of the Test and its attributes.
+ *
+ * @author Luís Ribeiro &lt;1201184@isep.ipp.pt&gt;
+ * @author Pedro Graça &lt;1201188@isep.ipp.pt&gt;
+ * @author Miguel Ramos &lt;1201247@isep.ipp.pt&gt;
+ * @author André Soares &lt;1201314@isep.ipp.pt&gt;
+ */
+public class Test {
+
+    /**
+     * Code/Number of the Test.
+     */
+    private String code;
+
+    /**
+     * NHS Code of the Test.
+     */
+    private final String nhsCode;
+
+    /**
+     * Date of the day when the Receptionist registered the Test.
+     */
+    private String createdAt;
+
+    /**
+     * Date of the day when the Sample was created.
+     */
+    private String sampleDate;
+
+    /**
+     * Date of the day when the Result of the Test was created.
+     */
+    private String resultDate;
+
+    /**
+     * Date of the day when the Test Report was created.
+     */
+    private String reportDate;
+
+    /**
+     * Test Report of the Test.
+     */
+    private TestReport testReport;
+
+    /**
+     * Test Validation of the Test (represents the validation of the Test).
+     */
+    private TestValidation testValidation;
+
+    /**
+     * Clinical Analysis Laboratory where the Test was performed.
+     */
+    private ClinicalAnalysisLaboratory clinicalAnalysisLaboratory;
+
+    /**
+     * Test Type of the Test.
+     */
+    private TestType testType;
+
+    /**
+     * Code by omission of the Test.
+     */
+    private static final String CODE_BY_OMISSION = &quot;Unknown&quot;;
+
+    /**
+     * Date of the creation of the Test by omission.
+     */
+    private static final String CREATED_AT_BY_OMISSION = &quot;Unknown&quot;;
+
+    /**
+     * Constant that allows the System to check if the NHS Code is within the rules.
+     */
+    private static final int NHS_RULE = 12;
+
+    /**
+     * List of the Test Parameters of the Test.
+     */
+<span class="fc" id="L87">    private final List&lt;TestParameter&gt; testParameterList = new ArrayList&lt;&gt;();</span>
+
+    /**
+     * List of the Samples used by the Test.
+     */
+<span class="fc" id="L92">    private final List&lt;Sample&gt; sampleList = new ArrayList&lt;&gt;();</span>
+
+    /**
+     * Allows to create a Test by using its NHS Code.
+     *
+     * @param nhsCode NHS Code of the Test.
+     */
+<span class="fc" id="L99">    public Test(String nhsCode) {</span>
+<span class="fc" id="L100">        checkNhsCodeRules(nhsCode);</span>
+<span class="fc" id="L101">        this.nhsCode = nhsCode;</span>
+<span class="fc" id="L102">        this.code = CODE_BY_OMISSION;</span>
+<span class="fc" id="L103">        this.createdAt = CREATED_AT_BY_OMISSION;</span>
+<span class="fc" id="L104">        this.sampleDate = null;</span>
+<span class="fc" id="L105">        this.reportDate = null;</span>
+<span class="fc" id="L106">        this.testValidation = null;</span>
+<span class="fc" id="L107">        this.resultDate = null;</span>
+<span class="fc" id="L108">    }</span>
+
+    /**
+     * Method to check if the National Healthcare Service code given as a parameter is valid
+     *
+     * @param nhsCode the National Healthcare Service Number that will be checked
+     */
+    public void checkNhsCodeRules(String nhsCode) {
+<span class="fc bfc" id="L116" title="All 2 branches covered.">        if (StringUtils.isBlank(nhsCode))</span>
+<span class="fc" id="L117">            throw new IllegalArgumentException(&quot;NHS Code cannot be blank.&quot;);</span>
+<span class="fc bfc" id="L118" title="All 2 branches covered.">        if ((nhsCode.length() != NHS_RULE))</span>
+<span class="fc" id="L119">            throw new IllegalArgumentException(&quot;NHS Code must have 12 characters.&quot;);</span>
+<span class="fc bfc" id="L120" title="All 2 branches covered.">        if (!checkRulesCodeAlphaNumeric(nhsCode))</span>
+<span class="fc" id="L121">            throw new IllegalArgumentException(&quot;NHS Code must be Alphanumeric.&quot;);</span>
+<span class="fc" id="L122">    }</span>
+
+    /**
+     * Allows the verification if there is only letters and numbers in a String
+     *
+     * @param nhsCode string containing a nhsCode that identifies a Test
+     * @return boolean statement,true if there is only letters and numbers in the code false if not
+     */
+    public boolean checkRulesCodeAlphaNumeric(String nhsCode) {
+<span class="fc bfc" id="L131" title="All 2 branches covered.">        for (int i = 0; i &lt; nhsCode.length(); i++) {</span>
+<span class="fc bfc" id="L132" title="All 2 branches covered.">            if (!Character.isLetterOrDigit(nhsCode.charAt(i))) {</span>
+<span class="fc" id="L133">                return false;</span>
+            }
+        }
+<span class="fc" id="L136">        return true;</span>
+    }
+
+    /**
+     * Allows the System to set the code/number of the Test.
+     *
+     * @param code Code/Number of the Test.
+     */
+    public void setCode(String code) {
+<span class="fc" id="L145">        this.code = code;</span>
+<span class="fc" id="L146">    }</span>
+
+    /**
+     * Allows the System to set the date of creation/registration of the Test.
+     *
+     * @param createdAt Date of creation of the Test.
+     */
+    public void setCreatedAt(String createdAt) {
+<span class="fc" id="L154">        this.createdAt = createdAt;</span>
+<span class="fc" id="L155">    }</span>
+
+    /**
+     * Allows the System to set the date of the creation of the sample(s).
+     *
+     */
+    public void setSampleDate(){
+<span class="fc" id="L162">        this.sampleDate= Utils.currentDate();</span>
+<span class="fc" id="L163">    }</span>
+
+    /**
+     * Allows the System to get the NHS Code of the Test, if needed.
+     *
+     * @return NHS Code of the Test.
+     */
+    public String getNhsCode() {
+<span class="fc" id="L171">        return nhsCode;</span>
+    }
+
+    /**
+     * Allows the System to get the Sample of the Test, if needed.
+     *
+     * @return Sample of the Test.
+     */
+    public List&lt;Sample&gt; getSampleList(){
+<span class="fc" id="L180">        return sampleList;</span>
+    }
+
+    /**
+     * Allows the System to obtain one of the Test Parameters of the Test, by its code.
+     *
+     * @param index Position of the Test Parameter on the list of Test Parameters.
+     * @return Test Parameter of the Test that was requested.
+     */
+    public TestParameter getTestParameterByCode(int index) {
+<span class="fc" id="L190">        return testParameterList.get(index);</span>
+    }
+
+    /**
+     * Allows the System to obtain the list of Test Parameters associated with the Test.
+     *
+     * @return List of the Test Parameters associated with the Test.
+     */
+    public List&lt;TestParameter&gt; getTestParameterList() {
+<span class="fc" id="L199">        return testParameterList;</span>
+    }
+
+    /**
+     * Allows the System to verify if the Test has got Results, by the verification of the Test Result date.
+     *
+     * @return Boolean value referent to the existence or non-existence of the Test Results.
+     */
+    public boolean hasResults() {
+<span class="fc bfc" id="L208" title="All 2 branches covered.">        return resultDate != null;</span>
+    }
+
+    /**
+     * Allows the System to verify if the Test has got a Report, by the verification of the Test Report date.
+     *
+     * @return Boolean value referent to the existence or non-existence of the Test Report.
+     */
+    public boolean hasReport() {
+<span class="fc bfc" id="L217" title="All 2 branches covered.">        return reportDate != null;</span>
+    }
+
+    /**
+     * Allows the verification of the existence of a validation in a Test class object
+     *
+     * @return boolean statement,true if testValidation object is different from  null false if not
+     */
+    public boolean hasValidation() {
+<span class="fc bfc" id="L226" title="All 2 branches covered.">        return testValidation != null;</span>
+    }
+
+    /**
+     * Allows the System to verify if the Test has got Samples, by the verification of the Sample date.
+     *
+     * @return Boolean value referent to the existence or non-existence of the Samples.
+     */
+    public boolean hasSamples() {
+<span class="fc bfc" id="L235" title="All 2 branches covered.">        return sampleDate != null;</span>
+    }
+
+    /**
+     * Allows the System to get the Parameters that are associated with the Test.
+     *
+     * @return List of the Parameters associated with the Test.
+     */
+    public List&lt;Parameter&gt; getParametersAssociatedWithTest(){
+<span class="nc" id="L244">       List&lt;Parameter&gt; p=new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L245" title="All 2 branches missed.">        for(TestParameter tp:testParameterList){</span>
+<span class="nc" id="L246">            p.add(tp.getParameter());</span>
+<span class="nc" id="L247">        }</span>
+<span class="nc" id="L248">        return p;</span>
+    }
+
+    /**
+     * Allows the validation of a Test object by creating a object of the TestValidation class
+     */
+    public void validateTest() {
+<span class="fc" id="L255">        testValidation = new TestValidation();</span>
+<span class="fc" id="L256">    }</span>
+
+    /**
+     * Allows the System to add the Test Report to the Test.
+     *
+     * @param testReport Test Report to be associated to the Test.
+     */
+    public void addTestReport(TestReport testReport) {
+<span class="fc" id="L264">        this.testReport = testReport;</span>
+<span class="fc" id="L265">    }</span>
+
+    /**
+     * Allows the System to add the Test Report creation date to the Test.
+     */
+    public void addReportDate() {
+<span class="fc" id="L271">        this.reportDate = Utils.currentDate();</span>
+<span class="fc" id="L272">    }</span>
+
+    /**
+     * Allows the System to get the date of when the Results where created.
+     *
+     * @return Date of the creation of the Results.
+     */
+    public String getResultDate() {
+<span class="fc" id="L280">        return resultDate;</span>
+    }
+
+    /**
+     * Allows the System to get the date of when the Report was created.
+     *
+     * @return Date of the creation of the Report.
+     */
+    public String getReportDate() {
+<span class="fc" id="L289">        return reportDate;</span>
+    }
+
+    /**
+     * Allows the System to get the date of when the Test was created.
+     *
+     * @return Date of the creation of the Test.
+     */
+    public String getCreatedAt() {
+<span class="fc" id="L298">        return createdAt;</span>
+    }
+
+    /**
+     * Allows the System to get the date of when the Samples were created.
+     *
+     * @return Date of when the Samples were created.
+     */
+    public String getSampleDate() {
+<span class="fc" id="L307">        return sampleDate;</span>
+    }
+
+    /**
+     * Allows the System to obtain the Test Type of the Test.
+     *
+     * @return Test Type of the Test.
+     */
+    public TestType getTestType() {
+<span class="fc" id="L316">        return testType;</span>
+    }
+
+    /**
+     * Allows the System to obtain the Clinical Analysis Laboratory associated to the Test.
+     *
+     * @return Clinical Analysis Laboratory of the Test.
+     */
+    public ClinicalAnalysisLaboratory getClinicalAnalysisLaboratory() {
+<span class="fc" id="L325">        return clinicalAnalysisLaboratory;</span>
+    }
+
+    /**
+     * Method to save the Clinical Analysis Laboratory
+     *
+     * @param clinicalAnalysisLaboratory the laboratory received as a parameter
+     */
+    public void saveClinicalAnalysisLaboratory(ClinicalAnalysisLaboratory clinicalAnalysisLaboratory) {
+<span class="fc" id="L334">        this.clinicalAnalysisLaboratory = clinicalAnalysisLaboratory;</span>
+<span class="fc" id="L335">    }</span>
+
+    /**
+     * Method to save the Test Type
+     *
+     * @param testType the Test Type received as a parameter
+     */
+    public void saveTestType(TestType testType) {
+<span class="fc" id="L343">        this.testType = testType;</span>
+<span class="fc" id="L344">    }</span>
+
+    /**
+     * Method to add a test parameter to the Test
+     *
+     * @param parameter the parameter that will be taken
+     */
+    public void addTestParameter(Parameter parameter) {
+<span class="fc" id="L352">        testParameterList.add(new TestParameter(parameter));</span>
+<span class="fc" id="L353">    }</span>
+
+    /**
+     * Allows the System to add a Sample to the Sample List of the Test.
+     *
+     * @param sample Sample to be added to the List.
+     */
+    public void addSampleToTest(Sample sample) {
+<span class="fc" id="L361">        this.sampleList.add(sample);</span>
+<span class="fc" id="L362">    }</span>
+
+    /**
+     * Allows the System to obtain the Code/Number of the Test.
+     *
+     * @return Code of the Test.
+     */
+    public String getCode() {
+<span class="fc" id="L370">        return this.code;</span>
+    }
+
+    /**
+     * Allows for the search of the TestParameter that is associated with a Parameter that has the code received as parameter
+     *
+     * @param parameterCode A code that identifies a Parameter class object
+     * @return the TestParameter object if found,null if not
+     */
+    private TestParameter getTestParameterFor(String parameterCode) {
+<span class="pc bpc" id="L380" title="1 of 2 branches missed.">        for (TestParameter testParameter : testParameterList) {</span>
+<span class="pc bpc" id="L381" title="1 of 2 branches missed.">            if (testParameter.getParameter().getCode().equals(parameterCode)) {</span>
+<span class="fc" id="L382">                return testParameter;</span>
+            }
+<span class="nc" id="L384">        }</span>
+<span class="nc" id="L385">        return null;</span>
+    }
+
+    /**
+     * Allows the System to verify if a Barcode (number) is present on the Sample List.
+     *
+     * @param barcode Barcode Number to be searched.
+     * @return Boolean value referent to the barcode being present or not on the Sample List.
+     */
+    public boolean isBarcodeInSampleList(String barcode) {
+<span class="nc bnc" id="L395" title="All 2 branches missed.">        for (Sample s : sampleList) {</span>
+<span class="nc bnc" id="L396" title="All 2 branches missed.">            if (s.getBarcodeNumber().equals(barcode)) {</span>
+<span class="nc" id="L397">                return true;</span>
+            }
+<span class="nc" id="L399">        }</span>
+<span class="nc" id="L400">        return false;</span>
+    }
+
+    /**
+     * Allows the System to add a Test Result to a Parameter of the Test.
+     *
+     * @param parameterCode Code of the Parameter.
+     * @param result Result of the Test Parameter.
+     * @throws ClassNotFoundException Exception to be thrown if the Class is not found.
+     * @throws InstantiationException Exception to be throw if the Constructor is not available.
+     * @throws IllegalAccessException Exception to be throw if the Method does not have access to the wanted Class.
+     */
+    public void addTestResult(String parameterCode, double result) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+<span class="fc" id="L413">        TestParameter testParameter=getTestParameterFor(parameterCode);</span>
+<span class="fc" id="L414">        Parameter p=testParameter.getParameter();</span>
+<span class="fc" id="L415">        ExternalModule em=testType.getExternalModule();</span>
+<span class="fc" id="L416">        ReferenceValue refValue= em.getReferenceValue(p);</span>
+<span class="fc" id="L417">        String metric=em.getMetric(p);</span>
+<span class="fc" id="L418">        testParameter.addTestResult(result,metric,refValue);</span>
+
+<span class="fc" id="L420">    }</span>
+
+    /**
+     * Allows the System to add the date of when the Results were obtained, to the Test.
+     */
+    public void addTestResultDate(){
+<span class="fc" id="L426">        resultDate=Utils.currentDate();</span>
+<span class="fc" id="L427">    }</span>
+
+    /**
+     * Allows the System to obtain the Test Report, if needed.
+     *
+     * @return Test Report of the Test.
+     */
+<span class="fc" id="L434">    public TestReport getTestReport(){return this.testReport;}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

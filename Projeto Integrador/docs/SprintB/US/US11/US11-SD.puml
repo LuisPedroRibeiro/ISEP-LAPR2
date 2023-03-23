@@ -1,0 +1,55 @@
+@startuml
+
+actor Administrator as R
+participant ":CreateParameter\nCategoryUI" as A
+participant ":CreateParameter\nCategoryController" as B
+participant ":Company" as C
+participant "store: Parameter\nCategoryStore" as D
+
+
+
+autonumber
+activate R
+R -> A: starts new parameter category
+activate A
+A -> R: request data (i.e. code, name)
+deactivate A
+R -> A: types requested data
+activate A
+A-> B: createParameterCategory(code,name)
+activate B
+B-> C: store = getParameterCategoryStore()
+activate C
+deactivate C
+B -> D: pc = createParameterCategory(code, name)
+activate D
+
+create  "pc: Parameter\nCategory" as E
+D ->E: create(code, name)
+deactivate D
+B -> D: validateParameterCategory(pc)
+activate D
+deactivate D
+deactivate B
+A -> R: shows the data and requests a confirmation
+deactivate A
+R-> A:  confirms the data
+activate A
+
+A-> B: saveParameterCategory()
+activate B
+activate D
+B -> D: saveParameterCategory(pc)
+D -> D: validateParameterCategory(pc)
+activate D
+deactivate D
+D -> D: addParameterCategory(pc)
+activate D
+deactivate D
+A -> R: informs operation success
+deactivate B
+deactivate D
+deactivate A
+deactivate R
+@enduml
+@enduml

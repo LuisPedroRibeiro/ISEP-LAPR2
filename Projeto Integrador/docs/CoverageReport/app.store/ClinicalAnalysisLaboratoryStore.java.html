@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClinicalAnalysisLaboratoryStore.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.store</a> &gt; <span class="el_source">ClinicalAnalysisLaboratoryStore.java</span></div><h1>ClinicalAnalysisLaboratoryStore.java</h1><pre class="source lang-java linenums">package app.store;
+
+import app.domain.model.ClinicalAnalysisLaboratory;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * This class allows for the construction of a Clinical Analysis Laboratory Store.
+ *
+ * @author Miguel Ramos &lt;1201247@isep.ipp.pt&gt;
+ */
+public class ClinicalAnalysisLaboratoryStore {
+
+    /**
+     * Creation of a Clinical Analysis Laboratory Store.
+     */
+    private final List&lt;ClinicalAnalysisLaboratory&gt; analysisLaboratoryStore;
+
+    /**
+     * A constructor that allows the initialization of the Clinical Analysis Laboratory Store.
+     */
+<span class="fc" id="L23">    public ClinicalAnalysisLaboratoryStore() {</span>
+<span class="fc" id="L24">        this.analysisLaboratoryStore = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L25">    }</span>
+
+    /**
+     * The method that allows the creation of a Clinical Analysis Laboratory.
+     *
+     * @param laboratoryId            A string that contains an id that identifies the Clinical Analysis Laboratory.
+     * @param address                 A string that contains the full address of Clinical Analysis Laboratory.
+     * @param name                    A string that contains the name of Clinical Analysis Laboratory.
+     * @param phoneNumber             A integer that contains the phone number of Clinical Analysis Laboratory.
+     * @param taxIdentificationNumber A integer that contains the Tax Identification Number (TIN) of Clinical
+     *                                Analysis Laboratory.
+     * @return The creation of a new Clinical Analysis Laboratory, with all parameters.
+     */
+    public ClinicalAnalysisLaboratory createClinicalAnalysisLaboratory(String laboratoryId, String address,
+                                                                       String name, String phoneNumber,
+                                                                       String taxIdentificationNumber) {
+<span class="fc" id="L41">        return new ClinicalAnalysisLaboratory(laboratoryId, address, name, phoneNumber,</span>
+                taxIdentificationNumber);
+    }
+
+    /**
+     * Allows the save of Clinical Analysis Laboratory.
+     *
+     * @param lab Clinical Analysis Laboratory that will be saved.
+     * @return The addition of lab in Clinical Analysis Laboratory Store.
+     */
+    public boolean saveClinicalAnalysisLaboratory(ClinicalAnalysisLaboratory lab) {
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">        if (!validatesClinicalAnalysisLaboratory(lab)) {</span>
+<span class="nc" id="L53">            return false;</span>
+        }
+<span class="fc" id="L55">        return this.analysisLaboratoryStore.add(lab);</span>
+    }
+
+    /**
+     * Allows the validation of the Test Type in the Clinical Analysis Laboratory checking if Test Type is null and if
+     * Test Type already exists in Clinical Test Type List.
+     *
+     * @param lab Clinical Analysis Laboratory that will be validated.
+     * @return Confirmation if Clinical Analysis Laboratory doesn't exist in a duplicated way.
+     */
+    public boolean validatesClinicalAnalysisLaboratory(ClinicalAnalysisLaboratory lab) {
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        if (lab == null) {</span>
+<span class="fc" id="L67">            return false;</span>
+        }
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        return !this.analysisLaboratoryStore.contains(lab);</span>
+    }
+
+    /**
+     * Method that returns the list of Clinical Analysis Laboratories that belong to the Company
+     *
+     * @return the list of the Clinical Analysis Laboratories
+     */
+    public List&lt;ClinicalAnalysisLaboratory&gt; getClinicalAnalysisLaboratoryList() {
+<span class="nc" id="L78">        return analysisLaboratoryStore;</span>
+    }
+
+    /**
+     * Method that returns the Clinical Analysis Laboratory with the LaboratoryID given as a parameter
+     *
+     * @param laboratoryId the Laboratory ID
+     * @return the Clinical ANalysis Laboratory with the data given as a parameter
+     */
+
+    public ClinicalAnalysisLaboratory getClinicalAnalysisLaboratoryById(String laboratoryId){
+<span class="nc" id="L89">        List&lt;ClinicalAnalysisLaboratory&gt; listClinicalAnalysisLaboratory = getClinicalAnalysisLaboratoryList();</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        for (ClinicalAnalysisLaboratory clinicalAnalysisLaboratory:listClinicalAnalysisLaboratory) {</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            if (laboratoryId.equals(clinicalAnalysisLaboratory.getLaboratoryId()))</span>
+<span class="nc" id="L92">                return clinicalAnalysisLaboratory;</span>
+<span class="nc" id="L93">        }</span>
+<span class="nc" id="L94">        return null;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

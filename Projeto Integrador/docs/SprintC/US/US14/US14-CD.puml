@@ -1,0 +1,159 @@
+@startuml
+
+class Company {
+    - designation
+
+    + getAuthFacade()
+    + getParameterStore()
+    + getTestStore()
+    + listDTO()
+}
+
+class TestParameter {
+    - parameter
+
+    + toString()
+    + getTestResult()
+}
+
+class TestParameterResult {
+    + getRefValue()
+}
+
+class ReferenceValue{
+    + toString()
+}
+
+class Test {
+    - code
+    - nhsCode
+    - createdAt
+    - sampleDate
+    - resultDate
+    - reportDate
+
+    + getNhsCode()
+    + getTestParameterByCode(index)
+    + getTestParameterList()
+    + hasResults()
+    + hasReport()
+    + getParametersAssociatedWithTest()
+    + addTestReport(testReport)
+    + addReportDate()
+    + getCreatedAt()
+    + getSampleDate()
+    + getResultDate()
+    + getCode()
+    + getTestReport()
+}
+
+class TestDTO {
+    - code
+    - createdAt
+    - sampleDate
+    - resultDate
+
+    + TestDto(code, createdAt, sampleDate, resultDate)
+    + toStringTestWithoutReport()
+}
+
+class TestMapper {
+    + toDTOForReport(testStore)
+    + toDTOForReport(test)
+}
+
+class TestReport {
+    - header
+    - text
+    - specialistDoctorName
+    - specialistDoctorEmail
+
+    + TestReport(text, numberOfTheTest, specialistDoctorName, specialistDoctorEmail)
+    + checkText(text)
+    + setHeader(numberOfTheTest)
+    + getHeader()
+    + getText()
+    + toString()
+}
+
+class TestStore {
+    - testList
+
+    + TestStore()
+    + getTestWithResultList()
+    + getTestByNhsCode(nhsCode)
+    + saveTestReport(test, testReport)
+    + validateTestReport(testReport)
+    + getStore()
+}
+
+class WriteReportUI {}
+
+class WriteReportController {
+    - test
+    - testReport
+    - company
+    - testsWithResultList
+
+    + WriteReportController()
+    + WriteReportController(company)
+    + generateTestsWithResultList()
+    + getTestsWithResultList()
+    + getTestByIndex(index)
+    + showResults()
+    + generateTestReport(text)
+    + showTestReport()
+    + saveTestReport()
+}
+
+class Utils{
+    + currentDate()
+}
+
+class UserSession{
+    + getUserName()
+    + getUserID()
+}
+
+class User{
+    - id
+    - name
+
+    + getId()
+    + getName()
+}
+
+class AuthFacade{
+    + getCurrentUserSession()
+}
+
+WriteReportUI ..> WriteReportController
+WriteReportUI ..> TestDTO
+WriteReportUI ..> Utils
+
+WriteReportController ..> TestDTO
+WriteReportController ..> TestMapper
+WriteReportController ..> Company
+WriteReportController ..> TestParameter
+WriteReportController ..> AuthFacade
+WriteReportController ..> TestReport
+
+Company "1" -- "1" TestStore: uses >
+
+Test "1" -- "1..*" TestParameter: uses >
+Test "1" -- "1" TestReport: has >
+
+TestStore "1" -- "*" Test : has >
+
+TestMapper ..> Test
+TestMapper ..> TestDTO
+
+TestParameter ..> TestParameterResult
+TestParameterResult ..> ReferenceValue
+
+Test ..> Utils
+
+AuthFacade ..> UserSession
+UserSession ..> User
+
+@enduml

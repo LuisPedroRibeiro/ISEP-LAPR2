@@ -1,0 +1,35 @@
+@startuml
+
+autonumber
+actor Administrator as admin
+participant ":System" as sys
+
+activate admin
+
+admin -> sys: Starts to create a Clinical Analysis Laboratory.
+activate sys
+sys --> admin: Requests data (laboratoryID, address, name, phoneNumber, tinNumber).
+deactivate sys
+
+admin -> sys: Types requested data.
+activate sys
+sys --> admin: Shows the data and requests for type of test showing the list of them.
+deactivate sys
+
+loop while admin wants to add test types and while test types exists.
+
+    admin -> sys: Select the type of test (designation).
+    activate sys
+    sys --> admin: Validates type of test and show the list of test types.
+    deactivate sys
+
+end
+
+admin -> sys: Confirms the creation of Clinical Analysis Laboratory and type of tests.
+activate sys
+sys --> admin: Informs operation success.
+deactivate sys
+
+deactivate admin
+
+@enduml

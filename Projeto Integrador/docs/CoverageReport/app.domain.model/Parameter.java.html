@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Parameter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.domain.model</a> &gt; <span class="el_source">Parameter.java</span></div><h1>Parameter.java</h1><pre class="source lang-java linenums">package app.domain.model;
+
+
+import org.apache.commons.lang3.StringUtils;
+
+/**
+ * Class that allows the creation of a Parameter.
+ *
+ * @author Miguel Ramos &lt;1201247@isep.ipp.pt&gt;
+ * @author André Soares &lt;1201314@isep.ipp.pt&gt;
+ */
+public class Parameter {
+
+    /**
+     * A string with five alphabetic characters.
+     */
+    private final String code;
+
+    /**
+     * A string with no more than 8 characters.
+     */
+    private final String shortName;
+
+    /**
+     * A string with no more than 20 characters.
+     */
+    private final String description;
+
+    /**
+     * Object of the class ParameterCategory which will be assigned to a specific parameter
+     */
+    private ParameterCategory pc;
+
+    /**
+     * A Constructor with all parameters of a Parameter.
+     * Allows the creation of a Parameter with all parameters.
+     *
+     * @param code A string that contains a code that identifies the Parameter.
+     * @param shortName A string that contains a name that identifies the Parameter.
+     * @param description A string that contains brief description that identifies the Parameter.
+     */
+<span class="fc" id="L42">    public Parameter(String code, String shortName, String description){</span>
+<span class="fc" id="L43">        checkCodeRules(code);</span>
+<span class="fc" id="L44">        this.code=code;</span>
+
+<span class="fc" id="L46">        checkNameRules(shortName);</span>
+<span class="fc" id="L47">        this.shortName=shortName;</span>
+
+<span class="fc" id="L49">        checkDescriptionRules(description);</span>
+<span class="fc" id="L50">        this.description=description;</span>
+<span class="fc" id="L51">    }</span>
+
+    /**
+     * Method that allows the verification of code restrictions throwing an exception if the operation fails.
+     *
+     * @param code The parameter that will be checked (5 alphabetic numbers).
+     */
+    public void checkCodeRules(String code){
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        if(StringUtils.isBlank(code))</span>
+<span class="fc" id="L60">            throw new IllegalArgumentException(&quot;Code cannot be blank.&quot;);</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        if(code.length()!=5){</span>
+<span class="fc" id="L62">            throw new IllegalArgumentException(&quot;Code should have 5 alphabetic numbers.&quot;);</span>
+        }
+<span class="fc" id="L64">    }</span>
+
+    /**
+     * Method that allows the verification of name restrictions throwing an exception if the operation fails.
+     *
+     * @param shortName The parameter that will be checked (no more than 8 characters).
+     */
+    public void checkNameRules(String shortName){
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        if(StringUtils.isBlank(shortName))</span>
+<span class="fc" id="L73">            throw new IllegalArgumentException(&quot;Name cannot be blank.&quot;);</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        if(shortName.length()&gt;8){</span>
+<span class="fc" id="L75">            throw new IllegalArgumentException(&quot;Name should have 8 characters or fewer.&quot;);</span>
+        }
+<span class="fc" id="L77">    }</span>
+
+    /**
+     * Method that allows the verification of description restrictions throwing an exception if the operation fails.
+     *
+     * @param description The parameter that will be checked (no more than 20 characters).
+     */
+    public void checkDescriptionRules(String description){
+<span class="fc bfc" id="L85" title="All 2 branches covered.">        if(StringUtils.isBlank(description))</span>
+<span class="fc" id="L86">            throw new IllegalArgumentException(&quot;Description cannot be blank.&quot;);</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">        if(description.length()&gt;20){</span>
+<span class="fc" id="L88">            throw new IllegalArgumentException(&quot;Laboratory Id should have 20 characters or fewer.&quot;);</span>
+        }
+<span class="fc" id="L90">    }</span>
+
+    /**
+     * Method to get the code of the Parameter
+     *
+     * @return the code of the Parameter
+     */
+    public String getCode() {
+<span class="fc" id="L98">        return code;</span>
+    }
+
+    /**
+     * Method to get the name of the Parameter
+     *
+     * @return the name of the Parameter
+     */
+    public String getShortName() {
+<span class="fc" id="L107">        return shortName;</span>
+    }
+
+    /**
+     * Method to get the description of the Parameter
+     *
+     * @return the description of the Parameter
+     */
+    public String getDescription() {
+<span class="fc" id="L116">        return description;</span>
+    }
+
+    /**
+     * Method to return the Parameter Category object
+     *
+     * @return Parameter Category object
+     */
+    public ParameterCategory getPc() {
+<span class="fc" id="L125">        return pc;</span>
+    }
+
+
+    /**
+     * Allows the association of a Parameter object with a ParameterCategory object
+     *
+     * @param pc object of the ParameterCategory class
+     */
+    public void addParameterCategoryToParameter(ParameterCategory pc){
+<span class="fc" id="L135">        this.pc=pc;</span>
+<span class="fc" id="L136">    }</span>
+
+    /**
+     * The method that allows the comparasion between 2 objects (Parameters).
+     *
+     * @param parameter Parameter that will be compared.
+     * @return True if they we're equals, and false if not.
+     */
+    @Override
+    public boolean equals(Object parameter){
+<span class="fc bfc" id="L146" title="All 2 branches covered.">        if (this == parameter)</span>
+<span class="fc" id="L147">            return true;</span>
+<span class="pc bpc" id="L148" title="2 of 4 branches missed.">        if (parameter == null || getClass() != parameter.getClass())</span>
+<span class="nc" id="L149">            return false;</span>
+<span class="fc" id="L150">        Parameter p= (Parameter) parameter;</span>
+<span class="pc bpc" id="L151" title="1 of 4 branches missed.">        return this.code.equals(p.code) || this.shortName.equals(p.shortName);</span>
+    }
+
+    /**
+     * The method that allows to see all the parameters of a Parameter in a organised way.
+     *
+     * @return All parameters of a Parameter with a specific format.
+     */
+    @Override
+    public String toString(){
+<span class="fc" id="L161">        return String.format(&quot;##Parameter## %n Code: %s %n Short Name: %s %n Description: %s %n &quot;, code,shortName,description);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

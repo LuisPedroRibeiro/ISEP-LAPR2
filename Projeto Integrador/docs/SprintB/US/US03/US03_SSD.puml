@@ -1,0 +1,22 @@
+@startuml
+
+autonumber
+actor Receptionist as recep
+participant ":System" as sys
+
+
+recep -> sys: Starts client registration
+activate sys
+sys --> recep: Requests data (name, email, taxIdentificationNumber,\n citizenCardNumber, nhsNumber,  birthDate, gender, phoneNumber)
+deactivate sys
+recep -> sys : Types the requested data
+activate sys
+sys --> recep : Shows the typed data and requests a confirmation
+deactivate sys
+recep-> sys: Confirms the given data
+activate sys
+sys --> recep: Informs operation success
+deactivate sys
+
+
+@enduml

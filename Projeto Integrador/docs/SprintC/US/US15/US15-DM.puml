@@ -1,0 +1,50 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Employee{
+    name
+    phoneNumber
+    email
+    password
+    employeeID
+    socCode
+    organizationRole
+    address
+}
+class LaboratoryCoordinator{
+}
+class Client{
+  name
+  phoneNumber
+  taxIdentificationNumber
+  email
+  birthDate
+  gender
+  nhsNumber
+  citizenCardNumber
+  }
+class Notification
+class Company{
+designation
+}
+class Test{
+code
+nhsCode
+createdAt
+resultDate
+sampleDate
+reportDate
+}
+class EmailAPI
+
+Company "1" -- "*" Client: has >
+Employee <|-- LaboratoryCoordinator
+Company "1" -- "1..*" Employee: has >
+Company "1" -- "*" Test: performs >
+LaboratoryCoordinator "1" -- "*" Test: validates >
+Client "1" -- "*" Test:has >
+Company "1" --"1" EmailAPI:uses >
+EmailAPI "1" -- "*" Notification:sends >
+Client "1" --"1" Notification:receives >
+
+@enduml

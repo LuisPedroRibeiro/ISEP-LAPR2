@@ -1,0 +1,104 @@
+
+@startuml
+
+actor Receptionist as R
+participant ":RegisterClientUI" as A
+participant ":RegisterClientController" as B
+participant ":Company" as C
+participant "store: ClientStore" as D
+
+
+
+autonumber
+activate R
+R -> A: starts client registration
+activate A
+A -> R: requests data ( name, email, taxIdentificationNumber, \n citizenCardNumber, nhsNumber, birthDate, gender, phoneNumber )
+deactivate A
+R -> A: types requested data
+activate A
+A-> B: createClient(clientDto)
+activate B
+B-> C: store = getClientStore()
+activate C
+deactivate C
+B -> D: client = createClient(clientDto))
+activate D
+create  "client: Client" as E
+D ->E: create((clientDto)
+activate E
+participant "clientDto: ClientDto" as Cdto
+E->Cdto: name = getName()
+activate Cdto
+deactivate Cdto
+E->Cdto: email = getEmail()
+activate Cdto
+deactivate Cdto
+E->Cdto: taxIdentificationNumber = getTaxIdentificationNumber()
+activate Cdto
+deactivate Cdto
+E->Cdto: citizenCardNumber = getCitizenCardNumber()
+activate Cdto
+deactivate Cdto
+E->Cdto: nhsNumber= getNhsNumber()
+activate Cdto
+deactivate Cdto
+E->Cdto: birthDate= getBirthDate()
+activate Cdto
+deactivate Cdto
+E->Cdto: gender = getGender()
+activate Cdto
+deactivate Cdto
+E->Cdto: phoneNumber = getPhoneNumber()
+activate Cdto
+deactivate Cdto
+deactivate E
+deactivate D
+B -> D: validateClient(client)
+activate D
+deactivate D
+deactivate B
+A -> R: shows the typed data and requests a confirmation
+deactivate A
+R-> A:  confirms the data
+activate A
+
+A-> B: saveClient()
+activate B
+
+B -> D: saveClient(client)
+activate D
+
+D -> D: validateClient(client)
+activate D
+deactivate D
+D->E: setPassword()
+activate E
+participant ":Utils" as U
+E->U: generateRandomPassword()
+activate U
+deactivate U
+deactivate E
+D-> E: addUserAndSendEmail();
+activate E
+E-> C : authFacade = getAuthFacade();
+activate C
+deactivate C
+create "authFacade: \n AuthFacade" as Auth
+E -> Auth : addUser(name, email.toString(), password)
+E->E : sendEmail(email, name, password);
+activate E
+deactivate E
+D -> D: addClient(client)
+activate D
+deactivate D
+A -> R: informs operation success
+deactivate B
+deactivate D
+deactivate A
+deactivate R
+deactivate E
+
+
+
+@enduml

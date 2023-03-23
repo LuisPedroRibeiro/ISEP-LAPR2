@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegisterClientController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.controller</a> &gt; <span class="el_source">RegisterClientController.java</span></div><h1>RegisterClientController.java</h1><pre class="source lang-java linenums">package app.controller;
+import app.domain.model.Client;
+import app.domain.model.Company;
+import app.mappers.dto.ClientDto;
+import app.store.ClientStore;
+import auth.domain.model.Email;
+import java.io.IOException;
+
+/**
+ * @author Pedro Graça &lt;1201184@isep.ipp.pt&gt;
+ */
+public class RegisterClientController {
+
+    /**
+     * Company that will have the controller
+     */
+    private final Company company;
+
+    /**
+     * Client that will be controlled
+     */
+    private Client client;
+
+    /**
+     * Store the Clients
+     */
+    private ClientStore store;
+
+    /**
+     * Constructs an instance of RegisterClientController with no parameters
+     */
+    public RegisterClientController() {
+<span class="fc" id="L33">        this(App.getInstance().getCompany());</span>
+<span class="fc" id="L34">    }</span>
+
+    /**
+     * Constructs an instance of RegisterClientController receiving the Company
+     *
+     * @param company the Company that will be on the controller
+     */
+<span class="fc" id="L41">    public RegisterClientController(Company company) {</span>
+<span class="fc" id="L42">        this.company = company;</span>
+<span class="fc" id="L43">        this.client = null;</span>
+<span class="fc" id="L44">    }</span>
+
+    /**
+     * Returns the boolean value of the Client construction with the ClientDto object
+     * @param clientDto the Client Data Transfer Object that contains the Client attributes;
+     * @return the boolean value of the creation of the Client
+     */
+    public boolean createClient(ClientDto clientDto) {
+<span class="fc" id="L52">        identifyStore();</span>
+<span class="fc" id="L53">        this.client = this.store.createClient(clientDto);</span>
+<span class="fc" id="L54">        return this.store.validateClient(client);</span>
+    }
+
+    /**
+     * Method to identify the ClientStore object that is pretended to work in
+     */
+    private void identifyStore() {
+<span class="fc" id="L61">        store = this.company.getClientStore();</span>
+<span class="fc" id="L62">    }</span>
+
+    /**
+     * Method used to save the Client
+     *
+     * @return the boolean value of the save of the Client
+     */
+    public boolean saveClient() throws IOException {
+<span class="fc" id="L70">        return this.store.saveClient(client);</span>
+    }
+
+    /**
+     * Method to return the Client Store to the UI
+     *
+     * @return the Client Store
+     */
+    public ClientStore getStore() {
+<span class="fc" id="L79">        return this.store;</span>
+    }
+
+    /**
+     * Method that takes the Phone Number to the store to confirm if is already any Client with this Phone Number
+     *
+     * @param phoneNumber the Phone Number given as a parameter
+     * @return the boolean result of the confirmation of the store
+     */
+    public boolean containsPhoneNumber(String phoneNumber) {
+<span class="fc" id="L89">        identifyStore();</span>
+<span class="fc" id="L90">        return store.containsPhoneNumber(phoneNumber);</span>
+    }
+
+    /**
+     * Method that check if the Store contains the email.
+     *
+     * @param email The email to be checked
+     * @return True if the Store contains the email, false if not.
+     */
+    public boolean containsEmail(Email email){
+<span class="fc" id="L100">        identifyStore();</span>
+<span class="fc" id="L101">        return store.containsEmail(email);</span>
+    }
+}
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

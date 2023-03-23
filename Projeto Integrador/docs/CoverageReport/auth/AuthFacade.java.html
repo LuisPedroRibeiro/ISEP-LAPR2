@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuthFacade.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">auth</a> &gt; <span class="el_source">AuthFacade.java</span></div><h1>AuthFacade.java</h1><pre class="source lang-java linenums">package auth;
+
+import auth.domain.model.User;
+import auth.domain.model.UserRole;
+import auth.domain.store.UserRoleStore;
+import auth.domain.store.UserStore;
+
+import java.util.Optional;
+
+/**
+ *
+ * @author Paulo Maio &lt;pam@isep.ipp.pt&gt;
+ */
+public class AuthFacade {
+
+    private UserSession userSession;
+
+    private UserRoleStore roles ;
+    private UserStore users;
+
+    public AuthFacade()
+<span class="fc" id="L22">    {</span>
+<span class="fc" id="L23">        this.userSession = new UserSession();</span>
+<span class="fc" id="L24">        this.roles = new UserRoleStore();</span>
+<span class="fc" id="L25">        this.users = new UserStore();</span>
+<span class="fc" id="L26">    }</span>
+
+    public boolean addUserRole(String id, String description)
+    {
+<span class="fc" id="L30">        UserRole role = this.roles.create(id, description);</span>
+<span class="fc" id="L31">        return this.roles.add(role);</span>
+    }
+
+    public boolean addUser(String name, String email, String pwd)
+    {
+<span class="fc" id="L36">        User user = this.users.create(name, email, pwd);</span>
+<span class="fc" id="L37">        return this.users.add(user);</span>
+    }
+
+    public boolean addUserWithRole(String name, String email, String pwd, String roleId)
+    {
+<span class="fc" id="L42">        Optional&lt;UserRole&gt; roleResult = this.roles.getById(roleId);</span>
+<span class="pc bpc" id="L43" title="1 of 2 branches missed.">        if (!roleResult.isPresent())</span>
+<span class="nc" id="L44">            return false;</span>
+
+<span class="fc" id="L46">        User user = this.users.create(name,email,pwd);</span>
+<span class="fc" id="L47">        user.addRole(roleResult.get());</span>
+<span class="fc" id="L48">        return this.users.add(user);</span>
+    }
+
+    public boolean addUserWithRoles(String name, String email, String pwd, String[] rolesId)
+    {
+<span class="nc" id="L53">        User user = this.users.create(name, email, pwd);</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">        for (String roleId: rolesId)</span>
+        {
+<span class="nc" id="L56">            Optional&lt;UserRole&gt; roleResult = this.roles.getById(roleId);</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            if (roleResult.isPresent())</span>
+<span class="nc" id="L58">                user.addRole(roleResult.get());</span>
+        }
+
+<span class="nc" id="L61">        return this.users.add(user);</span>
+    }
+
+    public boolean existsUser(String email)
+    {
+<span class="fc" id="L66">        return this.users.exists(email);</span>
+    }
+
+    public UserSession doLogin(String email, String password)
+    {
+<span class="nc" id="L71">        Optional&lt;User&gt; result = this.users.getById(email);</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">        if (result.isPresent())</span>
+        {
+<span class="nc" id="L74">            User user = result.get();</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            if (user.hasPassword(password)){</span>
+<span class="nc" id="L76">                this.userSession = new UserSession(user);</span>
+            }
+        }
+<span class="nc" id="L79">        return this.userSession;</span>
+    }
+
+    public void doLogout()
+    {
+<span class="nc" id="L84">        this.userSession.doLogout();</span>
+<span class="nc" id="L85">    }</span>
+
+    public UserSession getCurrentUserSession()
+    {
+<span class="nc" id="L89">        return this.userSession;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ParameterStore.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.store</a> &gt; <span class="el_source">ParameterStore.java</span></div><h1>ParameterStore.java</h1><pre class="source lang-java linenums">package app.store;
+
+import app.domain.model.Parameter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * This class allows for the construction of an object ParameterStore,where the all the created parameter will be stored
+ *
+ * @author André Soares &lt;1201314@isep.ipp.pt&gt;
+ */
+public class ParameterStore {
+
+    /**
+     * A list designed to contain objects of the Parameter class
+     */
+    private final List&lt;Parameter&gt; paramStore;
+
+
+    /**
+     * Initializes a new ParameterStore, while also initializing  an empty array list where the Parameters will be stored
+     */
+<span class="fc" id="L24">    public ParameterStore() {</span>
+<span class="fc" id="L25">        this.paramStore = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L26">    }</span>
+
+
+    /**
+     * Initializes a parameter with a code,name and description, lowerReferenceValue and upperReferenceValue.
+     *
+     * @param code A string that contains a code that identifies the Parameter.
+     * @param shortName A string that contains a name that identifies the Parameter.
+     * @param description A string that contains brief description that identifies the Parameter.
+     * @return the created object of the Parameter class
+     */
+    public Parameter createParameter(String code, String shortName, String description) {
+<span class="fc" id="L38">        return new Parameter(code, shortName, description);</span>
+    }
+
+    /**
+     * Allows the validation of an existing parameter
+     *
+     * @param p An existing parameter
+     * @return a boolean statement true if the Parameter is not null and does not exist in the parameter store,
+     * false if not
+     */
+    public boolean validateParameter(Parameter p) {
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        if (p == null) {</span>
+<span class="fc" id="L50">            return false;</span>
+        }
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">        if (paramStore.contains(p)) {</span>
+<span class="nc" id="L53">            throw new IllegalArgumentException(&quot;There already exists a parameter with that information&quot;);</span>
+        }
+<span class="fc" id="L55">        return true;</span>
+    }
+
+    /**
+     * Allows the addition of an validated parameter to the the list parameterStore of the object ParameterStore
+     *
+     * @param p An existing parameter object
+     * @return a boolean statement, true if the parameter was added successfully to the parameter store false if not
+     */
+    public boolean saveParameter(Parameter p) {
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">        if (validateParameter(p))</span>
+<span class="fc" id="L66">            return paramStore.add(p);</span>
+<span class="nc" id="L67">        return false;</span>
+    }
+
+    /**
+     * Method that returns the Parameter that contains the code given as a parameter
+     * @param code the code of the Parameter
+     * @return the Parameter
+     */
+    public Parameter getParameterByCode(String code){
+<span class="nc bnc" id="L76" title="All 2 branches missed.">        for (Parameter parameter:paramStore) {</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            if(parameter.getCode().equals(code))</span>
+<span class="nc" id="L78">                return parameter;</span>
+<span class="nc" id="L79">        }</span>
+<span class="nc" id="L80">        return null;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

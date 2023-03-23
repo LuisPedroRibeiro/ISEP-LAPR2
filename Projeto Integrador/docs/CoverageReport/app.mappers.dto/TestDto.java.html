@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TestDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.mappers.dto</a> &gt; <span class="el_source">TestDto.java</span></div><h1>TestDto.java</h1><pre class="source lang-java linenums">package app.mappers.dto;
+
+import app.domain.model.TestType;
+
+import java.util.List;
+
+/**
+ * This Class allows the interaction between User and System in a safer way.
+ *
+ * @author Miguel Ramos &lt;1201247@isep.ipp.pt&gt;
+ * @author Pedro Graça &lt;1201188@isep.ipp.pt&gt;
+ */
+public class TestDto {
+
+    /**
+     * The Dto of Test Type
+     */
+    private TestTypeDto testTypeDto;
+
+    /**
+     * The List of Parameters.
+     */
+    private List parameterList;
+
+    /**
+     * The List of Parameter Categories.
+     */
+    private List parameterCategoryList;
+
+    /**
+     * The Test Type associated to the test
+     */
+    private TestType testType;
+
+    /**
+     * The NHS code of the Test
+     */
+    private String nhsCode;
+
+    /**
+     * The sequential code attributed to the Test
+     */
+    private String code;
+
+    /**
+     * The Date of creation of the Test
+     */
+    private String createdAt;
+
+    /**
+     * The Date of the Collection of the Samples
+     */
+    private String sampleDate;
+
+    /**
+     * The Date of the addition of results to the Test
+     */
+    private String resultDate;
+
+    /**
+     * The Date of the addition of the Test report
+     */
+    private String reportDate;
+
+
+    /**
+     * Constructor of the Test Data Transfer Object.
+     *
+     * @param nhsCode the National Healthcare Service Number associated to the Test.
+     * @param testType the Tes tType associated to the Test.
+     */
+<span class="nc" id="L72">    public TestDto(String nhsCode,TestType testType){</span>
+<span class="nc" id="L73">        this.nhsCode=nhsCode;</span>
+<span class="nc" id="L74">        this.testType=testType;</span>
+<span class="nc" id="L75">    }</span>
+
+    /**
+     * Constructor of the Test Data Transfer Object.
+     *
+     * @param nhsCode the National Healthcare Service Number associated to the Test.
+     * @param createdAt the Date of creation of the Test.
+     * @param sampleDate the Date of the Samples Collection.
+     * @param resultDate the Date of the Results addition.
+     * @param reportDate the Date of the Report addition.
+     */
+<span class="fc" id="L86">    public TestDto(String code,String nhsCode, String createdAt, String sampleDate, String resultDate, String reportDate) {</span>
+<span class="fc" id="L87">        this.code=code;</span>
+<span class="fc" id="L88">        this.nhsCode = nhsCode;</span>
+<span class="fc" id="L89">        this.createdAt = createdAt;</span>
+<span class="fc" id="L90">        this.sampleDate = sampleDate;</span>
+<span class="fc" id="L91">        this.resultDate = resultDate;</span>
+<span class="fc" id="L92">        this.reportDate = reportDate;</span>
+<span class="fc" id="L93">    }</span>
+
+    /**
+     * Constructor of the Test Data Transfer Object.
+     *
+     * @param nhsCode the National Healthcare Service Number associated to the Test.
+     * @param code the Sequential Code attributed to the Test.
+     * @param createdAt the Date of creation of the Test.
+     */
+<span class="fc" id="L102">    public TestDto (String nhsCode, String code, String createdAt){</span>
+<span class="fc" id="L103">        this.code=code;</span>
+<span class="fc" id="L104">        this.nhsCode=nhsCode;</span>
+<span class="fc" id="L105">        this.createdAt=createdAt;</span>
+<span class="fc" id="L106">    }</span>
+
+    /**
+     * Constructor of the Test Data Transfer Object.
+     *
+     * @param code the Sequential Code attributed to the Test.
+     * @param nhsCode the National Healthcare Service Number associated to the Test.
+     * @param createdAt the Date of creation of the Test.
+     * @param testTypeDto the TestTypeDto of Test Dto.
+     */
+<span class="fc" id="L116">    public TestDto (String code, String nhsCode, String createdAt, TestTypeDto testTypeDto, List parameterList, List parameterCategoryList){</span>
+<span class="fc" id="L117">        this.code=code;</span>
+<span class="fc" id="L118">        this.nhsCode=nhsCode;</span>
+<span class="fc" id="L119">        this.createdAt=createdAt;</span>
+<span class="fc" id="L120">        this.testTypeDto= testTypeDto;</span>
+<span class="fc" id="L121">        this.parameterList = parameterList;</span>
+<span class="fc" id="L122">        this.parameterCategoryList = parameterCategoryList;</span>
+<span class="fc" id="L123">    }</span>
+
+    /**
+     * Constructor of the Test Data Transfer Object.
+     *
+     * @param code the Sequential Code attributed to the Test.
+     * @param createdAt the Date of creation of the Test.
+     * @param sampleDate the Date of the Samples Collection.
+     * @param resultDate the Date of the Results addition.
+     */
+<span class="fc" id="L133">    public TestDto (String code, String createdAt, String sampleDate, String resultDate){</span>
+<span class="fc" id="L134">        this.code = code;</span>
+<span class="fc" id="L135">        this.createdAt = createdAt;</span>
+<span class="fc" id="L136">        this.sampleDate = sampleDate;</span>
+<span class="fc" id="L137">        this.resultDate = resultDate;</span>
+<span class="fc" id="L138">    }</span>
+
+    /**
+     * Method to get the Test sequential code.
+     *
+     * @return the sequential Code attributed to the Test.
+     */
+    public String getCode() {
+<span class="fc" id="L146">        return code;</span>
+    }
+
+    /**
+     * Method to get the National Healthcare Service Number of the Test.
+     *
+     * @return the National Healthcare Service Number of the Test.
+     */
+    public String getNhsCode() {
+<span class="fc" id="L155">        return nhsCode;</span>
+    }
+
+
+    /**
+     * Method that returns a String with the Information of the Test containing all of its dates.
+     *
+     * @return Test in a String format with all the information.
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L166">        return String.format(&quot;##Test## %n CODE: %s %n NHS CODE: %s %n Creation Date: %s %n Sample Insertion Date: %s %n &quot; +</span>
+                        &quot;Results Insertion Date: %s %n Report Date: %s%n&quot;,
+                code,nhsCode,createdAt,sampleDate,resultDate,reportDate);
+    }
+
+    /**
+     * Method that returns a String with the Information of the Test containing all of Test without Sample attributes.
+     *
+     * @return Test in a String format with all the information.
+     */
+    public String toStringWithoutSample() {
+<span class="fc" id="L177">        return String.format(&quot;##Test## %n CODE: %s %n NHS CODE: %s %n Creation Date: %s %n %s %n %s %n %s %n&quot;</span>
+<span class="fc" id="L178">                ,code,nhsCode,createdAt,testTypeDto.toString(),parameterList.toString(),parameterCategoryList.toString());</span>
+    }
+
+    /**
+     * Method that returns a String with the Information of the Test.
+     *
+     * @return Test in a String format with information needed for the Report.
+     */
+    public String toStringTestWithoutReport(){
+<span class="fc" id="L187">        return String.format(&quot;##Test##%n CODE: %s%n Creation Date: %s%n Sample Insertion Date: %s%n Results Insertion Date: %s%n&quot;,</span>
+                code, createdAt, sampleDate, resultDate);
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

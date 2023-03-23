@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ParameterStoreTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.store</a> &gt; <span class="el_source">ParameterStoreTest.java</span></div><h1>ParameterStoreTest.java</h1><pre class="source lang-java linenums">package app.store;
+
+import app.domain.model.Parameter;
+import org.junit.Assert;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+/**
+ * @author Miguel Ramos &lt;1201247@isep.ipp.pt&gt;
+ */
+<span class="fc" id="L12">public class ParameterStoreTest {</span>
+
+    @Test
+    public void createParameter() {
+<span class="fc" id="L16">        String code=&quot;qwert&quot;;</span>
+<span class="fc" id="L17">        String code2=&quot;qwery&quot;;</span>
+<span class="fc" id="L18">        String shortName=&quot;Seringu&quot;;</span>
+<span class="fc" id="L19">        String shortName1=&quot;Seringu1&quot;;</span>
+<span class="fc" id="L20">        String description=&quot;l&quot;;</span>
+<span class="fc" id="L21">        String description1=&quot;la&quot;;</span>
+
+<span class="fc" id="L23">        ParameterStore ps = new ParameterStore();</span>
+<span class="fc" id="L24">        Parameter expected = ps.createParameter(code,shortName,description);</span>
+
+<span class="fc" id="L26">        Parameter result = ps.createParameter(code,shortName,description);</span>
+<span class="fc" id="L27">        Assert.assertEquals(expected,result);</span>
+
+<span class="fc" id="L29">        Parameter result2 = ps.createParameter(code2,shortName,description);</span>
+<span class="fc" id="L30">        Parameter result3 = ps.createParameter(code2,shortName1,description1);</span>
+<span class="fc" id="L31">        Assert.assertNotEquals(expected,result3);</span>
+<span class="fc" id="L32">    }</span>
+
+    @Test
+    public void saveParameter() {
+<span class="fc" id="L36">        Parameter t = new Parameter(&quot;qwert&quot;,&quot;Seringue&quot;,&quot;l&quot;);</span>
+<span class="fc" id="L37">        ParameterStore tl1= new ParameterStore();</span>
+<span class="fc" id="L38">        boolean expected= tl1.saveParameter(t);</span>
+<span class="fc" id="L39">        assertTrue(expected);</span>
+<span class="fc" id="L40">    }</span>
+
+    @Test
+    public void saveParameterEmpty() {
+<span class="fc" id="L44">        ParameterStore tl1= new ParameterStore();</span>
+<span class="fc" id="L45">        boolean expected= tl1.validateParameter(null);</span>
+<span class="fc" id="L46">        assertFalse(expected);</span>
+<span class="fc" id="L47">    }</span>
+
+
+    @Test
+    public void validateParameter() {
+<span class="fc" id="L52">        Parameter t = new Parameter(&quot;qwert&quot;,&quot;Seringue&quot;,&quot;l&quot;);</span>
+<span class="fc" id="L53">        ParameterStore tl1= new ParameterStore();</span>
+<span class="fc" id="L54">        boolean expected= tl1.validateParameter(t);</span>
+
+<span class="fc" id="L56">        assertTrue(expected);</span>
+<span class="fc" id="L57">    }</span>
+
+    @Test
+    public void validatesParamaterEmpty() {
+<span class="fc" id="L61">        ParameterStore tl1= new ParameterStore();</span>
+<span class="fc" id="L62">        boolean expected= tl1.validateParameter(null);</span>
+
+<span class="fc" id="L64">        assertFalse(expected);</span>
+<span class="fc" id="L65">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

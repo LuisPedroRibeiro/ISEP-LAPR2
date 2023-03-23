@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExternalModuleAdapter2Test.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.adapter</a> &gt; <span class="el_source">ExternalModuleAdapter2Test.java</span></div><h1>ExternalModuleAdapter2Test.java</h1><pre class="source lang-java linenums">package app.adapter;
+
+import app.domain.model.Parameter;
+import app.domain.model.ReferenceValue;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+/**
+ * This Class tests the ExternalModuleAdapter2 class.
+ *
+ * @author Pedro Graça &lt;1201188@isep.ipp.pt&gt;
+ */
+<span class="fc" id="L14">public class ExternalModuleAdapter2Test {</span>
+
+    @Test
+    public void getReferenceValue() {
+<span class="fc" id="L18">        Parameter parameter = new Parameter(&quot;ESR00&quot;,&quot;ESR00&quot;,&quot;ESR00&quot;);</span>
+<span class="fc" id="L19">        ExternalModuleAdapter2 adp2 = new ExternalModuleAdapter2();</span>
+<span class="fc" id="L20">        ReferenceValue expected = new ReferenceValue(10.0D,1.0D);</span>
+
+<span class="fc" id="L22">        ReferenceValue result = adp2.getReferenceValue(parameter);</span>
+
+<span class="fc" id="L24">        assertEquals(expected.toString(),result.toString());</span>
+<span class="fc" id="L25">    }</span>
+
+    @Test
+    public void getMetric() {
+<span class="fc" id="L29">        Parameter parameter = new Parameter(&quot;ESR00&quot;,&quot;ESR00&quot;,&quot;ESR00&quot;);</span>
+<span class="fc" id="L30">        ExternalModuleAdapter2 adp2 = new ExternalModuleAdapter2();</span>
+<span class="fc" id="L31">        String expected = &quot;mm/hr&quot;;</span>
+
+<span class="fc" id="L33">        String result = adp2.getMetric(parameter);</span>
+<span class="fc" id="L34">        assertEquals(expected,result);</span>
+<span class="fc" id="L35">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

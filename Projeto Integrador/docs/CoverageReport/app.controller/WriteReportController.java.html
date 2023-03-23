@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WriteReportController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.controller</a> &gt; <span class="el_source">WriteReportController.java</span></div><h1>WriteReportController.java</h1><pre class="source lang-java linenums">package app.controller;
+
+import app.domain.model.*;
+import app.mappers.TestMapper;
+import app.mappers.dto.TestDto;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Allows the System to control the action of writing a Test Report and associating that one to a Test.
+ *
+ * @author Luís Ribeiro &lt;1201184@isep.ipp.pt&gt;
+ */
+public class WriteReportController {
+
+    /**
+     * The Test that is getting a Test Report.
+     */
+    private Test test;
+
+    /**
+     * The Test Report that was written by the Specialist Doctor.
+     */
+    private  TestReport testReport;
+
+    /**
+     * The Company that has the controller.
+     */
+    private final Company company;
+
+    /**
+     * The List that contains all the Tests without Report to be shown to the Specialist Doctor.
+     */
+<span class="nc" id="L35">    private List&lt;Test&gt; testsWithResultList = new ArrayList&lt;&gt;();</span>
+
+    /**
+     * Constructs an instance of WriteReportController with no parameters.
+     */
+    public WriteReportController(){
+<span class="nc" id="L41">        this(App.getInstance().getCompany());</span>
+<span class="nc" id="L42">    }</span>
+
+    /**
+     * Allows the creation of a Controller that uses a certain Company.
+     *
+     * @param company Company to be used by the Controller.
+     */
+<span class="nc" id="L49">    public WriteReportController(Company company){</span>
+<span class="nc" id="L50">        this.company = company;</span>
+<span class="nc" id="L51">        this.test = null;</span>
+<span class="nc" id="L52">    }</span>
+
+    /**
+     * Allows the System to generate a List of Tests that have Results and are waiting for a Report.
+     */
+    public void generateTestsWithResultList(){
+<span class="nc" id="L58">        this.testsWithResultList = this.company.getTestStore().getTestWithResultList();</span>
+<span class="nc" id="L59">    }</span>
+
+    /**
+     * Allows the System to get the List of Tests that are waiting for a Report.
+     *
+     * @return List of Tests that are waiting for a Report.
+     */
+    public List&lt;TestDto&gt; getTestsWithResultList(){
+<span class="nc" id="L67">        TestMapper mapper = new TestMapper();</span>
+<span class="nc" id="L68">        return mapper.toDTOForReport(this.testsWithResultList);</span>
+    }
+
+    /**
+     * Allows the System to obtain a Test through its NHS Code.
+     *
+     * @param index Index of the Test to get a report, on the list of the Tests without Report.
+     */
+    public void getTestByIndex(int index){
+<span class="nc" id="L77">        this.test = this.company.getTestStore().getTestByNhsCode(testsWithResultList.get(index).getNhsCode());</span>
+<span class="nc" id="L78">    }</span>
+
+
+    /**
+     * Allows the System to generate a String that contains all the Test Parameters of the chosen Test.
+     *
+     * @return String that contains all the Test Parameters of the Test.
+     */
+    public String showResults(){
+<span class="nc" id="L87">        String results = &quot;&quot;;</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">        for(int index = 0; index &lt; test.getTestParameterList().size(); index ++){</span>
+<span class="nc" id="L89">            TestParameter testParameter = test.getTestParameterByCode(index);</span>
+<span class="nc" id="L90">            results = String.format(&quot;%s%s%n Reference Values: %s%n%n&quot;, results, testParameter.toString(),</span>
+<span class="nc" id="L91">                    testParameter.getTestResult().getRefValue().toString());</span>
+        }
+<span class="nc" id="L93">        return results;</span>
+    }
+
+    /**
+     * Allows the System to generate a Test Report.
+     *
+     * @param text Text that was inputted by the Specialist Doctor.
+     */
+    public void generateTestReport(String text){
+<span class="nc" id="L102">        this.testReport = new TestReport(text, this.test.getCode(), getSpecialistDoctorName(),</span>
+<span class="nc" id="L103">                getSpecialistDoctorEmail());</span>
+<span class="nc" id="L104">    }</span>
+
+
+    /**
+     * Allows the System to show the Test Report to the Specialist Doctor, in order for this one to validate the
+     * data that was inserted.
+     *
+     * @return The Test Report in a String.
+     */
+    public String showTestReport(){
+<span class="nc" id="L114">        return String.format(&quot;%n%s&quot;, testReport.toString());</span>
+    }
+
+    /**
+     * Allows the System to associate the Test Report to the Test.
+     */
+    public boolean saveTestReport(){
+<span class="nc bnc" id="L121" title="All 2 branches missed.">        if(this.company.getTestStore().saveTestReport(this.test, this.testReport)){</span>
+<span class="nc" id="L122">            removeTestFromList();</span>
+<span class="nc" id="L123">            return true;</span>
+        }
+<span class="nc" id="L125">        else return false;</span>
+    }
+
+    /**
+     * Permits the System to remove the Test that got the Report from the List if the Specialist Doctor wishes to
+     * do more Test Reports.
+     */
+    private void removeTestFromList(){
+<span class="nc" id="L133">        testsWithResultList.remove(this.test);</span>
+<span class="nc" id="L134">    }</span>
+
+    /**
+     * Allows the System to get the Specialist Doctor's name.
+     *
+     * @return Specialist Doctor's name.
+     */
+    private String getSpecialistDoctorName(){
+<span class="nc" id="L142">        return this.company.getAuthFacade().getCurrentUserSession().getUserName();</span>
+    }
+
+    /**
+     * Allows the System to get the Specialist Doctor's e-mail.
+     *
+     * @return Specialist Doctor's e-mail.
+     */
+    private String getSpecialistDoctorEmail(){
+<span class="nc" id="L151">        return this.company.getAuthFacade().getCurrentUserSession().getUserId().toString();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

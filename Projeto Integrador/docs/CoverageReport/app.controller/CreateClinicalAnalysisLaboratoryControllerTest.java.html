@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CreateClinicalAnalysisLaboratoryControllerTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.controller</a> &gt; <span class="el_source">CreateClinicalAnalysisLaboratoryControllerTest.java</span></div><h1>CreateClinicalAnalysisLaboratoryControllerTest.java</h1><pre class="source lang-java linenums">package app.controller;
+
+import app.domain.model.ClinicalAnalysisLaboratory;
+import app.domain.model.Company;
+import app.domain.model.TestType;
+import app.mappers.dto.TestTypeDto;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+/**
+ * @author Miguel Ramos &lt;1201247@isep.ipp.pt&gt;
+ */
+<span class="fc" id="L17">public class CreateClinicalAnalysisLaboratoryControllerTest {</span>
+
+    @Test
+    public void createClinicalAnalysisLaboratory() {
+<span class="fc" id="L21">        Company cp = new Company(&quot;ManyLabs&quot;);</span>
+<span class="fc" id="L22">        ClinicalAnalysisLaboratory cal = cp.getClinicalAnalysisLaboratoryStore().createClinicalAnalysisLaboratory(</span>
+                &quot;12345&quot;, &quot;Rua&quot;, &quot;Miguel&quot;, &quot;12345678912&quot;, &quot;1234567891&quot;);
+<span class="fc" id="L24">        boolean result = cp.getClinicalAnalysisLaboratoryStore().validatesClinicalAnalysisLaboratory(cal);</span>
+
+<span class="fc" id="L26">        Assert.assertTrue(result);</span>
+<span class="fc" id="L27">    }</span>
+
+//    @Test
+//    public void saveClinicalAnalysisLaboratory() {
+//        Company cp = new Company(&quot;ManyLabs&quot;);
+//        ClinicalAnalysisLaboratory cal = cp.getClinicalAnalysisLaboratoryStore().createClinicalAnalysisLaboratory(
+//                &quot;12345&quot;, &quot;Rua&quot;, &quot;Miguel&quot;, &quot;12345678912&quot;,
+//                &quot;1234567891&quot;);
+//
+//        CreateClinicalAnalysisLaboratoryController controller = new CreateClinicalAnalysisLaboratoryController();
+//        controller.createClinicalAnalysisLaboratory(&quot;12345&quot;, &quot;Rua&quot;, &quot;Miguel&quot;,
+//                &quot;12345678912&quot;, &quot;1234567891&quot;);
+//
+//        boolean result = cp.getClinicalAnalysisLaboratoryStore().validatesClinicalAnalysisLaboratory(cal);
+//        boolean result2 = !cp.getClinicalAnalysisLaboratoryStore().validatesClinicalAnalysisLaboratory(cal);
+//        boolean result3 = controller.saveClinicalAnalysisLaboratory();
+//
+//        boolean expected = cp.getClinicalAnalysisLaboratoryStore().saveClinicalAnalysisLaboratory(cal);
+//
+//        Assert.assertTrue(result);
+//        Assert.assertFalse(result2);
+//        Assert.assertEquals(result3, expected);
+//    }
+
+    @Test
+    public void getClinicalAnalysisLaboratoryStore() {
+<span class="fc" id="L53">        CreateClinicalAnalysisLaboratoryController controller = new CreateClinicalAnalysisLaboratoryController();</span>
+<span class="fc" id="L54">        controller.createClinicalAnalysisLaboratory(&quot;12345&quot;, &quot;Rua&quot;,</span>
+                &quot;Miguel&quot;, &quot;12345678912&quot;, &quot;1234567891&quot;);
+<span class="fc" id="L56">        ClinicalAnalysisLaboratory expected = new ClinicalAnalysisLaboratory(&quot;12345&quot;, &quot;Rua&quot;,</span>
+                &quot;Miguel&quot;, &quot;12345678912&quot;, &quot;1234567891&quot;);
+
+<span class="fc" id="L59">        ClinicalAnalysisLaboratory result = controller.getClinicalAnalysisLaboratoryStore();</span>
+
+<span class="fc" id="L61">        Assert.assertEquals(expected, result);</span>
+<span class="fc" id="L62">    }</span>
+
+
+//    @Test
+//    public void getTypeStore() {
+//        TestType t1= new TestType(&quot;22222&quot;,&quot;method&quot;,&quot;description&quot;);
+//        TestType t2= new TestType(&quot;11111&quot;,&quot;method&quot;,&quot;description5&quot;);
+//        TestType t3= new TestType(&quot;12345&quot;, &quot;method&quot;, &quot;description&quot;);
+//        List&lt;TestType&gt; expected = new ArrayList&lt;&gt;();
+//        expected.add(t1);
+//        expected.add(t2);
+//        expected.add(t3);
+//
+//        CreateClinicalAnalysisLaboratoryController controller= new CreateClinicalAnalysisLaboratoryController();
+//        controller.getTypeStore().add(t1);
+//        List&lt;TestType&gt; result= controller.getTypeStore();
+//
+//        Assert.assertEquals(result,expected);
+//    }
+
+    @Test
+    public void listDto() {
+<span class="fc" id="L84">        CreateClinicalAnalysisLaboratoryController controller= new CreateClinicalAnalysisLaboratoryController();</span>
+<span class="fc" id="L85">        CreateTestTypeController tcontroller= new CreateTestTypeController();</span>
+
+<span class="fc" id="L87">        tcontroller.createTestType(&quot;11111&quot;,&quot;method&quot;,&quot;description5&quot;);</span>
+<span class="fc" id="L88">        CreateParameterCategoryController parameterCategoryController=new CreateParameterCategoryController();</span>
+<span class="fc" id="L89">        parameterCategoryController.createParameterCategory(&quot;98765&quot;,&quot;named&quot;);</span>
+<span class="fc" id="L90">        parameterCategoryController.saveParameterCategory();</span>
+<span class="fc" id="L91">        tcontroller.saveParameterCategory(&quot;98765&quot;);</span>
+<span class="fc" id="L92">        tcontroller.saveTestType();</span>
+
+<span class="fc" id="L94">        List&lt;TestTypeDto&gt; lttd= controller.listDto();</span>
+
+<span class="fc" id="L96">        boolean print=false;</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        for (TestTypeDto ttd: lttd){</span>
+<span class="pc bpc" id="L98" title="1 of 4 branches missed.">            if(ttd.getCode().equals(&quot;11111&quot;) &amp;&amp; ttd.getDescription().equals(&quot;description5&quot;)){</span>
+<span class="fc" id="L99">                        print=true;</span>
+            }
+<span class="fc" id="L101">        }</span>
+<span class="fc" id="L102">        Assert.assertTrue(print);</span>
+<span class="fc" id="L103">    }</span>
+
+//    @Test
+//    public void getTestTypeCode() {
+//        CreateClinicalAnalysisLaboratoryController controller = new CreateClinicalAnalysisLaboratoryController();
+//        CreateTestTypeController tcontroller= new CreateTestTypeController();
+//        CreateParameterCategoryController parameterCategoryController=new CreateParameterCategoryController();
+//
+//        TestType expected= new TestType(&quot;33333&quot;,&quot;method&quot;,&quot;description3&quot;);
+//
+//        tcontroller.createTestType(&quot;33333&quot;,&quot;method&quot;,&quot;description3&quot;);
+//        parameterCategoryController.createParameterCategory(&quot;98766&quot;,&quot;namee&quot;);
+//        parameterCategoryController.saveParameterCategory();
+//        tcontroller.saveParameterCategory(&quot;98766&quot;);
+//        tcontroller.saveTestType();
+//
+//        tcontroller.createTestType(&quot;54321&quot;,&quot;method2&quot;,&quot;description7&quot;);
+//        parameterCategoryController.createParameterCategory(&quot;98755&quot;,&quot;namef&quot;);
+//        parameterCategoryController.saveParameterCategory();
+//        tcontroller.saveParameterCategory(&quot;98755&quot;);
+//        tcontroller.saveTestType();
+//        int code=3;
+//        TestType result= controller.getTestTypeCode(code);
+//
+//        Assert.assertEquals(expected,result);
+//    }
+
+    @Test
+    public void saveClinicalTestType() {
+<span class="fc" id="L132">        CreateClinicalAnalysisLaboratoryController controller = new CreateClinicalAnalysisLaboratoryController();</span>
+<span class="fc" id="L133">        TestType t1 = new TestType(&quot;12345&quot;, &quot;method&quot;, &quot;description&quot;);</span>
+<span class="fc" id="L134">        boolean result = controller.saveClinicalTestType(t1);</span>
+<span class="fc" id="L135">        Assert.assertTrue(result);</span>
+<span class="fc" id="L136">    }</span>
+
+//    @Test
+//    public void saveTestTypeListToClinicalAnalysisLaboratory() {
+//        CreateClinicalAnalysisLaboratoryController controller = new CreateClinicalAnalysisLaboratoryController();
+//        CreateTestTypeController tcontroller= new CreateTestTypeController();
+//        CreateParameterCategoryController parameterCategoryController=new CreateParameterCategoryController();
+//        controller.createClinicalAnalysisLaboratory(&quot;12345&quot;,&quot;Rua&quot;,
+//                &quot;Miguel&quot;, &quot;12345678912&quot;,&quot;1234567891&quot;);
+//
+//        tcontroller.createTestType(&quot;12345&quot;, &quot;method&quot;, &quot;description&quot;);
+//        parameterCategoryController.createParameterCategory(&quot;16346&quot;,&quot;nameb&quot;);
+//        parameterCategoryController.saveParameterCategory();
+//        tcontroller.saveParameterCategory(&quot;16346&quot;);
+//        tcontroller.saveTestType();
+//        TestType t1= new TestType(&quot;12345&quot;, &quot;method&quot;, &quot;description&quot;);
+//        parameterCategoryController.createParameterCategory(&quot;16345&quot;,&quot;namec&quot;);
+//        parameterCategoryController.saveParameterCategory();
+//        tcontroller.saveParameterCategory(&quot;16345&quot;);
+//
+//        controller.saveClinicalTestType(t1);
+//
+//        boolean result= false;
+//
+//        Assert.assertFalse(result);
+//    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

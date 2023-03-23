@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClinicalAnalysisLaboratoryDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.mappers.dto</a> &gt; <span class="el_source">ClinicalAnalysisLaboratoryDto.java</span></div><h1>ClinicalAnalysisLaboratoryDto.java</h1><pre class="source lang-java linenums">package app.mappers.dto;
+
+/**
+ * This class allows to create a Clinical Analysis Laboratory Dto.
+ *
+ * @author Pedro Graça &lt;1201188@isep.ipp.pt&gt;
+ */
+public class ClinicalAnalysisLaboratoryDto {
+
+    /**
+     * A string with five alphanumeric characters.
+     */
+    private final String laboratoryId;
+
+    /**
+     * A string with no more than 30 characters.
+     */
+    private final String address;
+
+    /**
+     * A string with no more than 20 characters.
+     */
+    private final String name;
+
+    /**
+     * A number with 11 digit.
+     */
+    private final String phoneNumber;
+
+    /**
+     * A number with 10 digit.
+     */
+    private final String taxIdentificationNumber;
+
+    /**
+     * Constructs an instance of Clinical Analysis Laboratory Data Transfer Object receiving laboratoryId, address,
+     * name, phoneNumber, taxIdentificationNumber.
+     *
+     * @param laboratoryId the ID of the Laboratory
+     * @param address the address of the Laboratory
+     * @param name the name of the Laboratory
+     * @param phoneNumber the phone number of the laboratory
+     * @param taxIdentificationNumber the tax Identification Number of the Laboratory
+     */
+<span class="fc" id="L45">    public ClinicalAnalysisLaboratoryDto(String laboratoryId, String address, String name, String phoneNumber, String taxIdentificationNumber) {</span>
+<span class="fc" id="L46">        this.laboratoryId = laboratoryId;</span>
+<span class="fc" id="L47">        this.address = address;</span>
+<span class="fc" id="L48">        this.name = name;</span>
+<span class="fc" id="L49">        this.phoneNumber = phoneNumber;</span>
+<span class="fc" id="L50">        this.taxIdentificationNumber = taxIdentificationNumber;</span>
+<span class="fc" id="L51">    }</span>
+
+    /**
+     * Return the Laboratory Id.
+     *
+     * @return the Laboratory Id.
+     */
+    public String getLaboratoryId() {
+<span class="fc" id="L59">        return laboratoryId;</span>
+    }
+
+    /**
+     * The method that allows to see all the attributes of a Clinical Analysis Laboratory in a organised way.
+     *
+     * @return All parameters of a Clinical Analysis Laboratory Dto with a specific format.
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L69">        return String.format(&quot;##Clinical Analysis Laboratory## %n LaboratoryId: %s %n &quot; +</span>
+                        &quot;Address: %s %n Name: %s %n Phone Number: %s %n Tax Identification Number: %s &quot;,
+                laboratoryId, address , name, phoneNumber,taxIdentificationNumber);
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

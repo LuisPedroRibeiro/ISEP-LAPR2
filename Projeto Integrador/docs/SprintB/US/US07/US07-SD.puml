@@ -1,0 +1,122 @@
+@startuml
+actor Administrator as ADMIN
+participant ":RegisterNewEmployeeUI" as UI
+participant ":RegisterNewEmployeeController" as CONTROL
+participant ":Company" as COMPANY
+participant "employeeStore :EmployeeStore" as STORE
+
+autonumber
+
+activate ADMIN
+
+ADMIN -> UI: Requests the creation of a new Employee
+activate UI
+UI --> ADMIN: Shows list of Employee Roles and asks to select one
+deactivate UI
+
+ADMIN -> UI: Selects Employee Role
+activate UI
+UI --> ADMIN: Requests data (i.e., name, phoneNumber, email, \n socCode, organizationRole, address)
+deactivate UI
+
+ADMIN -> UI: Types the requested data
+activate UI
+
+    alt role = "Specialist Doctor"
+
+        UI -> CONTROL: registerNewEmployee(name, phoneNumber, email, \n socCode, organizationRole, address, doctorIndexNumber)
+
+        activate CONTROL
+
+            CONTROL -> COMPANY: employeeStore = getEmployeeStore()
+            activate COMPANY
+            deactivate COMPANY
+
+            CONTROL -> STORE: employee = registerNewEmployee(name, phoneNumber, email, \n socCode, organizationRole, address, doctorIndexNumber)
+            activate STORE
+
+                create participant "employee: SpecialistDoctor" as SPECDOC
+                STORE -> SPECDOC: SpecialistDoctor(name, phoneNumber, email, \n socCode, organizationRole, address, doctorIndexNumber)
+
+            deactivate STORE
+
+            CONTROL -> STORE: validateEmployee(employee)
+            activate STORE
+            deactivate STORE
+
+        deactivate CONTROL
+
+    else role is not "Specialist Doctor"
+
+        autonumber 6
+
+        UI -> CONTROL: registerNewEmployee(name, phoneNumber, email, \n socCode, organizationRole, address)
+
+        activate CONTROL
+
+            CONTROL -> COMPANY: employeeStore = getEmployeeStore()
+            activate COMPANY
+            deactivate COMPANY
+
+            CONTROL -> STORE: employee = registerNewEmployee(name, phoneNumber, email, \n socCode, organizationRole, address)
+            activate STORE
+
+                create participant "employee: Employee" as EMP
+                STORE -> EMP: Employee(name, phoneNumber, email, \n socCode, organizationRole, address)
+
+            deactivate STORE
+
+            CONTROL -> STORE: validateEmployee(employee)
+            activate STORE
+            deactivate STORE
+
+        deactivate CONTROL
+
+    end
+
+UI --> ADMIN: Shows the typed data and asks for confirmation
+deactivate UI
+
+ADMIN -> UI: Confirms the typed data
+activate UI
+
+    UI -> CONTROL: saveEmployee()
+    activate CONTROL
+
+        CONTROL -> STORE: saveEmployee(employee)
+        activate STORE
+
+            STORE -> STORE: validateEmployee(employee)
+            activate STORE
+            deactivate STORE
+
+            STORE -> EMP: setPassword()
+            activate EMP
+            deactivate EMP
+
+            STORE -> EMP: setEmployeeID()
+            activate EMP
+            deactivate EMP
+
+            STORE -> EMP: setAuthFacade()
+            activate EMP
+
+                create participant "authFacade: AuthFacade" as AUTH
+                EMP -> AUTH: authFacade = new AuthFacade(name, email, password, organizationRole)
+
+            deactivate EMP
+
+            STORE -> STORE: addEmployee(employee)
+            activate STORE
+            deactivate STORE
+
+        deactivate STORE
+
+    deactivate CONTROL
+
+UI --> ADMIN: Informs of operation success
+deactivate UI
+
+deactivate ADMIN
+
+@enduml

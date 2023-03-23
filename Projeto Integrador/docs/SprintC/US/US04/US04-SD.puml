@@ -1,0 +1,204 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Receptionist" as R
+participant ":RegisterTestUI" as UI
+participant ":RegisterTestController" as Ctrl
+participant  ":testStore:TestStore" as Str
+participant  "test: Test" as T
+
+participant ":Company" as Cmp
+
+participant "clientStore: ClientStore" as ClStr
+participant "clinicalTestTypeList\n:ClinicalTestTypeList" as cttL
+participant "clinicalAnalysisLaboratory::ClinicalAnalysisLaboratory" as cal
+participant ":TestTypeMapper" as ttMp
+participant "testTypeStore: TestTypeStore" as ttStore
+participant "testType: TestType" as tt
+participant "parameterCategoryList\n:ParameterCategoryList" as cl
+participant ":ParameterCategoryMapper" as pcMapper
+participant "parameterCategory:ParameterCategory" as pc
+participant "parameterCategoryStore:ParameterCategoryStore" as pcStore
+participant ":ParameterMapper" as pMp
+participant "parameterStore: ParameterStore" as pStore
+participant ":Utils" as U
+participant "client:Client" as C
+
+
+participant "listTestType:List<TestType>" as ttl
+participant ":listTestTypeDto:List<TestTypeDto>" as TtDto
+participant "listParameterCategory:List<ParameterCategory>" as listPc
+participant "listParameterCategoryDto:List<ParameterCategoryDto>" as listPcDto
+participant "parameterCategoryStore:ParameterCategoryStore"
+participant "parameter:Parameter" as P
+participant "testParameter:TestParameter" as TesP
+participant "listParameters:List<Parameter>"
+participant "listParametersDto:List<ParameterDto>" as pDto
+
+
+
+activate R
+
+R -> UI : requests to register a Test
+note left : Before register a Test, the Receptionist needs \nto select the Clinical Analysis Laboratory where is \nworking at (Check US04-ChooseLabSd.puml).
+activate UI
+UI --> R : asks some data (taxIdentificationNumber,nhsCode)
+deactivate UI
+R-> UI : types the requested data
+activate UI
+UI -> Ctrl : verifyClientByTin(taxIdentificationNumber)
+activate Ctrl
+Ctrl -> Cmp: clientStore = getClientStore()
+activate Cmp
+deactivate Cmp
+Ctrl -> ClStr : verifyClientByTin(taxIdentificationNumber)
+activate ClStr
+deactivate ClStr
+deactivate Ctrl
+UI --> R: asks for confirmation
+deactivate UI
+R -> UI: confirms the typed data
+activate UI
+UI -> Ctrl: createTest (nhsCode)
+activate Ctrl
+Ctrl -> Cmp: getTestStore()
+activate Cmp
+deactivate Cmp
+Ctrl -> Str : createTest (nhsCode)
+activate Str
+Str --> T** : create(nhsCode)
+deactivate Str
+Ctrl -> Str : validateTest(test)
+activate Str
+deactivate Str
+deactivate Ctrl
+UI-> Ctrl : listTestTypeDto = getTestTypeListToDto()
+activate Ctrl
+Ctrl -> cal: listTestType = getTestTypeList()
+activate cal
+cal -> cttL: getClinicalTestTypeList()
+activate cttL
+deactivate cttL
+deactivate cal
+Ctrl -> ttMp : listTestTypeDto = toDTO(listTestType)
+activate ttMp
+deactivate ttMp
+deactivate Ctrl
+UI --> R : shows the Test Type list associated to the Clinical Analysis Laboratory and asks to select one
+deactivate UI
+R -> UI : selects the Test Type
+activate UI
+UI->Ctrl : saveTestType(code)
+note left : The variable "code" refers to the Test Type code.
+activate Ctrl
+Ctrl -> Cmp: testTypeStore = getTestTypeStore()
+activate Cmp
+deactivate Cmp
+Ctrl -> ttStore: testType = getTestTypeByCode(code)
+activate ttStore
+deactivate ttStore
+Ctrl -> T: saveTestType(testType)
+activate T
+deactivate T
+deactivate Ctrl
+loop While the Receptionist wants to add Parameters to the Test
+UI -> Ctrl: listParameterCategoryDto = getParameterCategoryListToDto()
+activate Ctrl
+Ctrl -> tt : listParameterCategory = getParameterCategoryList()
+activate tt
+tt -> cl : getCl()
+activate cl
+deactivate tt
+deactivate cl
+Ctrl -> pcMapper: listParameterCategoryDto = toDto(listParameterCategory)
+activate pcMapper
+deactivate pcMapper
+UI-->R:shows the list of Parameter Categories associated with the Test Type
+deactivate Ctrl
+deactivate UI
+R-> UI: selects a Parameter Category
+activate UI
+UI->Ctrl: setParameterCategory(code)
+note left : The variable "code" refers to the Parameter Category code.
+activate Ctrl
+Ctrl -> Cmp: parameterCategoryStore = getParameterCategoryStore()
+activate Cmp
+deactivate Cmp
+Ctrl->pcStore : parameterCategory = getParameterCategoryByCode(code)
+activate pcStore
+deactivate pcStore
+deactivate Ctrl
+loop While the Receptionist wants to add Parameters associated with the Parameter Category that has been selected
+UI -> Ctrl: listParametersDto = getParameterListToDto()
+activate Ctrl
+Ctrl -> pc: listParameters= getParameterList()
+activate pc
+deactivate pc
+Ctrl -> pMp: listParametersDto = toDto(listParameters)
+activate pMp
+deactivate pMp
+UI --> R: shows the list of Parameters associated with the Parameter Category
+deactivate Ctrl
+deactivate UI
+R-> UI: selects a Parameter
+activate UI
+UI-> Ctrl : addParameter(code)
+activate Ctrl
+note left: The variable "code" refers to the Parameter code.
+Ctrl -> Cmp: parameterStore = getParameterStore()
+activate Cmp
+deactivate Cmp
+Ctrl -> pStore: parameter = getParameterByCode(code)
+activate pStore
+deactivate pStore
+Ctrl -> T : addTestParameter(parameter)
+activate T
+deactivate T
+end
+end
+deactivate Ctrl
+UI -> R: asks for confirmation
+deactivate UI
+R-> UI: confirms all data
+activate UI
+UI -> Ctrl : saveTest()
+activate Ctrl
+Ctrl -> T: saveClinicalAnalysisLaboratory(clinicalAnalysisLaboratory)
+note right: When the Clinical Analysis Laboratory is selected (before the test registration) \n the variable "clinicalAnalysisLaboratory" of the Controller (of the US04-ChooseLabSd.puml) \n gets the value of the selected Laboratory.\n As the Controller associated to this US is the same, then it is possible to do the step 45 \n because the variable "clinicalAnalysisLaboratory" is already instantiated.
+activate T
+deactivate T
+Ctrl -> Str : saveTest(test)
+activate Str
+Str -> Str : validateTest(test)
+activate Str
+deactivate Str
+Str -> U: createdAt = getCurrentDate()
+activate U
+deactivate U
+Str -> Str: code = nextCode()
+activate Str
+deactivate Str
+Str -> T: setCreatedAtDate(createdAt)
+activate T
+Str -> T : setCode(code)
+deactivate T
+Str -> Str : addTest(test)
+activate Str
+deactivate Str
+deactivate Str
+deactivate Ctrl
+UI -> Ctrl : addTestToClient(taxIdentificationNumber)
+activate Ctrl
+Ctrl -> ClStr : client = getClientByTin(taxIdentificationNumber)
+activate ClStr
+deactivate ClStr
+Ctrl -> Str : addTestToClient(Client,test)
+activate Str
+
+Str -> C**: addTest(test)
+UI --> R: informs of operation success
+
+
+@enduml

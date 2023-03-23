@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegisterNewEmployeeUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.ui.console</a> &gt; <span class="el_source">RegisterNewEmployeeUI.java</span></div><h1>RegisterNewEmployeeUI.java</h1><pre class="source lang-java linenums">package app.ui.console;
+
+import app.controller.RegisterNewEmployeeController;
+import app.domain.shared.Constants;
+import app.list.EmployeeRolesList;
+import app.utils.Utils;
+import auth.domain.model.Email;
+
+import java.io.IOException;
+
+/**
+ * @author Luís Ribeiro &lt;1201184@isep.ipp.pt&gt;
+ */
+<span class="nc bnc" id="L14" title="All 2 branches missed.">public class RegisterNewEmployeeUI implements Runnable{</span>
+
+    /**
+     * String that contains a question relative to a confirmation of the data.
+     */
+    private static final String CONFIRMATION = &quot;Do you confirm the shown data?&quot;;
+    /**
+     * String that contains a declaration of an error.
+     */
+<span class="nc" id="L23">    private static final String ERROR = String.format(&quot;%nERROR: OPERATION TERMINATED%n &quot; +</span>
+            &quot;Motive: An inserted attribute is invalid.&quot;);
+
+    /**
+     * Constructor with no parameters.
+     */
+<span class="nc" id="L29">    public RegisterNewEmployeeUI() {</span>
+        //Constructs a RegisterNewEmployeeUI with no parameters.
+<span class="nc" id="L31">    }</span>
+
+    /**
+     * Permits the system to run the Administrator function of creating a new Employee.
+     */
+    public void run(){
+<span class="nc" id="L37">        boolean emailError = true;</span>
+        boolean phoneNumberError;
+        boolean socCodeError;
+
+<span class="nc" id="L41">        RegisterNewEmployeeController controller = new RegisterNewEmployeeController();</span>
+<span class="nc" id="L42">        EmployeeRolesList employeeRolesList = new EmployeeRolesList();</span>
+<span class="nc" id="L43">        Utils.showList(employeeRolesList.getList(), &quot;##EMPLOYEE ROLES##&quot;);</span>
+<span class="nc" id="L44">        String role = Utils.readLineFromConsole(&quot;Select the role:&quot;);</span>
+
+<span class="nc bnc" id="L46" title="All 4 branches missed.">        while(!(role.equalsIgnoreCase(Constants.ROLE_ADMIN) || role.equalsIgnoreCase(Constants.ROLE_CHEMTECH) ||</span>
+<span class="nc bnc" id="L47" title="All 4 branches missed.">                role.equalsIgnoreCase(Constants.ROLE_LABCO) || role.equalsIgnoreCase(Constants.ROLE_RECEP) ||</span>
+<span class="nc bnc" id="L48" title="All 4 branches missed.">                role.equalsIgnoreCase(Constants.ROLE_SPECDOC) || role.equalsIgnoreCase(Constants.ROLE_MEDTECH))){</span>
+<span class="nc" id="L49">            Utils.printLineToConsole(&quot;ERROR: Selected role does not exist.&quot;);</span>
+<span class="nc" id="L50">            role = Utils.readLineFromConsole(&quot;Select the role:&quot;);</span>
+        }
+
+<span class="nc" id="L53">        String name = Utils.readLineFromConsole(&quot;Name:&quot;);</span>
+        String phoneNumber;
+<span class="nc" id="L55">        String email = null;</span>
+        String socCode;
+        String address;
+
+        do{
+<span class="nc" id="L60">            phoneNumber = Utils.readLineFromConsole(&quot;Phone Number:&quot;);</span>
+<span class="nc bnc" id="L61" title="All 4 branches missed.">            assert phoneNumber != null;</span>
+<span class="nc" id="L62">            phoneNumberError = Utils.onlyDigits(phoneNumber);</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            if(! phoneNumberError){</span>
+<span class="nc" id="L64">                Utils.printLineToConsole(&quot;ERROR: The Phone Number can not have letters.&quot;);</span>
+            }
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            if(controller.containsPhoneNumber(phoneNumber)){</span>
+<span class="nc" id="L67">                phoneNumberError = false;</span>
+<span class="nc" id="L68">                Utils.printLineToConsole(&quot;ERROR: Inserted Phone Number is already in use.&quot;);</span>
+            }
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        } while(! phoneNumberError);</span>
+
+        do{
+            try{
+<span class="nc" id="L74">                Email emailInObject = new Email(Utils.readLineFromConsole(&quot;E-mail:&quot;));</span>
+<span class="nc" id="L75">                emailError = controller.containsEmail(emailInObject.toString());</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">                if(emailError){</span>
+<span class="nc" id="L77">                    Utils.printLineToConsole(&quot;ERROR: Inserted E-mail is already in use.&quot;);</span>
+                }
+<span class="nc" id="L79">                email = emailInObject.toString();</span>
+<span class="nc" id="L80">            } catch (Exception exception){</span>
+<span class="nc" id="L81">                Utils.printLineToConsole(exception.getMessage());</span>
+<span class="nc" id="L82">            }</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        } while (emailError);</span>
+
+        do{
+<span class="nc" id="L86">            socCode = Utils.readLineFromConsole(&quot;SOC Code:&quot;);</span>
+<span class="nc bnc" id="L87" title="All 4 branches missed.">            assert socCode != null;</span>
+<span class="nc" id="L88">            socCodeError = Utils.onlyDigits(socCode);</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if(! socCodeError){</span>
+<span class="nc" id="L90">                Utils.printLineToConsole(&quot;ERROR: The SOC Code can not have letters.&quot;);</span>
+            }
+<span class="nc bnc" id="L92" title="All 2 branches missed.">            if(controller.containsSocCode(socCode)){</span>
+<span class="nc" id="L93">                socCodeError = false;</span>
+<span class="nc" id="L94">                Utils.printLineToConsole(&quot;ERROR: Inserted SOC Code is already in use.&quot;);</span>
+            }
+<span class="nc bnc" id="L96" title="All 2 branches missed.">        } while(! socCodeError);</span>
+
+<span class="nc" id="L98">        address = Utils.readLineFromConsole(&quot;Address:&quot;);</span>
+
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        if(role.equalsIgnoreCase(Constants.ROLE_SPECDOC)){</span>
+<span class="nc" id="L101">            runForSpecialistDoctor(name, phoneNumber, email, socCode, address, controller);</span>
+        } else{
+<span class="nc" id="L103">            runForOtherTypeOfEmployee(name, phoneNumber, email, socCode, address, controller, role);</span>
+        }
+
+<span class="nc" id="L106">        Utils.printLineToConsole(&quot;&quot;);</span>
+<span class="nc" id="L107">        Utils.showList(controller.getEmployeeStore().getEmployeeList(), &quot;EMPLOYEES LIST&quot;);</span>
+<span class="nc" id="L108">    }</span>
+
+    /**
+     * Permits the System to run the Administrator function of creating a new Employee, when he asks to create a
+     * Specialist Doctor.
+     *
+     * @param name Name that was typed by the Administrator.
+     * @param phoneNumber Phone Number that was typed by the Administrator.
+     * @param email E-mail that was typed by the Administrator.
+     * @param socCode SOC Code that was typed by the Administrator.
+     * @param address Address that was typed by the Administrator.
+     * @param controller Controller that allows the Administrator function to work.
+     */
+    private void runForSpecialistDoctor(String name, String phoneNumber, String email, String socCode, String address,
+                                        RegisterNewEmployeeController controller){
+        boolean doctorIndexNumberError;
+
+<span class="nc" id="L125">        String organizationRole = Constants.ROLE_SPECDOC;</span>
+        String doctorIndexNumber;
+
+        do{
+<span class="nc" id="L129">            doctorIndexNumber = Utils.readLineFromConsole(&quot;Doctor Index Number:&quot;);</span>
+<span class="nc bnc" id="L130" title="All 4 branches missed.">            assert doctorIndexNumber != null;</span>
+<span class="nc" id="L131">            doctorIndexNumberError = Utils.onlyDigits(doctorIndexNumber);</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            if(! doctorIndexNumberError){</span>
+<span class="nc" id="L133">                Utils.printLineToConsole(&quot;ERROR: Doctor Index Number can not have letters.&quot;);</span>
+            }
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            if(controller.containsDoctorIndexNumber(doctorIndexNumber)){</span>
+<span class="nc" id="L136">                doctorIndexNumberError = false;</span>
+<span class="nc" id="L137">                Utils.printLineToConsole(&quot;ERROR: Inserted Doctor Index Number is already in use.&quot;);</span>
+            }
+<span class="nc bnc" id="L139" title="All 2 branches missed.">        } while(! doctorIndexNumberError);</span>
+
+        try{
+<span class="nc bnc" id="L142" title="All 2 branches missed.">            if(controller.registerNewEmployee(name, phoneNumber, email, socCode, organizationRole, address,</span>
+                    doctorIndexNumber)){
+
+<span class="nc" id="L145">                String print = String.format(&quot;%n##EMPLOYEE## %n%n Name: %s %n Phone Number: %s %n E-mail: %s %n &quot; +</span>
+                                &quot;Address: %s %n Organization Role: %s %n SOC Code: %s %n &quot; +
+                                &quot;Doctor Index Number: %s %n&quot;, name, phoneNumber, email, address,
+                        organizationRole, socCode, doctorIndexNumber);
+<span class="nc" id="L149">                Utils.printLineToConsole(print);</span>
+
+<span class="nc bnc" id="L151" title="All 2 branches missed.">                if(Utils.confirm(CONFIRMATION)){</span>
+<span class="nc bnc" id="L152" title="All 2 branches missed.">                    if(controller.saveEmployee()){</span>
+<span class="nc" id="L153">                        Utils.printLineToConsole(&quot;OPERATION SUCCESSFUL&quot;);</span>
+                    }
+<span class="nc" id="L155">                    else{Utils.printLineToConsole(&quot;ERROR: OPERATION UNSUCCESSFUL&quot;);}</span>
+                }
+<span class="nc bnc" id="L157" title="All 2 branches missed.">                else if(! Utils.confirm(CONFIRMATION)){</span>
+<span class="nc" id="L158">                    Utils.printLineToConsole(&quot;OPERATION FINISHED&quot;);</span>
+                }
+            }
+<span class="nc" id="L161">        } catch (IllegalArgumentException | IOException exception){</span>
+<span class="nc" id="L162">            Utils.printLineToConsole(ERROR);</span>
+<span class="nc" id="L163">            String exceptionMessage = String.format(&quot; Error Description: %s&quot;, exception.getMessage());</span>
+<span class="nc" id="L164">            Utils.printLineToConsole(exceptionMessage);</span>
+<span class="nc" id="L165">        }</span>
+<span class="nc" id="L166">    }</span>
+
+    /**
+     * Permits the System to run the Administrator function of creating a new Employee, when he asks to create an
+     * Employee that is not a Specialist Doctor.
+     *
+     * @param name Name that was typed by the Administrator.
+     * @param phoneNumber Phone Number that was typed by the Administrator.
+     * @param email E-mail that was typed by the Administrator.
+     * @param socCode SOC Code that was typed by the Administrator.
+     * @param address Address that was typed by the Administrator.
+     * @param controller Controller that allows the Administrator function to work.
+     */
+    private void runForOtherTypeOfEmployee(String name, String phoneNumber, String email, String socCode, String address,
+                                           RegisterNewEmployeeController controller, String role){
+        String organizationRole;
+
+<span class="nc bnc" id="L183" title="All 2 branches missed.">        if(role.equalsIgnoreCase(Constants.ROLE_CHEMTECH)){</span>
+<span class="nc" id="L184">            organizationRole = Constants.ROLE_CHEMTECH;</span>
+<span class="nc bnc" id="L185" title="All 2 branches missed.">        } else if(role.equalsIgnoreCase(Constants.ROLE_LABCO)){</span>
+<span class="nc" id="L186">            organizationRole = Constants.ROLE_LABCO;</span>
+<span class="nc bnc" id="L187" title="All 2 branches missed.">        } else if(role.equalsIgnoreCase(Constants.ROLE_MEDTECH)){</span>
+<span class="nc" id="L188">            organizationRole = Constants.ROLE_MEDTECH;</span>
+<span class="nc bnc" id="L189" title="All 2 branches missed.">        } else if(role.equalsIgnoreCase(Constants.ROLE_ADMIN)){</span>
+<span class="nc" id="L190">            organizationRole = Constants.ROLE_ADMIN;</span>
+        } else {
+<span class="nc" id="L192">            organizationRole = Constants.ROLE_RECEP;</span>
+        }
+
+        try{
+<span class="nc bnc" id="L196" title="All 2 branches missed.">            if(controller.registerNewEmployee(name, phoneNumber, email, socCode, organizationRole, address)){</span>
+
+<span class="nc" id="L198">                String print = String.format(&quot;%n##EMPLOYEE## %n%n Name: %s %n Phone Number: %s %n E-mail: %s %n &quot; +</span>
+                                &quot;Address: %s %n Organization Role: %s %n SOC Code: %s&quot;, name, phoneNumber, email,
+                        address, organizationRole, socCode);
+<span class="nc" id="L201">                Utils.printLineToConsole(print);</span>
+
+<span class="nc bnc" id="L203" title="All 2 branches missed.">                if(Utils.confirm(CONFIRMATION)){</span>
+<span class="nc bnc" id="L204" title="All 2 branches missed.">                    if(controller.saveEmployee()){</span>
+<span class="nc" id="L205">                        Utils.printLineToConsole(&quot;OPERATION SUCCESSFUL&quot;);</span>
+                    }
+                    else{
+<span class="nc" id="L208">                        Utils.printLineToConsole(&quot;OPERATION UNSUCCESSFUL&quot;);</span>
+                    }
+                }
+                else{
+<span class="nc" id="L212">                    Utils.printLineToConsole(&quot;OPERATION FINISHED&quot;);</span>
+                }
+
+            }
+<span class="nc" id="L216">        } catch (IllegalArgumentException | IOException exception){</span>
+<span class="nc" id="L217">            Utils.printLineToConsole(ERROR);</span>
+<span class="nc" id="L218">            String exceptionMessage = String.format(&quot; Error Description: %s&quot;, exception.getMessage());</span>
+<span class="nc" id="L219">            Utils.printLineToConsole(exceptionMessage);</span>
+<span class="nc" id="L220">        }</span>
+<span class="nc" id="L221">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

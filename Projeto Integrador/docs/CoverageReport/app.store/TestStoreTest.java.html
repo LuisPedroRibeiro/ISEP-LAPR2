@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TestStoreTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.store</a> &gt; <span class="el_source">TestStoreTest.java</span></div><h1>TestStoreTest.java</h1><pre class="source lang-java linenums">package app.store;
+
+import app.domain.model.Client;
+import app.domain.model.Sample;
+import app.domain.model.TestReport;
+import app.mappers.dto.ClientDto;
+import auth.domain.model.Email;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
+
+/**
+ * This Class tests the TestStore class.
+ *
+ * @author Luís Ribeiro &lt;1201184@isep.ipp.pt&gt;
+ * @author Pedro Graça &lt;1201188@isep.ipp.pt&gt;
+ * @author Miguel Ramos &lt;1201247@isep.ipp.pt&gt;
+ * @author André Soares &lt;1201314@isep.ipp.pt&gt;
+ */
+<span class="fc" id="L24">public class TestStoreTest {</span>
+
+    @Test
+    public void createTest() {
+<span class="fc" id="L28">        TestStore testStore = new TestStore();</span>
+<span class="fc" id="L29">        app.domain.model.Test test1 = testStore.createTest(&quot;1234567890ee&quot;);</span>
+<span class="fc" id="L30">        app.domain.model.Test test2 = testStore.createTest(&quot;1234567890gg&quot;);</span>
+<span class="fc" id="L31">        assertTrue(true);</span>
+<span class="fc" id="L32">        assertNotEquals(test1,test2);</span>
+<span class="fc" id="L33">        assertEquals(test1,test1);</span>
+<span class="fc" id="L34">    }</span>
+
+    @Test
+    public void validateTest() {
+<span class="fc" id="L38">        TestStore testStore = new TestStore();</span>
+<span class="fc" id="L39">        app.domain.model.Test test1 = testStore.createTest(&quot;1234567890ee&quot;);</span>
+
+<span class="fc" id="L41">        boolean result= testStore.validateTest(test1);</span>
+
+<span class="fc" id="L43">        assertTrue(result);</span>
+<span class="fc" id="L44">    }</span>
+
+    @Test
+    public void saveTest() {
+<span class="fc" id="L48">        TestStore testStore = new TestStore();</span>
+<span class="fc" id="L49">        app.domain.model.Test test1 = testStore.createTest(&quot;1234567890ee&quot;);</span>
+<span class="fc" id="L50">        boolean result= testStore.saveTest(test1);</span>
+<span class="fc" id="L51">        assertTrue(result);</span>
+<span class="fc" id="L52">    }</span>
+
+    @Test(expected = NullPointerException.class)
+    public void getTestsWithoutSamplesList() {
+<span class="fc" id="L56">        TestStore testStore = new TestStore();</span>
+<span class="fc" id="L57">        app.domain.model.Test test1 = testStore.createTest(&quot;1234567890ee&quot;);</span>
+<span class="fc" id="L58">        testStore.saveTest(test1);</span>
+<span class="nc" id="L59">        List&lt;app.domain.model.Test&gt; result= testStore.getTestsWithoutSamplesList();</span>
+<span class="nc" id="L60">    }</span>
+
+    @Test
+    public void getTestToBeSampledByIndex() {
+<span class="fc" id="L64">    }</span>
+
+    @Test(expected = NullPointerException.class)
+    public void saveTestWithSamples() {
+<span class="fc" id="L68">        TestStore testStore = new TestStore();</span>
+<span class="fc" id="L69">        app.domain.model.Test test1 = testStore.createTest(&quot;1234567890ee&quot;);</span>
+<span class="fc" id="L70">        Sample sample = new Sample();</span>
+<span class="fc" id="L71">        testStore.saveTest(test1);</span>
+<span class="fc" id="L72">        test1.addSampleToTest(sample);</span>
+<span class="nc" id="L73">        testStore.saveTestWithSamples(test1);</span>
+<span class="nc" id="L74">    }</span>
+
+    @Test
+    public void validatesTestWithSamples() {
+<span class="fc" id="L78">        TestStore testStore = new TestStore();</span>
+<span class="fc" id="L79">        app.domain.model.Test test1 = testStore.createTest(&quot;1234567890ee&quot;);</span>
+<span class="fc" id="L80">        Sample sample = new Sample();</span>
+<span class="fc" id="L81">        testStore.saveTest(test1);</span>
+<span class="fc" id="L82">        test1.addSampleToTest(sample);</span>
+<span class="fc" id="L83">        assertTrue(testStore.validatesTestWithSamples(test1));</span>
+
+<span class="fc" id="L85">    }</span>
+
+    @Test
+    public void getTestsWithResultListTest(){
+<span class="fc" id="L89">        TestStore testStore = new TestStore();</span>
+<span class="fc" id="L90">        app.domain.model.Test test = new app.domain.model.Test(&quot;123456789012&quot;);</span>
+<span class="fc" id="L91">        app.domain.model.Test testTwo = new app.domain.model.Test(&quot;123456789011&quot;);</span>
+<span class="fc" id="L92">        app.domain.model.Test testThree = new app.domain.model.Test(&quot;123456789911&quot;);</span>
+<span class="fc" id="L93">        app.domain.model.Test testFour = new app.domain.model.Test(&quot;123456784411&quot;);</span>
+<span class="fc" id="L94">        app.domain.model.Test testFive = new app.domain.model.Test(&quot;123450000021&quot;);</span>
+
+<span class="fc" id="L96">        test.addTestResultDate();</span>
+<span class="fc" id="L97">        testTwo.addTestResultDate();</span>
+<span class="fc" id="L98">        testThree.addTestResultDate();</span>
+<span class="fc" id="L99">        testFour.addReportDate();</span>
+<span class="fc" id="L100">        testFive.addReportDate();</span>
+<span class="fc" id="L101">        testFive.validateTest();</span>
+
+<span class="fc" id="L103">        testStore.saveTest(test);</span>
+<span class="fc" id="L104">        testStore.saveTest(testTwo);</span>
+<span class="fc" id="L105">        testStore.saveTest(testThree);</span>
+<span class="fc" id="L106">        testStore.saveTest(testFour);</span>
+<span class="fc" id="L107">        testStore.saveTest(testFive);</span>
+
+<span class="fc" id="L109">        List&lt;app.domain.model.Test&gt; expected = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L110">        expected.add(test);</span>
+<span class="fc" id="L111">        expected.add(testTwo);</span>
+<span class="fc" id="L112">        expected.add(testThree);</span>
+
+<span class="fc" id="L114">        List&lt;app.domain.model.Test&gt; result = testStore.getTestWithResultList();</span>
+
+<span class="fc" id="L116">        Assert.assertEquals(result,expected);</span>
+<span class="fc" id="L117">    }</span>
+
+    @Test()
+    public void getTestsWithReportList() {
+<span class="fc" id="L121">        TestStore tt=new TestStore();</span>
+<span class="fc" id="L122">        app.domain.model.Test t=new app.domain.model.Test(&quot;123456789012&quot;);</span>
+<span class="fc" id="L123">        app.domain.model.Test t1=new app.domain.model.Test(&quot;123456789011&quot;);</span>
+<span class="fc" id="L124">        app.domain.model.Test t2=new app.domain.model.Test(&quot;123456789911&quot;);</span>
+<span class="fc" id="L125">        app.domain.model.Test t3=new app.domain.model.Test(&quot;123456709911&quot;);</span>
+<span class="fc" id="L126">        app.domain.model.Test t4=new app.domain.model.Test(&quot;123456709911&quot;);</span>
+
+<span class="fc" id="L128">        t.addReportDate();</span>
+<span class="fc" id="L129">        t1.addReportDate();</span>
+<span class="fc" id="L130">        t3.validateTest();</span>
+<span class="fc" id="L131">        t4.addReportDate();</span>
+<span class="fc" id="L132">        t4.validateTest();</span>
+<span class="fc" id="L133">        tt.saveTest(t);</span>
+<span class="fc" id="L134">        tt.saveTest(t1);</span>
+<span class="fc" id="L135">        tt.saveTest(t2);</span>
+<span class="fc" id="L136">        tt.saveTest(t3);</span>
+<span class="fc" id="L137">        List&lt;app.domain.model.Test&gt; expected=new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L138">        expected.add(t);</span>
+<span class="fc" id="L139">        expected.add(t1);</span>
+
+<span class="fc" id="L141">        List&lt;app.domain.model.Test&gt; result=tt.getTestsWithReportList();</span>
+
+<span class="fc" id="L143">        Assert.assertEquals(result,expected);</span>
+<span class="fc" id="L144">    }</span>
+
+    @Test
+    public void getTestByNhsCode() {
+<span class="fc" id="L148">        TestStore tt=new TestStore();</span>
+<span class="fc" id="L149">        app.domain.model.Test expected=new app.domain.model.Test(&quot;123456789012&quot;);</span>
+
+<span class="fc" id="L151">        tt.saveTest(expected);</span>
+
+<span class="fc" id="L153">        app.domain.model.Test result=tt.getTestByNhsCode(&quot;123456789012&quot;);</span>
+<span class="fc" id="L154">        app.domain.model.Test result1=tt.getTestByNhsCode(&quot;123456789000&quot;);</span>
+<span class="fc" id="L155">        Assert.assertEquals(result,expected);</span>
+<span class="fc" id="L156">        Assert.assertNull(result1);</span>
+<span class="fc" id="L157">    }</span>
+
+    @Test
+    public void saveTestReport() {
+<span class="fc" id="L161">        TestStore testStore = new TestStore();</span>
+<span class="fc" id="L162">        app.domain.model.Test test = testStore.createTest(&quot;1234567890ee&quot;);</span>
+<span class="fc" id="L163">        testStore.saveTest(test);</span>
+
+<span class="fc" id="L165">        TestReport testReport = new TestReport(&quot;This is a simulation of a Test Report.&quot;,</span>
+                &quot;000000000000&quot;, &quot;Specialist Doctor&quot;, &quot;sd@test.com&quot;);
+<span class="fc" id="L167">        assertTrue(testStore.saveTestReport(test, testReport));</span>
+
+<span class="fc" id="L169">        app.domain.model.Test testTwo = testStore.createTest(&quot;1234567890ff&quot;);</span>
+<span class="fc" id="L170">        testStore.saveTest(testTwo);</span>
+
+<span class="fc" id="L172">        assertFalse(testStore.saveTestReport(testTwo, null));</span>
+<span class="fc" id="L173">    }</span>
+
+    @Test
+    public void addTestToClient() {
+<span class="fc" id="L177">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L178">        Client client = new Client(clientDto);</span>
+<span class="fc" id="L179">        TestStore testStore = new TestStore();</span>
+<span class="fc" id="L180">        app.domain.model.Test test1 = testStore.createTest(&quot;1234567890ee&quot;);</span>
+<span class="fc" id="L181">        testStore.saveTest(test1);</span>
+<span class="fc" id="L182">        assertTrue(testStore.addTestToClient(client,test1));</span>
+<span class="fc" id="L183">    }</span>
+
+    @Test
+    public void nextCode() {
+<span class="fc" id="L187">        long num = 11;</span>
+<span class="fc" id="L188">        TestStore testStore = new TestStore();</span>
+<span class="fc" id="L189">        String expected = &quot;000000000011&quot;;</span>
+
+<span class="fc" id="L191">        String result=testStore.nextCode(num);</span>
+
+<span class="fc" id="L193">        assertEquals(expected,result);</span>
+<span class="fc" id="L194">    }</span>
+
+    @Test
+    public void getStore() {
+<span class="fc" id="L198">        TestStore testStore = new TestStore();</span>
+<span class="fc" id="L199">        app.domain.model.Test test1 = testStore.createTest(&quot;1234567890ee&quot;);</span>
+<span class="fc" id="L200">        testStore.saveTest(test1);</span>
+
+<span class="fc" id="L202">        List&lt;app.domain.model.Test&gt; list= testStore.getStore();</span>
+
+<span class="fc" id="L204">        assertTrue(list.contains(test1));</span>
+<span class="fc" id="L205">    }</span>
+
+    @Test
+    public void getTestByBarcode() {
+<span class="fc" id="L209">    }</span>
+
+    @Test
+    public void testContainsNhsCode(){
+<span class="fc" id="L213">        String existentNhsCode = &quot;1234567890ee&quot;;</span>
+<span class="fc" id="L214">        String nonexistentNhsCode = &quot;000000000000&quot;;</span>
+<span class="fc" id="L215">        TestStore testStore = new TestStore();</span>
+
+<span class="fc" id="L217">        app.domain.model.Test test = testStore.createTest(existentNhsCode);</span>
+<span class="fc" id="L218">        testStore.saveTest(test);</span>
+
+<span class="fc" id="L220">        app.domain.model.Test testTwo = testStore.createTest(&quot;1234567890dd&quot;);</span>
+<span class="fc" id="L221">        testStore.saveTest(testTwo);</span>
+
+<span class="fc" id="L223">        assertTrue(testStore.containsNhsCode(existentNhsCode));</span>
+<span class="fc" id="L224">        assertFalse(testStore.containsNhsCode(nonexistentNhsCode));</span>
+<span class="fc" id="L225">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

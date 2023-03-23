@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CreateParameterUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.ui.console</a> &gt; <span class="el_source">CreateParameterUI.java</span></div><h1>CreateParameterUI.java</h1><pre class="source lang-java linenums">package app.ui.console;
+
+import app.controller.CreateParameterController;
+import app.mappers.dto.ParameterCategoryDto;
+import app.utils.Utils;
+
+import java.util.List;
+
+/**
+ * @author Luís Ribeiro &lt;1201184@isep.ipp.pt&gt;
+ * @author Pedro Graça &lt;1201188@isep.ipp.pt&gt;
+ */
+<span class="nc bnc" id="L13" title="All 2 branches missed.">public class CreateParameterUI implements Runnable {</span>
+
+    /**
+     * String that contains a question relative to a confirmation of the data.
+     */
+    private static final String CONFIRMATION = &quot;Do you confirm this data?&quot;;
+    /**
+     * String that contains a declaration of an error.
+     */
+<span class="nc" id="L22">    private static final String ERROR = String.format(&quot;%nERROR: OPERATION TERMINATED%n &quot; +</span>
+            &quot;Motive: An inserted attribute is invalid. %n&quot;);
+
+    /**
+     * Constructor with no parameters.
+     */
+<span class="nc" id="L28">    public CreateParameterUI() {</span>
+        //Constructs a CreateParameterUI with no parameters.
+<span class="nc" id="L30">    }</span>
+
+    /**
+     * Permits the system to run the Administrator function of creating a new Parameter Category.
+     */
+    public void run() {
+<span class="nc" id="L36">        CreateParameterController controller = new CreateParameterController();</span>
+<span class="nc" id="L37">        List&lt;ParameterCategoryDto&gt; parameterCategoryDtoList = controller.getParameterCategoryStoreDto();</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">        if (!parameterCategoryDtoList.isEmpty()) {</span>
+            boolean codeError;
+
+
+<span class="nc" id="L42">            Utils.printLineToConsole(&quot;###NEW PARAMETER###&quot;);</span>
+<span class="nc" id="L43">            String shortName = Utils.readLineFromConsole(&quot;Parameter Short Name:&quot;);</span>
+            String code;
+
+            do {
+<span class="nc" id="L47">                code = Utils.readLineFromConsole(&quot;Parameter Code:&quot;);</span>
+<span class="nc bnc" id="L48" title="All 4 branches missed.">                assert code != null;</span>
+<span class="nc" id="L49">                codeError = Utils.onlyDigits(code);</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">                if (!Utils.onlyDigits(code)) {</span>
+<span class="nc" id="L51">                    Utils.printLineToConsole(&quot;ERROR: Parameter Code can only have numbers.&quot;);</span>
+                }
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            } while (!codeError);</span>
+
+<span class="nc" id="L55">            String description = Utils.readLineFromConsole(&quot;Parameter Description:&quot;);</span>
+
+            try {
+<span class="nc bnc" id="L58" title="All 2 branches missed.">                if (controller.createParameter(code, shortName, description)) {</span>
+<span class="nc" id="L59">                    int option = Utils.showAndSelectIndex(parameterCategoryDtoList, &quot;PARAMETER CATEGORY LIST:&quot;);</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">                    if (option != -1) {</span>
+<span class="nc" id="L61">                        String toPrint = String.format(&quot;%n###PARAMETER CATEGORY###%n%n - Code: %s%n - Name: %s%n&quot;, code,</span>
+<span class="nc" id="L62">                                parameterCategoryDtoList.get(option).getName());</span>
+<span class="nc" id="L63">                        Utils.printLineToConsole(toPrint);</span>
+<span class="nc bnc" id="L64" title="All 4 branches missed.">                        if (Utils.confirm(CONFIRMATION) &amp;&amp; controller.saveParameter(parameterCategoryDtoList.get(option).getCode())) {</span>
+<span class="nc" id="L65">                            Utils.printLineToConsole(&quot;OPERATION SUCCESSFUL&quot;);</span>
+                        } else {
+<span class="nc" id="L67">                            Utils.printLineToConsole(&quot;ERROR: OPERATION UNSUCCESSFUL&quot;);</span>
+                        }
+                    }
+                }
+<span class="nc" id="L71">            } catch (Exception exception) {</span>
+<span class="nc" id="L72">                Utils.printLineToConsole(ERROR);</span>
+<span class="nc" id="L73">                String exceptionMessage = String.format(&quot; %s&quot;, exception.getMessage());</span>
+<span class="nc" id="L74">                Utils.printLineToConsole(exceptionMessage);</span>
+<span class="nc" id="L75">            }</span>
+<span class="nc" id="L76">        } else {</span>
+<span class="nc" id="L77">            Utils.printLineToConsole(&quot;Cannot create a parameter without at least a parameter category in the system &quot;);</span>
+<span class="nc" id="L78">            Utils.printLineToConsole(&quot;Please create one&quot;);</span>
+        }
+<span class="nc" id="L80">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

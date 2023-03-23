@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="696.25px" preserveAspectRatio="none" style="width:655px;height:696px;" version="1.1" viewBox="0 0 655 696" width="655px" zoomAndPan="magnify"><defs><filter height="300%" id="ffr4q985ymcre" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.5"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="5.0" dy="5.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FFFFFF" filter="url(#ffr4q985ymcre)" height="442.9688" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="74.375" y="124.5117"/><rect fill="#FFFFFF" filter="url(#ffr4q985ymcre)" height="37.9395" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="576.875" y="152.4512"/><rect fill="#FFFFFF" filter="url(#ffr4q985ymcre)" height="102.7637" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="576.875" y="228.3301"/><rect fill="#FFFFFF" filter="url(#ffr4q985ymcre)" height="37.9395" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="576.875" y="369.0332"/><rect fill="#FFFFFF" filter="url(#ffr4q985ymcre)" height="46.6895" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="576.875" y="444.9121"/><rect fill="#FFFFFF" filter="url(#ffr4q985ymcre)" height="37.9395" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="576.875" y="529.541"/><rect fill="#FFFFFF" filter="url(#ffr4q985ymcre)" height="207.832" style="stroke:#000000;stroke-width:2.5;" width="625.625" x="12.5" y="247.0801"/><line style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:5.0,5.0;" x1="80" x2="80" y1="112.0117" y2="589.9805"/><line style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:5.0,5.0;" x1="583.125" x2="583.125" y1="112.0117" y2="589.9805"/><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="103.75" x="25" y="108.1665">Administrator</text><ellipse cx="80.625" cy="18.75" fill="#FEFECE" filter="url(#ffr4q985ymcre)" rx="10" ry="10" style="stroke:#A80036;stroke-width:2.5;"/><path d="M80.625,28.75 L80.625,62.5 M64.375,38.75 L96.875,38.75 M80.625,62.5 L64.375,81.25 M80.625,62.5 L96.875,81.25 " fill="none" filter="url(#ffr4q985ymcre)" style="stroke:#A80036;stroke-width:2.5;"/><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="103.75" x="25" y="606.897">Administrator</text><ellipse cx="80.625" cy="623.2422" fill="#FEFECE" filter="url(#ffr4q985ymcre)" rx="10" ry="10" style="stroke:#A80036;stroke-width:2.5;"/><path d="M80.625,633.2422 L80.625,666.9922 M64.375,643.2422 L96.875,643.2422 M80.625,666.9922 L64.375,685.7422 M80.625,666.9922 L96.875,685.7422 " fill="none" filter="url(#ffr4q985ymcre)" style="stroke:#A80036;stroke-width:2.5;"/><rect fill="#FEFECE" filter="url(#ffr4q985ymcre)" height="39.5117" style="stroke:#A80036;stroke-width:1.875;" width="80" x="540.625" y="66.25"/><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="62.5" x="549.375" y="93.1665">:System</text><rect fill="#FEFECE" filter="url(#ffr4q985ymcre)" height="39.5117" style="stroke:#A80036;stroke-width:1.875;" width="80" x="540.625" y="588.7305"/><text fill="#000000" font-family="sans-serif" font-size="17.5" lengthAdjust="spacing" textLength="62.5" x="549.375" y="615.647">:System</text><rect fill="#FFFFFF" filter="url(#ffr4q985ymcre)" height="442.9688" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="74.375" y="124.5117"/><rect fill="#FFFFFF" filter="url(#ffr4q985ymcre)" height="37.9395" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="576.875" y="152.4512"/><rect fill="#FFFFFF" filter="url(#ffr4q985ymcre)" height="102.7637" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="576.875" y="228.3301"/><rect fill="#FFFFFF" filter="url(#ffr4q985ymcre)" height="37.9395" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="576.875" y="369.0332"/><rect fill="#FFFFFF" filter="url(#ffr4q985ymcre)" height="46.6895" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="576.875" y="444.9121"/><rect fill="#FFFFFF" filter="url(#ffr4q985ymcre)" height="37.9395" style="stroke:#A80036;stroke-width:1.25;" width="12.5" x="576.875" y="529.541"/><polygon fill="#A80036" points="561.875,147.4512,574.375,152.4512,561.875,157.4512,566.875,152.4512" style="stroke:#A80036;stroke-width:1.25;"/><line style="stroke:#A80036;stroke-width:1.25;" x1="86.875" x2="569.375" y1="152.4512" y2="152.4512"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="8.75" x="95.625" y="146.3806">1</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="222.5" x="109.375" y="146.3806">Asks to create a new test type</text><polygon fill="#A80036" points="100.625,185.3906,88.125,190.3906,100.625,195.3906,95.625,190.3906" style="stroke:#A80036;stroke-width:1.25;"/><line style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:2.0,2.0;" x1="93.125" x2="581.875" y1="190.3906" y2="190.3906"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="8.75" x="108.125" y="184.3201">2</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="361.25" x="121.875" y="184.3201">Requests data(code,collectionMethod,description)</text><polygon fill="#A80036" points="561.875,223.3301,574.375,228.3301,561.875,233.3301,566.875,228.3301" style="stroke:#A80036;stroke-width:1.25;"/><line style="stroke:#A80036;stroke-width:1.25;" x1="86.875" x2="569.375" y1="228.3301" y2="228.3301"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="8.75" x="95.625" y="222.2595">3</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="156.25" x="109.375" y="222.2595">Types requested data</text><path d="M12.5,247.0801 L103.75,247.0801 L103.75,257.0801 L91.25,269.5801 L12.5,269.5801 L12.5,247.0801 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.25;"/><rect fill="none" height="207.832" style="stroke:#000000;stroke-width:2.5;" width="625.625" x="12.5" y="247.0801"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="35" x="31.25" y="265.199">loop</text><text fill="#000000" font-family="sans-serif" font-size="13.75" font-weight="bold" lengthAdjust="spacing" textLength="438.75" x="122.5" y="263.8538">[While the administrator wants to choose parameter categories</text><text fill="#000000" font-family="sans-serif" font-size="13.75" font-weight="bold" lengthAdjust="spacing" textLength="312.5" x="126.25" y="281.1487">and there are  parameter categories available</text><text fill="#000000" font-family="sans-serif" font-size="13.75" font-weight="bold" lengthAdjust="spacing" textLength="215" x="126.25" y="298.4436">for the test type being created]</text><polygon fill="#A80036" points="100.625,326.0938,88.125,331.0938,100.625,336.0938,95.625,331.0938" style="stroke:#A80036;stroke-width:1.25;"/><line style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:2.0,2.0;" x1="93.125" x2="581.875" y1="331.0938" y2="331.0938"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="8.75" x="108.125" y="325.0232">4</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="376.25" x="121.875" y="325.0232">Shows parameter categories available in the system</text><polygon fill="#A80036" points="561.875,364.0332,574.375,369.0332,561.875,374.0332,566.875,369.0332" style="stroke:#A80036;stroke-width:1.25;"/><line style="stroke:#A80036;stroke-width:1.25;" x1="86.875" x2="569.375" y1="369.0332" y2="369.0332"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="8.75" x="95.625" y="362.9626">5</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="200" x="109.375" y="362.9626">Selects parameter category</text><polygon fill="#A80036" points="100.625,401.9727,88.125,406.9727,100.625,411.9727,95.625,406.9727" style="stroke:#A80036;stroke-width:1.25;"/><line style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:2.0,2.0;" x1="93.125" x2="581.875" y1="406.9727" y2="406.9727"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="8.75" x="108.125" y="400.9021">6</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="446.25" x="121.875" y="400.9021">Shows selected parameter category and asks for confirmation</text><polygon fill="#A80036" points="561.875,439.9121,574.375,444.9121,561.875,449.9121,566.875,444.9121" style="stroke:#A80036;stroke-width:1.25;"/><line style="stroke:#A80036;stroke-width:1.25;" x1="86.875" x2="569.375" y1="444.9121" y2="444.9121"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="8.75" x="95.625" y="438.8416">7</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="293.75" x="109.375" y="438.8416">Confirms the parameter category chosen</text><polygon fill="#A80036" points="100.625,486.6016,88.125,491.6016,100.625,496.6016,95.625,491.6016" style="stroke:#A80036;stroke-width:1.25;"/><line style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:2.0,2.0;" x1="93.125" x2="581.875" y1="491.6016" y2="491.6016"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="8.75" x="108.125" y="485.531">8</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="311.25" x="121.875" y="485.531">Shows all the data, requesting confirmation</text><polygon fill="#A80036" points="561.875,524.541,574.375,529.541,561.875,534.541,566.875,529.541" style="stroke:#A80036;stroke-width:1.25;"/><line style="stroke:#A80036;stroke-width:1.25;" x1="86.875" x2="569.375" y1="529.541" y2="529.541"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="8.75" x="95.625" y="523.4705">9</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="127.5" x="109.375" y="523.4705">Confirms the data</text><polygon fill="#A80036" points="94.375,562.4805,81.875,567.4805,94.375,572.4805,89.375,567.4805" style="stroke:#A80036;stroke-width:1.25;"/><line style="stroke:#A80036;stroke-width:1.25;stroke-dasharray:2.0,2.0;" x1="86.875" x2="581.875" y1="567.4805" y2="567.4805"/><text fill="#000000" font-family="sans-serif" font-size="16.25" font-weight="bold" lengthAdjust="spacing" textLength="17.5" x="101.875" y="561.4099">10</text><text fill="#000000" font-family="sans-serif" font-size="16.25" lengthAdjust="spacing" textLength="207.5" x="124.375" y="561.4099">Informs of operation success</text><!--MD5=[e1254e103aabf421aa685a0c6a134792]
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+actor Administrator as admin
+participant ":System" as sys
+
+activate admin
+
+admin -> sys: Asks to create a new test type
+activate sys
+admin <- - sys: Requests data(code,collectionMethod,description)
+deactivate sys
+admin -> sys: Types requested data
+activate sys
+
+loop While the administrator wants to choose parameter categories \n and there are  parameter categories available \n for the test type being created
+            sys - -> admin: Shows parameter categories available in the system
+            deactivate sys
+            sys <- admin : Selects parameter category
+            activate sys
+            sys - -> admin: Shows selected parameter category and asks for confirmation
+            deactivate sys
+            sys <- admin: Confirms the parameter category chosen
+            activate sys
+        end
+
+
+
+sys - -> admin: Shows all the data, requesting confirmation
+deactivate sys
+sys <- admin: Confirms the data
+activate sys
+sys - -> admin: Informs of operation success
+deactivate admin
+deactivate sys
+
+@enduml
+
+@startuml
+
+autonumber
+actor Administrator as admin
+participant ":System" as sys
+
+activate admin
+
+admin -> sys: Asks to create a new test type
+activate sys
+admin <- - sys: Requests data(code,collectionMethod,description)
+deactivate sys
+admin -> sys: Types requested data
+activate sys
+
+loop While the administrator wants to choose parameter categories \n and there are  parameter categories available \n for the test type being created
+            sys - -> admin: Shows parameter categories available in the system
+            deactivate sys
+            sys <- admin : Selects parameter category
+            activate sys
+            sys - -> admin: Shows selected parameter category and asks for confirmation
+            deactivate sys
+            sys <- admin: Confirms the parameter category chosen
+            activate sys
+        end
+
+
+
+sys - -> admin: Shows all the data, requesting confirmation
+deactivate sys
+sys <- admin: Confirms the data
+activate sys
+sys - -> admin: Informs of operation success
+deactivate admin
+deactivate sys
+
+@enduml
+
+PlantUML version 1.2021.5(Sun Apr 25 12:20:28 BST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: Dynamic Code Evolution 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>

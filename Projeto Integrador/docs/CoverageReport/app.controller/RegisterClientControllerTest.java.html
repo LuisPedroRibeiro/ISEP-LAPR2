@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegisterClientControllerTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.controller</a> &gt; <span class="el_source">RegisterClientControllerTest.java</span></div><h1>RegisterClientControllerTest.java</h1><pre class="source lang-java linenums">package app.controller;
+
+import app.mappers.dto.ClientDto;
+import auth.domain.model.Email;
+import org.junit.Assert;
+import org.junit.Test;
+import java.io.IOException;
+
+/**
+ * @author Pedro Graça
+ */
+<span class="fc" id="L12">public class RegisterClientControllerTest {</span>
+
+    @Test
+    public void createClientWithGender() {
+<span class="fc" id="L16">        RegisterClientController registerClientController= new RegisterClientController();</span>
+<span class="fc" id="L17">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;Male&quot;, &quot;91337755612&quot;);</span>
+
+<span class="fc" id="L19">        boolean result = registerClientController.createClient(clientDto);</span>
+
+<span class="fc" id="L21">        Assert.assertTrue(result);</span>
+
+<span class="fc" id="L23">    }</span>
+    @Test
+    public void createClientWithoutGender(){
+<span class="fc" id="L26">        RegisterClientController registerClientController= new RegisterClientController();</span>
+<span class="fc" id="L27">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;(Unknown)&quot;, &quot;91337755612&quot;);</span>
+
+<span class="fc" id="L29">        boolean result = registerClientController.createClient(clientDto);</span>
+
+
+<span class="fc" id="L32">        Assert.assertTrue(result);</span>
+
+<span class="fc" id="L34">    }</span>
+
+    @Test
+    public void saveClient() throws IOException {
+<span class="fc" id="L38">        RegisterClientController registerClientController= new RegisterClientController();</span>
+<span class="fc" id="L39">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;(Unknown)&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L40">        registerClientController.createClient(clientDto);</span>
+
+<span class="fc" id="L42">        Assert.assertTrue(registerClientController.saveClient());</span>
+<span class="fc" id="L43">    }</span>
+
+    @Test
+    public void getStore() {
+<span class="fc" id="L47">        RegisterClientController registerClientController= new RegisterClientController();</span>
+<span class="fc" id="L48">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;(Unknown)&quot;, &quot;91337755612&quot;);</span>
+
+<span class="fc" id="L50">        Assert.assertNull(registerClientController.getStore());</span>
+<span class="fc" id="L51">    }</span>
+
+    @Test
+    public void containsPhoneNumber() throws AssertionError {
+<span class="fc" id="L55">        RegisterClientController registerClientController= new RegisterClientController();</span>
+<span class="fc" id="L56">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;(Unknown)&quot;, &quot;91337755613&quot;);</span>
+<span class="fc" id="L57">        boolean expected= false;</span>
+
+<span class="fc" id="L59">        boolean result=registerClientController.containsPhoneNumber(clientDto.getPhoneNumber());</span>
+
+<span class="fc" id="L61">        Assert.assertFalse(result);</span>
+<span class="fc" id="L62">    }</span>
+
+    @Test
+    public void containsEmail() {
+<span class="fc" id="L66">        RegisterClientController registerClientController= new RegisterClientController();</span>
+<span class="fc" id="L67">        ClientDto clientDto = new ClientDto(&quot;Pedro&quot;, new Email(&quot;pedro@gmail.com&quot;), &quot;1234567890&quot;, &quot;1234567890123456&quot;, &quot;1234567890&quot;, &quot;11/09/2002&quot;, &quot;(Unknown)&quot;, &quot;91337755612&quot;);</span>
+<span class="fc" id="L68">        boolean expected= false;</span>
+
+<span class="fc" id="L70">        boolean result=registerClientController.containsEmail(clientDto.getEmail());</span>
+
+<span class="fc" id="L72">        Assert.assertFalse(result);</span>
+<span class="fc" id="L73">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

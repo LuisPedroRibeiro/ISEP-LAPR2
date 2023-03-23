@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegisterClientUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.ui.console</a> &gt; <span class="el_source">RegisterClientUI.java</span></div><h1>RegisterClientUI.java</h1><pre class="source lang-java linenums">package app.ui.console;
+
+import app.controller.RegisterClientController;
+import app.mappers.dto.ClientDto;
+import app.utils.Utils;
+import auth.domain.model.Email;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.Objects;
+
+/**
+ * @author Pedro Graça
+ */
+<span class="nc bnc" id="L17" title="All 2 branches missed.">public class RegisterClientUI implements Runnable {</span>
+
+    private static final String TRY_AGAIN = &quot;Invalid Format. Please try again.&quot;;
+
+<span class="nc" id="L21">    public RegisterClientUI() {</span>
+        //Constructs a RegisterClientUI with no parameters
+<span class="nc" id="L23">    }</span>
+
+
+    /**
+     * Method to run this UI
+     */
+    public void run() {
+
+<span class="nc" id="L31">        RegisterClientController clientController = new RegisterClientController();</span>
+
+<span class="nc" id="L33">        String name = Utils.readLineFromConsole(&quot;Name:&quot;);</span>
+<span class="nc" id="L34">        Email email = getEmail(clientController);</span>
+<span class="nc" id="L35">        String taxIdentificationNumber =Utils.getTaxIdentificationNumber();</span>
+<span class="nc" id="L36">        String citizenCardNumber =getCitizenCardNumber();</span>
+<span class="nc" id="L37">        String nhsNumber = getNhsNumber();</span>
+<span class="nc" id="L38">        String birthDate = getBirthDate();</span>
+<span class="nc" id="L39">        String gender = Utils.readLineFromConsole(&quot;Gender (Male/Female):&quot;);</span>
+<span class="nc" id="L40">        String phoneNumber = getPhoneNumber(clientController);</span>
+        ClientDto clientDto;
+
+
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        if (Objects.equals(gender, &quot;&quot;)) {</span>
+<span class="nc" id="L45">            clientDto = new ClientDto(name, email, taxIdentificationNumber, citizenCardNumber, nhsNumber, birthDate, phoneNumber);</span>
+        } else {
+<span class="nc" id="L47">            clientDto = new ClientDto(name, email, taxIdentificationNumber, citizenCardNumber, nhsNumber, birthDate, gender, phoneNumber);</span>
+        }
+
+
+        try {
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            if ((clientController.createClient(clientDto))) {</span>
+<span class="nc" id="L53">                Utils.printLineToConsole(clientDto.toString());</span>
+<span class="nc bnc" id="L54" title="All 4 branches missed.">                if (Utils.confirm(&quot;Are you sure you want to create a Client with these data? (s/n)&quot;) &amp;&amp; clientController.saveClient()) {</span>
+<span class="nc" id="L55">                    Utils.printLineToConsole(&quot;The Client was registered with success.&quot;);</span>
+                }
+            }
+<span class="nc" id="L58">        } catch (IllegalArgumentException | IOException e) {</span>
+<span class="nc" id="L59">            Utils.printLineToConsole(&quot;##ERROR## - Some Attribute was invalid.&quot;);</span>
+<span class="nc" id="L60">        }</span>
+<span class="nc" id="L61">        Utils.printLineToConsole(&quot;--------------------------------------&quot;);</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        if (!clientController.getStore().getClientList().isEmpty())</span>
+<span class="nc" id="L63">            Utils.showList(clientController.getStore().getClientList(), &quot;##CLIENTS##&quot;);</span>
+<span class="nc" id="L64">    }</span>
+
+
+    /**
+     * Method to get a Email from the console
+     *
+     * @param ctrl RegisterClientController to do some validations
+     * @return a valid Email
+     */
+    public Email getEmail(RegisterClientController ctrl) {
+<span class="nc" id="L74">        boolean emailError = true;</span>
+<span class="nc" id="L75">        Email email = null;</span>
+        do {
+            try {
+<span class="nc" id="L78">                email = new Email(Utils.readLineFromConsole(&quot;Email:&quot;));</span>
+<span class="nc" id="L79">                emailError = ctrl.containsEmail(email);</span>
+<span class="nc" id="L80">            } catch (Exception e) {</span>
+<span class="nc" id="L81">                Utils.printLineToConsole(e.getMessage());</span>
+<span class="nc" id="L82">            }</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        } while (emailError);</span>
+<span class="nc" id="L84">        return email;</span>
+    }
+
+    /**
+     * Method to get the Citizen Card Number from the console
+     *
+     * @return the Citizen Card Number
+     */
+    public String getCitizenCardNumber() {
+        boolean citizenCardNum;
+        String citizenCardNumber;
+        do {
+<span class="nc" id="L96">            citizenCardNumber = Utils.readLineFromConsole(&quot;Citizen Card Number:&quot;);</span>
+<span class="nc bnc" id="L97" title="All 4 branches missed.">            assert citizenCardNumber != null;</span>
+<span class="nc" id="L98">            citizenCardNum = onlyDigits(citizenCardNumber);</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">            if (!citizenCardNum)</span>
+<span class="nc" id="L100">                Utils.printLineToConsole(TRY_AGAIN);</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">        } while (!citizenCardNum);</span>
+<span class="nc" id="L102">        return citizenCardNumber;</span>
+    }
+
+    /**
+     * Method to get the National Healthcare Service Number from the console
+     *
+     * @return the NHS number
+     */
+    public String getNhsNumber() {
+        boolean nhsNum;
+        String nhsNumber;
+        do {
+<span class="nc" id="L114">            nhsNumber = Utils.readLineFromConsole(&quot;National Healthcare Service (NHS) Number:&quot;);</span>
+<span class="nc bnc" id="L115" title="All 4 branches missed.">            assert nhsNumber != null;</span>
+<span class="nc" id="L116">            nhsNum = onlyDigits(nhsNumber);</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">            if (!nhsNum)</span>
+<span class="nc" id="L118">                Utils.printLineToConsole(TRY_AGAIN);</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">        } while (!nhsNum);</span>
+<span class="nc" id="L120">        return nhsNumber;</span>
+    }
+
+
+    /**
+     * Method to get a date from the console
+     *
+     * @return a valid date on format DD/MM/YYY
+     */
+    public String getBirthDate() {
+<span class="nc" id="L130">        boolean birthDateError = true;</span>
+<span class="nc" id="L131">        String birthDate = null;</span>
+        do {
+            try {
+
+<span class="nc" id="L135">                birthDate = Utils.readLineFromConsole(&quot;Birth Date (DD/MM/YYYY):&quot;);</span>
+<span class="nc bnc" id="L136" title="All 4 branches missed.">                assert birthDate != null;</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">                if (birthDate.length() == 10) {</span>
+<span class="nc" id="L138">                    birthDateError = verifyDate(birthDate);</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">                    if (!verifyAge(birthDate)) {</span>
+<span class="nc" id="L140">                        birthDateError = false;</span>
+<span class="nc" id="L141">                        Utils.printLineToConsole(&quot;The Client cannot be more than 150 years old.&quot;);</span>
+                    }
+<span class="nc bnc" id="L143" title="All 2 branches missed.">                    if (!dateIsValid(birthDate)) {</span>
+<span class="nc" id="L144">                        birthDateError = false;</span>
+<span class="nc" id="L145">                        Utils.printLineToConsole(&quot;The inputted date is in the future.&quot;);</span>
+                    }
+                } else {
+<span class="nc" id="L148">                    birthDateError = false;</span>
+<span class="nc" id="L149">                    Utils.printLineToConsole(&quot;Invalid Format.&quot;);</span>
+                }
+<span class="nc" id="L151">            } catch (Exception e) {</span>
+<span class="nc" id="L152">                Utils.printLineToConsole(TRY_AGAIN);</span>
+<span class="nc" id="L153">            }</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">        } while (!birthDateError);</span>
+<span class="nc" id="L155">        return birthDate;</span>
+    }
+
+
+    /**
+     * Method to get a Phone Number from the console
+     *
+     * @param ctrl RegisterClientController to do some validations
+     * @return the phone number
+     */
+    public String getPhoneNumber(RegisterClientController ctrl) {
+        boolean phoneNum;
+        String phoneNumber;
+        do {
+<span class="nc" id="L169">            phoneNumber = Utils.readLineFromConsole(&quot;Phone Number:&quot;);</span>
+<span class="nc bnc" id="L170" title="All 4 branches missed.">            assert phoneNumber != null;</span>
+<span class="nc" id="L171">            phoneNum = onlyDigits(phoneNumber);</span>
+<span class="nc bnc" id="L172" title="All 2 branches missed.">            if (ctrl.containsPhoneNumber(phoneNumber)) {</span>
+<span class="nc" id="L173">                phoneNum = false;</span>
+            }
+<span class="nc bnc" id="L175" title="All 2 branches missed.">            if (!phoneNum)</span>
+<span class="nc" id="L176">                Utils.printLineToConsole(&quot;Try again.&quot;);</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">        } while (!phoneNum);</span>
+<span class="nc" id="L178">        return phoneNumber;</span>
+    }
+
+
+    /**
+     * Method to verify if a String is only constituted by digits
+     *
+     * @param str the String that is pretended to test in
+     * @return the boolean result of the operation of checking if the String is only constituted by digits
+     */
+    public boolean onlyDigits(String str) {
+<span class="nc" id="L189">        int p = 0;</span>
+<span class="nc bnc" id="L190" title="All 2 branches missed.">        for (int i = 0; i &lt; str.length(); i++) {</span>
+<span class="nc bnc" id="L191" title="All 2 branches missed.">            if (Character.isDigit(str.charAt(i)))</span>
+<span class="nc" id="L192">                p++;</span>
+        }
+<span class="nc bnc" id="L194" title="All 2 branches missed.">        return p == str.length();</span>
+    }
+
+
+    /**
+     * Method to verify if the Birth Date of the Client is on the correct format and if it is valid
+     *
+     * @param date the String written by the Receptionist
+     * @return the boolean value of the operation
+     */
+    public boolean verifyDate(String date) {
+        try {
+<span class="nc" id="L206">            SimpleDateFormat dateFormat = new SimpleDateFormat(&quot;dd/MM/yyyy&quot;);</span>
+<span class="nc" id="L207">            Date dateObj = dateFormat.parse(date);</span>
+<span class="nc bnc" id="L208" title="All 2 branches missed.">            if (!date.equals(dateFormat.format(dateObj))) {</span>
+<span class="nc" id="L209">                Utils.printLineToConsole(&quot;The inputted date does not exist.&quot;);</span>
+<span class="nc" id="L210">                return false;</span>
+            }
+<span class="nc" id="L212">        } catch (ParseException e) {</span>
+<span class="nc" id="L213">            return false;</span>
+<span class="nc" id="L214">        }</span>
+<span class="nc" id="L215">        return true;</span>
+    }
+
+
+    /**
+     * Method to verify the age of the Client
+     *
+     * @param date the Birth Date of the Client
+     * @return the boolean value of the operation
+     */
+    public boolean verifyAge(String date) {
+<span class="nc" id="L226">        int maxAge = 150;</span>
+<span class="nc" id="L227">        int birthYear = Integer.parseInt(date.substring(6, 10));</span>
+<span class="nc" id="L228">        int birthMonth = Integer.parseInt(date.substring(3, 5));</span>
+<span class="nc" id="L229">        int birthDay = Integer.parseInt(date.substring(0, 2));</span>
+<span class="nc" id="L230">        int actualYear = LocalDate.now().getYear();</span>
+<span class="nc" id="L231">        int actualMonth = LocalDate.now().getMonthValue();</span>
+<span class="nc" id="L232">        int actualDay = LocalDate.now().getDayOfMonth();</span>
+<span class="nc" id="L233">        int differenceYears = actualYear - birthYear;</span>
+<span class="nc bnc" id="L234" title="All 2 branches missed.">        if (differenceYears &lt; maxAge) {</span>
+<span class="nc" id="L235">            return true;</span>
+        }
+<span class="nc bnc" id="L237" title="All 2 branches missed.">        if (differenceYears == maxAge) {</span>
+<span class="nc bnc" id="L238" title="All 2 branches missed.">            if (birthMonth == actualMonth) {</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">                return birthDay &gt; actualDay;</span>
+            }
+<span class="nc bnc" id="L241" title="All 2 branches missed.">            return birthMonth &gt;= actualMonth;</span>
+        }
+<span class="nc" id="L243">        return false;</span>
+    }
+
+
+    /**
+     * Method to check if the Birth Date is possible in the Present
+     *
+     * @param date the Birth Date of the Client
+     * @return the boolean value of the operation
+     */
+    public boolean dateIsValid(String date) {
+<span class="nc" id="L254">        int birthYear = Integer.parseInt(date.substring(6, 10));</span>
+<span class="nc" id="L255">        int birthMonth = Integer.parseInt(date.substring(3, 5));</span>
+<span class="nc" id="L256">        int birthDay = Integer.parseInt(date.substring(0, 2));</span>
+<span class="nc" id="L257">        int actualYear = LocalDate.now().getYear();</span>
+<span class="nc" id="L258">        int actualMonth = LocalDate.now().getMonthValue();</span>
+<span class="nc" id="L259">        int actualDay = LocalDate.now().getDayOfMonth();</span>
+<span class="nc bnc" id="L260" title="All 2 branches missed.">        if (actualYear &lt; birthYear) {</span>
+<span class="nc" id="L261">            return false;</span>
+        }
+<span class="nc bnc" id="L263" title="All 2 branches missed.">        if (actualYear == birthYear) {</span>
+<span class="nc bnc" id="L264" title="All 2 branches missed.">            if (actualMonth == birthMonth) {</span>
+<span class="nc bnc" id="L265" title="All 2 branches missed.">                return actualDay &gt;= birthDay;</span>
+            }
+<span class="nc bnc" id="L267" title="All 2 branches missed.">            return actualMonth &gt;= birthMonth;</span>
+        }
+<span class="nc" id="L269">        return true;</span>
+    }
+}
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

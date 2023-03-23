@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Utils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.utils</a> &gt; <span class="el_source">Utils.java</span></div><h1>Utils.java</h1><pre class="source lang-java linenums">package app.utils;
+
+import app.mappers.dto.TestDto;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ * @author Luís Ribeiro &lt;1201184@isep.ipp.pt&gt;
+ * @author Pedro Graça &lt;1201188@isep.ipp.pt&gt;
+ * @author Miguel Ramos &lt;1201247@isep.ipp.pt&gt;
+ * @author André Soares &lt;1201314@isep.ipp.pt&gt;
+ * @author Paulo Maio &lt;pam@isep.ipp.pt&gt;
+ */
+<span class="pc bpc" id="L24" title="1 of 2 branches missed.">public class Utils {</span>
+
+    private Utils(){
+        //This method is empty because don't only need to be inicialized.
+    }
+
+    /**
+     * String with a message to try again
+     */
+    private static final String TRY_AGAIN = &quot;Invalid Format. Please try again.&quot;;
+
+    /**
+     * String with a message to cancel
+     */
+    private static final String CANCEL = &quot;\n0 - Cancel&quot;;
+
+    /**
+     * String with a message to show that the List is Empty.
+     */
+    private static final String EMPTY = &quot;  Empty List  &quot;;
+
+    /**
+     * Array of natural numbers, from 0 to 9.
+     */
+<span class="fc" id="L48">    private static final int[] numbersArray = {0, 1, 2, 3, 4, 5 , 6, 7, 8, 9};</span>
+
+    /**
+     * Array of all the alphabet letters.
+     */
+<span class="fc" id="L53">    private static final String[] lettersArray = {&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;, &quot;h&quot;, &quot;i&quot;, &quot;j&quot;, &quot;k&quot;, &quot;l&quot;, &quot;m&quot;, &quot;n&quot;, &quot;o&quot;, &quot;p&quot;, &quot;q&quot;, &quot;r&quot;, &quot;s&quot;, &quot;t&quot;, &quot;u&quot;, &quot;v&quot;, &quot;x&quot;, &quot;w&quot;, &quot;y&quot;, &quot;z&quot;};</span>
+
+    /**
+     * Generates a random password that has got three capital letters, two digits (according to the acceptance
+     * criteria), f. The password does not have any type of format, because
+     * the position of the characters is always randomized.
+     * Returns the generated password.
+     *
+     * @return Password with random format.
+     */
+    public static String randomPassword(){
+<span class="fc" id="L64">        String capitalLetters = setCapitalLetters();</span>
+<span class="fc" id="L65">        String lowerCaseLetters = setLowerCaseLetters();</span>
+<span class="fc" id="L66">        String numbers = setNumbers();</span>
+<span class="fc" id="L67">        String normalPassword = setNormalPassword(capitalLetters, lowerCaseLetters, numbers);</span>
+<span class="fc" id="L68">        return setRandomPassword(normalPassword);</span>
+    }
+
+    /**
+     * Returns three capital letters that will make part of the randomized password.
+     *
+     * @return three random capital letters.
+     */
+    public static String setCapitalLetters(){
+<span class="fc" id="L77">        int positionCapitalLetter1 = (int) (Math.random() * (lettersArray.length));</span>
+<span class="fc" id="L78">        int positionCapitalLetter2 = (int) (Math.random() * (lettersArray.length));</span>
+<span class="fc" id="L79">        int positionCapitalLetter3 = (int) (Math.random() * (lettersArray.length));</span>
+<span class="fc" id="L80">        String capitalLetter1 = lettersArray[positionCapitalLetter1].toUpperCase();</span>
+<span class="fc" id="L81">        String capitalLetter2 = lettersArray[positionCapitalLetter2].toUpperCase();</span>
+<span class="fc" id="L82">        String capitalLetter3 = lettersArray[positionCapitalLetter3].toUpperCase();</span>
+<span class="fc" id="L83">        return String.format(&quot;%s%s%s&quot;, capitalLetter1, capitalLetter2, capitalLetter3);</span>
+    }
+
+    /**
+     * Returns five lower case letters that will make part of the randomized password.
+     *
+     * @return five random lower case letters.
+     */
+    public static String setLowerCaseLetters(){
+<span class="fc" id="L92">        int positionLowerCaseLetter1 = (int) (Math.random() * (lettersArray.length));</span>
+<span class="fc" id="L93">        int positionLowerCaseLetter2 = (int) (Math.random() * (lettersArray.length));</span>
+<span class="fc" id="L94">        int positionLowerCaseLetter3 = (int) (Math.random() * (lettersArray.length));</span>
+<span class="fc" id="L95">        int positionLowerCaseLetter4 = (int) (Math.random() * (lettersArray.length));</span>
+<span class="fc" id="L96">        int positionLowerCaseLetter5 = (int) (Math.random() * (lettersArray.length));</span>
+<span class="fc" id="L97">        String lowerCaseLetter1 = lettersArray[positionLowerCaseLetter1];</span>
+<span class="fc" id="L98">        String lowerCaseLetter2 = lettersArray[positionLowerCaseLetter2];</span>
+<span class="fc" id="L99">        String lowerCaseLetter3 = lettersArray[positionLowerCaseLetter3];</span>
+<span class="fc" id="L100">        String lowerCaseLetter4 = lettersArray[positionLowerCaseLetter4];</span>
+<span class="fc" id="L101">        String lowerCaseLetter5 = lettersArray[positionLowerCaseLetter5];</span>
+<span class="fc" id="L102">        return String.format(&quot;%s%s%s%s%s&quot;, lowerCaseLetter1, lowerCaseLetter2, lowerCaseLetter3, lowerCaseLetter4,</span>
+                lowerCaseLetter5);
+    }
+
+    /**
+     * Returns two random natural numbers (contained in the interval [0;9]) that make part of the randomized password.
+     *
+     * @return two random natural numbers (contained in the interval [0;9]).
+     */
+    public static String setNumbers(){
+<span class="fc" id="L112">        int positionNumber1 = (int) (Math.random() * (numbersArray.length));</span>
+<span class="fc" id="L113">        int positionNumber2 = (int) (Math.random() * (numbersArray.length));</span>
+<span class="fc" id="L114">        String number1 = Integer.toString(numbersArray[positionNumber1]);</span>
+<span class="fc" id="L115">        String number2 = Integer.toString(numbersArray[positionNumber2]);</span>
+<span class="fc" id="L116">        return String.format(&quot;%s%s&quot;, number1, number2);</span>
+    }
+
+    /**
+     * Returns a password in the format CClllllnn (C: Capital Letters; l: lower case letters; n: numbers).
+     *
+     * @param capitalLetters Random Capital Letters.
+     * @param lowerCaseLetters Random Lower Case Letters.
+     * @param numbers Random Natural Numbers (contained in the interval [0;9]).
+     * @return Password in the format CClllllnn.
+     */
+    private static String setNormalPassword(String capitalLetters, String lowerCaseLetters, String numbers){
+<span class="fc" id="L128">        return String.format(&quot;%s%s%s&quot;, capitalLetters, lowerCaseLetters, numbers);</span>
+    }
+
+    /**
+     * Randomizes the position of the characters of the password (in the format CClllllnn).
+     *
+     * @param normalPassword Password in the format CClllllnn.
+     * @return Randomized password.
+     */
+    public static String setRandomPassword(String normalPassword){
+<span class="fc" id="L138">        String[] passChar = normalPassword.split(&quot;&quot;, 10);</span>
+<span class="fc" id="L139">        String[] passwordArray = new String[10];</span>
+
+        int position;
+<span class="fc" id="L142">        int counter = 0;</span>
+<span class="fc" id="L143">        ArrayList&lt;Integer&gt; positions = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L144">        position = (int) (Math.random() * (passChar.length));</span>
+<span class="fc bfc" id="L145" title="All 2 branches covered.">        while(counter != 10){</span>
+<span class="fc bfc" id="L146" title="All 2 branches covered.">            if(containsNumber(positions, position)){</span>
+<span class="fc" id="L147">                position = (int) (Math.random() * (passChar.length));</span>
+            }
+            else{
+<span class="fc" id="L150">                passwordArray[counter] = passChar[position];</span>
+<span class="fc" id="L151">                positions.add(position);</span>
+<span class="fc" id="L152">                counter ++;</span>
+            }
+        }
+
+<span class="fc" id="L156">        StringBuilder newPassword = new StringBuilder();</span>
+
+<span class="fc bfc" id="L158" title="All 2 branches covered.">        for (String string : passwordArray) {</span>
+<span class="fc" id="L159">            newPassword.append(string);</span>
+        }
+
+<span class="fc" id="L162">        return String.format(&quot;%s&quot;, newPassword.toString());</span>
+    }
+
+    /**
+     * Allows to verify if a character position of the password is already occupied.
+     *
+     * @param positions List that contains all of the character positions in use of the randomized password.
+     * @param position Position to be checked.
+     * @return Boolean value according to if the position is on the List or not.
+     */
+    public static boolean containsNumber(ArrayList&lt;Integer&gt; positions, int position){
+<span class="fc bfc" id="L173" title="All 2 branches covered.">        for(Integer p : positions){</span>
+<span class="fc bfc" id="L174" title="All 2 branches covered.">            if(p == position){</span>
+<span class="fc" id="L175">                return true;</span>
+            }
+<span class="fc" id="L177">        }</span>
+<span class="fc" id="L178">        return false;</span>
+    }
+
+    /**
+     * Function that returns the quantity of digits of a certain number.
+     *
+     * @param number the number whose digits will be counted
+     * @return quantity of digits of a number
+     */
+    public static int quantityOfDigits(int number){
+<span class="fc" id="L188">        int digits=0;</span>
+<span class="fc bfc" id="L189" title="All 2 branches covered.">        while(number != 0){</span>
+<span class="fc" id="L190">            number = number/10;</span>
+<span class="fc" id="L191">            digits++;</span>
+        }
+<span class="fc" id="L193">        return digits;</span>
+    }
+
+    /**
+     * Allows to verify if only exist digits in str String
+     *
+     * @param str String that will be tested
+     * @return Boolean value, true if only exist digits in string, false if not
+     */
+    public static boolean onlyDigits(String str) {
+<span class="fc" id="L203">        int p = 0;</span>
+<span class="fc bfc" id="L204" title="All 2 branches covered.">        for (int i = 0; i &lt; str.length(); i++) {</span>
+<span class="fc bfc" id="L205" title="All 2 branches covered.">            if (Character.isDigit(str.charAt(i)))</span>
+<span class="fc" id="L206">                p++;</span>
+        }
+<span class="fc bfc" id="L208" title="All 2 branches covered.">        return p == str.length();</span>
+    }
+
+    /**
+     * Method to get the Tax Identification Number from the console
+     *
+     * @return the Tax Identification Number
+     */
+    public static String getTaxIdentificationNumber() {
+        boolean taxIdentificationNum;
+        String taxIdentificationNumber;
+        do {
+<span class="nc" id="L220">            taxIdentificationNumber = Utils.readLineFromConsole(&quot;Tax Identification Number:&quot;);</span>
+<span class="nc bnc" id="L221" title="All 4 branches missed.">            assert taxIdentificationNumber != null;</span>
+<span class="nc" id="L222">            taxIdentificationNum = onlyDigits(taxIdentificationNumber);</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">            if (!taxIdentificationNum)</span>
+<span class="nc" id="L224">                Utils.printLineToConsole(TRY_AGAIN);</span>
+<span class="nc bnc" id="L225" title="All 2 branches missed.">        } while (!taxIdentificationNum);</span>
+<span class="nc" id="L226">        return taxIdentificationNumber;</span>
+    }
+
+    /**
+     * Obtains the initial letters from a String.
+     * Returns a String containing the initials.
+     *
+     * @param string String to get Initials from.
+     * @return Initials of the used String.
+     */
+    public static StringBuilder getStringInitials(String string){
+        StringBuilder stringInitials;
+<span class="fc" id="L238">        string = string.trim();</span>
+<span class="fc" id="L239">        stringInitials = new StringBuilder(String.valueOf(string.charAt(0)));</span>
+<span class="fc bfc" id="L240" title="All 2 branches covered.">        for (int i = 0; i &lt; string.length(); i++) {</span>
+<span class="fc" id="L241">            String x = String.valueOf(string.charAt(i));</span>
+<span class="fc bfc" id="L242" title="All 2 branches covered.">            if(x.equals(&quot; &quot;)){</span>
+<span class="fc" id="L243">                stringInitials.append(string.charAt(i + 1));</span>
+            }
+        }
+<span class="fc" id="L246">        return stringInitials;</span>
+    }
+
+    /**
+     * Allows the system to write/print a line to the console.
+     *
+     * @param prompt String to be printed to the console.
+     */
+    public static void printLineToConsole(String prompt){
+<span class="fc" id="L255">        System.out.println(prompt);</span>
+<span class="fc" id="L256">    }</span>
+
+    /**
+     * Allows the system to write/print a line to the console.
+     *
+     * @param prompt Int to be printed to the console.
+     */
+    public static void printIntToConsole(int prompt){
+<span class="nc" id="L264">        System.out.println(prompt);</span>
+<span class="nc" id="L265">    }</span>
+
+    /**
+     * Allows the system to read a line from the console.
+     *
+     * @param prompt String that gives a description about what the user is inserting/writing on the console.
+     * @return String that contains the information given by the user.
+     */
+    public static String readLineFromConsole(String prompt) {
+        try {
+<span class="nc" id="L275">            Utils.printLineToConsole(&quot;\n&quot; + prompt);</span>
+
+<span class="nc" id="L277">            InputStreamReader converter = new InputStreamReader(System.in);</span>
+<span class="nc" id="L278">            BufferedReader in = new BufferedReader(converter);</span>
+
+<span class="nc" id="L280">            return in.readLine();</span>
+<span class="nc" id="L281">        } catch (Exception e) {</span>
+<span class="nc" id="L282">            return null;</span>
+        }
+    }
+
+    /**
+     * Allows the system to read an Integer from the console.
+     *
+     * @param prompt String that gives a description about what the user is inserting/writing on the console.
+     * @return Integer that contains (is equal to) the value given by the user.
+     */
+    public static int readIntegerFromConsole(String prompt) {
+        do {
+            try {
+<span class="nc" id="L295">                String input = readLineFromConsole(prompt);</span>
+
+<span class="nc" id="L297">                return  Integer.parseInt(input);</span>
+<span class="nc" id="L298">            } catch (NumberFormatException ex) {</span>
+<span class="nc" id="L299">                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);</span>
+            }
+<span class="nc" id="L301">        } while (true);</span>
+    }
+
+    /**
+     * Allows the system to read a Double from the console.
+     *
+     * @param prompt String that gives a description about what the user is inserting/writing on the console.
+     * @return Double that contains (is equal to) the value given by the user.
+     */
+    public static double readDoubleFromConsole(String prompt) {
+        do {
+            try {
+<span class="nc" id="L313">                String input = readLineFromConsole(prompt);</span>
+
+<span class="nc" id="L315">                return Double.parseDouble(input);</span>
+<span class="nc" id="L316">            } catch (NumberFormatException ex) {</span>
+<span class="nc" id="L317">                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);</span>
+            }
+<span class="nc" id="L319">        } while (true);</span>
+    }
+
+    /**
+     * Allows the system to read a Date from the console.
+     *
+     * @param prompt String that gives a description about what the user is inserting/writing on the console.
+     * @return Date that is equal to the one given by the user.
+     */
+    public static Date readDateFromConsole(String prompt) {
+        do {
+            try {
+<span class="nc" id="L331">                String strDate = readLineFromConsole(prompt);</span>
+
+<span class="nc" id="L333">                SimpleDateFormat df = new SimpleDateFormat(&quot;dd-MM-yyyy&quot;);</span>
+
+<span class="nc" id="L335">                return df.parse(strDate);</span>
+<span class="nc" id="L336">            } catch (ParseException ex) {</span>
+<span class="nc" id="L337">                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);</span>
+            }
+<span class="nc" id="L339">        } while (true);</span>
+    }
+
+    /**
+     * Allows the system to ask the user for a confirmation.
+     *
+     * @param message String that gives a description about what the user is inserting/writing on the console.
+     * @return Boolean value relative to the confirmation (true = yes | false = no).
+     */
+    public static boolean confirm(String message) {
+        String input;
+        do {
+<span class="nc" id="L351">            input = Utils.readLineFromConsole(&quot;\n&quot; + message + &quot;\n&quot;);</span>
+<span class="nc bnc" id="L352" title="All 4 branches missed.">        } while (!input.equalsIgnoreCase(&quot;s&quot;) &amp;&amp; !input.equalsIgnoreCase(&quot;n&quot;));</span>
+
+<span class="nc" id="L354">        return input.equalsIgnoreCase(&quot;s&quot;);</span>
+    }
+
+    /**
+     * Allows the system to show a List of Objects and ask the user to select one of the objects.
+     *
+     * @param list List that contains the Objects.
+     * @param header Header that gives a description about what the user is selecting.
+     * @return Object that was selected by the user.
+     */
+    public static Object showAndSelectOne(List list, String header) {
+<span class="nc" id="L365">        showList(list,header);</span>
+<span class="nc" id="L366">        return selectsObject(list);</span>
+    }
+
+    /**
+     * Allows the system to show a List and ask the user to select an index.
+     *
+     * @param list List that contains the information to be selected by the user.
+     * @param header Header that gives a description about what the user is selecting.
+     * @return Index that was selected by the user.
+     */
+    public static int showAndSelectIndex(List list, String header) {
+<span class="nc" id="L377">        showList(list,header);</span>
+<span class="nc" id="L378">        return selectsIndex(list);</span>
+    }
+
+    /**
+     * Allows the system to show a List and ask the user to select an index.
+     *
+     * @param list List that contains the information to be selected by the user.
+     * @param header Header that gives a description about what the user is selecting.
+     * @return Index that was selected by the user.
+     */
+    public static int showAndSelectIndexForParameterAndCategories(List list, String header) {
+<span class="nc" id="L389">        showListToParameterAndCategories(list,header);</span>
+<span class="nc" id="L390">        return selectsIndex(list);</span>
+    }
+
+    /**
+     * Allows the system to show a List of Tests without Report and ask the user to select an index.
+     *
+     * @param listOfTestsWithoutReport List that contains the information to be selected by the user.
+     * @param header Header that gives a description about what the user is selecting.
+     * @return Index that was selected by the user.
+     */
+    public static int showAndSelectIndexForTestsWithoutReport(List&lt;TestDto&gt; listOfTestsWithoutReport, String header) {
+<span class="nc" id="L401">        showListOfTestsWithoutReport(listOfTestsWithoutReport,header);</span>
+<span class="nc" id="L402">        return selectsIndex(listOfTestsWithoutReport);</span>
+    }
+
+    /**
+     * Allows the system to show/print a List on the console.
+     *
+     * @param list List that contains information.
+     * @param header Header that gives a description about what the user is selecting.
+     */
+    public static void showList(List list, String header) {
+<span class="nc" id="L412">        Utils.printLineToConsole(header);</span>
+
+<span class="nc" id="L414">        int index = 0;</span>
+<span class="nc bnc" id="L415" title="All 2 branches missed.">        for (Object o : list) {</span>
+<span class="nc" id="L416">            index++;</span>
+
+<span class="nc" id="L418">            Utils.printLineToConsole(index + &quot;. &quot; + o.toString());</span>
+<span class="nc" id="L419">        }</span>
+<span class="nc" id="L420">        Utils.printLineToConsole(CANCEL);</span>
+<span class="nc" id="L421">    }</span>
+
+    /**
+     * Allows the system to show/print a List on the console.
+     *
+     * @param list List that contains information.
+     * @param header Header that gives a description about what the user is selecting.
+     */
+    public static void showListToParameterAndCategories(List list,String header){
+<span class="nc" id="L430">        Utils.printLineToConsole(header);</span>
+
+<span class="nc" id="L432">        int index = 0;</span>
+<span class="nc bnc" id="L433" title="All 2 branches missed.">        for (Object o : list) {</span>
+<span class="nc" id="L434">            index++;</span>
+
+<span class="nc" id="L436">            Utils.printLineToConsole(index + &quot;. &quot; + o.toString());</span>
+<span class="nc" id="L437">        }</span>
+<span class="nc bnc" id="L438" title="All 2 branches missed.">        if(list.isEmpty())</span>
+<span class="nc" id="L439">            Utils.printLineToConsole(EMPTY);</span>
+<span class="nc" id="L440">        Utils.printLineToConsole(CANCEL);</span>
+
+<span class="nc" id="L442">    }</span>
+
+    /**
+     * Allows the system to show/print a List of Tests without Report on the console.
+     *
+     * @param listOfTestsWithoutReport List that contains information.
+     * @param header Header that gives a description about what the user is selecting.
+     */
+    public static void showListOfTestsWithoutReport(List&lt;TestDto&gt; listOfTestsWithoutReport, String header) {
+<span class="nc" id="L451">        Utils.printLineToConsole(header);</span>
+
+<span class="nc" id="L453">        int index = 0;</span>
+<span class="nc bnc" id="L454" title="All 2 branches missed.">        for (TestDto testDto : listOfTestsWithoutReport) {</span>
+<span class="nc" id="L455">            index++;</span>
+
+<span class="nc" id="L457">            Utils.printLineToConsole(index + &quot;. &quot; + testDto.toStringTestWithoutReport());</span>
+<span class="nc" id="L458">        }</span>
+
+<span class="nc" id="L460">        Utils.printLineToConsole(CANCEL);</span>
+<span class="nc" id="L461">    }</span>
+
+    /**
+     * Allows the system to show/print a List of Tests without Report on the console.
+     *
+     * @param listOfTestsWithoutSamples List that contains information.
+     * @param header Header that gives a description about what the user is selecting.
+     */
+    public static void showListOfTestsWithoutSamples(List&lt;TestDto&gt; listOfTestsWithoutSamples, String header) {
+<span class="nc" id="L470">        Utils.printLineToConsole(header);</span>
+
+<span class="nc" id="L472">        int index = 0;</span>
+<span class="nc bnc" id="L473" title="All 2 branches missed.">        for (TestDto testDto : listOfTestsWithoutSamples) {</span>
+<span class="nc" id="L474">            index++;</span>
+
+<span class="nc" id="L476">            Utils.printLineToConsole(index + &quot;. &quot; + testDto.toStringWithoutSample());</span>
+<span class="nc" id="L477">        }</span>
+
+<span class="nc" id="L479">        Utils.printLineToConsole(CANCEL);</span>
+<span class="nc" id="L480">    }</span>
+
+    /**
+     * Allows the system to permit the user to select a certain Object from a List.
+     *
+     * @param list List containing Objects.
+     * @return Object that was selected by the user.
+     */
+    public static Object selectsObject(List list) {
+        String input;
+        int value;
+        do {
+<span class="nc" id="L492">            input = Utils.readLineFromConsole(&quot;Type your option: &quot;);</span>
+<span class="nc" id="L493">            value =  Integer.parseInt(input);</span>
+<span class="nc bnc" id="L494" title="All 4 branches missed.">        } while (value &lt; 0 || value &gt; list.size());</span>
+
+<span class="nc bnc" id="L496" title="All 2 branches missed.">        if (value == 0) {</span>
+<span class="nc" id="L497">            return null;</span>
+        } else {
+<span class="nc" id="L499">            return list.get(value - 1);</span>
+        }
+    }
+
+    /**
+     * Allows the system to permit the user to select an Index from a List.
+     *
+     * @param list List that contains the information to be selected by the user.
+     * @return Integer representative of the Index selected by the user.
+     */
+    public static int selectsIndex(List list) {
+        String input;
+        int value;
+        do {
+<span class="nc" id="L513">            input = Utils.readLineFromConsole(&quot;Type your option: &quot;);</span>
+<span class="nc" id="L514">            value =  Integer.parseInt(input);</span>
+<span class="nc bnc" id="L515" title="All 4 branches missed.">        } while (value &lt; 0 || value &gt; list.size());</span>
+
+<span class="nc" id="L517">        return value - 1;</span>
+    }
+
+
+    /**
+     * Allows the system to know how many words have a String input.
+     *
+     * @param text Text that will be counted.
+     * @return An integer of the number of words.
+     */
+    public static int numberOfWords(String text){
+<span class="fc" id="L528">        int words = 1;</span>
+<span class="fc bfc" id="L529" title="All 2 branches covered.">        for(int i = 0; i &lt; text.length() - 1; i ++){</span>
+<span class="fc" id="L530">            String position = String.valueOf(text.charAt(i));</span>
+<span class="fc" id="L531">            String nextPosition = String.valueOf(text.charAt(i + 1));</span>
+<span class="fc bfc" id="L532" title="All 6 branches covered.">            if(position.equals(&quot; &quot;) &amp;&amp; !nextPosition.equals(&quot;.&quot;) &amp;&amp; !nextPosition.equals(&quot;;&quot;) &amp;&amp;</span>
+<span class="pc bpc" id="L533" title="1 of 4 branches missed.">                    !nextPosition.equals(&quot;,&quot;)  &amp;&amp; !nextPosition.equals(&quot; &quot;)){</span>
+<span class="fc" id="L534">                words ++;</span>
+            }
+        }
+<span class="fc" id="L537">        return words;</span>
+    }
+
+    /**
+     * Allows the system to receive the current data and return a String in a formatted and specific way.
+     *
+     * @return A string of the current data.
+     */
+    public static String currentDate() {
+<span class="fc" id="L546">        LocalDateTime instant = LocalDateTime.now();</span>
+<span class="fc" id="L547">        DateTimeFormatter formatInstant = DateTimeFormatter.ofPattern(&quot;dd/MM/yyyy HH:mm&quot;);</span>
+<span class="fc" id="L548">        return instant.format(formatInstant);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

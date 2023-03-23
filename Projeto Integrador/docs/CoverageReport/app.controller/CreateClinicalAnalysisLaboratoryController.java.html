@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CreateClinicalAnalysisLaboratoryController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.controller</a> &gt; <span class="el_source">CreateClinicalAnalysisLaboratoryController.java</span></div><h1>CreateClinicalAnalysisLaboratoryController.java</h1><pre class="source lang-java linenums">package app.controller;
+
+import app.domain.model.ClinicalAnalysisLaboratory;
+import app.domain.model.Company;
+import app.domain.model.TestType;
+import app.list.ClinicalTestTypeList;
+import app.mappers.TestTypeMapper;
+import app.mappers.dto.TestTypeDto;
+
+import java.util.List;
+
+/**
+ * This Class allows the connection between Company and Clinical Analysis Laboratory Store.
+ *
+ * @author Miguel Ramos &lt;1201247@isep.ipp.pt&gt;
+ */
+public class CreateClinicalAnalysisLaboratoryController {
+
+    /**
+     * Object of the Company class.
+     */
+    private final Company company;
+
+    /**
+     * Object of Clinical Analysis Laboratory class.
+     */
+    private ClinicalAnalysisLaboratory lab;
+
+    /**
+     * Object of Clinical Test Type List class.
+     */
+    private ClinicalTestTypeList typeList;
+
+    /**
+     * Allows the initialization of an CreateTestTypeController with the company returned from
+     * &quot;App.getInstance().getCompany().&quot;
+     */
+    public CreateClinicalAnalysisLaboratoryController()  {
+<span class="fc" id="L39">        this(App.getInstance().getCompany());</span>
+<span class="fc" id="L40">    }</span>
+
+
+    /**
+     * Constructor that allows the inicialization of Company with Clinical Test Type List and Clinical Analysis
+     * Laboratory with a null value.
+     *
+     * @param company Company Class
+     */
+<span class="fc" id="L49">    public CreateClinicalAnalysisLaboratoryController(Company company) {</span>
+<span class="fc" id="L50">        this.company = company;</span>
+<span class="fc" id="L51">        this.lab = null;</span>
+<span class="fc" id="L52">        this.typeList = new ClinicalTestTypeList();</span>
+<span class="fc" id="L53">    }</span>
+
+    /**
+     * The method that allows the creation of a Clinical Analysis Laboratory.
+     *
+     * @param laboratoryID            String that contains a laboratory Id.
+     * @param address                 String that contains an address of Clinical Analysis Laboratory.
+     * @param name                    String that contains a name of Clinical Analysis Laboratory.
+     * @param phoneNumber             Integer that contains a phone number of Clinical Analysis Laboratory.
+     * @param taxIdentificationNumber Integer that contains a Tax Identification Number (TIN) of Clinical Analysis
+     *                                Laboratory.
+     * @return The validation of the creation of the Clinical Analysis Laboratory.
+     */
+    public boolean createClinicalAnalysisLaboratory(String laboratoryID, String address, String name, String phoneNumber,
+                                                    String taxIdentificationNumber) {
+<span class="fc" id="L68">        this.lab = this.company.getClinicalAnalysisLaboratoryStore().createClinicalAnalysisLaboratory(laboratoryID,</span>
+                address, name, phoneNumber, taxIdentificationNumber);
+<span class="fc" id="L70">        return this.company.getClinicalAnalysisLaboratoryStore().validatesClinicalAnalysisLaboratory(lab);</span>
+    }
+
+    /**
+     * Allows the save of a Clinical Analysis Laboratory in Clinical Analysis Laboratory Store, verifying if it is valid.
+     *
+     * @return The validation of the Clinical Analysis Laboratory save in Clinical Analysis Laboratory Store.
+     */
+    public boolean saveClinicalAnalysisLaboratory() {
+<span class="nc bnc" id="L79" title="All 2 branches missed.">        if (this.company.getClinicalAnalysisLaboratoryStore().validatesClinicalAnalysisLaboratory(lab)) {</span>
+<span class="nc" id="L80">            return this.company.getClinicalAnalysisLaboratoryStore().saveClinicalAnalysisLaboratory(lab);</span>
+        }
+<span class="nc" id="L82">        return false;</span>
+    }
+
+    /**
+     * The method that allows to admin to see the Clinical Analysis Laboratory Store.
+     *
+     * @return The Clinical Analysis Laboratory Store.
+     */
+    public ClinicalAnalysisLaboratory getClinicalAnalysisLaboratoryStore() {
+<span class="fc" id="L91">        return lab;</span>
+    }
+
+    /**
+     * The method that allows to catch a List of Test Type Store.
+     *
+     * @return The Test Type Store List.
+     */
+    public List&lt;TestType&gt; getTypeStore() {
+<span class="fc" id="L100">        return this.company.getTestTypeStore().getTypeStore();</span>
+    }
+
+    /**
+     * The method that allows to catch the List of Test Type Store, created in Dto.
+     *
+     * @return The Test Type Store in a safe way.
+     */
+    public List&lt;TestTypeDto&gt; listDto() {
+<span class="fc" id="L109">        TestTypeMapper testTypeMapper = new TestTypeMapper();</span>
+<span class="fc" id="L110">        return testTypeMapper.listDTO(getTypeStore());</span>
+    }
+
+    /**
+     * The method that allows to catch a Test Type in Test Type Store using the Test Type code.
+     *
+     * @param code The code that will be used to save a Test Type.
+     * @return The Test Type that have the same parameter code.
+     */
+    public TestType getTestTypeCode(int code) {
+<span class="nc" id="L120">        return this.company.getTestTypeStore().getTestTypeByCode(code);</span>
+    }
+
+    /**
+     * The Method that allows the save of a Test Type in Clinical Test Type List.
+     *
+     * @param testType The Test Type that will be saved.
+     * @return The save of the Test Type in Clinical Test Type List.
+     */
+    public boolean saveClinicalTestType(TestType testType) {
+<span class="fc" id="L130">        return typeList.saveClinicalTestType(testType);</span>
+    }
+
+    /**
+     * The Method that saves the Clinical Test Type List in Clinical Analysis Laboratory.
+     *
+     * @return The save of the Clinical Test Type in Clinical Analysis Laboratory.
+     */
+    public void saveTestTypeListToClinicalAnalysisLaboratory() {
+<span class="nc" id="L139">        this.lab.saveTestTypeListToClinicalAnalysisLaboratory(typeList);</span>
+<span class="nc" id="L140">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

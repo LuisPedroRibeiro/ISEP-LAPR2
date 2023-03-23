@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Client.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.domain.model</a> &gt; <span class="el_source">Client.java</span></div><h1>Client.java</h1><pre class="source lang-java linenums">package app.domain.model;
+
+import app.controller.App;
+import app.domain.shared.EmailSMS;
+import app.mappers.dto.ClientDto;
+import app.utils.Utils;
+import auth.AuthFacade;
+import auth.domain.model.Email;
+import org.apache.commons.lang3.StringUtils;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+/**
+ * This Class allows the Creation of a Client and all of the stuff related to him.
+ *
+ * @author Pedro Graça
+ */
+public class Client  {
+
+    /**
+     * Name of the Client
+     */
+    private final String name;
+
+    /**
+     * Email of the Client
+     */
+    private final Email email;
+
+    /**
+     * Tax Identification Number of the Client (must have 10 digits)
+     */
+    private final String taxIdentificationNumber;
+
+    /**
+     * Citizen Card Number of the Client (must have 16 digits)
+     */
+    private final String citizenCardNumber;
+
+    /**
+     * National Healthcare Service Number of the Client (must have 10 digits)
+     */
+    private final String nhsNumber;
+
+    /**
+     * Birth Date of the Client (must be in DD/MM/YY format)
+     */
+    private final String birthDate;
+
+    /**
+     * Gender of the Client (must be Male/Female) (is not mandatory)
+     */
+    private final String gender;
+
+    /**
+     * Phone Number of the Client (must have 16 digits)
+     */
+    private final String phoneNumber;
+
+    /**
+     * The Password of the Client (must be random)
+     */
+    private String password;
+
+
+    /**
+     * List with the tests associated to the Client
+     */
+<span class="fc" id="L71">    protected final List&lt;Test&gt; testList = new ArrayList&lt;&gt;();</span>
+
+    /**
+     * The Authentication Facade needed
+     */
+<span class="fc" id="L76">    private static final AuthFacade authFacade = App.getInstance().getCompany().getAuthFacade();</span>
+
+    /**
+     * Receives a Client Data Transfer Object and get his attributes
+     *
+     * @param clientDto the Data Transfer Object that contains the Data of the Client
+     */
+<span class="fc" id="L83">    public Client(ClientDto clientDto) {</span>
+<span class="fc" id="L84">        checkNameRules(clientDto.getName());</span>
+<span class="fc" id="L85">        checkTaxIdentificationNumberRules(clientDto.getTaxIdentificationNumber());</span>
+<span class="fc" id="L86">        checkCitizenCardNumberRules(clientDto.getCitizenCardNumber());</span>
+<span class="fc" id="L87">        checkNhsNumberRules(clientDto.getNhsNumber());</span>
+<span class="fc" id="L88">        checkPhoneNumberRules(clientDto.getPhoneNumber());</span>
+<span class="fc" id="L89">        checkGenderRules(clientDto.getGender());</span>
+<span class="fc" id="L90">        this.name = clientDto.getName();</span>
+<span class="fc" id="L91">        this.email = clientDto.getEmail();</span>
+<span class="fc" id="L92">        this.taxIdentificationNumber = clientDto.getTaxIdentificationNumber();</span>
+<span class="fc" id="L93">        this.citizenCardNumber = clientDto.getCitizenCardNumber();</span>
+<span class="fc" id="L94">        this.nhsNumber = clientDto.getNhsNumber();</span>
+<span class="fc" id="L95">        this.birthDate = clientDto.getBirthDate();</span>
+<span class="fc" id="L96">        this.phoneNumber = clientDto.getPhoneNumber();</span>
+<span class="fc" id="L97">        this.gender = clientDto.getGender();</span>
+<span class="fc" id="L98">    }</span>
+
+    /**
+     * Method to return the Email
+     *
+     * @return the Email of the Client
+     */
+    public Email getEmail() {
+<span class="fc" id="L106">        return email;</span>
+    }
+
+    /**
+     * Method to return the Phone Number
+     *
+     * @return the Phone Number of the Client
+     */
+    public String getPhoneNumber() {
+<span class="fc" id="L115">        return phoneNumber;</span>
+    }
+
+
+    /**
+     * Method to return the Tax Identification Number
+     *
+     * @return the TIN of the Client
+     */
+    public String getTaxIdentificationNumber() {
+<span class="fc" id="L125">        return taxIdentificationNumber;</span>
+    }
+
+    /**
+     * Method to check the rules applied to Names
+     *
+     * @param name is the Client's name
+     */
+    public void checkNameRules(String name) {
+<span class="fc bfc" id="L134" title="All 2 branches covered.">        if (StringUtils.isBlank(name))</span>
+<span class="fc" id="L135">            throw new IllegalArgumentException(&quot;Name cannot be blank.&quot;);</span>
+<span class="fc bfc" id="L136" title="All 2 branches covered.">        if (name.length() &gt; 35) {</span>
+<span class="fc" id="L137">            throw new IllegalArgumentException(&quot;Name cannot have more than 35 characters.&quot;);</span>
+        }
+<span class="fc" id="L139">    }</span>
+
+    /**
+     * Method to check the rules applied to Tax Identification Numbers
+     *
+     * @param taxIdentificationNumber is the Client's Tax Identification Number
+     */
+    public void checkTaxIdentificationNumberRules(String taxIdentificationNumber) {
+<span class="fc bfc" id="L147" title="All 2 branches covered.">        if (StringUtils.isBlank(taxIdentificationNumber))</span>
+<span class="fc" id="L148">            throw new IllegalArgumentException(&quot;Tax Identification Number cannot be blank.&quot;);</span>
+<span class="fc bfc" id="L149" title="All 2 branches covered.">        if (taxIdentificationNumber.length() != 10)</span>
+<span class="fc" id="L150">            throw new IllegalArgumentException(&quot;Tax Identification Number must have 10 digits.&quot;);</span>
+<span class="fc" id="L151">        int taxIdNum = Integer.parseInt(taxIdentificationNumber);</span>
+<span class="fc bfc" id="L152" title="All 2 branches covered.">        if (taxIdNum &lt; 0)</span>
+<span class="fc" id="L153">            throw new IllegalArgumentException(&quot;Tax Identification Number cannot be negative.&quot;);</span>
+<span class="fc" id="L154">    }</span>
+
+    /**
+     * Method to check the rules applied to Citizen Card Numbers
+     *
+     * @param citizenCardNumber is the Client's Citizen Card Number
+     */
+    public void checkCitizenCardNumberRules(String citizenCardNumber) {
+
+<span class="fc bfc" id="L163" title="All 2 branches covered.">        if (StringUtils.isBlank(citizenCardNumber))</span>
+<span class="fc" id="L164">            throw new IllegalArgumentException(&quot;Citizen Card Number cannot be blank.&quot;);</span>
+<span class="fc bfc" id="L165" title="All 2 branches covered.">        if (citizenCardNumber.length() != 16)</span>
+<span class="fc" id="L166">            throw new IllegalArgumentException(&quot;Citizen Card Number must have 16 digits.&quot;);</span>
+<span class="fc" id="L167">        long citCardNum = Long.parseLong(citizenCardNumber);</span>
+<span class="fc bfc" id="L168" title="All 2 branches covered.">        if (citCardNum &lt; 0)</span>
+<span class="fc" id="L169">            throw new IllegalArgumentException(&quot;Citizen Card Number cannot be negative&quot;);</span>
+<span class="fc" id="L170">    }</span>
+
+    /**
+     * Method to check the rules applied to National Healthcare Service Numbers
+     *
+     * @param nhsNumber is the Client's National Healthcare Service Number
+     */
+    public void checkNhsNumberRules(String nhsNumber) {
+<span class="fc bfc" id="L178" title="All 2 branches covered.">        if (StringUtils.isBlank(nhsNumber))</span>
+<span class="fc" id="L179">            throw new IllegalArgumentException(&quot;National Healthcare Service Number cannot be 0.&quot;);</span>
+<span class="fc bfc" id="L180" title="All 2 branches covered.">        if (nhsNumber.length() != 10)</span>
+<span class="fc" id="L181">            throw new IllegalArgumentException(&quot;National Healthcare Service Number must have 10 digits.&quot;);</span>
+<span class="fc" id="L182">        int nhsNum = Integer.parseInt(nhsNumber);</span>
+<span class="fc bfc" id="L183" title="All 2 branches covered.">        if (nhsNum &lt; 0)</span>
+<span class="fc" id="L184">            throw new IllegalArgumentException(&quot;National Healthcare Service Number cannot be negative.&quot;);</span>
+
+
+<span class="fc" id="L187">    }</span>
+
+    /**
+     * Method to check the rules applied to Genders
+     *
+     * @param gender is the Client's gender
+     */
+    public void checkGenderRules(String gender) {
+<span class="fc bfc" id="L195" title="All 6 branches covered.">            if (!(gender.equals(&quot;(Unknown)&quot;)||gender.equalsIgnoreCase(&quot;Male&quot;) || gender.equalsIgnoreCase(&quot;Female&quot;)))</span>
+<span class="fc" id="L196">                throw new IllegalArgumentException(&quot;Gender must be Male/Female.&quot;);</span>
+<span class="fc" id="L197">    }</span>
+
+    /**
+     * Method to check the rules applied to Phone Numbers
+     *
+     * @param phoneNumber is the Client's phoneNumber
+     */
+    public void checkPhoneNumberRules(String phoneNumber) {
+<span class="fc bfc" id="L205" title="All 2 branches covered.">        if (StringUtils.isBlank(phoneNumber))</span>
+<span class="fc" id="L206">            throw new IllegalArgumentException(&quot;Phone Number cannot be blank.&quot;);</span>
+<span class="fc bfc" id="L207" title="All 2 branches covered.">        if (phoneNumber.length() != 11)</span>
+<span class="fc" id="L208">            throw new IllegalArgumentException(&quot;Phone Number must have 11 digits.&quot;);</span>
+<span class="fc" id="L209">        long phoneNum = Long.parseLong(phoneNumber);</span>
+<span class="fc bfc" id="L210" title="All 2 branches covered.">        if (phoneNum &lt; 0)</span>
+<span class="fc" id="L211">            throw new IllegalArgumentException(&quot;Phone Number cannot be negative.&quot;);</span>
+
+<span class="fc" id="L213">    }</span>
+
+    /**
+     * Method to set a Random Password to the Client
+     */
+    public void setPassword() {
+<span class="fc" id="L219">        password = Utils.randomPassword();</span>
+<span class="fc" id="L220">    }</span>
+
+    /**
+     * Method to add the Client as a User
+     */
+    public void addUserAndSendEmail() throws IOException {
+<span class="fc" id="L226">        authFacade.addUser(name, email.toString(), password);</span>
+<span class="fc" id="L227">        EmailSMS.sendRegistrationEmail(email, name, password);</span>
+<span class="fc" id="L228">    }</span>
+
+    /**
+     * Returns if this Client is equal to other Object
+     *
+     * @param o the Object received as a parameter
+     * @return boolean value of the equality between the Client
+     * and the Object received as a parameter
+     */
+    @Override
+    public boolean equals(Object o) {
+<span class="fc bfc" id="L239" title="All 2 branches covered.">        if (this == o) return true;</span>
+<span class="pc bpc" id="L240" title="1 of 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="fc" id="L241">        Client client = (Client) o;</span>
+<span class="fc bfc" id="L242" title="All 2 branches covered.">        return taxIdentificationNumber.equalsIgnoreCase(client.taxIdentificationNumber) &amp;&amp;</span>
+<span class="fc bfc" id="L243" title="All 2 branches covered.">                citizenCardNumber.equalsIgnoreCase(client.citizenCardNumber) &amp;&amp;</span>
+<span class="fc bfc" id="L244" title="All 2 branches covered.">                nhsNumber.equalsIgnoreCase(client.nhsNumber) &amp;&amp;</span>
+<span class="fc bfc" id="L245" title="All 2 branches covered.">                phoneNumber.equalsIgnoreCase(client.phoneNumber) &amp;&amp;</span>
+<span class="fc bfc" id="L246" title="All 2 branches covered.">                Objects.equals(name, client.name) &amp;&amp;</span>
+<span class="fc bfc" id="L247" title="All 2 branches covered.">                Objects.equals(email, client.email) &amp;&amp;</span>
+<span class="fc bfc" id="L248" title="All 2 branches covered.">                Objects.equals(birthDate, client.birthDate) &amp;&amp;</span>
+<span class="fc bfc" id="L249" title="All 2 branches covered.">                Objects.equals(gender, client.gender);</span>
+    }
+
+    /**
+     * Returns the textual description of the Client
+     *
+     * @return attributes of the Client
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L259">        return String.format(&quot;Client %n Name: %s %n Email: %s %n Tax Identification Number: %s %n Citizen Card Number: %s %n&quot; +</span>
+<span class="fc" id="L260">                        &quot; National Healthcare Service Number: %s %n Birth Date: %s %n Gender: %s %n Phone Number: %s&quot;, name, email.toString(),</span>
+                taxIdentificationNumber, citizenCardNumber, nhsNumber, birthDate, gender, phoneNumber);
+    }
+
+    /**
+     * Method that returns the list of the Tests of the Client
+     * @return the boolean value of the operation
+     */
+    public boolean addTest(Test test) {
+<span class="fc" id="L269">        return testList.add(test);</span>
+    }
+
+    /**
+     * Allows the verification if a certain test belongs to a certain client
+     *
+     * @param test A object of the Test class
+     * @return boolean statement,true if in the testList belonging to a certain client exists the test received as parameter false if not
+     */
+    public boolean isTestInsideClientTestList(Test test){
+<span class="pc bpc" id="L279" title="1 of 2 branches missed.">        for(Test t:testList){</span>
+<span class="pc bpc" id="L280" title="1 of 2 branches missed.">            if(test.equals(t))</span>
+<span class="fc" id="L281">                return true;</span>
+<span class="nc" id="L282">        }</span>
+<span class="nc" id="L283">        return false;</span>
+    }
+
+    /**
+     * Allows the return of a string containing the name of the client
+     *
+     * @return A string containing the name of the client
+     */
+    public String getName() {
+<span class="fc" id="L292">        return name;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="ExternalModule3API">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/ExternalModule3API-1.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/Downloads/JavaDocExternalModule3API.zip!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>

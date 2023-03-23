@@ -1,0 +1,101 @@
+@startuml
+
+autonumber
+actor "Organization Employee" as ADM
+
+participant ":CreateParameterUI" as UI
+participant ":CreateParameterController" as CTRL
+participant ":Company" as COM
+participant "Store\n:ParameterStore" as store
+participant "storePc\n:ParameterCategoryStore" as storePc
+participant "parameter\n:Parameter" as parameter
+participant "pc\n:ParameterCategory" as pc
+participant "listParameterCategory:List<ParameterCategory>" as listPc
+participant ":ParameterCategoryMapper" as pcMapper
+participant "listParameterCategoryDto:List<ParameterCategoryDto" as listDto
+
+activate ADM
+ADM -> UI : asks to create a new parameter
+activate UI
+UI --> ADM : requests data (shortName,code,description)
+deactivate UI
+
+ADM -> UI : types requested data
+activate UI
+UI -> CTRL : createParameter(shortName,code,description)
+activate CTRL
+CTRL -> COM : store=getParameterStore()
+activate COM
+deactivate COM
+CTRL -> store: parameter=createParameter(shortName,code,description)
+
+activate store
+
+store--> parameter**: create(shortName,code,description)
+deactivate store
+CTRL -> store :validateParameter(parameter)
+activate store
+deactivate store
+
+CTRL -> COM : storePc=getParameterCategoryStore()
+activate COM
+deactivate COM
+
+
+UI -> CTRL: getListOfParameterCategories()
+CTRL -> storePc: getListOfParameterCategories()
+activate storePc
+storePc --> CTRL: listParameterCategory
+deactivate storePc
+CTRL -> pcMapper: toDto(listParameterCategory)
+activate pcMapper
+pcMapper --> listDto**: create()
+pcMapper --> CTRL: listParameterCategoryDto
+deactivate pcMapper
+UI <-- CTRL: listParameterCategoryDto
+deactivate CTRL
+UI --> ADM : shows parameter categories list and asks to select one
+
+deactivate UI
+
+ADM -> UI : selects a parameter category
+activate UI
+UI --> ADM: shows the category and requests confirmation
+deactivate UI
+ADM -> UI: Confirms the Parameter category
+activate UI
+UI -> CTRL : saveParameterCategory(categoryCode)
+activate CTRL
+CTRL -> storePc : pc=getParameterCategoryByCode(categoryCode)
+note right: The use of the variable name categoryCode \n is so that it wont be confused with the parameter code  \n but in the code implementation and other diagrams \n this variable is named as code
+CTRL ->parameter :saveParameterCategory(pc)
+activate parameter
+parameter -> parameter: addParameterCategoryToParameter(pc)
+activate parameter
+deactivate parameter
+deactivate parameter
+deactivate CTRL
+UI --> ADM:shows all the data and requests confirmation
+deactivate UI
+
+ADM -> UI : Confirms the data
+activate UI
+UI -> CTRL:saveParameter()
+activate CTRL
+
+CTRL -> store: saveParameter(parameter)
+activate store
+store-> store: validateParameter(parameter)
+activate store
+deactivate store
+store-> store: addParameter(parameter)
+activate store
+deactivate store
+deactivate parameter
+UI --> ADM: Informs of the operation´s success
+deactivate store
+
+deactivate CTRL
+deactivate UI
+
+@enduml

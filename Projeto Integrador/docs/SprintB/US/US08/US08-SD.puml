@@ -1,0 +1,94 @@
+@startuml
+
+autonumber
+actor Administrator as admin
+participant ":CreateClinicalAnalysisLaboratoryUI" as UI
+participant ":CreateClinicalAnalysisLaboratoryController" as Controller
+participant ":Company" as Company
+participant "labStore: ClinicalAnalysisLaboratoryStore" as labStore
+participant ":TestTypeMapper" as Mapper
+participant "lab: ClinicalAnalysisLaboratory" as Lab
+participant "dto: TestTypeDto" as Dto
+participant "store: TestTypeStore" as store
+participant "list: ClinicalTestTypeList" as list
+participant "type: TestType" as Type
+
+activate admin
+admin -> UI: Starts to create a Clinical Analysis Laboratory.
+activate UI
+    UI -> admin: Requests data (laboratoryID, address, name, \n phoneNumber, taxIdentificationNumber).
+deactivate UI
+
+admin -> UI: Types requested data.
+activate UI
+UI -> Controller: createClinicalAnalysisLaboratory(laboratoryID, \n address, name, phoneNumber, taxIdentificationNumber).
+    activate Controller
+    Controller -> Company: labStore= getClinicalAnalysisLaboratoryStore().
+        activate Company
+        deactivate Company
+    Controller -> labStore : lab= createClinicalAnalysisLaboratory(laboratoryID, \n address, name, phoneNumber, taxIdentificationNumber).
+        activate labStore
+        labStore -> Lab** : create(laboratoryID, address, \n name, phoneNumber, taxIdentificationNumber).
+        deactivate labStore
+        Controller -> list : list= create()
+        activate list
+        deactivate list
+            Controller -> Company : dto= listDto()
+            activate Company
+            Company -> Mapper : listDto()
+            activate Mapper
+            Mapper -> Dto** : create(code, collectionMethod, description)
+            deactivate Company
+            deactivate Mapper
+    deactivate Controller
+    UI -> admin : Shows the data and requests for type of test showing the list of them.
+deactivate UI
+
+loop while admin wants to add test types and while test types exists.
+admin -> UI: Select the type of test.
+activate UI
+UI -> Controller: getTestTypeByCode(code)
+    activate Controller
+    Controller -> store : type= getTestTypeByCode(code)
+        activate store
+        deactivate store
+        Controller -> Company : getClinicalTestTypeList()
+        activate Company
+        deactivate Company
+    Controller -> list : list=saveClinicalTestType(type)
+        activate list
+            list -> list : validatesClinicalTestType(type)
+                activate list
+                deactivate list
+                   list -> list : addClinicalTestType(type)
+                      activate list
+                      deactivate list
+        deactivate list
+    deactivate Controller
+    UI -> admin : Validates type of test and show the list of test types.
+deactivate UI
+end
+
+admin -> UI : Confirms the creation of Clinical Analysis Laboratory.
+activate UI
+activate Controller
+Controller -> Lab : saveTestTypeListToClinicalAnalysisLaboratory(list)
+        activate Lab
+        deactivate Controller
+        deactivate Lab
+UI -> Controller : saveClinicalAnalysisLaboratory()
+    activate Controller
+    Controller -> labStore : saveClinicalAnalysisLaboratory(lab)
+        activate labStore
+        labStore -> labStore : validatesClinicalAnalysisLaboratory(lab)
+            activate labStore
+            deactivate labStore
+            labStore -> labStore : addClinicalAnalysisLaboratory(lab)
+                activate labStore
+                deactivate labStore
+        deactivate labStore
+    deactivate Controller
+UI -> admin : Informs operation success.
+deactivate UI
+
+@enduml

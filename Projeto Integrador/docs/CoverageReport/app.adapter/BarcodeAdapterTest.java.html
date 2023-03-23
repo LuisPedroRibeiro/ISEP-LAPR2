@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BarcodeAdapterTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.adapter</a> &gt; <span class="el_source">BarcodeAdapterTest.java</span></div><h1>BarcodeAdapterTest.java</h1><pre class="source lang-java linenums">package app.adapter;
+
+import net.sourceforge.barbecue.BarcodeException;
+import net.sourceforge.barbecue.output.OutputException;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.io.IOException;
+
+/**
+ * @author Miguel Ramos &lt;1201247@isep.ipp.pt&gt;
+ */
+<span class="fc" id="L13">public class BarcodeAdapterTest {</span>
+
+    @Test
+    public void testGetBarcode() throws BarcodeException, OutputException, IOException {
+<span class="fc" id="L17">        BarcodeAdapter barAdap = new BarcodeAdapter();</span>
+<span class="fc" id="L18">        String expected = &quot;30000000003&quot;;</span>
+<span class="fc" id="L19">        String result = barAdap.getBarcode();</span>
+<span class="fc" id="L20">        String result2 = barAdap.getBarcode();</span>
+<span class="fc" id="L21">        Assert.assertEquals(expected,result);</span>
+<span class="fc" id="L22">        Assert.assertNotEquals(expected,result2);</span>
+<span class="fc" id="L23">    }</span>
+
+    @Test
+    public void testIncreaseNumberOfSamples() {
+<span class="fc" id="L27">        int expected=1;</span>
+<span class="fc" id="L28">        BarcodeAdapter.increseNumberOfSamples();</span>
+<span class="fc" id="L29">        int result= BarcodeAdapter.getNumberOfSamples();</span>
+<span class="fc" id="L30">        BarcodeAdapter.increseNumberOfSamples();</span>
+<span class="fc" id="L31">        int result2= BarcodeAdapter.getNumberOfSamples();</span>
+<span class="fc" id="L32">        Assert.assertEquals(expected,result);</span>
+<span class="fc" id="L33">        Assert.assertNotEquals(expected,result2);</span>
+
+<span class="fc" id="L35">    }</span>
+
+    @Test
+    public void testGetBarcodeNumber() {
+<span class="fc" id="L39">        BarcodeAdapter barAdap = new BarcodeAdapter();</span>
+<span class="fc" id="L40">        String expected = &quot;30000000001&quot;;</span>
+<span class="fc" id="L41">        String result = barAdap.getBarcodeNumber();</span>
+<span class="fc" id="L42">        BarcodeAdapter.increseNumberOfSamples();</span>
+<span class="fc" id="L43">        String result2 = barAdap.getBarcodeNumber();</span>
+<span class="fc" id="L44">        Assert.assertEquals(expected,result);</span>
+<span class="fc" id="L45">        Assert.assertNotEquals(expected,result2);</span>
+<span class="fc" id="L46">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EmployeeTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.domain.model</a> &gt; <span class="el_source">EmployeeTest.java</span></div><h1>EmployeeTest.java</h1><pre class="source lang-java linenums">package app.domain.model;
+
+import app.controller.App;
+import app.domain.shared.Constants;
+import app.utils.Utils;
+import auth.domain.model.Email;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.io.IOException;
+
+import static org.junit.Assert.*;
+
+/**
+ * @author Luís Ribeiro &lt;1201184@isep.ipp.pt&gt;
+ */
+<span class="fc" id="L17">public class EmployeeTest {</span>
+
+    @Test
+    public void rulesExceptionsSuccess() {
+<span class="fc" id="L21">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000001&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+<span class="fc" id="L23">        Assert.assertTrue(true);</span>
+<span class="fc" id="L24">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkNameExceptionBlank() {
+<span class="nc" id="L28">        Employee employee = new Employee(&quot;&quot;, &quot;00000000002&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+<span class="nc" id="L30">    }</span>
+
+    @Test
+    public void checkNameExceptionSuccess() {
+<span class="fc" id="L34">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000003&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+<span class="fc" id="L36">        Assert.assertTrue(true);</span>
+<span class="fc" id="L37">    }</span>
+
+    @Test
+    public void checkNameExceptionSuccessWithThirtyFiveCharacters() {
+<span class="fc" id="L41">        Employee employee = new Employee(&quot;TESTETESTETESTETESTETESTETESTETESTE&quot;,</span>
+                &quot;00000000004&quot;,
+                new Email(&quot;testPersonPerson@test.com&quot;), &quot;1100&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+<span class="fc" id="L44">        Assert.assertTrue(true);</span>
+<span class="fc" id="L45">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkNameExceptionBigger() {
+<span class="nc" id="L49">        Employee employee = new Employee(&quot;ABCDE ABCDE ABCDE ABCDE ABCDE ABCDEF&quot;, &quot;00000000005&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+<span class="nc" id="L51">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkPhoneNumberExceptionBlank() {
+<span class="nc" id="L55">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+<span class="nc" id="L57">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkPhoneNumberExceptionLessThanElevenCharacters() {
+<span class="nc" id="L61">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;123456789&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+<span class="nc" id="L63">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkPhoneNumberExceptionMoreThanElevenCharacters() {
+<span class="nc" id="L67">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;123456789123&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+<span class="nc" id="L69">    }</span>
+
+    @Test
+    public void checkPhoneNumberExceptionSuccess() {
+<span class="fc" id="L73">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000006&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+<span class="fc" id="L75">        Assert.assertTrue(true);</span>
+<span class="fc" id="L76">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkSOCCodeExceptionIsBlank() {
+<span class="nc" id="L80">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000007&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+<span class="nc" id="L82">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkSOCCodeExceptionLessThanFourCharacters() {
+<span class="nc" id="L86">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000008&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;123&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+<span class="nc" id="L88">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkSOCCodeExceptionMoreThanFourCharacters() {
+<span class="nc" id="L92">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000009&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;12345&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+<span class="nc" id="L94">    }</span>
+
+    @Test
+    public void checkSOCCodeExceptionSuccess() {
+<span class="fc" id="L98">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000010&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+<span class="fc" id="L100">        Assert.assertTrue(true);</span>
+<span class="fc" id="L101">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkOrganizationRoleExceptionIsBlank() {
+<span class="nc" id="L105">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000011&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, &quot;&quot;, &quot;Test City&quot;);
+<span class="nc" id="L107">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkOrganizationRoleExceptionMoreThanThirtyCharacters() {
+<span class="nc" id="L111">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000012&quot;,</span>
+                new Email(&quot;testPersonThirteen@test.com&quot;), &quot;1003&quot;,
+                &quot;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&quot;, &quot;Test City&quot;);
+<span class="nc" id="L114">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkOrganizationRoleExceptionWithThirtyCharacters() {
+<span class="nc" id="L118">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000013&quot;,</span>
+                new Email(&quot;testPersonThirteen@test.com&quot;), &quot;1003&quot;,
+                &quot;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&quot;, &quot;Test City&quot;);
+<span class="nc" id="L121">        Assert.assertTrue(true);</span>
+<span class="nc" id="L122">    }</span>
+
+    @Test
+    public void checkOrganizationRoleExceptionSuccess() {
+<span class="fc" id="L126">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000014&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;1001&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+<span class="fc" id="L128">        Assert.assertTrue(true);</span>
+<span class="fc" id="L129">    }</span>
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkAddressExceptionIsBlank() {
+<span class="nc" id="L133">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000015&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;&quot;);
+<span class="nc" id="L135">    }</span>
+
+    @Test
+    public void checkAddressExceptionSuccess() {
+<span class="fc" id="L139">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000016&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+<span class="fc" id="L141">        Assert.assertTrue(true);</span>
+<span class="fc" id="L142">    }</span>
+
+    /**
+     * NOTE: This test is on a comment as it was causing lots of trouble in the teams' Jenkins build.
+     */
+    /*@Test
+    public void setEmployee_ID(){
+        Employee employee = new Employee(&quot;Test Person&quot;, &quot;12345678911&quot;,
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+        employee.setEmployeeID();
+
+        String expected = &quot;TP00015&quot;;
+        String result = employee.getEmployeeID();
+
+        assertEquals(expected, result);
+    }*/
+
+    @Test
+    public void setPassword() {
+<span class="fc" id="L161">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000017&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+<span class="fc" id="L163">        employee.setPassword();</span>
+<span class="fc" id="L164">        String password = Utils.randomPassword();</span>
+
+<span class="fc" id="L166">        int expected = 10;</span>
+<span class="fc" id="L167">        int result = password.length();</span>
+
+<span class="fc" id="L169">        assertEquals(expected, result);</span>
+<span class="fc" id="L170">    }</span>
+
+    @Test
+    public void setAuthFacade() throws IOException {
+<span class="fc" id="L174">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000018&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+<span class="fc" id="L176">        employee.setPassword();</span>
+<span class="fc" id="L177">        employee.registerUserAndSendEmail();</span>
+
+<span class="fc" id="L179">        boolean result = App.getInstance().getCompany().getAuthFacade().existsUser(&quot;testPerson@test.com&quot;);</span>
+
+<span class="fc" id="L181">        assertTrue(result);</span>
+<span class="fc" id="L182">    }</span>
+
+    @Test
+    public void getName(){
+<span class="fc" id="L186">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000019&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+
+<span class="fc" id="L189">        String expected = &quot;Test Person&quot;;</span>
+<span class="fc" id="L190">        String result = employee.getName();</span>
+
+<span class="fc" id="L192">        assertEquals(expected, result);</span>
+<span class="fc" id="L193">    }</span>
+
+    @Test
+    public void getAddress(){
+<span class="fc" id="L197">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000020&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+
+<span class="fc" id="L200">        String expected = &quot;Test City&quot;;</span>
+<span class="fc" id="L201">        String result = employee.getAddress();</span>
+
+<span class="fc" id="L203">        assertEquals(expected, result);</span>
+<span class="fc" id="L204">    }</span>
+
+    @Test
+    public void getOrganizationRole(){
+<span class="fc" id="L208">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000021&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+
+<span class="fc" id="L211">        String expected = Constants.ROLE_RECEP;</span>
+<span class="fc" id="L212">        String result = employee.getOrganizationRole();</span>
+
+<span class="fc" id="L214">        assertEquals(expected, result);</span>
+<span class="fc" id="L215">    }</span>
+
+    /**
+     * NOTE: This test is on a comment as it was causing lots of trouble in the teams' Jenkins build.
+     */
+    /*@Test
+    public void getEmployeeID() {
+        Employee employee = new Employee(&quot;Test Person&quot;, &quot;12345678911&quot;,
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+        employee.setEmployeeID();
+
+        String expected = &quot;TP00019&quot;;
+        String result = employee.getEmployeeID();
+
+        assertEquals(expected, result);
+    }*/
+
+    @Test
+    public void getPhoneNumber() {
+<span class="fc" id="L234">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000022&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+
+<span class="fc" id="L237">        String expected = &quot;00000000022&quot;;</span>
+<span class="fc" id="L238">        String result = employee.getPhoneNumber();</span>
+
+<span class="fc" id="L240">        assertEquals(expected, result);</span>
+<span class="fc" id="L241">    }</span>
+
+    @Test
+    public void getEmail() {
+<span class="fc" id="L245">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000023&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+
+<span class="fc" id="L248">        String expected = &quot;testPerson@test.com&quot;;</span>
+<span class="fc" id="L249">        String result = employee.getEmail();</span>
+
+<span class="fc" id="L251">        assertEquals(expected, result);</span>
+<span class="fc" id="L252">    }</span>
+
+    @Test
+    public void getSocCode() {
+<span class="fc" id="L256">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000024&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+
+<span class="fc" id="L259">        String expected = &quot;1234&quot;;</span>
+<span class="fc" id="L260">        String result = employee.getSocCode();</span>
+
+<span class="fc" id="L262">        assertEquals(expected, result);</span>
+<span class="fc" id="L263">    }</span>
+
+
+    @Test
+    public void testToString() {
+<span class="fc" id="L268">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000025&quot;,</span>
+                new Email(&quot;testPerson@test.com&quot;), &quot;1234&quot;, Constants.ROLE_RECEP, &quot;Test City&quot;);
+
+<span class="fc" id="L271">        String expected = String.format(&quot;%n1. NAME AND ADDRESS %n - Name: %s %n - Address: %s %n%n2. CONTACTS %n &quot; +</span>
+                        &quot;- Phone Number: %s %n - E-mail: %s %n%n3. COMPANY INFORMATION %n - Role: %s %n &quot; +
+<span class="fc" id="L273">                        &quot;- Employee ID: %s %n - SOC Code: %s %n&quot;, employee.getName(), employee.getAddress(),</span>
+<span class="fc" id="L274">                employee.getPhoneNumber(), employee.getEmail(), employee.getOrganizationRole(),</span>
+<span class="fc" id="L275">                employee.getEmployeeID(), employee.getSocCode());</span>
+<span class="fc" id="L276">        String result = employee.toString();</span>
+
+<span class="fc" id="L278">        assertEquals(expected, result);</span>
+<span class="fc" id="L279">    }</span>
+
+    @Test
+    public void testEquals(){
+<span class="fc" id="L283">        Employee employee = new Employee(&quot;Test Person&quot;, &quot;00000000026&quot;,</span>
+                new Email(&quot;testPersonSeventyOne@test.com&quot;), &quot;0021&quot;, Constants.ROLE_RECEP,
+                &quot;Test City&quot;);
+<span class="fc" id="L286">        Employee otherEmployee = new Employee(&quot;Test Person&quot;, &quot;76345678911&quot;,</span>
+                new Email(&quot;testPersonSeventyFive@test.com&quot;), &quot;0439&quot;, Constants.ROLE_RECEP,
+                &quot;Test City&quot;);
+
+<span class="fc" id="L290">        assertFalse(employee.equals(otherEmployee));</span>
+
+<span class="fc" id="L292">        Employee otherEmployeeTwo = new Employee(&quot;Test Person&quot;, &quot;76345678911&quot;,</span>
+                new Email(&quot;testPersonSeventyFive@test.com&quot;), &quot;0439&quot;, Constants.ROLE_RECEP,
+                &quot;Test City&quot;);
+
+<span class="fc" id="L296">        assertTrue(otherEmployee.equals(otherEmployeeTwo));</span>
+
+<span class="fc" id="L298">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant ":App" as APP
+participant ":Company" as COMPANY
+participant "auth:AuthFacade" as AUTHFAC
+participant ": TestStore" as STORE
+
+
+activate APP
+APP-->COMPANY:create(designation)
+
+    activate COMPANY
+    COMPANY-->AUTHFAC:create()
+    COMPANY-->STORE**:create(auth)
+    deactivate COMPANY
+
+deactivate APP
+
+@enduml
+@enduml

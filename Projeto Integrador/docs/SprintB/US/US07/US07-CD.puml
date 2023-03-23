@@ -1,0 +1,121 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Company{
+    - designation
+
+    + getEmployeeStore()
+}
+
+class Employee{
+    - name
+    - phoneNumber
+    - email
+    - password
+    - employeeID
+    - socCode
+    - organizationRole
+    - address
+
+    + Employee(name, phoneNumber, email,\n socCode, organizationRole, address)
+    + setPassword()
+    + setEmployeeID()
+    + setAuthFacade()
+}
+
+class SpecialistDoctor{
+    - doctorIndexNumber
+
+    + SpecialistDoctor(name, phoneNumber, email,\n socCode, organizationRole, address, doctorIndexNumber)
+}
+
+class RegisterNewEmployeeUI{
+}
+
+class Password{
+    - password
+    - numbersArray
+    - lettersArray
+    - symbolsArray
+
+    + randomPassword()
+
+    + Password(password)
+    + validate(password)
+    - createHash(password)
+    + checkPassword(pwd)
+    + hashCode()
+    + equals(o)
+}
+
+class RegisterNewEmployeeController{
+    + registerNewEmployee(name, password, phoneNumber, email,\n employeeID, socCode, organizationRole, address, doctorIndexNumber)
+    + registerNewEmployeeDoctor(name, password, phoneNumber, email,\n employeeID, socCode, organizationRole, address)
+    + saveEmployee(employee)
+}
+
+class EmployeeStore{
+    + registerNewEmployee(name, password, phoneNumber, email,\n employeeID, socCode, organizationRole, address, doctorIndexNumber)
+    + registerNewEmployeeDoctor(name, password, phoneNumber, email,\n employeeID, socCode, organizationRole, address)
+
+    + validateEmployee(employee)
+    + saveEmployee(employee)
+
+    + containsPhoneNumber(phoneNumber)
+    + containsSocCode(socCode)
+    + containsDoctorIndexNumber(doctorIndexNumber)
+    + containsEmail(email)
+}
+
+class Utils{
+    + randomPassword()
+    + quantityOfDigits(number)
+    + onlyDigits(str)
+    + getStringInitials(str)
+    + printLineToConsole(prompt)
+    + readLineFromConsole(prompt)
+    + readIntegerFromConsole(prompt)
+    + readDoubleFromConsole(prompt)
+    + readDateFromConsole(prompt)
+    + confirm(message)
+    + showAndSelectOne(list, header)
+    + showAndSelectIndex(list, header)
+    + showList(list, header)
+    + selectsObject(list)
+    + selectsIndex(list)
+
+}
+
+class AuthFacade{
+    + addUserRole(id, description)
+    + addUser(name, pwd)
+    + addUserWithRole(name, email, pwd, roleId)
+    + addUserWithRoles(name, email, pwd, rolesId)
+    + existsUser (email)
+    + doLogin(email, password)
+    + getCurrentUserSession()
+    + doLogout()
+}
+
+interface EmailSMS{
+    sendEmail(String email,String name,String password)
+}
+
+Company "1" --> "1..*" Employee: has
+Company "1" --> "1" EmployeeStore: uses
+Company .> AuthFacade
+
+Employee <|-- SpecialistDoctor
+Employee "*" <- "1" EmployeeStore: adopts
+Employee ..> Utils
+Employee ..> EmailSMS
+
+Password "1" <- "1" Employee: uses
+
+RegisterNewEmployeeController ..> Company
+RegisterNewEmployeeController ..> Employee
+RegisterNewEmployeeController ..> EmployeeStore
+
+RegisterNewEmployeeUI ..> RegisterNewEmployeeController
+
+@enduml

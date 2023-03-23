@@ -1,0 +1,38 @@
+@startuml
+
+autonumber
+actor Administrator as admin
+participant ":System" as sys
+
+activate admin
+
+admin -> sys: Asks to register a new Employee
+activate sys
+sys --> admin: Shows a List with Organization Roles and asks to select one
+deactivate sys
+
+alt Chooses the type of employee Specialist Doctor
+
+    sys --> admin: Requests data (name, password, phoneNumber, email,\n employeeID, socCode, organizationRole, address, doctorIndexNumber)
+    admin -> sys: Types requested data
+    activate sys
+
+else Chooses another type of employee
+
+    autonumber 3
+    sys --> admin: Requests data (name, phoneNumber, email, password,\n employeeID, socCode, organizationRole, address)
+    admin -> sys: Types requested data
+    activate sys
+
+end
+
+sys --> admin: Asks for confirmation of the given data
+deactivate sys
+deactivate sys
+admin -> sys: Confirms the given data
+activate sys
+sys --> admin: Informs of operation success
+deactivate sys
+deactivate admin
+
+@enduml

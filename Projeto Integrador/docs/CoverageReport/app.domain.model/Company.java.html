@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Company.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sem2App$All_in_Sem2App.exec</a> &gt; <a href="index.source.html" class="el_package">app.domain.model</a> &gt; <span class="el_source">Company.java</span></div><h1>Company.java</h1><pre class="source lang-java linenums">package app.domain.model;
+
+import app.mappers.TestMapper;
+import app.store.*;
+import auth.AuthFacade;
+import org.apache.commons.lang3.StringUtils;
+
+/**
+ * @author Paulo Maio &lt;pam@isep.ipp.pt&gt;
+ * @author André Soares
+ * @author Miguel Ramos
+ * @author Luís Ribeiro
+ * @author Pedro Graça
+ */
+public class Company {
+
+    /**
+     * A string (description).
+     */
+    private final String designation;
+
+    /**
+     * A AuthFacade Object.
+     */
+    private final AuthFacade authFacade;
+
+    /**
+     * A TestTypeStore Object.
+     */
+    private final TestTypeStore testTypeStore;
+
+    /**
+     * A ParameterCategoryStore Object.
+     */
+    private final ParameterCategoryStore parameterCategoryStore;
+
+    /**
+     * A ClinicalAnalysisLaboratoryStore Object.
+     */
+    private final ClinicalAnalysisLaboratoryStore clinicalAnalysisLaboratoryStore;
+
+    /**
+     * A ClientStore Object.
+     */
+    private final ClientStore clientStore;
+
+    /**
+     * A EmployeeStore Object.
+     */
+    private final EmployeeStore employeeStore;
+
+    /**
+     * A ParameterStore Object.
+     */
+    private final ParameterStore parameterStore;
+
+    /**
+     * A TestStore Object.
+     */
+    private final TestStore testStore;
+
+    /**
+     * A TestMapper Object.
+     */
+    private final TestMapper testMapper;
+
+    /**
+     * A constructor that allows the initialization of all the Company instances.
+     *
+     * @param designation A string that contains a description of the Company.
+     */
+<span class="fc" id="L72">    public Company(String designation) {</span>
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">        if (StringUtils.isBlank(designation))</span>
+<span class="nc" id="L74">            throw new IllegalArgumentException(&quot;Designation cannot be blank.&quot;);</span>
+<span class="fc" id="L75">        this.designation = designation;</span>
+<span class="fc" id="L76">        this.authFacade = new AuthFacade();</span>
+<span class="fc" id="L77">        this.testTypeStore = new TestTypeStore();</span>
+<span class="fc" id="L78">        this.parameterCategoryStore = new ParameterCategoryStore();</span>
+<span class="fc" id="L79">        this.clinicalAnalysisLaboratoryStore = new ClinicalAnalysisLaboratoryStore();</span>
+<span class="fc" id="L80">        this.clientStore = new ClientStore();</span>
+<span class="fc" id="L81">        this.employeeStore = new EmployeeStore();</span>
+<span class="fc" id="L82">        this.parameterStore = new ParameterStore();</span>
+<span class="fc" id="L83">        this.testStore = new TestStore();</span>
+<span class="fc" id="L84">        this.testMapper = new TestMapper();</span>
+<span class="fc" id="L85">    }</span>
+
+    /**
+     * The method that allows the return of the ParameterCategoryStore.
+     *
+     * @return The Parameter Category Store.
+     */
+    public ParameterCategoryStore getParameterCategoryStore() {
+<span class="fc" id="L93">        return parameterCategoryStore;</span>
+    }
+
+    /**
+     * The method that allows the return of the TestTypeStore.
+     *
+     * @return The Test Type Store.
+     */
+    public TestTypeStore getTestTypeStore() {
+<span class="fc" id="L102">        return testTypeStore;</span>
+    }
+
+    /**
+     * The method that allows the return of Designation.
+     *
+     * @return The Company Designation.
+     */
+    public String getDesignation() {
+<span class="nc" id="L111">        return designation;</span>
+    }
+
+    /**
+     * The method that allows the return of the AuthFacade.
+     *
+     * @return The AuthFacade.
+     */
+    public AuthFacade getAuthFacade() {
+<span class="fc" id="L120">        return authFacade;</span>
+    }
+
+    /**
+     * The method that allows the return of the ClinicalAnalysisLaboratory.
+     *
+     * @return The ClinicalAnalysisLaboratory.
+     */
+    public ClinicalAnalysisLaboratoryStore getClinicalAnalysisLaboratoryStore() {
+<span class="fc" id="L129">        return clinicalAnalysisLaboratoryStore;</span>
+    }
+
+    /**
+     * The method that allows the return of the ClientStore.
+     *
+     * @return The ClientStore.
+     */
+    public ClientStore getClientStore() {
+<span class="fc" id="L138">        return this.clientStore;</span>
+    }
+
+    /**
+     * The method that allows the return of the EmployeeStore.
+     *
+     * @return The EmployeeStore.
+     */
+    public EmployeeStore getEmployeeStore() {
+<span class="fc" id="L147">        return employeeStore;</span>
+    }
+
+    /**
+     * The method that allows the return of the ParameterStore.
+     *
+     * @return The ParameterStore.
+     */
+    public ParameterStore getParameterStore() {
+<span class="fc" id="L156">        return parameterStore;</span>
+    }
+
+    /**
+     * The method that allows the return of the TestStore.
+     *
+     * @return The TestStore.
+     */
+    public TestStore getTestStore() {
+<span class="nc" id="L165">        return testStore;</span>
+    }
+
+    /**
+     * The method that allows the return of the TestMapper.
+     *
+     * @return The TestMapper.
+     */
+    public TestMapper listDTO(){
+<span class="nc" id="L174">        return testMapper;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

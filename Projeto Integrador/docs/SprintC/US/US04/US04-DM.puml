@@ -1,0 +1,83 @@
+@startuml
+
+
+class Company{
+  designation
+  }
+
+class ClinicalAnalysisLaboratory{
+address
+phoneNumber
+taxIdentificationNumber
+name
+laboratoryId
+}
+
+ class Test{
+   code
+   nhsCode
+   createdAt
+   sampleDate
+   resultDate
+   reportDate
+}
+
+class TestType{
+  code
+  description
+  collectionMethod
+}
+
+class Parameter{
+  code
+  shortName
+  description
+
+}
+
+class Employee{
+name
+phoneNumber
+email
+employeeID
+socCode
+organizationRole
+address
+}
+
+class LabOrder{}
+
+class Receptionist{}
+
+class Client{
+  name
+  email
+  taxIdentificationNumber
+  citizenCardNumber
+  nhsNumber
+  birthDate
+  gender
+  phoneNumber
+  }
+
+class ParameterCategory{
+  code
+  name
+}
+
+Company "1" -- "1.*" ClinicalAnalysisLaboratory : owns >
+ClinicalAnalysisLaboratory "1" -- "1.*" TestType : has >
+Employee o- Receptionist
+Company "1" -- "*" Client : has >
+Receptionist "1" -- "*" Test : registers >
+Receptionist "1..*" -- "1" ClinicalAnalysisLaboratory: works at >
+Test "1" -- "1" TestType : is of a >
+Client "1" -- "1" LabOrder: has >
+LabOrder "1" -- "1" Test: conducts >
+Test "*" -- "1..*" Parameter: requests analysis of >
+(Test,Parameter) .. TestParameter
+Parameter "*" -- "1" ParameterCategory: presented under >
+TestType "1" -- "1..*" ParameterCategory: requests >
+
+
+@enduml

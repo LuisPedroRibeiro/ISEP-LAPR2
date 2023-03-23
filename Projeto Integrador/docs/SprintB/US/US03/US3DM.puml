@@ -1,0 +1,34 @@
+@startuml
+
+class Company{
+  designation
+}
+
+class Receptionist
+
+
+class Client{
+  name
+  phoneNumber
+  taxIdentificationNumber
+  email
+  birthDate
+  gender
+  nhsNumber
+  citizenCardNumber
+  }
+
+ class User{
+   name
+   email
+   password
+ }
+
+
+Company "1" --- "*" Client: has >
+
+Receptionist "1" -- "1..*"Client: registers >
+
+Client  "0..1" -- "1"User: > relates to
+
+@enduml
